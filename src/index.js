@@ -132,7 +132,7 @@ a{color:inherit;text-decoration:none}
   <p>© 2026 Zitro Network. Todos los derechos reservados.</p>
   <nav>
     <a href="https://fedeortiz9.github.io/zitro-privacy-policy/">Privacy Policy</a>
-    <a href="URL_TERMS">Terms and Conditions</a>
+    <a href="https://fedeortiz9.github.io/zitro-terms/">Terms and Conditions</a>
     <a href="https://fedeortiz9.github.io/zitro-whitepaper/">Whitepaper</a>
   </nav>
 </footer>
