@@ -7,11 +7,10 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
-export async function onRequestGet({ params }) {
-  const rawCode = String(params.code || "").slice(0, 64);
+function renderRefPage(rawCode) {
   const safeCode = escapeHtml(rawCode);
 
-  const html = `<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -155,8 +154,28 @@ a{color:inherit;text-decoration:none}
 </script>
 </body>
 </html>`;
-
-  return new Response(html, {
-    headers: { "content-type": "text/html; charset=UTF-8" },
-  });
 }
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+
+    if (url.pathname.startsWith("/ref/")) {
+      let rawCode = url.pathname.slice("/ref/".length).replace(/\/+$/, "");
+      try {
+        rawCode = decodeURIComponent(rawCode);
+      } catch {
+        // deja rawCode tal cual si el porcentaje-encoding es inválido
+      }
+      rawCode = rawCode.slice(0, 64);
+
+      if (rawCode) {
+        return new Response(renderRefPage(rawCode), {
+          headers: { "content-type": "text/html; charset=UTF-8" },
+        });
+      }
+    }
+
+    return env.ASSETS.fetch(request);
+  },
+};

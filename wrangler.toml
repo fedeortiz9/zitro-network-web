@@ -1,0 +1,8 @@
+name = "zitro-network-web"
+main = "src/index.js"
+compatibility_date = "2026-07-06"
+
+[assets]
+directory = "."
+binding = "ASSETS"
+not_found_handling = "404-page"
