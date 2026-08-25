@@ -1,3 +1,40 @@
+const CANONICAL_HOST = "www.zitronetwork.com";
+const CANONICAL_ORIGIN = `https://${CANONICAL_HOST}`;
+const REFERRAL_CODE_RE = /^[A-HJ-NP-Z2-9]{8}$/;
+
+const SECURITY_HEADERS = {
+  "content-security-policy": [
+    "default-src 'none'",
+    "style-src 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src https://fonts.gstatic.com",
+    "img-src data:",
+    "script-src 'unsafe-inline'",
+    "base-uri 'none'",
+    "form-action 'none'",
+    "frame-ancestors 'none'",
+  ].join("; "),
+  "permissions-policy": "clipboard-write=(self)",
+  "referrer-policy": "no-referrer",
+  "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+  "x-content-type-options": "nosniff",
+};
+
+export function normalizeReferralCode(value) {
+  if (typeof value !== "string") return null;
+
+  const normalized = value.trim().toUpperCase();
+  return REFERRAL_CODE_RE.test(normalized) ? normalized : null;
+}
+
+export function buildCanonicalReferralUrl(value) {
+  const code = normalizeReferralCode(value);
+  if (!code) throw new TypeError("Invalid referral code");
+
+  const url = new URL("/ref/", CANONICAL_ORIGIN);
+  url.pathname += code;
+  return url;
+}
+
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, "&amp;")
@@ -7,8 +44,66 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
-function renderRefPage(rawCode) {
-  const safeCode = escapeHtml(rawCode);
+function isExactReferralPath(url) {
+  if (url.search || url.hash || !url.pathname.startsWith("/ref/")) {
+    return null;
+  }
+
+  const encodedCode = url.pathname.slice("/ref/".length);
+  if (!encodedCode || encodedCode.includes("/")) return null;
+
+  let decodedCode;
+  try {
+    decodedCode = decodeURIComponent(encodedCode);
+  } catch {
+    return null;
+  }
+
+  if (decodedCode !== encodedCode || decodedCode.trim() !== decodedCode) {
+    return null;
+  }
+
+  const code = normalizeReferralCode(decodedCode);
+  if (!code) return null;
+
+  return { code, isCanonical: decodedCode === code };
+}
+
+function getLegacyReferralCode(url) {
+  if (url.hash || (url.pathname !== "/" && url.pathname !== "/register")) {
+    return null;
+  }
+
+  const entries = [...url.searchParams.entries()];
+  if (entries.length !== 1 || (entries[0][0] !== "ref" && entries[0][0] !== "")) {
+    return null;
+  }
+
+  return normalizeReferralCode(entries[0][1]);
+}
+
+function withSecurityHeaders(response, { referralPage = false } = {}) {
+  const headers = new Headers(response.headers);
+  for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
+    headers.set(name, value);
+  }
+  if (referralPage) headers.set("cache-control", "private, no-store");
+
+  return new Response(response.body, {
+    headers,
+    status: response.status,
+    statusText: response.statusText,
+  });
+}
+
+function redirectToCanonical(url) {
+  const canonical = new URL(CANONICAL_ORIGIN);
+  canonical.pathname = url.pathname;
+  return withSecurityHeaders(Response.redirect(canonical, 308));
+}
+
+function renderRefPage(code) {
+  const safeCode = escapeHtml(code);
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -92,10 +187,12 @@ a{color:inherit;text-decoration:none}
   transition:transform .2s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s;
 }
 .btn:active{transform:scale(.97)}
+.btn:disabled{cursor:wait;opacity:.7}
 .btn-accent{background:var(--accent);color:#07080a;border-color:var(--accent)}
 .btn-accent:hover{background:#c8e604}
 .btn-ghost{background:transparent;color:var(--fg)}
 .btn-ghost:hover{border-color:rgba(255,255,255,.25)}
+.feedback{min-height:1.5rem;color:var(--fg-muted);font-size:.85rem;margin:.9rem 0 0}
 .site-footer{
   border-top:1px solid var(--border);
   padding:2rem clamp(1.5rem,5vw,4rem);
@@ -117,14 +214,15 @@ a{color:inherit;text-decoration:none}
   <section class="ref-card">
     <span class="eyebrow">Invitación</span>
     <h1>Fuiste invitado a Zitro Network.</h1>
-    <p class="lead">La app estará disponible próximamente. Guardá tu código de referido para usarlo apenas puedas registrarte.</p>
+    <p class="lead">La apertura automática de la app todavía no está disponible. Guardá tu código para ingresarlo manualmente durante el registro.</p>
     <div class="ref-code-box">
       <span class="ref-code" id="ref-code" data-code="${safeCode}">${safeCode}</span>
-      <button type="button" id="copy-btn" class="btn btn-accent">Copiar código</button>
     </div>
     <div class="ref-actions">
+      <button type="button" id="copy-btn" class="btn btn-accent">Copiar código</button>
       <a href="/" class="btn btn-ghost">Volver al inicio</a>
     </div>
+    <p id="copy-feedback" class="feedback" aria-live="polite"></p>
   </section>
 </main>
 
@@ -136,18 +234,22 @@ a{color:inherit;text-decoration:none}
     <a href="https://fedeortiz9.github.io/zitro-whitepaper/">Whitepaper</a>
   </nav>
 </footer>
-
 <script>
 (function () {
-  var btn = document.getElementById('copy-btn');
-  var codeEl = document.getElementById('ref-code');
-  if (!btn || !codeEl) return;
-  btn.addEventListener('click', function () {
-    var code = codeEl.dataset.code || codeEl.textContent;
+  var button = document.getElementById('copy-btn');
+  var codeElement = document.getElementById('ref-code');
+  var feedback = document.getElementById('copy-feedback');
+  if (!button || !codeElement || !feedback) return;
+  button.addEventListener('click', function () {
+    var code = codeElement.dataset.code;
+    if (!navigator.clipboard || !code) { feedback.textContent = 'No se pudo copiar el código. Copialo manualmente.'; return; }
+    button.disabled = true;
     navigator.clipboard.writeText(code).then(function () {
-      var original = btn.textContent;
-      btn.textContent = 'Copiado';
-      setTimeout(function () { btn.textContent = original; }, 1500);
+      feedback.textContent = 'Código copiado.';
+    }).catch(function () {
+      feedback.textContent = 'No se pudo copiar el código. Copialo manualmente.';
+    }).finally(function () {
+      button.disabled = false;
     });
   });
 })();
@@ -160,22 +262,37 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    if (url.pathname.startsWith("/ref/")) {
-      let rawCode = url.pathname.slice("/ref/".length).replace(/\/+$/, "");
-      try {
-        rawCode = decodeURIComponent(rawCode);
-      } catch {
-        // deja rawCode tal cual si el porcentaje-encoding es inválido
-      }
-      rawCode = rawCode.slice(0, 64);
+    if (url.username || url.password || url.port) {
+      return withSecurityHeaders(await env.ASSETS.fetch(request));
+    }
 
-      if (rawCode) {
-        return new Response(renderRefPage(rawCode), {
-          headers: { "content-type": "text/html; charset=UTF-8" },
-        });
+    if (
+      url.host === "zitronetwork.com" ||
+      (url.host === CANONICAL_HOST && url.protocol !== "https:")
+    ) {
+      return redirectToCanonical(url);
+    }
+
+    if (url.host === CANONICAL_HOST) {
+      const referral = isExactReferralPath(url);
+      if (referral) {
+        if (!referral.isCanonical) {
+          return withSecurityHeaders(Response.redirect(buildCanonicalReferralUrl(referral.code), 308));
+        }
+        return withSecurityHeaders(
+          new Response(renderRefPage(referral.code), {
+            headers: { "content-type": "text/html; charset=UTF-8" },
+          }),
+          { referralPage: true },
+        );
+      }
+
+      const legacyCode = getLegacyReferralCode(url);
+      if (legacyCode) {
+        return withSecurityHeaders(Response.redirect(buildCanonicalReferralUrl(legacyCode), 308));
       }
     }
 
-    return env.ASSETS.fetch(request);
+    return withSecurityHeaders(await env.ASSETS.fetch(request));
   },
 };
