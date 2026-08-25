@@ -63,7 +63,10 @@ function isExactReferralPath(url) {
     return null;
   }
 
-  return normalizeReferralCode(decodedCode);
+  const code = normalizeReferralCode(decodedCode);
+  if (!code) return null;
+
+  return { code, isCanonical: decodedCode === code };
 }
 
 function getLegacyReferralCode(url) {
@@ -94,8 +97,8 @@ function withSecurityHeaders(response, { referralPage = false } = {}) {
 }
 
 function redirectToCanonical(url) {
-  const canonical = new URL(url.pathname, CANONICAL_ORIGIN);
-  canonical.search = url.search;
+  const canonical = new URL(CANONICAL_ORIGIN);
+  canonical.pathname = url.pathname;
   return withSecurityHeaders(Response.redirect(canonical, 308));
 }
 
@@ -259,6 +262,10 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    if (url.username || url.password || url.port) {
+      return withSecurityHeaders(await env.ASSETS.fetch(request));
+    }
+
     if (
       url.host === "zitronetwork.com" ||
       (url.host === CANONICAL_HOST && url.protocol !== "https:")
@@ -267,10 +274,13 @@ export default {
     }
 
     if (url.host === CANONICAL_HOST) {
-      const referralCode = isExactReferralPath(url);
-      if (referralCode) {
+      const referral = isExactReferralPath(url);
+      if (referral) {
+        if (!referral.isCanonical) {
+          return withSecurityHeaders(Response.redirect(buildCanonicalReferralUrl(referral.code), 308));
+        }
         return withSecurityHeaders(
-          new Response(renderRefPage(referralCode), {
+          new Response(renderRefPage(referral.code), {
             headers: { "content-type": "text/html; charset=UTF-8" },
           }),
           { referralPage: true },
