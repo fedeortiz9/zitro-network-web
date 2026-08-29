@@ -413,6 +413,7 @@ section {
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
   transition: border-color 0.3s ease;
+  animation: heroFadeIn 0.5s var(--ease-out-expo) 0s backwards;
 }
 
 .nav-wrap {
@@ -425,42 +426,19 @@ section {
 .brand-link {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  font-weight: 700;
-  font-size: 1.15rem;
-  letter-spacing: -0.02em;
-  color: var(--fg-primary);
+  gap: 0.5rem;
   transition: opacity 0.2s ease;
 }
 
 .brand-link:hover {
-  opacity: 0.9;
+  opacity: 0.88;
 }
 
-.brand-mark-svg {
-  width: 28px;
+.brand-logo-img {
   height: 28px;
-  flex-shrink: 0;
-}
-
-.brand-text-block {
-  display: flex;
-  align-items: baseline;
-  gap: 0.3rem;
-}
-
-.brand-title {
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-.brand-tag {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  color: var(--accent);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .nav-links {
@@ -579,6 +557,74 @@ section {
 }
 
 /* ==========================================================================
+   HERO LOAD SEQUENCE (ELEMENT-LEVEL REAL MOTION)
+   ========================================================================== */
+@keyframes heroFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroPhone3DIn {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-8deg) rotateX(4deg) translateY(24px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(-4deg) rotateX(2deg) translateY(0) scale(1);
+  }
+}
+
+@keyframes heroSatelliteIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.hero-animate-eyebrow {
+  animation: heroFadeIn 0.65s var(--ease-out-expo) 0.1s backwards;
+}
+
+.hero-animate-title {
+  animation: heroFadeIn 0.75s var(--ease-out-expo) 0.22s backwards;
+}
+
+.hero-animate-desc {
+  animation: heroFadeIn 0.75s var(--ease-out-expo) 0.35s backwards;
+}
+
+.hero-animate-ctas {
+  animation: heroFadeIn 0.75s var(--ease-out-expo) 0.48s backwards;
+}
+
+.hero-animate-telemetry {
+  animation: heroFadeIn 0.75s var(--ease-out-expo) 0.6s backwards;
+}
+
+.hero-animate-phone {
+  animation: heroPhone3DIn 0.85s var(--ease-out-expo) 0.3s backwards;
+}
+
+.hero-animate-satellite-1 {
+  animation: heroSatelliteIn 0.7s var(--ease-out-expo) 0.65s backwards;
+}
+
+.hero-animate-satellite-2 {
+  animation: heroSatelliteIn 0.7s var(--ease-out-expo) 0.75s backwards;
+}
+
+/* ==========================================================================
    HERO SECTION (ASYMMETRICAL EDITORIAL ARCHITECTURE)
    ========================================================================== */
 .hero-section {
@@ -666,14 +712,14 @@ section {
 .hero-backdrop-mark {
   position: absolute;
   width: 380px;
-  height: 380px;
+  max-width: 90vw;
+  height: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0.07;
+  opacity: 0.08;
   pointer-events: none;
   z-index: 0;
-  transition: opacity 0.5s ease;
 }
 
 /* Smartphone Showcase Mockup */
@@ -750,9 +796,10 @@ section {
   font-weight: 700;
 }
 
-.app-brand svg {
-  width: 18px;
-  height: 18px;
+.app-brand img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
 
 .app-status {
@@ -1558,9 +1605,11 @@ section {
   margin-bottom: 3.5rem;
 }
 
-.footer-brand-col img {
-  height: 28px;
+.footer-logo-img {
+  height: 30px;
   width: auto;
+  object-fit: contain;
+  display: block;
   margin-bottom: 1.25rem;
 }
 
@@ -1650,7 +1699,7 @@ section {
 }
 
 /* ==========================================================================
-   MOTION DESIGN & SCROLL REVEALS
+   SCROLL REVEALS (FOR SUBSEQUENT SECTIONS)
    ========================================================================== */
 .reveal-item {
   opacity: 0;
@@ -1754,7 +1803,6 @@ section {
 @media (max-width: 480px) {
   .container {
     padding: 0 1rem;
-    overflow-x: hidden;
   }
 
   .eyebrow {
@@ -1823,7 +1871,9 @@ section {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
     transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
 
@@ -1860,14 +1910,7 @@ section {
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand-link" href="/" aria-label="Zitro Network Inicio">
-      <svg class="brand-mark-svg" viewBox="0 0 608 672" fill="none" aria-hidden="true">
-        <path d="M0,0 H608 V156 L360,404 V156 H0 Z" fill="#dcfc04"/>
-        <path d="M608,672 H0 V516 L248,268 V516 H608 Z" fill="#dcfc04"/>
-      </svg>
-      <div class="brand-text-block">
-        <span class="brand-title">ZITRO</span>
-        <span class="brand-tag">NETWORK</span>
-      </div>
+      <img src="assets/brand/zitro-logo-white.png" alt="Zitro Network" class="brand-logo-img">
     </a>
 
     <nav class="nav-links" aria-label="Navegación principal">
@@ -1908,32 +1951,32 @@ section {
 
 <main>
   <!-- ==========================================================================
-       HERO SECTION
+       HERO SECTION (REAL ELEMENT-LEVEL SEQUENTIAL LOAD ANIMATION)
        ========================================================================== -->
   <section class="hero-section" id="hero">
     <div class="container hero-grid">
-      <div class="hero-content reveal-item is-revealed">
-        <div class="eyebrow">
+      <div class="hero-content">
+        <div class="eyebrow hero-animate-eyebrow">
           <span class="eyebrow-ping"></span>
           <span>Fase Pre-Lanzamiento • Ecosistema Zitro</span>
         </div>
-        <h1 class="hero-title">
+        <h1 class="hero-title hero-animate-title">
           Construyendo una nueva experiencia de <span class="text-accent">minería en la nube</span> y tecnología blockchain.
         </h1>
-        <p class="hero-desc">
+        <p class="hero-desc hero-animate-desc">
           Zitro Network conecta minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en evolución.
         </p>
-        <div class="hero-ctas">
+        <div class="hero-ctas hero-animate-ctas">
           <a class="btn btn-primary" href="#ecosystem">
             <span>Explorar Ecosistema</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
           <a class="btn btn-secondary" href="#academy">
             <span>Conocer Zitro Academy</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
-        <div class="hero-telemetry-strip">
+        <div class="hero-telemetry-strip hero-animate-telemetry">
           <div class="telemetry-item">
             <span>PLATAFORMA:</span>
             <strong>Android Core</strong>
@@ -1947,15 +1990,12 @@ section {
       </div>
 
       <!-- Hero Visual Stage -->
-      <div class="hero-visual-stage reveal-item is-revealed stagger-1">
+      <div class="hero-visual-stage">
         <!-- Giant Official Backdrop Mark Watermark -->
-        <svg class="hero-backdrop-mark" viewBox="0 0 608 672" fill="none" aria-hidden="true">
-          <path d="M0,0 H608 V156 L360,404 V156 H0 Z" fill="#dcfc04"/>
-          <path d="M608,672 H0 V516 L248,268 V516 H608 Z" fill="#dcfc04"/>
-        </svg>
+        <img src="assets/brand/zitro-mark-accent.png" class="hero-backdrop-mark" alt="" aria-hidden="true">
 
         <!-- Satellite Badge 1 (Top Left) -->
-        <div class="floating-satellite satellite-top-left">
+        <div class="floating-satellite satellite-top-left hero-animate-satellite-1">
           <div class="satellite-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
@@ -1966,7 +2006,7 @@ section {
         </div>
 
         <!-- Smartphone Device Mockup -->
-        <div class="phone-frame" id="phone-frame">
+        <div class="phone-frame hero-animate-phone" id="phone-frame">
           <div class="phone-island">
             <div class="island-sensor"></div>
           </div>
@@ -1974,10 +2014,7 @@ section {
           <div class="phone-viewport">
             <div class="app-bar">
               <div class="app-brand">
-                <svg viewBox="0 0 608 672" fill="none" style="width:16px;height:16px;">
-                  <path d="M0,0 H608 V156 L360,404 V156 H0 Z" fill="#dcfc04"/>
-                  <path d="M608,672 H0 V516 L248,268 V516 H608 Z" fill="#dcfc04"/>
-                </svg>
+                <img src="assets/brand/zitro-mark-accent.png" alt="" aria-hidden="true" style="width:16px;height:16px;object-fit:contain;">
                 <span>ZITRO<span style="color:var(--accent);">APP</span></span>
               </div>
               <div class="app-status">
@@ -2031,7 +2068,7 @@ section {
         </div>
 
         <!-- Satellite Badge 2 (Bottom Right) -->
-        <div class="floating-satellite satellite-bottom-right">
+        <div class="floating-satellite satellite-bottom-right hero-animate-satellite-2">
           <div class="satellite-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           </div>
@@ -2050,25 +2087,25 @@ section {
   <section class="telemetry-ticker">
     <div class="container">
       <div class="ticker-grid">
-        <div class="ticker-cell reveal-item is-revealed">
+        <div class="ticker-cell reveal-item">
           <span class="ticker-index">01 // HARDWARE</span>
           <h3 class="ticker-title">Eficiencia en el Dispositivo</h3>
           <p class="ticker-desc">La experiencia no utiliza la CPU o GPU del dispositivo para minería computacional.</p>
         </div>
 
-        <div class="ticker-cell reveal-item is-revealed stagger-1">
+        <div class="ticker-cell reveal-item stagger-1">
           <span class="ticker-index">02 // ACADEMY</span>
           <h3 class="ticker-title">Educación Tecnológica</h3>
           <p class="ticker-desc">Zitro Academy para comprender tecnología blockchain y análisis de mercado.</p>
         </div>
 
-        <div class="ticker-cell reveal-item is-revealed stagger-2">
+        <div class="ticker-cell reveal-item stagger-2">
           <span class="ticker-index">03 // NETWORK</span>
           <h3 class="ticker-title">Sistema de Comunidad</h3>
           <p class="ticker-desc">Crecimiento colaborativo mediante un sistema de referidos y equipo.</p>
         </div>
 
-        <div class="ticker-cell reveal-item is-revealed stagger-3">
+        <div class="ticker-cell reveal-item stagger-3">
           <span class="ticker-index">04 // PROTOCOL</span>
           <h3 class="ticker-title">Infraestructura Blockchain</h3>
           <p class="ticker-desc">Hoja de ruta orientada al desarrollo de protocolos descentralizados.</p>
@@ -2431,10 +2468,7 @@ section {
             <g transform="translate(300, 120)">
               <circle r="34" fill="#07080a" stroke="#dcfc04" stroke-width="2.5" />
               <circle r="26" fill="rgba(220,252,4,0.12)" />
-              <g transform="translate(-10, -11) scale(0.033)">
-                <path d="M0,0 H608 V156 L360,404 V156 H0 Z" fill="#dcfc04"/>
-                <path d="M608,672 H0 V516 L248,268 V516 H608 Z" fill="#dcfc04"/>
-              </g>
+              <image href="assets/brand/zitro-mark-accent.png" x="-10" y="-11" width="20" height="22" preserveAspectRatio="xMidYMid meet" />
               <text y="48" fill="#ffffff" font-weight="700" font-size="11" font-family="'IBM Plex Mono',monospace" text-anchor="middle">ZITRO CORE</text>
             </g>
           </svg>
@@ -2550,7 +2584,7 @@ section {
     <div class="footer-columns">
       <!-- Col 1: Brand -->
       <div class="footer-brand-col">
-        <img src="assets/brand/zitro-logo-white.png" alt="Zitro Logo" loading="lazy">
+        <img src="assets/brand/zitro-logo-white.png" alt="Zitro" class="footer-logo-img" loading="lazy">
         <p class="footer-brand-desc">
           Ecosistema tecnológico enfocado en minería en la nube, educación tecnológica responsable e infraestructura blockchain en desarrollo.
         </p>
