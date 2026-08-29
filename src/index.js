@@ -5,9 +5,9 @@ const REFERRAL_CODE_RE = /^[A-HJ-NP-Z2-9]{8}$/;
 const SECURITY_HEADERS = {
   "content-security-policy": [
     "default-src 'none'",
-    "style-src 'unsafe-inline' https://fonts.googleapis.com",
-    "font-src https://fonts.gstatic.com",
-    "img-src data:",
+    "style-src 'unsafe-inline'",
+    "font-src 'self'",
+    "img-src 'self' data:",
     "script-src 'unsafe-inline'",
     "base-uri 'none'",
     "form-action 'none'",
