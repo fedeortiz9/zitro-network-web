@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zitro Network — Ecosistema Digital, Minería Móvil y Educación Financiera</title>
-<meta name="description" content="Zitro Network es el ecosistema digital de próxima generación: minería móvil eficiente, academia de trading y finanzas, red comunitaria y visión blockchain.">
+<meta name="description" content="Zitro Network es el ecosistema digital en desarrollo: sesiones de minería simulada en la app, academia de trading y finanzas, sistema de comunidad y visión blockchain.">
 <meta name="theme-color" content="#07080a">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307080a'/%3E%3Cpath d='M9 10h14l-11 12h11' stroke='%23dcfc04' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
@@ -83,6 +83,13 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
 }
 
 button {
@@ -656,24 +663,25 @@ section {
 }
 
 .metric-value {
-  font-size: 2.1rem;
+  font-size: 1.45rem;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: #ffffff;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
-  gap: 0.35rem;
+  gap: 0.45rem;
 }
 
 .metric-symbol {
-  font-size: 1.15rem;
+  font-size: 0.85rem;
   color: var(--accent);
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 .metric-rate {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--accent);
   font-weight: 500;
   margin-top: 0.35rem;
@@ -1098,7 +1106,7 @@ section {
   stroke-width: 8;
   stroke-linecap: round;
   stroke-dasharray: 440;
-  stroke-dashoffset: 90;
+  stroke-dashoffset: 120;
   filter: drop-shadow(0 0 8px rgba(220, 252, 4, 0.6));
 }
 
@@ -1109,7 +1117,7 @@ section {
 }
 
 .mining-timer {
-  font-size: 1.45rem;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: #ffffff;
@@ -1863,7 +1871,7 @@ section {
           Construyendo el futuro de la <span class="text-accent">minería móvil</span> y la educación financiera.
         </h1>
         <p class="hero-description">
-          Zitro Network reúne sesiones de minería ligera sin desgaste de hardware, academia de trading y análisis de mercado, comunidad colaborativa y una sólida visión de infraestructura blockchain.
+          Zitro Network reúne sesiones de minería simulada dentro de la app, academia de trading y análisis de mercados, sistema de comunidad y una sólida visión de infraestructura blockchain.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#ecosystem">
@@ -1889,48 +1897,48 @@ section {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
           <div>
-            <div style="color:var(--fg-dim);font-size:0.7rem;text-transform:uppercase;">Protocolo</div>
-            <div>0% Desgaste Batería</div>
+            <div style="color:var(--fg-dim);font-size:0.7rem;text-transform:uppercase;">Participación Móvil</div>
+            <div>Sin Minería Computacional</div>
           </div>
         </div>
 
         <div class="hero-visual-card">
           <div class="hero-visual-header">
             <div class="hero-visual-brand">
-              <span style="color:var(--accent);">●</span> ZITRO NETWORK TELEMETRY
+              <span style="color:var(--accent);">●</span> DEMO UI • ZITRO NETWORK
             </div>
             <div class="status-chip">
-              <span class="status-chip-dot"></span> Core Online
+              <span class="status-chip-dot"></span> Modo Simulado
             </div>
           </div>
 
           <div class="hero-visual-metric">
-            <div class="metric-label">Sesión de Minería Activa</div>
+            <div class="metric-label">Sesión de Participación</div>
             <div class="metric-value">
-              1,420.50 <span class="metric-symbol">ZTR</span>
+              Sesión Activa <span class="metric-symbol">Demo UI</span>
             </div>
             <div class="metric-rate">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
-              <span>+0.25 ZTR / hora (Base)</span>
+              <span>Recompensas registradas en cuenta</span>
             </div>
           </div>
 
           <div class="hero-visual-modules">
             <div class="mini-module">
-              <div class="mini-module-label">Tiempo Restante</div>
-              <div class="mini-module-val">23h 44m 12s</div>
+              <div class="mini-module-label">Modalidades</div>
+              <div class="mini-module-val">6 h • 12 h • 24 h</div>
             </div>
             <div class="mini-module">
-              <div class="mini-module-label">Multiplicador Red</div>
-              <div class="mini-module-val" style="color:var(--accent);">1.25x Activo</div>
+              <div class="mini-module-label">Comunidad</div>
+              <div class="mini-module-val" style="color:var(--accent);">Multiplicador Activo</div>
             </div>
             <div class="mini-module">
-              <div class="mini-module-label">Consumo de CPU</div>
-              <div class="mini-module-val" style="color:var(--success);">0.0% Óptimo</div>
+              <div class="mini-module-label">Procesamiento</div>
+              <div class="mini-module-val" style="color:var(--success);">Gestionado por App</div>
             </div>
             <div class="mini-module">
               <div class="mini-module-label">Seguridad</div>
-              <div class="mini-module-val">Anti-Sybil OK</div>
+              <div class="mini-module-val">Cuenta Verificada</div>
             </div>
           </div>
         </div>
@@ -1940,8 +1948,8 @@ section {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
           </div>
           <div>
-            <div style="color:var(--fg-dim);font-size:0.7rem;text-transform:uppercase;">Ciclo Diario</div>
-            <div>Sesiones 24 Horas</div>
+            <div style="color:var(--fg-dim);font-size:0.7rem;text-transform:uppercase;">Sesiones Flexibles</div>
+            <div>Ciclos de 6, 12 y 24 h</div>
           </div>
         </div>
       </div>
@@ -1959,8 +1967,8 @@ section {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
           <div class="pillar-text">
-            <h3>Eficiencia Energética</h3>
-            <p>Minería ligera que no recalienta tu móvil ni consume tu plan de datos.</p>
+            <h3>Eficiencia en el Dispositivo</h3>
+            <p>La experiencia no utiliza la CPU o GPU del dispositivo para minería computacional.</p>
           </div>
         </div>
 
@@ -1979,8 +1987,8 @@ section {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
           </div>
           <div class="pillar-text">
-            <h3>Efecto de Red</h3>
-            <p>Crecimiento colaborativo mediante un sistema de referidos transparente.</p>
+            <h3>Sistema de Comunidad</h3>
+            <p>Crecimiento colaborativo mediante un sistema de referidos y equipo.</p>
           </div>
         </div>
 
@@ -1990,7 +1998,7 @@ section {
           </div>
           <div class="pillar-text">
             <h3>Visión Blockchain</h3>
-            <p>Transición gradual hacia contratos inteligentes y protocolos Web3.</p>
+            <p>Hoja de ruta orientada a la futura integración de infraestructura descentralizada.</p>
           </div>
         </div>
       </div>
@@ -2004,9 +2012,9 @@ section {
     <div class="container">
       <div class="section-header reveal">
         <div class="eyebrow">Arquitectura del Ecosistema</div>
-        <h2 class="section-title">Cuatro pilares para un ecosistema descentralizado y sostenible.</h2>
+        <h2 class="section-title">Cuatro pilares para construir el ecosistema Zitro Network.</h2>
         <p class="section-subtitle">
-          Zitro Network unifica participación comunitaria, capacitación financiera integral y tecnología de vanguardia en una plataforma accesible.
+          Zitro Network unifica participación comunitaria, capacitación financiera integral y una visión tecnológica sólida en una plataforma accesible.
         </p>
       </div>
 
@@ -2021,14 +2029,14 @@ section {
               <span class="eco-card-tag">Core App</span>
             </div>
             <div class="eco-card-body">
-              <h3>Minería Móvil Inteligente</h3>
+              <h3>Minería Simulada en la App</h3>
               <p>
-                Inicia sesiones diarias de minería directamente desde tu smartphone. Un mecanismo diseñado para premiar el compromiso diario sin comprometer el rendimiento del procesador ni la batería.
+                Inicia sesiones de participación periódicas directamente desde la app móvil. Un sistema diseñado para registrar recompensas dentro de tu cuenta sin utilizar la CPU o GPU de tu teléfono para minería computacional.
               </p>
             </div>
           </div>
           <a class="eco-card-footer" href="#mining">
-            <span>Ver detalles de minería</span>
+            <span>Ver detalles de sesiones</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
@@ -2045,7 +2053,7 @@ section {
             <div class="eco-card-body">
               <h3>Zitro Academy</h3>
               <p>
-                Formación financiera y de trading libre de falsas promesas. Aprende análisis técnico, estructura de mercado, gestión de capital y fundamentos blockchain con módulos interactivos y estructurados.
+                Formación financiera y de trading libre de falsas promesas. Aprende análisis técnico, estructura de mercado, gestión de capital y conceptos fundamentales de blockchain.
               </p>
             </div>
           </div>
@@ -2062,17 +2070,17 @@ section {
               <div class="eco-card-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
               </div>
-              <span class="eco-card-tag">Red Global</span>
+              <span class="eco-card-tag">Comunidad</span>
             </div>
             <div class="eco-card-body">
               <h3>Comunidad & Referidos</h3>
               <p>
-                Construye y expande tu propio equipo. Un sistema de referidos bidireccional que premia la actividad constante y amplifica el ritmo de acumulación de recompensas para toda la red.
+                Construye y expande tu propio equipo. Un sistema de referidos que fomenta la participación colaborativa y fortalece la comunidad global de Zitro Network.
               </p>
             </div>
           </div>
           <a class="eco-card-footer" href="#community">
-            <span>Conocer sistema de red</span>
+            <span>Conocer sistema de comunidad</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
@@ -2084,12 +2092,12 @@ section {
               <div class="eco-card-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
               </div>
-              <span class="eco-card-tag">Infraestructura</span>
+              <span class="eco-card-tag">Roadmap</span>
             </div>
             <div class="eco-card-body">
-              <h3>Ecosistema Blockchain</h3>
+              <h3>Visión de Ecosistema Blockchain</h3>
               <p>
-                La evolución natural hacia una red descentralizada soberana. Una hoja de ruta tecnológica enfocada en seguridad, contratos inteligentes y soberanía para cada participante del ecosistema Zitro.
+                La evolución futura hacia una infraestructura descentralizada. Una hoja de ruta tecnológica enfocada en seguridad, billetera integrada y contratos inteligentes.
               </p>
             </div>
           </div>
@@ -2109,9 +2117,9 @@ section {
     <div class="container mining-grid">
       <div class="mining-info reveal">
         <div class="eyebrow">Experiencia Móvil</div>
-        <h2 class="section-title">Minería simplificada, accesible y sin consumo excesivo.</h2>
+        <h2 class="section-title">Participación diaria mediante sesiones optimizadas dentro de la app.</h2>
         <p class="section-subtitle" style="margin:0 0 1.5rem 0;">
-          Diseñado para que cualquier usuario participe en la distribución de la red sin necesidad de costosos equipos de minería ni conocimientos técnicos complejos.
+          Diseñado para que cualquier usuario participe en el ecosistema mediante sesiones de aplicación sin realizar minería pesada en el hardware del teléfono.
         </p>
 
         <div class="mining-features">
@@ -2120,8 +2128,8 @@ section {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="feature-text">
-              <h4>Sesiones programadas de 24 horas</h4>
-              <p>Inicia tu ciclo de minería con un solo toque y recibe recompensas acreditadas directamente en tu cuenta de la app.</p>
+              <h4>Sesiones flexibles de 6 h, 12 h y 24 h</h4>
+              <p>Elige el ciclo que mejor se adapte a tu rutina e inicia tu sesión de participación con un solo toque desde la app.</p>
             </div>
           </div>
 
@@ -2130,8 +2138,8 @@ section {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="feature-text">
-              <h4>Cero impacto en batería y hardware</h4>
-              <p>El protocolo no realiza cálculos criptográficos pesados en el dispositivo local, garantizando la vida útil de tu teléfono.</p>
+              <h4>Sin minería computacional en CPU o GPU</h4>
+              <p>La experiencia no realiza cálculos criptográficos pesados en el dispositivo; las recompensas son gestionadas a través del sistema de la aplicación.</p>
             </div>
           </div>
 
@@ -2140,8 +2148,8 @@ section {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="feature-text">
-              <h4>Multiplicadores colaborativos</h4>
-              <p>Aumenta tu tasa horaria sumando miembros activos a tu equipo de minería.</p>
+              <h4>Multiplicadores de comunidad</h4>
+              <p>Potencia el ritmo de acumulación sumando participantes activos a tu equipo de referidos.</p>
             </div>
           </div>
         </div>
@@ -2170,32 +2178,32 @@ section {
                 <circle class="circle-progress" cx="80" cy="80" r="70"></circle>
               </svg>
               <div class="mining-circle-content">
-                <div class="mining-timer">23:44:12</div>
-                <div class="mining-status-text">Sesión Activa</div>
+                <div class="mining-timer">Sesión en Curso</div>
+                <div class="mining-status-text">Demo UI</div>
               </div>
             </div>
 
             <!-- Stats Card -->
             <div class="phone-stats-card">
               <div class="stat-row">
-                <span class="stat-label">Balance ZTR</span>
-                <span class="stat-val accent">1,420.50 ZTR</span>
+                <span class="stat-label">Recompensas</span>
+                <span class="stat-val accent">Registradas en Cuenta</span>
               </div>
               <div class="stat-row">
-                <span class="stat-label">Tasa de Minería</span>
-                <span class="stat-val">+0.25 ZTR/h</span>
+                <span class="stat-label">Modalidad</span>
+                <span class="stat-val">Sesión 6 h / 12 h / 24 h</span>
               </div>
               <div class="stat-row">
-                <span class="stat-label">Equipo Activo</span>
-                <span class="stat-val">4 / 5 Mineros</span>
+                <span class="stat-label">Equipo de Red</span>
+                <span class="stat-val">Miembros Activos</span>
               </div>
               <div class="stat-row">
-                <span class="stat-label">Boost de Red</span>
-                <span class="stat-val" style="color:var(--accent);">+20% Activo</span>
+                <span class="stat-label">Multiplicador</span>
+                <span class="stat-val" style="color:var(--accent);">Activo por Equipo</span>
               </div>
             </div>
 
-            <button type="button" class="phone-action-btn" aria-label="Sesión de minería en progreso" disabled>
+            <button type="button" class="phone-action-btn" aria-label="Sesión de participación en progreso" disabled>
               SESIÓN EN PROGRESO
             </button>
           </div>
@@ -2214,7 +2222,7 @@ section {
         <div class="terminal-header">
           <div class="terminal-pair">
             <span>MERCADO / BTC-USDT</span>
-            <span class="pair-badge">ESTUDIO TÉCNICO</span>
+            <span class="pair-badge">VISTA EDUCATIVA</span>
           </div>
           <div class="terminal-timeframes">
             <span class="tf-btn">15m</span>
@@ -2322,10 +2330,10 @@ section {
   <section id="community">
     <div class="container">
       <div class="network-card reveal">
-        <div class="eyebrow">Topología Comunitaria</div>
-        <h2 class="section-title">Una red descentralizada potenciada por sus miembros.</h2>
+        <div class="eyebrow">Visión de Red</div>
+        <h2 class="section-title">Una comunidad que construye la futura red de Zitro Network.</h2>
         <p class="section-subtitle">
-          El crecimiento de Zitro Network se basa en incentivos alineados. Cada nuevo nodo o usuario activo incrementa la resiliencia del ecosistema global.
+          El crecimiento de Zitro Network se fundamenta en la colaboración de sus usuarios. A través del sistema de comunidad y referidos, cada participante contribuye a expandir el ecosistema.
         </p>
 
         <!-- Inline SVG Network Topology Graph -->
@@ -2342,31 +2350,31 @@ section {
             <g transform="translate(140, 60)">
               <circle r="18" fill="#10141c" stroke="rgba(220,252,4,0.4)" stroke-width="2" />
               <circle r="6" fill="#dcfc04" />
-              <text y="32" fill="#9ba0aa" font-size="11" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Nodo Regional</text>
+              <text y="32" fill="#9ba0aa" font-size="11" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Comunidad Regional</text>
             </g>
 
             <g transform="translate(460, 60)">
               <circle r="18" fill="#10141c" stroke="rgba(220,252,4,0.4)" stroke-width="2" />
               <circle r="6" fill="#dcfc04" />
-              <text y="32" fill="#9ba0aa" font-size="11" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Nodo Comunidad</text>
+              <text y="32" fill="#9ba0aa" font-size="11" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Comunidad Local</text>
             </g>
 
             <g transform="translate(100, 180)">
               <circle r="14" fill="#10141c" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
               <circle r="4" fill="#ffffff" />
-              <text y="26" fill="#646a78" font-size="10" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Peer A</text>
+              <text y="26" fill="#646a78" font-size="10" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Participante A</text>
             </g>
 
             <g transform="translate(500, 180)">
               <circle r="14" fill="#10141c" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
               <circle r="4" fill="#ffffff" />
-              <text y="26" fill="#646a78" font-size="10" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Peer B</text>
+              <text y="26" fill="#646a78" font-size="10" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Participante B</text>
             </g>
 
             <g transform="translate(300, 210)">
               <circle r="14" fill="#10141c" stroke="rgba(220,252,4,0.3)" stroke-width="1.5" />
               <circle r="4" fill="#dcfc04" />
-              <text y="26" fill="#646a78" font-size="10" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Miner Node</text>
+              <text y="26" fill="#646a78" font-size="10" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Sesión App</text>
             </g>
 
             <!-- Central Core Node -->
@@ -2381,16 +2389,16 @@ section {
 
         <div class="network-pillars-grid">
           <div class="net-pillar">
-            <h4>Multiplicador Mutuo</h4>
-            <p>Tanto el usuario que comparte como el invitado reciben bonificaciones en su ratio de minería.</p>
+            <h4>Multiplicador de Equipo</h4>
+            <p>Ambos participantes se benefician con bonificaciones de sesión al estar activos en la app.</p>
           </div>
           <div class="net-pillar">
-            <h4>Monitoreo en Tiempo Real</h4>
-            <p>Visualiza el estado de actividad de los miembros de tu equipo directamente en la app.</p>
+            <h4>Monitoreo de Comunidad</h4>
+            <p>Visualiza el estado de actividad de tu equipo directamente en la interfaz de la aplicación.</p>
           </div>
           <div class="net-pillar">
             <h4>Acceso Temprano</h4>
-            <p>Prioridad en nuevas funciones, módulos avanzados de Academy y lanzamientos de protocolo.</p>
+            <p>Prioridad informativa sobre nuevas funciones, módulos de Zitro Academy y avances de la plataforma.</p>
           </div>
         </div>
       </div>
@@ -2417,7 +2425,7 @@ section {
           <span class="roadmap-badge badge-building">En Construcción</span>
           <h3>Aplicación Móvil</h3>
           <p>
-            Lanzamiento de la app para Android, sistema de registro seguro y motor de sesiones de minería ligera optimizada.
+            Lanzamiento de la app para Android, sistema de registro seguro y sesiones de participación dentro de la app.
           </p>
         </div>
 
@@ -2425,9 +2433,9 @@ section {
         <div class="roadmap-card reveal">
           <div class="roadmap-phase">Fase 02</div>
           <span class="roadmap-badge badge-dev">En Desarrollo</span>
-          <h3>Comunidad & Red</h3>
+          <h3>Comunidad & Referidos</h3>
           <p>
-            Activación del motor de referidos descentralizado, monitoreo de equipos y cálculo dinámico de multiplicadores.
+            Activación del sistema de referidos en la app, monitoreo de equipos y bonificaciones de participación.
           </p>
         </div>
 
@@ -2437,7 +2445,7 @@ section {
           <span class="roadmap-badge badge-soon">Próximamente</span>
           <h3>Zitro Academy</h3>
           <p>
-            Despliegue de los módulos formativos interactivos de trading, análisis de mercado y certificaciones de aprendizaje.
+            Despliegue de los módulos formativos de trading, análisis de mercado y gestión de riesgo.
           </p>
         </div>
 
@@ -2447,7 +2455,7 @@ section {
           <span class="roadmap-badge badge-soon">Visión Futura</span>
           <h3>Ecosistema Blockchain</h3>
           <p>
-            Integración de billetera no custodial y transición hacia contratos inteligentes e infraestructura descentralizada.
+            Billetera no custodial, contratos inteligentes e integración gradual de infraestructura descentralizada.
           </p>
         </div>
       </div>
@@ -2464,7 +2472,7 @@ section {
           <div class="eyebrow">Documentación Técnica</div>
           <h2>Conoce en profundidad la visión de Zitro Network.</h2>
           <p>
-            Accede al Whitepaper oficial para conocer en detalle la arquitectura de la plataforma, el modelo de sesiones de minería, la distribución comunitaria y los principios de seguridad.
+            Accede al Whitepaper oficial para conocer en detalle la arquitectura del ecosistema, el modelo de sesiones en la app, la distribución comunitaria y los principios de seguridad.
           </p>
           <div class="whitepaper-actions">
             <a class="btn btn-primary" href="https://fedeortiz9.github.io/zitro-whitepaper/" target="_blank" rel="noopener noreferrer">
@@ -2491,7 +2499,7 @@ section {
       <div class="footer-brand">
         <h4>ZITRO<span>NETWORK</span></h4>
         <p>
-          Ecosistema digital enfocado en minería móvil eficiente, formación financiera responsable y tecnología blockchain descentralizada.
+          Ecosistema digital enfocado en sesiones de participación móvil, formación financiera responsable y una sólida visión de infraestructura blockchain.
         </p>
         <div class="nav-store-badge" style="display:inline-flex;">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
@@ -2528,7 +2536,7 @@ section {
         <div class="footer-disclaimer-card">
           <h5>Aviso de Transparencia</h5>
           <p>
-            Zitro Network es una plataforma tecnológica en fase de desarrollo. Las recompensas de minería representan unidades de participación interna en la app y no constituyen asesoramiento de inversión ni promesas de rentabilidad económica.
+            Zitro Network es una plataforma tecnológica en fase de desarrollo. Las sesiones de minería simulada representan participación dentro de la aplicación y sus recompensas quedan registradas en la cuenta del usuario. No constituyen tokens on-chain automáticos, asesoramiento financiero ni promesas de rentabilidad económica.
           </p>
         </div>
       </div>
@@ -2553,25 +2561,40 @@ section {
 (function() {
   'use strict';
 
-  // 1. Mobile Navigation Toggle
+  // 1. Mobile Navigation Toggle & Accessibility (ARIA / Keyboard)
   var toggleBtn = document.getElementById('mobile-toggle');
   var mobileNav = document.getElementById('mobile-nav');
 
-  if (toggleBtn && mobileNav) {
-    toggleBtn.addEventListener('click', function() {
+  function closeMobileNav() {
+    if (toggleBtn && mobileNav) {
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      mobileNav.classList.remove('is-open');
+    }
+  }
+
+  function toggleMobileNav() {
+    if (toggleBtn && mobileNav) {
       var isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-      toggleBtn.setAttribute('aria-expanded', !isExpanded);
+      toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
       mobileNav.classList.toggle('is-open');
-    });
+    }
+  }
+
+  if (toggleBtn && mobileNav) {
+    toggleBtn.addEventListener('click', toggleMobileNav);
 
     // Close mobile nav when clicking on anchor links
     var mobileLinks = mobileNav.querySelectorAll('a');
     for (var i = 0; i < mobileLinks.length; i++) {
-      mobileLinks[i].addEventListener('click', function() {
-        toggleBtn.setAttribute('aria-expanded', 'false');
-        mobileNav.classList.remove('is-open');
-      });
+      mobileLinks[i].addEventListener('click', closeMobileNav);
     }
+
+    // Close on Escape key press
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' || event.key === 'Esc') {
+        closeMobileNav();
+      }
+    });
   }
 
   // 2. Scroll Reveal with IntersectionObserver
