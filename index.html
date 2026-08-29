@@ -7,49 +7,110 @@
 <meta name="description" content="Zitro Network es un ecosistema tecnológico que integra minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en desarrollo.">
 <meta name="theme-color" content="#07080a">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307080a'/%3E%3Cpath d='M9 10h14l-11 12h11' stroke='%23dcfc04' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Official Zitro Favicon -->
+<link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg">
 
 <style>
+/* ==========================================================================
+   SELF-HOSTED FONTS (@font-face)
+   ========================================================================== */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/instrument-sans-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('assets/fonts/instrument-sans-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('assets/fonts/instrument-sans-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('assets/fonts/instrument-sans-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/ibm-plex-mono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('assets/fonts/ibm-plex-mono-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('assets/fonts/ibm-plex-mono-600.woff2') format('woff2');
+}
+
 /* ==========================================================================
    DESIGN SYSTEM & CSS VARIABLES
    ========================================================================== */
 :root {
-  --bg: #07080a;
-  --bg-subtle: #0c0e12;
-  --bg-card: rgba(16, 20, 28, 0.7);
-  --bg-card-hover: rgba(22, 28, 40, 0.85);
-  --bg-card-solid: #10141c;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(220, 252, 4, 0.35);
-  --border-subtle: rgba(255, 255, 255, 0.04);
+  --bg-dark: #07080a;
+  --bg-surface: #0d1017;
+  --bg-surface-elevated: #131722;
+  --bg-card: rgba(15, 19, 28, 0.75);
+  --bg-card-hover: rgba(22, 28, 42, 0.92);
+  --bg-glass: rgba(10, 13, 19, 0.65);
 
-  --fg: #f3f4ef;
-  --fg-muted: #9ba0aa;
-  --fg-dim: #646a78;
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-accent: rgba(220, 252, 4, 0.35);
+  --border-accent-strong: rgba(220, 252, 4, 0.8);
+
+  --fg-primary: #f8fafc;
+  --fg-secondary: #94a3b8;
+  --fg-muted: #64748b;
+  --fg-dark: #07080a;
 
   --accent: #dcfc04;
-  --accent-rgb: 220, 252, 4;
-  --accent-hover: #cbe803;
-  --accent-glow: rgba(220, 252, 4, 0.15);
-  --accent-glow-strong: rgba(220, 252, 4, 0.28);
+  --accent-hover: #c9e803;
+  --accent-muted: rgba(220, 252, 4, 0.12);
+  --accent-glow: rgba(220, 252, 4, 0.22);
+  --accent-glow-strong: rgba(220, 252, 4, 0.45);
 
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
+  --cyan: #38bdf8;
+  --emerald: #10b981;
+  --amber: #f59e0b;
 
+  --font-display: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
   --radius-full: 9999px;
 
-  --container-max: 1280px;
-  --header-height: 74px;
-  --transition-standard: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --max-w: 1240px;
+  --nav-height: 72px;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* ==========================================================================
@@ -62,34 +123,30 @@
 }
 
 html {
+  background-color: var(--bg-dark);
+  color: var(--fg-primary);
+  font-family: var(--font-display);
   scroll-behavior: smooth;
-  scroll-padding-top: var(--header-height);
-  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: var(--nav-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--fg);
-  font-family: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--fg-primary);
+  font-family: var(--font-display);
   line-height: 1.6;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
 }
 
 button {
@@ -100,67 +157,81 @@ button {
   cursor: pointer;
 }
 
-ul, ol {
-  list-style: none;
-}
-
 img, svg {
   display: block;
   max-width: 100%;
 }
 
+::selection {
+  background-color: var(--accent);
+  color: var(--fg-dark);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 /* ==========================================================================
-   BACKGROUND EFFECTS & GRID
+   ENGINEERED BACKGROUND GRID & AMBIENT DEPTH
    ========================================================================== */
-.bg-grid {
+.ambient-canvas {
   position: fixed;
   inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.tech-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-size: 56px 56px;
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 80%);
-  -webkit-mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 80%);
-  pointer-events: none;
-  z-index: 0;
+  mask-image: radial-gradient(ellipse 80% 50% at 50% 15%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 15%, black 40%, transparent 100%);
 }
 
-.ambient-glow {
+.ambient-light-orb {
   position: absolute;
-  width: 50vw;
-  height: 50vw;
-  max-width: 650px;
-  max-height: 650px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-  filter: blur(40px);
+  filter: blur(80px);
+  opacity: 0.45;
+  will-change: transform;
 }
 
-.glow-top-right {
+.orb-primary {
+  width: 500px;
+  height: 500px;
   top: -150px;
-  right: -100px;
+  right: -50px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, rgba(220, 252, 4, 0.02) 70%, transparent 100%);
 }
 
-.glow-center-left {
-  top: 45%;
-  left: -200px;
-  opacity: 0.6;
+.orb-secondary {
+  width: 600px;
+  height: 600px;
+  top: 40%;
+  left: -250px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
 }
 
-.glow-bottom-right {
+.orb-tertiary {
+  width: 450px;
+  height: 450px;
   bottom: 10%;
-  right: -150px;
-  opacity: 0.5;
+  right: -100px;
+  background: radial-gradient(circle, rgba(220, 252, 4, 0.1) 0%, transparent 70%);
 }
 
 /* ==========================================================================
-   LAYOUT & CONTAINERS
+   LAYOUT CONTAINERS
    ========================================================================== */
 .container {
   width: 100%;
-  max-width: var(--container-max);
+  max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 clamp(1.25rem, 4vw, 2.5rem);
   position: relative;
@@ -174,81 +245,102 @@ main {
 }
 
 section {
-  padding: clamp(4.5rem, 9vw, 8rem) 0;
+  padding: clamp(5rem, 10vw, 8.5rem) 0;
   position: relative;
 }
 
 /* ==========================================================================
    TYPOGRAPHY & SECTION HEADERS
    ========================================================================== */
-.section-header {
-  max-width: 720px;
-  margin: 0 auto clamp(2.5rem, 6vw, 4.5rem);
-  text-align: center;
-}
-
-.section-header.text-left {
-  text-align: left;
-  margin-left: 0;
+.font-mono {
+  font-family: var(--font-mono);
 }
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-family: var(--font-mono);
+  font-size: clamp(0.62rem, 2.2vw, 0.76rem);
+  font-weight: 500;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 1rem;
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radius-full);
-  background: rgba(220, 252, 4, 0.08);
-  border: 1px solid rgba(220, 252, 4, 0.2);
+  margin-bottom: 1.25rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-xs);
+  background: rgba(220, 252, 4, 0.06);
+  border: 1px solid rgba(220, 252, 4, 0.22);
+  line-height: 1.35;
+  max-width: 100%;
 }
 
-.eyebrow-dot {
+.eyebrow-ping {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background-color: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
-  animation: pulseDot 2s ease-in-out infinite;
+  box-shadow: 0 0 10px var(--accent);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.eyebrow-ping::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  animation: radarPing 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes radarPing {
+  0% { transform: scale(0.8); opacity: 0.9; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.section-head {
+  max-width: 700px;
+  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+
+.section-head.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.section-head.center .eyebrow {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-title {
-  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  font-size: clamp(1.65rem, 4.5vw, 3.15rem);
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
   margin-bottom: 1.15rem;
+  word-break: break-word;
 }
 
 .section-subtitle {
-  color: var(--fg-muted);
+  color: var(--fg-secondary);
   font-size: clamp(0.95rem, 1.8vw, 1.15rem);
   line-height: 1.65;
-  max-width: 64ch;
-  margin: 0 auto;
-}
-
-.section-header.text-left .section-subtitle {
-  margin: 0;
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #ffffff 30%, #9ba0aa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 400;
 }
 
 .text-accent {
   color: var(--accent);
 }
 
+.text-muted {
+  color: var(--fg-muted);
+}
+
 /* ==========================================================================
-   BUTTONS & CTAS
+   BUTTONS & ACTIONS
    ========================================================================== */
 .btn {
   display: inline-flex;
@@ -256,23 +348,25 @@ section {
   justify-content: center;
   gap: 0.65rem;
   padding: 0.85rem 1.65rem;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
   font-size: 0.92rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   border: 1px solid transparent;
-  transition: all var(--transition-standard);
+  transition: all 0.25s var(--ease-out-expo);
   white-space: nowrap;
   user-select: none;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn:active {
-  transform: scale(0.97);
+  transform: translateY(1px) scale(0.98);
 }
 
 .btn-primary {
   background: var(--accent);
-  color: #07080a;
+  color: var(--fg-dark);
   border-color: var(--accent);
   box-shadow: 0 4px 20px rgba(220, 252, 4, 0.25);
 }
@@ -280,116 +374,130 @@ section {
 .btn-primary:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
-  box-shadow: 0 6px 28px rgba(220, 252, 4, 0.4);
-  transform: translateY(-1px);
+  box-shadow: 0 8px 30px rgba(220, 252, 4, 0.4);
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--fg);
-  border-color: var(--border);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--fg-primary);
+  border-color: var(--border-medium);
+  backdrop-filter: blur(12px);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(255, 255, 255, 0.22);
-  color: #ffffff;
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
 }
 
 .btn-sm {
-  padding: 0.55rem 1.15rem;
+  padding: 0.5rem 1rem;
   font-size: 0.82rem;
 }
 
-.btn-icon {
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-  stroke-width: 2;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 /* ==========================================================================
-   NAVBAR & HEADER
+   NAVIGATION BAR (SITE HEADER)
    ========================================================================== */
 .site-header {
   position: sticky;
   top: 0;
   left: 0;
   right: 0;
-  height: var(--header-height);
+  height: var(--nav-height);
   z-index: 100;
   display: flex;
   align-items: center;
-  background: rgba(7, 8, 10, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  transition: border-color var(--transition-standard);
+  background: rgba(7, 8, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: border-color 0.3s ease;
 }
 
-.nav-container {
+.nav-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
 
-.brand-logo {
+.brand-link {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
   font-weight: 700;
   font-size: 1.15rem;
   letter-spacing: -0.02em;
-  color: var(--fg);
+  color: var(--fg-primary);
+  transition: opacity 0.2s ease;
 }
 
-.brand-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
-  background: #12161f;
-  border: 1px solid rgba(220, 252, 4, 0.35);
+.brand-link:hover {
+  opacity: 0.9;
+}
+
+.brand-mark-svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.brand-text-block {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 12px rgba(220, 252, 4, 0.15);
+  align-items: baseline;
+  gap: 0.3rem;
 }
 
-.brand-icon svg {
-  width: 18px;
-  height: 18px;
+.brand-title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
-.brand-logo span {
-  color: var(--accent);
+.brand-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.06em;
-  margin-left: 0.15rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.nav-menu {
+.nav-links {
   display: flex;
   align-items: center;
-  gap: 1.85rem;
+  gap: 2rem;
 }
 
-.nav-link {
+.nav-item {
   font-size: 0.88rem;
   font-weight: 500;
-  color: var(--fg-muted);
-  transition: color var(--transition-standard);
+  color: var(--fg-secondary);
+  transition: color 0.2s ease;
   position: relative;
   padding: 0.35rem 0;
 }
 
-.nav-link:hover {
-  color: var(--fg);
+.nav-item:hover {
+  color: var(--fg-primary);
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s var(--ease-out-expo);
+}
+
+.nav-item:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .nav-actions {
@@ -398,344 +506,442 @@ section {
   gap: 1rem;
 }
 
-.nav-store-badge {
+.badge-play-store {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border);
-  font-size: 0.8rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
   font-weight: 500;
-  color: var(--fg-muted);
-  transition: all var(--transition-standard);
+  color: var(--fg-secondary);
+  letter-spacing: 0.02em;
 }
 
-.nav-store-badge:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  color: var(--fg);
-}
-
-.nav-store-badge svg {
-  width: 15px;
-  height: 15px;
-  fill: currentColor;
+.badge-play-store svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--accent);
 }
 
 .mobile-toggle {
   display: none;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-medium);
   align-items: center;
   justify-content: center;
-  color: var(--fg);
+  color: var(--fg-primary);
 }
 
 .mobile-toggle svg {
-  width: 22px;
-  height: 22px;
-  stroke: currentColor;
-  stroke-width: 2;
+  width: 20px;
+  height: 20px;
 }
 
 /* Mobile Drawer */
-.mobile-nav {
+.mobile-nav-panel {
   display: none;
   position: fixed;
-  top: var(--header-height);
+  top: var(--nav-height);
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(7, 8, 10, 0.96);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 2rem 1.5rem;
+  background: rgba(7, 8, 10, 0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 2.5rem 1.75rem;
   flex-direction: column;
   gap: 1.5rem;
   z-index: 99;
-  border-top: 1px solid var(--border);
-  transform: translateY(-10px);
+  border-top: 1px solid var(--border-subtle);
+  transform: translateY(-15px);
   opacity: 0;
   pointer-events: none;
-  transition: all var(--transition-standard);
+  transition: all 0.3s var(--ease-out-expo);
 }
 
-.mobile-nav.is-open {
+.mobile-nav-panel.is-open {
   transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
 }
 
-.mobile-nav .nav-link {
-  font-size: 1.15rem;
-  padding: 0.65rem 0;
+.mobile-nav-panel .nav-item {
+  font-size: 1.25rem;
+  padding: 0.75rem 0;
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.mobile-nav .nav-actions {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
 /* ==========================================================================
-   HERO SECTION
+   HERO SECTION (ASYMMETRICAL EDITORIAL ARCHITECTURE)
    ========================================================================== */
-.hero {
-  padding-top: clamp(2.5rem, 6vw, 5rem);
-  padding-bottom: clamp(4rem, 8vw, 6.5rem);
+.hero-section {
+  padding-top: clamp(3rem, 7vw, 6rem);
+  padding-bottom: clamp(4.5rem, 9vw, 8rem);
+  position: relative;
   overflow: hidden;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: clamp(2.5rem, 5vw, 4.5rem);
   align-items: center;
 }
 
 .hero-content {
-  max-width: 620px;
-}
-
-.hero-badge {
-  margin-bottom: 1.25rem;
+  max-width: 640px;
 }
 
 .hero-title {
-  font-size: clamp(2.35rem, 5.2vw, 3.85rem);
+  font-size: clamp(1.75rem, 6vw, 4.15rem);
   font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  margin-bottom: 1.35rem;
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.45rem;
+  word-break: break-word;
 }
 
-.hero-description {
-  font-size: clamp(1rem, 1.9vw, 1.18rem);
-  line-height: 1.65;
-  color: var(--fg-muted);
+.hero-desc {
+  font-size: clamp(1.02rem, 2vw, 1.22rem);
+  line-height: 1.6;
+  color: var(--fg-secondary);
   margin-bottom: 2.25rem;
+  max-width: 54ch;
 }
 
-.hero-actions {
+.hero-ctas {
   display: flex;
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 2.25rem;
+  margin-bottom: 2.5rem;
 }
 
-.hero-android-pill {
+.hero-telemetry-strip {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.65rem 1.15rem;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid var(--border);
-  font-size: 0.84rem;
+  gap: 1.25rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  background: rgba(13, 16, 23, 0.85);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
   color: var(--fg-muted);
+  flex-wrap: wrap;
 }
 
-.hero-android-pill svg {
-  width: 18px;
-  height: 18px;
-  fill: var(--accent);
-  flex-shrink: 0;
-}
-
-.hero-android-pill strong {
-  color: var(--fg);
-  font-weight: 600;
-}
-
-/* Hero Visual Composition */
-.hero-visual {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-visual-card {
-  width: 100%;
-  max-width: 440px;
-  background: linear-gradient(160deg, rgba(22, 28, 38, 0.85) 0%, rgba(12, 15, 22, 0.95) 100%);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: 1.75rem;
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px var(--accent-glow);
-  position: relative;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.hero-visual-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 1.25rem;
-}
-
-.hero-visual-brand {
+.telemetry-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.telemetry-item strong {
+  color: var(--fg-primary);
+  font-weight: 600;
+}
+
+.telemetry-divider {
+  width: 1px;
+  height: 14px;
+  background: var(--border-medium);
+}
+
+/* Hero Visual Stage */
+.hero-visual-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-backdrop-mark {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Smartphone Showcase Mockup */
+.phone-frame {
+  width: 100%;
+  max-width: 320px;
+  background: #090c12;
+  border: 8px solid #1a202c;
+  border-radius: 44px;
+  box-shadow:
+    0 25px 60px -15px rgba(0, 0, 0, 0.9),
+    0 0 50px rgba(220, 252, 4, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transform: perspective(1000px) rotateY(-4deg) rotateX(2deg);
+  transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s ease;
+}
+
+.phone-frame:hover {
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-4px);
+  box-shadow:
+    0 35px 70px -15px rgba(0, 0, 0, 0.95),
+    0 0 60px rgba(220, 252, 4, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.phone-island {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 20px;
+  background: #1a202c;
+  border-radius: var(--radius-full);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+
+.island-sensor {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0a0d14;
+}
+
+.phone-viewport {
+  padding: 2.25rem 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: radial-gradient(circle at 50% 15%, #141b27 0%, #080a0f 100%);
+  min-height: 540px;
+}
+
+.app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
   font-size: 0.85rem;
   font-weight: 700;
 }
 
-.status-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.25rem 0.6rem;
-  border-radius: var(--radius-full);
-  background: rgba(16, 185, 129, 0.12);
-  color: var(--success);
-  border: 1px solid rgba(16, 185, 129, 0.25);
+.app-brand svg {
+  width: 18px;
+  height: 18px;
 }
 
-.status-chip-dot {
+.app-status {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--emerald);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.app-status-dot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 6px var(--success);
-  animation: pulseDot 2s ease-in-out infinite;
+  background: var(--emerald);
+  box-shadow: 0 0 6px var(--emerald);
 }
 
-.hero-visual-metric {
-  background: rgba(7, 8, 10, 0.6);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
-  margin-bottom: 1.25rem;
+/* Dial Gauge Animation */
+.gauge-cluster {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 1.25rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.gauge-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 6;
+}
+
+.gauge-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 440;
+  stroke-dashoffset: 140;
+  filter: drop-shadow(0 0 10px rgba(220, 252, 4, 0.5));
+  transition: stroke-dashoffset 0.6s var(--ease-out-expo);
+}
+
+.gauge-content {
   text-align: center;
   position: relative;
-  overflow: hidden;
+  z-index: 2;
 }
 
-.hero-visual-metric::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-}
-
-.metric-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--fg-muted);
-  margin-bottom: 0.35rem;
-}
-
-.metric-value {
-  font-size: 1.45rem;
+.gauge-timer {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
 }
 
-.metric-symbol {
-  font-size: 0.85rem;
+.gauge-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Interactive Session Switcher inside Phone */
+.session-switcher {
+  display: flex;
+  gap: 0.35rem;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.25rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 0.85rem;
+}
+
+.session-tab {
+  flex: 1;
+  padding: 0.35rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: var(--radius-xs);
+  color: var(--fg-muted);
+  transition: all 0.2s ease;
+}
+
+.session-tab.active {
+  background: rgba(220, 252, 4, 0.15);
   color: var(--accent);
   font-weight: 600;
-  text-transform: uppercase;
 }
 
-.metric-rate {
-  font-size: 0.78rem;
-  color: var(--accent);
-  font-weight: 500;
-  margin-top: 0.35rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
-}
-
-.hero-visual-modules {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-}
-
-.mini-module {
+.app-stats-deck {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   padding: 0.85rem;
-  font-size: 0.8rem;
 }
 
-.mini-module-label {
-  color: var(--fg-dim);
+.app-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.74rem;
+  padding: 0.3rem 0;
+}
+
+.app-stat-row:not(:last-child) {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.app-stat-label {
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
   font-size: 0.7rem;
-  margin-bottom: 0.25rem;
-  text-transform: uppercase;
 }
 
-.mini-module-val {
+.app-stat-value {
   font-weight: 600;
-  color: var(--fg);
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
+  color: var(--fg-primary);
+  font-family: var(--font-mono);
 }
 
-/* Floating elements */
-.hero-floating-badge {
-  position: absolute;
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-md);
-  background: rgba(14, 18, 25, 0.92);
-  border: 1px solid rgba(220, 252, 4, 0.25);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(12px);
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-size: 0.82rem;
-  font-weight: 600;
-  z-index: 2;
-  animation: floatSlow 6s ease-in-out infinite alternate;
-}
-
-.badge-top-left {
-  top: -20px;
-  left: -20px;
-}
-
-.badge-bottom-right {
-  bottom: -20px;
-  right: -20px;
-  animation-delay: -3s;
-}
-
-.badge-icon-box {
-  width: 30px;
-  height: 30px;
+.app-cta-btn {
+  width: 100%;
+  padding: 0.75rem;
   border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--fg-dark);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(220, 252, 4, 0.25);
+  margin-top: 0.85rem;
+}
+
+/* Floating Status Satellite Badges */
+.floating-satellite {
+  position: absolute;
+  padding: 0.65rem 0.95rem;
+  border-radius: var(--radius-sm);
+  background: rgba(13, 16, 23, 0.92);
+  border: 1px solid var(--border-accent);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 2;
+  animation: floatOrb 7s ease-in-out infinite alternate;
+}
+
+.satellite-top-left {
+  top: 15%;
+  left: -25px;
+}
+
+.satellite-bottom-right {
+  bottom: 12%;
+  right: -25px;
+  animation-delay: -3.5s;
+}
+
+.satellite-icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xs);
   background: rgba(220, 252, 4, 0.12);
   display: flex;
   align-items: center;
@@ -743,214 +949,214 @@ section {
   color: var(--accent);
 }
 
-.badge-icon-box svg {
-  width: 16px;
-  height: 16px;
+.satellite-icon-box svg {
+  width: 15px;
+  height: 15px;
+}
+
+.satellite-title {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.satellite-value {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--fg-primary);
+}
+
+@keyframes floatOrb {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
 }
 
 /* ==========================================================================
-   TRUST / PILLARS BAR
+   PILLARS / TELEMETRY TICKER
    ========================================================================== */
-.pillars-bar {
-  padding: 2.5rem 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: rgba(12, 15, 20, 0.4);
+.telemetry-ticker {
+  padding: 2.25rem 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(10, 13, 19, 0.4);
 }
 
-.pillars-grid {
+.ticker-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.pillar-item {
+.ticker-cell {
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-left: 2px solid var(--border-medium);
+  padding-left: 1.15rem;
+  transition: border-color 0.3s ease;
 }
 
-.pillar-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.ticker-cell:hover {
+  border-color: var(--accent);
+}
+
+.ticker-index {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   color: var(--accent);
-  flex-shrink: 0;
+  font-weight: 500;
 }
 
-.pillar-icon svg {
-  width: 20px;
-  height: 20px;
-}
-
-.pillar-text h3 {
-  font-size: 0.95rem;
+.ticker-title {
+  font-size: 0.96rem;
   font-weight: 600;
-  margin-bottom: 0.25rem;
-  color: var(--fg);
+  letter-spacing: -0.01em;
+  color: var(--fg-primary);
 }
 
-.pillar-text p {
-  font-size: 0.82rem;
-  color: var(--fg-muted);
+.ticker-desc {
+  font-size: 0.84rem;
+  color: var(--fg-secondary);
   line-height: 1.45;
 }
 
 /* ==========================================================================
-   ECOSYSTEM CARDS GRID
+   ECOSYSTEM ARCHITECTURE (MODULAR 2x2 GRID)
    ========================================================================== */
-.ecosystem-grid {
+.eco-modular-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.75rem;
 }
 
-.eco-card {
+.modular-card {
   background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
   padding: clamp(2rem, 4vw, 2.75rem);
   position: relative;
   overflow: hidden;
-  transition: all var(--transition-standard);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 320px;
+  transition: border-color 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
 }
 
-.eco-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-  transition: background var(--transition-standard);
-}
-
-.eco-card:hover {
+.modular-card:hover {
   background: var(--bg-card-hover);
-  border-color: var(--border-hover);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-glow);
+  border-color: var(--border-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px var(--accent-glow);
 }
 
-.eco-card:hover::before {
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-}
-
-.eco-card-header {
+.card-header-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.75rem;
 }
 
-.eco-card-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radius-lg);
+.card-icon-frame {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
   background: rgba(220, 252, 4, 0.08);
   border: 1px solid rgba(220, 252, 4, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--accent);
-  transition: transform var(--transition-bounce);
 }
 
-.eco-card:hover .eco-card-icon {
-  transform: scale(1.08);
+.card-icon-frame svg {
+  width: 24px;
+  height: 24px;
 }
 
-.eco-card-icon svg {
-  width: 26px;
-  height: 26px;
-}
-
-.eco-card-tag {
+.card-badge-mono {
+  font-family: var(--font-mono);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding: 0.3rem 0.75rem;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  color: var(--fg-muted);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  color: var(--fg-secondary);
 }
 
-.eco-card-body h3 {
+.modular-card h3 {
   font-size: 1.45rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
   color: #ffffff;
 }
 
-.eco-card-body p {
-  color: var(--fg-muted);
+.modular-card p {
+  color: var(--fg-secondary);
   font-size: 0.95rem;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
-.eco-card-footer {
-  display: flex;
+.card-action-link {
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 500;
   color: var(--accent);
   margin-top: auto;
+  transition: gap 0.2s ease;
 }
 
-.eco-card-footer svg {
-  width: 16px;
-  height: 16px;
-  transition: transform var(--transition-standard);
+.card-action-link svg {
+  width: 14px;
+  height: 14px;
 }
 
-.eco-card:hover .eco-card-footer svg {
-  transform: translateX(4px);
+.modular-card:hover .card-action-link {
+  gap: 0.75rem;
 }
 
 /* ==========================================================================
-   MINING SECTION & MOBILE MOCKUP
+   CLOUD MINING DEEP DIVE
    ========================================================================== */
-.mining-grid {
+.mining-deep-dive {
+  background: rgba(12, 15, 22, 0.4);
+}
+
+.mining-layout {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: clamp(2.5rem, 5vw, 4.5rem);
   align-items: center;
 }
 
-.mining-features {
+.mining-spec-list {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   margin-top: 2rem;
 }
 
-.feature-item {
+.spec-item {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 1.15rem;
 }
 
-.feature-check {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: rgba(220, 252, 4, 0.12);
-  border: 1px solid rgba(220, 252, 4, 0.3);
+.spec-icon-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xs);
+  background: rgba(220, 252, 4, 0.08);
+  border: 1px solid rgba(220, 252, 4, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -959,279 +1165,108 @@ section {
   margin-top: 0.15rem;
 }
 
-.feature-check svg {
-  width: 14px;
-  height: 14px;
+.spec-icon-badge svg {
+  width: 16px;
+  height: 16px;
 }
 
-.feature-text h4 {
+.spec-content h4 {
   font-size: 1.05rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
   color: #ffffff;
 }
 
-.feature-text p {
+.spec-content p {
   font-size: 0.9rem;
-  color: var(--fg-muted);
+  color: var(--fg-secondary);
   line-height: 1.55;
 }
 
-/* Phone Mockup Frame */
-.mockup-container {
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.phone-mockup {
-  width: 100%;
-  max-width: 340px;
-  height: 640px;
-  background: #090b0f;
-  border: 9px solid #1c222e;
-  border-radius: 46px;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 45px rgba(220, 252, 4, 0.15);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.phone-notch {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 22px;
-  background: #1c222e;
-  border-bottom-left-radius: 14px;
-  border-bottom-right-radius: 14px;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.notch-camera {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #0a0c12;
-}
-
-.notch-speaker {
-  width: 40px;
-  height: 3px;
-  border-radius: 2px;
-  background: #0f131a;
-}
-
-.phone-screen {
-  flex: 1;
-  padding: 2.25rem 1.25rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: radial-gradient(circle at 50% 20%, #131924 0%, #080a0f 100%);
-}
-
-.phone-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.25rem;
-}
-
-.phone-logo {
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.phone-logo span {
-  color: var(--accent);
-}
-
-.phone-mining-circle {
-  position: relative;
-  width: 180px;
-  height: 180px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.circle-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-}
-
-.circle-bg {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.06);
-  stroke-width: 8;
-}
-
-.circle-progress {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 8;
-  stroke-linecap: round;
-  stroke-dasharray: 440;
-  stroke-dashoffset: 120;
-  filter: drop-shadow(0 0 8px rgba(220, 252, 4, 0.6));
-}
-
-.mining-circle-content {
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-
-.mining-timer {
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-}
-
-.mining-status-text {
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-}
-
-.phone-stats-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1rem;
-}
-
-.stat-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.78rem;
-  padding: 0.35rem 0;
-}
-
-.stat-row:not(:last-child) {
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.stat-label {
-  color: var(--fg-muted);
-}
-
-.stat-val {
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.stat-val.accent {
-  color: var(--accent);
-}
-
-.phone-action-btn {
-  width: 100%;
-  padding: 0.85rem;
-  border-radius: var(--radius-md);
-  background: var(--accent);
-  color: #07080a;
-  font-weight: 700;
-  font-size: 0.85rem;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(220, 252, 4, 0.3);
-}
-
 /* ==========================================================================
-   ACADEMY & TRADING MOCKUP
+   ZITRO ACADEMY (RESEARCH TERMINAL UI)
    ========================================================================== */
-.academy-grid {
+.academy-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(2.5rem, 5vw, 4.5rem);
   align-items: center;
 }
 
-.trading-terminal-mockup {
-  background: #0b0e14;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
+.research-terminal {
+  background: #090c12;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
   position: relative;
+  overflow: hidden;
 }
 
-.terminal-header {
+.terminal-topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-subtle);
   margin-bottom: 1.25rem;
 }
 
-.terminal-pair {
+.terminal-title-group {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  font-weight: 700;
-  font-size: 0.95rem;
 }
 
-.pair-badge {
-  font-size: 0.7rem;
-  padding: 0.15rem 0.45rem;
-  border-radius: 4px;
+.terminal-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
   background: rgba(220, 252, 4, 0.12);
   color: var(--accent);
+  border: 1px solid rgba(220, 252, 4, 0.25);
+}
+
+.terminal-name {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
   font-weight: 600;
+  color: var(--fg-primary);
 }
 
-.terminal-timeframes {
+.timeframe-pills {
   display: flex;
-  gap: 0.35rem;
+  gap: 0.25rem;
 }
 
-.tf-btn {
-  font-size: 0.72rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  color: var(--fg-dim);
+.tf-pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-xs);
+  color: var(--fg-muted);
+  transition: all 0.2s ease;
 }
 
-.tf-btn.active {
+.tf-pill.active {
   background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
   font-weight: 600;
 }
 
-.chart-container {
+/* Candlestick Educational Matrix */
+.chart-viewport {
   height: 200px;
   position: relative;
   margin-bottom: 1.25rem;
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
   padding-top: 1rem;
 }
 
-.chart-grid-lines {
+.chart-gridlines {
   position: absolute;
   inset: 0;
   display: flex;
@@ -1240,23 +1275,23 @@ section {
   pointer-events: none;
 }
 
-.grid-line {
+.chart-gridline {
   height: 1px;
   background: rgba(255, 255, 255, 0.04);
   width: 100%;
 }
 
-.candlestick-group {
+.candles-stream {
   display: flex;
   align-items: flex-end;
-  gap: 8px;
+  gap: 10px;
   height: 100%;
   width: 100%;
   padding: 0 0.5rem;
   z-index: 1;
 }
 
-.candle {
+.candle-bar {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -1270,57 +1305,48 @@ section {
   position: absolute;
 }
 
-.candle-body {
+.candle-core {
   width: 100%;
-  border-radius: 2px;
+  border-radius: 1px;
   position: relative;
   z-index: 2;
 }
 
-.candle.bullish {
-  color: #10b981;
-}
-.candle.bullish .candle-body {
-  background: #10b981;
-}
+.candle-bar.up { color: var(--emerald); }
+.candle-bar.up .candle-core { background: var(--emerald); }
+.candle-bar.down { color: #f43f5e; }
+.candle-bar.down .candle-core { background: #f43f5e; }
 
-.candle.bearish {
-  color: #ef4444;
-}
-.candle.bearish .candle-body {
-  background: #ef4444;
-}
-
-.terminal-lesson-card {
+.curriculum-module-card {
   background: rgba(255, 255, 255, 0.025);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   padding: 1rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.lesson-meta {
-  font-size: 0.75rem;
+.module-meta-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   color: var(--accent);
-  font-weight: 600;
-  text-transform: uppercase;
+  font-weight: 500;
   margin-bottom: 0.15rem;
 }
 
-.lesson-title {
+.module-headline {
   font-size: 0.88rem;
   font-weight: 600;
   color: #ffffff;
 }
 
 /* ==========================================================================
-   COMMUNITY & NETWORK VISUAL
+   NETWORK VISUAL & TOPOLOGY
    ========================================================================== */
-.network-card {
+.network-stage-card {
   background: var(--bg-card);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
   padding: clamp(2.5rem, 5vw, 4rem);
   text-align: center;
@@ -1328,7 +1354,7 @@ section {
   overflow: hidden;
 }
 
-.network-visual {
+.network-svg-container {
   height: 240px;
   position: relative;
   margin: 2rem 0;
@@ -1337,13 +1363,23 @@ section {
   justify-content: center;
 }
 
-.network-svg {
+.network-svg-canvas {
   width: 100%;
-  max-width: 580px;
+  max-width: 600px;
   height: 100%;
 }
 
-.network-pillars-grid {
+.network-data-beam {
+  stroke-dasharray: 6 6;
+  animation: beamFlow 1.8s linear infinite;
+}
+
+@keyframes beamFlow {
+  0% { stroke-dashoffset: 24; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.network-feature-deck {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
@@ -1351,91 +1387,93 @@ section {
   text-align: left;
 }
 
-.net-pillar {
+.net-feature-cell {
   padding: 1.5rem;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-subtle);
 }
 
-.net-pillar h4 {
+.net-feature-cell h4 {
   font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  margin-bottom: 0.45rem;
   color: #ffffff;
 }
 
-.net-pillar p {
-  font-size: 0.88rem;
-  color: var(--fg-muted);
+.net-feature-cell p {
+  font-size: 0.86rem;
+  color: var(--fg-secondary);
   line-height: 1.55;
 }
 
 /* ==========================================================================
-   ROADMAP SECTION
+   ROADMAP (EDITORIAL TIMELINE)
    ========================================================================== */
-.roadmap-timeline {
+.roadmap-deck {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   position: relative;
 }
 
-.roadmap-card {
+.roadmap-milestone {
   background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
   padding: 2rem 1.5rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  transition: all var(--transition-standard);
+  transition: all 0.3s var(--ease-out-expo);
 }
 
-.roadmap-card:hover {
-  border-color: var(--border-hover);
+.roadmap-milestone:hover {
+  border-color: var(--border-accent);
   transform: translateY(-4px);
 }
 
-.roadmap-phase {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+.milestone-phase {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 0.75rem;
 }
 
-.roadmap-badge {
+.milestone-badge {
   display: inline-block;
   align-self: flex-start;
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
   text-transform: uppercase;
-  padding: 0.25rem 0.6rem;
-  border-radius: var(--radius-full);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
   margin-bottom: 1.25rem;
 }
 
-.badge-building {
+.badge-active {
   background: rgba(220, 252, 4, 0.12);
   color: var(--accent);
   border: 1px solid rgba(220, 252, 4, 0.3);
 }
 
 .badge-dev {
-  background: rgba(59, 130, 246, 0.12);
-  color: #60a5fa;
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--cyan);
+  border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
-.badge-soon {
-  background: rgba(255, 255, 255, 0.05);
+.badge-planned {
+  background: rgba(255, 255, 255, 0.04);
   color: var(--fg-muted);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-subtle);
 }
 
-.roadmap-card h3 {
+.roadmap-milestone h3 {
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -1443,43 +1481,43 @@ section {
   color: #ffffff;
 }
 
-.roadmap-card p {
+.roadmap-milestone p {
   font-size: 0.86rem;
-  color: var(--fg-muted);
+  color: var(--fg-secondary);
   line-height: 1.55;
 }
 
 /* ==========================================================================
-   PRODUCT VISION & CALL TO ACTION
+   PRODUCT CALL TO ACTION BANNER
    ========================================================================== */
-.cta-banner {
-  background: linear-gradient(145deg, rgba(20, 26, 36, 0.9) 0%, rgba(10, 13, 18, 0.95) 100%);
-  border: 1px solid rgba(220, 252, 4, 0.3);
+.cta-stage {
+  background: linear-gradient(145deg, rgba(20, 26, 38, 0.9) 0%, rgba(10, 13, 18, 0.95) 100%);
+  border: 1px solid var(--border-accent);
   border-radius: var(--radius-xl);
-  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 4rem);
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8), 0 0 50px var(--accent-glow);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.85), 0 0 50px var(--accent-glow);
 }
 
-.cta-banner::before {
+.cta-stage::before {
   content: '';
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 70%;
+  width: 60%;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
 }
 
-.cta-content {
-  max-width: 680px;
+.cta-core-wrap {
+  max-width: 660px;
   margin: 0 auto;
 }
 
-.cta-content h2 {
+.cta-core-wrap h2 {
   font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 700;
   line-height: 1.15;
@@ -1487,14 +1525,14 @@ section {
   margin-bottom: 1.25rem;
 }
 
-.cta-content p {
-  color: var(--fg-muted);
+.cta-core-wrap p {
+  color: var(--fg-secondary);
   font-size: 1.05rem;
   line-height: 1.65;
   margin-bottom: 2.25rem;
 }
 
-.cta-actions {
+.cta-actions-deck {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1503,146 +1541,142 @@ section {
 }
 
 /* ==========================================================================
-   FOOTER
+   INSTITUTIONAL FOOTER
    ========================================================================== */
 .site-footer {
-  border-top: 1px solid var(--border);
-  background: var(--bg-subtle);
-  padding: clamp(3.5rem, 7vw, 5rem) 0 2rem;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  padding: clamp(4rem, 8vw, 5.5rem) 0 2.5rem;
   position: relative;
   z-index: 1;
 }
 
-.footer-grid {
+.footer-columns {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1.5fr;
   gap: clamp(2rem, 4vw, 3.5rem);
   margin-bottom: 3.5rem;
 }
 
-.footer-brand h4 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
+.footer-brand-col img {
+  height: 28px;
+  width: auto;
+  margin-bottom: 1.25rem;
 }
 
-.footer-brand h4 span {
-  color: var(--accent);
-}
-
-.footer-brand p {
-  color: var(--fg-muted);
+.footer-brand-desc {
+  color: var(--fg-secondary);
   font-size: 0.88rem;
   line-height: 1.6;
   max-width: 34ch;
   margin-bottom: 1.5rem;
 }
 
-.footer-col h5 {
-  font-size: 0.85rem;
-  font-weight: 700;
+.footer-menu-col h5 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: #ffffff;
   margin-bottom: 1.25rem;
 }
 
-.footer-col ul {
+.footer-menu-col ul {
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.footer-col a {
-  color: var(--fg-muted);
+.footer-menu-col a {
+  color: var(--fg-secondary);
   font-size: 0.88rem;
-  transition: color var(--transition-standard);
+  transition: color 0.2s ease;
 }
 
-.footer-col a:hover {
+.footer-menu-col a:hover {
   color: var(--accent);
 }
 
-.footer-disclaimer-card {
+.footer-disclaimer-panel {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   padding: 1.15rem;
 }
 
-.footer-disclaimer-card h5 {
-  font-size: 0.8rem;
-  font-weight: 700;
+.footer-disclaimer-panel h5 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
   text-transform: uppercase;
-  color: var(--fg);
+  color: var(--fg-primary);
   margin-bottom: 0.5rem;
 }
 
-.footer-disclaimer-card p {
-  font-size: 0.78rem;
-  color: var(--fg-dim);
-  line-height: 1.5;
+.footer-disclaimer-panel p {
+  font-size: 0.76rem;
+  color: var(--fg-muted);
+  line-height: 1.55;
 }
 
-.footer-bottom {
+.footer-bottom-strip {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-top: 2rem;
-  border-top: 1px solid var(--border);
-  color: var(--fg-dim);
-  font-size: 0.82rem;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
-.footer-legal-links {
+.footer-legal-deck {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
 }
 
-.footer-legal-links a {
-  color: var(--fg-muted);
-  transition: color var(--transition-standard);
+.footer-legal-deck a {
+  color: var(--fg-secondary);
+  transition: color 0.2s ease;
 }
 
-.footer-legal-links a:hover {
-  color: var(--fg);
+.footer-legal-deck a:hover {
+  color: var(--fg-primary);
 }
 
 /* ==========================================================================
-   ANIMATIONS & SCROLL REVEAL
+   MOTION DESIGN & SCROLL REVEALS
    ========================================================================== */
-@keyframes pulseDot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.7; }
-}
-
-@keyframes floatSlow {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-12px); }
-}
-
-.reveal {
+.reveal-item {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(22px);
+  transition: opacity 0.75s var(--ease-out-expo), transform 0.75s var(--ease-out-expo);
+  will-change: opacity, transform;
 }
 
-.reveal.is-revealed {
+.reveal-item.is-revealed {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* Stagger utilities */
+.stagger-1 { transition-delay: 0.06s; }
+.stagger-2 { transition-delay: 0.12s; }
+.stagger-3 { transition-delay: 0.18s; }
+.stagger-4 { transition-delay: 0.24s; }
+
 /* ==========================================================================
-   RESPONSIVE DESIGN (BREAKPOINTS)
+   RESPONSIVE BREAKPOINTS
    ========================================================================== */
 @media (max-width: 1024px) {
   .hero-grid,
-  .mining-grid,
-  .academy-grid {
+  .mining-layout,
+  .academy-layout {
     grid-template-columns: 1fr;
     gap: 3.5rem;
   }
@@ -1652,34 +1686,38 @@ section {
     text-align: center;
   }
 
-  .hero-actions {
+  .hero-ctas {
     justify-content: center;
   }
 
-  .hero-android-pill {
+  .hero-telemetry-strip {
     margin: 0 auto;
   }
 
-  .pillars-grid {
+  .eco-modular-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ticker-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .roadmap-timeline {
+  .roadmap-deck {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .footer-grid {
+  .footer-columns {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 768px) {
   :root {
-    --header-height: 68px;
+    --nav-height: 66px;
   }
 
-  .nav-menu,
-  .nav-actions .nav-store-badge {
+  .nav-links,
+  .nav-actions .badge-play-store {
     display: none;
   }
 
@@ -1687,127 +1725,169 @@ section {
     display: flex;
   }
 
-  .mobile-nav {
+  .mobile-nav-panel {
     display: flex;
   }
 
-  .ecosystem-grid {
+  .ticker-grid {
     grid-template-columns: 1fr;
   }
 
-  .pillars-grid {
+  .network-feature-deck {
     grid-template-columns: 1fr;
   }
 
-  .network-pillars-grid {
+  .roadmap-deck {
     grid-template-columns: 1fr;
   }
 
-  .roadmap-timeline {
+  .footer-columns {
     grid-template-columns: 1fr;
   }
 
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-bottom {
+  .footer-bottom-strip {
     flex-direction: column;
     align-items: flex-start;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-actions {
+  .container {
+    padding: 0 1rem;
+    overflow-x: hidden;
+  }
+
+  .eyebrow {
+    font-size: 0.58rem;
+    letter-spacing: 0.02em;
+    padding: 0.25rem 0.45rem;
+    max-width: 100%;
+  }
+
+  .hero-title {
+    font-size: 1.38rem;
+    line-height: 1.12;
+  }
+
+  .hero-desc {
+    font-size: 0.9rem;
+  }
+
+  .hero-ctas {
     flex-direction: column;
     width: 100%;
   }
 
-  .hero-actions .btn {
+  .hero-ctas .btn {
     width: 100%;
   }
 
-  .cta-actions {
+  .cta-actions-deck {
     flex-direction: column;
     width: 100%;
   }
 
-  .cta-actions .btn {
+  .cta-actions-deck .btn {
     width: 100%;
   }
 
-  .hero-visual-card {
-    padding: 1.25rem;
+  .floating-satellite {
+    display: none;
   }
 
-  .hero-floating-badge {
+  .hero-telemetry-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .telemetry-divider {
     display: none;
   }
 }
 
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.18rem;
+  }
+  .eyebrow {
+    font-size: 0.52rem;
+  }
+}
+
 /* ==========================================================================
-   ACCESSIBILITY: PREFERS REDUCED MOTION
+   ACCESSIBILITY: REDUCED MOTION
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
 
-  .reveal {
+  .reveal-item {
     opacity: 1 !important;
     transform: none !important;
   }
 
-  .eyebrow-dot,
-  .status-chip-dot,
-  .hero-floating-badge {
+  .floating-satellite,
+  .eyebrow-ping::after,
+  .network-data-beam {
     animation: none !important;
+  }
+
+  .phone-frame {
+    transform: none !important;
   }
 }
 </style>
 </head>
 <body>
 
-<div class="bg-grid" aria-hidden="true"></div>
-<div class="ambient-glow glow-top-right" aria-hidden="true"></div>
-<div class="ambient-glow glow-center-left" aria-hidden="true"></div>
-<div class="ambient-glow glow-bottom-right" aria-hidden="true"></div>
+<!-- Engineered Ambient Lights & Grid -->
+<div class="ambient-canvas" aria-hidden="true">
+  <div class="tech-grid-pattern"></div>
+  <div class="ambient-light-orb orb-primary"></div>
+  <div class="ambient-light-orb orb-secondary"></div>
+  <div class="ambient-light-orb orb-tertiary"></div>
+</div>
 
 <!-- ==========================================================================
      HEADER / NAVBAR
      ========================================================================== -->
 <header class="site-header">
-  <div class="container nav-container">
-    <a class="brand-logo" href="/" aria-label="Zitro Network Inicio">
-      <div class="brand-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#dcfc04" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 6h16l-12 12h12" />
-        </svg>
+  <div class="container nav-wrap">
+    <a class="brand-link" href="/" aria-label="Zitro Network Inicio">
+      <svg class="brand-mark-svg" viewBox="0 0 608 672" fill="none" aria-hidden="true">
+        <path d="M0,0 H608 V156 L360,404 V156 H0 Z" fill="#dcfc04"/>
+        <path d="M608,672 H0 V516 L248,268 V516 H608 Z" fill="#dcfc04"/>
+      </svg>
+      <div class="brand-text-block">
+        <span class="brand-title">ZITRO</span>
+        <span class="brand-tag">NETWORK</span>
       </div>
-      ZITRO<span>NETWORK</span>
     </a>
 
-    <nav class="nav-menu" aria-label="Navegación principal">
-      <a class="nav-link" href="#ecosystem">Ecosistema</a>
-      <a class="nav-link" href="#mining">Cloud Mining</a>
-      <a class="nav-link" href="#academy">Academia</a>
-      <a class="nav-link" href="#community">Comunidad</a>
-      <a class="nav-link" href="#roadmap">Roadmap</a>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a class="nav-item" href="#ecosystem">Ecosistema</a>
+      <a class="nav-item" href="#mining">Cloud Mining</a>
+      <a class="nav-item" href="#academy">Academia</a>
+      <a class="nav-item" href="#community">Comunidad</a>
+      <a class="nav-item" href="#roadmap">Roadmap</a>
     </nav>
 
     <div class="nav-actions">
-      <div class="nav-store-badge" title="Lanzamiento próximamente en Google Play">
+      <div class="badge-play-store" title="Lanzamiento próximamente en Google Play Store">
         <svg viewBox="0 0 24 24">
           <path d="M3.609 1.814L13.792 12 3.61 22.186a2.158 2.158 0 0 1-.22-.971V2.785c0-.361.08-.696.22-.971zM15.207 13.414l2.585 2.586-11.45 6.477 8.865-9.063zm2.585-5.414l-2.585 2.586-8.865-9.063 11.45 6.477zM16.621 12l3.414-3.414a1.868 1.868 0 0 1 0 2.642L16.621 12z"/>
         </svg>
         <span>Android • Próximamente</span>
       </div>
 
-      <button type="button" class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav">
-        <svg viewBox="0 0 24 24">
+      <button type="button" class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav-panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -1816,21 +1896,13 @@ section {
     </div>
   </div>
 
-  <!-- Mobile Drawer -->
-  <div class="mobile-nav" id="mobile-nav" aria-label="Navegación móvil">
-    <a class="nav-link" href="#ecosystem">Ecosistema</a>
-    <a class="nav-link" href="#mining">Cloud Mining</a>
-    <a class="nav-link" href="#academy">Zitro Academy</a>
-    <a class="nav-link" href="#community">Comunidad</a>
-    <a class="nav-link" href="#roadmap">Hoja de Ruta</a>
-    <div class="nav-actions">
-      <div class="hero-android-pill">
-        <svg viewBox="0 0 24 24">
-          <path d="M3.609 1.814L13.792 12 3.61 22.186a2.158 2.158 0 0 1-.22-.971V2.785c0-.361.08-.696.22-.971zM15.207 13.414l2.585 2.586-11.45 6.477 8.865-9.063zm2.585-5.414l-2.585 2.586-8.865-9.063 11.45 6.477zM16.621 12l3.414-3.414a1.868 1.868 0 0 1 0 2.642L16.621 12z"/>
-        </svg>
-        <span>Android App • <strong>Coming Soon</strong></span>
-      </div>
-    </div>
+  <!-- Mobile Drawer Panel -->
+  <div class="mobile-nav-panel" id="mobile-nav-panel" aria-label="Navegación móvil">
+    <a class="nav-item" href="#ecosystem">Ecosistema</a>
+    <a class="nav-item" href="#mining">Cloud Mining</a>
+    <a class="nav-item" href="#academy">Zitro Academy</a>
+    <a class="nav-item" href="#community">Comunidad</a>
+    <a class="nav-item" href="#roadmap">Hoja de Ruta</a>
   </div>
 </header>
 
@@ -1838,96 +1910,134 @@ section {
   <!-- ==========================================================================
        HERO SECTION
        ========================================================================== -->
-  <section class="hero" id="hero">
+  <section class="hero-section" id="hero">
     <div class="container hero-grid">
-      <div class="hero-content reveal">
-        <div class="eyebrow hero-badge">
-          <span class="eyebrow-dot"></span>
-          Fase Pre-Lanzamiento • Ecosistema Zitro
+      <div class="hero-content reveal-item is-revealed">
+        <div class="eyebrow">
+          <span class="eyebrow-ping"></span>
+          <span>Fase Pre-Lanzamiento • Ecosistema Zitro</span>
         </div>
         <h1 class="hero-title">
           Construyendo una nueva experiencia de <span class="text-accent">minería en la nube</span> y tecnología blockchain.
         </h1>
-        <p class="hero-description">
+        <p class="hero-desc">
           Zitro Network conecta minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en evolución.
         </p>
-        <div class="hero-actions">
+        <div class="hero-ctas">
           <a class="btn btn-primary" href="#ecosystem">
             <span>Explorar Ecosistema</span>
-            <svg class="btn-icon" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
           <a class="btn btn-secondary" href="#academy">
             <span>Conocer Zitro Academy</span>
-            <svg class="btn-icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
-        <div class="hero-android-pill">
-          <svg viewBox="0 0 24 24">
-            <path d="M3.609 1.814L13.792 12 3.61 22.186a2.158 2.158 0 0 1-.22-.971V2.785c0-.361.08-.696.22-.971zM15.207 13.414l2.585 2.586-11.45 6.477 8.865-9.063zm2.585-5.414l-2.585 2.586-8.865-9.063 11.45 6.477zM16.621 12l3.414-3.414a1.868 1.868 0 0 1 0 2.642L16.621 12z"/>
-          </svg>
-          <span>Disponible próximamente en <strong>Google Play Store</strong></span>
+        <div class="hero-telemetry-strip">
+          <div class="telemetry-item">
+            <span>PLATAFORMA:</span>
+            <strong>Android Core</strong>
+          </div>
+          <div class="telemetry-divider"></div>
+          <div class="telemetry-item">
+            <span>DISPONIBILIDAD:</span>
+            <strong>Google Play Store</strong>
+          </div>
         </div>
       </div>
 
-      <div class="hero-visual reveal">
-        <div class="hero-floating-badge badge-top-left">
-          <div class="badge-icon-box">
+      <!-- Hero Visual Stage -->
+      <div class="hero-visual-stage reveal-item is-revealed stagger-1">
+        <!-- Giant Official Backdrop Mark Watermark -->
+        <svg class="hero-backdrop-mark" viewBox="0 0 608 672" fill="none" aria-hidden="true">
+          <path d="M0,0 H608 V156 L360,404 V156 H0 Z" fill="#dcfc04"/>
+          <path d="M608,672 H0 V516 L248,268 V516 H608 Z" fill="#dcfc04"/>
+        </svg>
+
+        <!-- Satellite Badge 1 (Top Left) -->
+        <div class="floating-satellite satellite-top-left">
+          <div class="satellite-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
           <div>
-            <div style="color:var(--fg-dim);font-size:0.7rem;text-transform:uppercase;">Tecnología Cloud</div>
-            <div>Sin Minería en Hardware</div>
+            <div class="satellite-title">TECNOLOGÍA CLOUD</div>
+            <div class="satellite-value">Sin Minería en Hardware</div>
           </div>
         </div>
 
-        <div class="hero-visual-card">
-          <div class="hero-visual-header">
-            <div class="hero-visual-brand">
-              <span style="color:var(--accent);">●</span> VISTA CONCEPTUAL • ZITRO NETWORK
-            </div>
-            <div class="status-chip">
-              <span class="status-chip-dot"></span> En Desarrollo
-            </div>
+        <!-- Smartphone Device Mockup -->
+        <div class="phone-frame" id="phone-frame">
+          <div class="phone-island">
+            <div class="island-sensor"></div>
           </div>
 
-          <div class="hero-visual-metric">
-            <div class="metric-label">Sesión de Minería en la Nube</div>
-            <div class="metric-value">
-              Sesión Activa <span class="metric-symbol">Demo UI</span>
+          <div class="phone-viewport">
+            <div class="app-bar">
+              <div class="app-brand">
+                <svg viewBox="0 0 608 672" fill="none" style="width:16px;height:16px;">
+                  <path d="M0,0 H608 V156 L360,404 V156 H0 Z" fill="#dcfc04"/>
+                  <path d="M608,672 H0 V516 L248,268 V516 H608 Z" fill="#dcfc04"/>
+                </svg>
+                <span>ZITRO<span style="color:var(--accent);">APP</span></span>
+              </div>
+              <div class="app-status">
+                <span class="app-status-dot"></span> EN LÍNEA
+              </div>
             </div>
-            <div class="metric-rate">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
-              <span>Recompensas registradas en la cuenta</span>
-            </div>
-          </div>
 
-          <div class="hero-visual-modules">
-            <div class="mini-module">
-              <div class="mini-module-label">Modalidades</div>
-              <div class="mini-module-val">6 h • 12 h • 24 h</div>
+            <!-- Dynamic Dial Gauge -->
+            <div class="gauge-cluster">
+              <svg class="gauge-svg" viewBox="0 0 160 160">
+                <circle class="gauge-track" cx="80" cy="80" r="70"></circle>
+                <circle class="gauge-fill" id="gauge-fill" cx="80" cy="80" r="70"></circle>
+              </svg>
+              <div class="gauge-content">
+                <div class="gauge-timer" id="gauge-timer">05:59:42</div>
+                <div class="gauge-label">Cloud Mining</div>
+              </div>
             </div>
-            <div class="mini-module">
-              <div class="mini-module-label">Comunidad</div>
-              <div class="mini-module-val" style="color:var(--accent);">Multiplicador Activo</div>
+
+            <!-- Interactive Session Switcher -->
+            <div class="session-switcher" id="session-switcher" role="tablist" aria-label="Selector de duración de sesión">
+              <button type="button" class="session-tab active" data-duration="6h" role="tab" aria-selected="true">6 Horas</button>
+              <button type="button" class="session-tab" data-duration="12h" role="tab" aria-selected="false">12 Horas</button>
+              <button type="button" class="session-tab" data-duration="24h" role="tab" aria-selected="false">24 Horas</button>
             </div>
-            <div class="mini-module">
-              <div class="mini-module-label">Procesamiento</div>
-              <div class="mini-module-val" style="color:var(--success);">Infraestructura Cloud</div>
+
+            <!-- Stats Deck -->
+            <div class="app-stats-deck">
+              <div class="app-stat-row">
+                <span class="app-stat-label">Puntos de Sesión</span>
+                <span class="app-stat-value" style="color:var(--accent);">Registrados en Cuenta</span>
+              </div>
+              <div class="app-stat-row">
+                <span class="app-stat-label">Modalidad</span>
+                <span class="app-stat-value" id="active-mode-label">Sesión 6 h</span>
+              </div>
+              <div class="app-stat-row">
+                <span class="app-stat-label">Equipo de Red</span>
+                <span class="app-stat-value">Miembros Activos</span>
+              </div>
+              <div class="app-stat-row">
+                <span class="app-stat-label">Multiplicador</span>
+                <span class="app-stat-value" style="color:var(--emerald);">Activo por Equipo</span>
+              </div>
             </div>
-            <div class="mini-module">
-              <div class="mini-module-label">Seguridad</div>
-              <div class="mini-module-val">Cuenta Verificada</div>
-            </div>
+
+            <button type="button" class="app-cta-btn" disabled>
+              Sesión en Progreso
+            </button>
           </div>
         </div>
 
-        <div class="hero-floating-badge badge-bottom-right">
-          <div class="badge-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+        <!-- Satellite Badge 2 (Bottom Right) -->
+        <div class="floating-satellite satellite-bottom-right">
+          <div class="satellite-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           </div>
           <div>
-            <div style="color:var(--fg-dim);font-size:0.7rem;text-transform:uppercase;">Sesiones Flexibles</div>
-            <div>Ciclos de 6, 12 y 24 h</div>
+            <div class="satellite-title">SESIONES FLEXIBLES</div>
+            <div class="satellite-value">Ciclos 6h • 12h • 24h</div>
           </div>
         </div>
       </div>
@@ -1935,60 +2045,44 @@ section {
   </section>
 
   <!-- ==========================================================================
-       TRUST / PILLARS BAR
+       TELEMETRY TICKER BAR
        ========================================================================== -->
-  <section class="pillars-bar">
+  <section class="telemetry-ticker">
     <div class="container">
-      <div class="pillars-grid">
-        <div class="pillar-item reveal">
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
-          <div class="pillar-text">
-            <h3>Eficiencia en el Dispositivo</h3>
-            <p>La experiencia no utiliza la CPU o GPU del dispositivo para minería computacional.</p>
-          </div>
+      <div class="ticker-grid">
+        <div class="ticker-cell reveal-item is-revealed">
+          <span class="ticker-index">01 // HARDWARE</span>
+          <h3 class="ticker-title">Eficiencia en el Dispositivo</h3>
+          <p class="ticker-desc">La experiencia no utiliza la CPU o GPU del dispositivo para minería computacional.</p>
         </div>
 
-        <div class="pillar-item reveal">
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-          </div>
-          <div class="pillar-text">
-            <h3>Educación Tecnológica</h3>
-            <p>Zitro Academy para comprender tecnología blockchain y análisis de mercado.</p>
-          </div>
+        <div class="ticker-cell reveal-item is-revealed stagger-1">
+          <span class="ticker-index">02 // ACADEMY</span>
+          <h3 class="ticker-title">Educación Tecnológica</h3>
+          <p class="ticker-desc">Zitro Academy para comprender tecnología blockchain y análisis de mercado.</p>
         </div>
 
-        <div class="pillar-item reveal">
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-          </div>
-          <div class="pillar-text">
-            <h3>Sistema de Comunidad</h3>
-            <p>Crecimiento colaborativo mediante un sistema de referidos y equipo.</p>
-          </div>
+        <div class="ticker-cell reveal-item is-revealed stagger-2">
+          <span class="ticker-index">03 // NETWORK</span>
+          <h3 class="ticker-title">Sistema de Comunidad</h3>
+          <p class="ticker-desc">Crecimiento colaborativo mediante un sistema de referidos y equipo.</p>
         </div>
 
-        <div class="pillar-item reveal">
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-          </div>
-          <div class="pillar-text">
-            <h3>Infraestructura Blockchain</h3>
-            <p>Hoja de ruta orientada al desarrollo de protocolos descentralizados.</p>
-          </div>
+        <div class="ticker-cell reveal-item is-revealed stagger-3">
+          <span class="ticker-index">04 // PROTOCOL</span>
+          <h3 class="ticker-title">Infraestructura Blockchain</h3>
+          <p class="ticker-desc">Hoja de ruta orientada al desarrollo de protocolos descentralizados.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ==========================================================================
-       ECOSYSTEM SECTION
+       ECOSYSTEM ARCHITECTURE
        ========================================================================== -->
   <section id="ecosystem">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-head reveal-item">
         <div class="eyebrow">Arquitectura del Ecosistema</div>
         <h2 class="section-title">Cuatro pilares para construir el ecosistema Zitro Network.</h2>
         <p class="section-subtitle">
@@ -1996,92 +2090,84 @@ section {
         </p>
       </div>
 
-      <div class="ecosystem-grid">
-        <!-- Card 1: Mining -->
-        <div class="eco-card reveal">
+      <div class="eco-modular-grid">
+        <!-- Card 1: Cloud Mining -->
+        <div class="modular-card reveal-item">
           <div>
-            <div class="eco-card-header">
-              <div class="eco-card-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <div class="card-header-bar">
+              <div class="card-icon-frame">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
               </div>
-              <span class="eco-card-tag">Core App</span>
+              <span class="card-badge-mono">Core Application</span>
             </div>
-            <div class="eco-card-body">
-              <h3>Minería en la Nube</h3>
-              <p>
-                Inicia sesiones gestionadas mediante la infraestructura cloud de Zitro Network. La aplicación no utiliza la CPU o GPU del dispositivo para realizar minería computacional.
-              </p>
-            </div>
+            <h3>Minería en la Nube</h3>
+            <p>
+              Inicia sesiones gestionadas mediante la infraestructura cloud de Zitro Network. La aplicación no utiliza la CPU o GPU del dispositivo para realizar minería computacional.
+            </p>
           </div>
-          <a class="eco-card-footer" href="#mining">
+          <a class="card-action-link" href="#mining">
             <span>Ver detalles de Cloud Mining</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
 
         <!-- Card 2: Academy -->
-        <div class="eco-card reveal">
+        <div class="modular-card reveal-item stagger-1">
           <div>
-            <div class="eco-card-header">
-              <div class="eco-card-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+            <div class="card-header-bar">
+              <div class="card-icon-frame">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
               </div>
-              <span class="eco-card-tag">Educación</span>
+              <span class="card-badge-mono">Educación</span>
             </div>
-            <div class="eco-card-body">
-              <h3>Zitro Academy</h3>
-              <p>
-                Educación tecnológica y comprensión de mercados. Aprende conceptos fundamentales de blockchain, seguridad digital, análisis estructural y tecnología Web3 con módulos estructurados.
-              </p>
-            </div>
+            <h3>Zitro Academy</h3>
+            <p>
+              Educación tecnológica y comprensión de mercados. Aprende conceptos fundamentales de blockchain, seguridad digital, análisis estructural y tecnología Web3 con módulos estructurados.
+            </p>
           </div>
-          <a class="eco-card-footer" href="#academy">
+          <a class="card-action-link" href="#academy">
             <span>Explorar academia</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
 
         <!-- Card 3: Community -->
-        <div class="eco-card reveal">
+        <div class="modular-card reveal-item stagger-2">
           <div>
-            <div class="eco-card-header">
-              <div class="eco-card-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <div class="card-header-bar">
+              <div class="card-icon-frame">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
               </div>
-              <span class="eco-card-tag">Comunidad</span>
+              <span class="card-badge-mono">Comunidad</span>
             </div>
-            <div class="eco-card-body">
-              <h3>Comunidad & Red</h3>
-              <p>
-                Construye tu comunidad y amplía tu red dentro del ecosistema. Un sistema de referidos que fomenta la colaboración y fortalece la participación activa.
-              </p>
-            </div>
+            <h3>Comunidad & Red</h3>
+            <p>
+              Construye tu comunidad y amplía tu red dentro del ecosistema. Un sistema de referidos que fomenta la colaboración y fortalece la participación activa.
+            </p>
           </div>
-          <a class="eco-card-footer" href="#community">
+          <a class="card-action-link" href="#community">
             <span>Conocer sistema de comunidad</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
 
-        <!-- Card 4: Blockchain -->
-        <div class="eco-card reveal">
+        <!-- Card 4: Blockchain Infrastructure -->
+        <div class="modular-card reveal-item stagger-3">
           <div>
-            <div class="eco-card-header">
-              <div class="eco-card-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <div class="card-header-bar">
+              <div class="card-icon-frame">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
               </div>
-              <span class="eco-card-tag">Roadmap</span>
+              <span class="card-badge-mono">Infraestructura</span>
             </div>
-            <div class="eco-card-body">
-              <h3>Infraestructura Blockchain</h3>
-              <p>
-                La evolución hacia una infraestructura tecnológica robusta. Una hoja de ruta enfocada en seguridad, smart contracts y protocolos descentralizados.
-              </p>
-            </div>
+            <h3>Infraestructura Blockchain</h3>
+            <p>
+              La evolución hacia una infraestructura tecnológica robusta. Una hoja de ruta enfocada en seguridad, smart contracts y protocolos descentralizados.
+            </p>
           </div>
-          <a class="eco-card-footer" href="#roadmap">
+          <a class="card-action-link" href="#roadmap">
             <span>Consultar hoja de ruta</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
       </div>
@@ -2089,43 +2175,43 @@ section {
   </section>
 
   <!-- ==========================================================================
-       MINING SECTION & MOBILE MOCKUP
+       CLOUD MINING SECTION
        ========================================================================== -->
-  <section id="mining" style="background: rgba(12, 15, 20, 0.4);">
-    <div class="container mining-grid">
-      <div class="mining-info reveal">
+  <section id="mining" class="mining-deep-dive">
+    <div class="container mining-layout">
+      <div class="mining-info-block reveal-item">
         <div class="eyebrow">Cloud Mining</div>
         <h2 class="section-title">Minería en la nube accesible desde tu dispositivo móvil.</h2>
-        <p class="section-subtitle" style="margin:0 0 1.5rem 0;">
+        <p class="section-subtitle">
           Inicia sesiones gestionadas mediante la infraestructura cloud de Zitro Network. La aplicación no utiliza la CPU o GPU del dispositivo para realizar minería computacional.
         </p>
 
-        <div class="mining-features">
-          <div class="feature-item">
-            <div class="feature-check">
+        <div class="mining-spec-list">
+          <div class="spec-item">
+            <div class="spec-icon-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
-            <div class="feature-text">
+            <div class="spec-content">
               <h4>Sesiones flexibles de 6 h, 12 h y 24 h</h4>
               <p>Elige el ciclo que mejor se adapte a tu rutina e inicia tu sesión de minería en la nube con un solo toque desde la app.</p>
             </div>
           </div>
 
-          <div class="feature-item">
-            <div class="feature-check">
+          <div class="spec-item">
+            <div class="spec-icon-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
-            <div class="feature-text">
+            <div class="spec-content">
               <h4>Sin minería computacional en el hardware</h4>
               <p>La experiencia no realiza cálculos criptográficos pesados en el dispositivo; las sesiones son gestionadas a través de la infraestructura cloud del ecosistema.</p>
             </div>
           </div>
 
-          <div class="feature-item">
-            <div class="feature-check">
+          <div class="spec-item">
+            <div class="spec-icon-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
-            <div class="feature-text">
+            <div class="spec-content">
               <h4>Puntos y recompensas de cuenta</h4>
               <p>El progreso de cada sesión queda registrado como puntos y recompensas internas dentro de la cuenta del usuario.</p>
             </div>
@@ -2133,57 +2219,37 @@ section {
         </div>
       </div>
 
-      <!-- High-Fidelity Phone Mockup -->
-      <div class="mockup-container reveal">
-        <div class="phone-mockup">
-          <div class="phone-notch">
-            <div class="notch-speaker"></div>
-            <div class="notch-camera"></div>
+      <!-- Interactive Spec Visual -->
+      <div class="modular-card reveal-item stagger-1" style="min-height: 400px; justify-content: center; background: #0a0d14;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <div class="font-mono text-accent" style="font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem;">ARQUITECTURA DE PROCESAMIENTO</div>
+          <h3 style="font-size: 1.35rem;">Flujo de Sesiones en la Nube</h3>
+        </div>
+
+        <!-- Telemetry Diagram -->
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1.15rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle);">
+            <div style="display: flex; align-items: center; gap: 0.65rem;">
+              <span style="color: var(--accent); font-family: var(--font-mono); font-size: 0.75rem;">01</span>
+              <span style="font-size: 0.9rem; font-weight: 600;">Activación en App</span>
+            </div>
+            <span class="font-mono" style="font-size: 0.72rem; color: var(--emerald);">SESIÓN INICIADA</span>
           </div>
 
-          <div class="phone-screen">
-            <div class="phone-header">
-              <div class="phone-logo">ZITRO<span>APP</span></div>
-              <div class="status-chip" style="font-size:0.65rem;padding:0.2rem 0.5rem;">
-                <span class="status-chip-dot"></span> EN LÍNEA
-              </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1.15rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle);">
+            <div style="display: flex; align-items: center; gap: 0.65rem;">
+              <span style="color: var(--accent); font-family: var(--font-mono); font-size: 0.75rem;">02</span>
+              <span style="font-size: 0.9rem; font-weight: 600;">Procesamiento Cloud</span>
             </div>
+            <span class="font-mono" style="font-size: 0.72rem; color: var(--cyan);">GESTIÓN EN NUBE</span>
+          </div>
 
-            <!-- Circular Progress Indicator -->
-            <div class="phone-mining-circle">
-              <svg class="circle-svg" viewBox="0 0 160 160">
-                <circle class="circle-bg" cx="80" cy="80" r="70"></circle>
-                <circle class="circle-progress" cx="80" cy="80" r="70"></circle>
-              </svg>
-              <div class="mining-circle-content">
-                <div class="mining-timer">Sesión en Curso</div>
-                <div class="mining-status-text">Cloud Mining</div>
-              </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1.15rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle);">
+            <div style="display: flex; align-items: center; gap: 0.65rem;">
+              <span style="color: var(--accent); font-family: var(--font-mono); font-size: 0.75rem;">03</span>
+              <span style="font-size: 0.9rem; font-weight: 600;">Registro de Puntos</span>
             </div>
-
-            <!-- Stats Card -->
-            <div class="phone-stats-card">
-              <div class="stat-row">
-                <span class="stat-label">Puntos de Sesión</span>
-                <span class="stat-val accent">Registrados en Cuenta</span>
-              </div>
-              <div class="stat-row">
-                <span class="stat-label">Modalidad</span>
-                <span class="stat-val">Sesión 6 h / 12 h / 24 h</span>
-              </div>
-              <div class="stat-row">
-                <span class="stat-label">Equipo de Red</span>
-                <span class="stat-val">Miembros Activos</span>
-              </div>
-              <div class="stat-row">
-                <span class="stat-label">Multiplicador</span>
-                <span class="stat-val" style="color:var(--accent);">Activo por Equipo</span>
-              </div>
-            </div>
-
-            <button type="button" class="phone-action-btn" aria-label="Sesión de minería en la nube en progreso" disabled>
-              SESIÓN EN PROGRESO
-            </button>
+            <span class="font-mono" style="font-size: 0.72rem; color: var(--accent);">CUENTA ACTUALIZADA</span>
           </div>
         </div>
       </div>
@@ -2191,108 +2257,110 @@ section {
   </section>
 
   <!-- ==========================================================================
-       ACADEMY SECTION (DEEP DIVE + TRADING TERMINAL MOCKUP)
+       ZITRO ACADEMY (RESEARCH TERMINAL)
        ========================================================================== -->
   <section id="academy">
-    <div class="container academy-grid">
-      <!-- Trading Terminal Mockup -->
-      <div class="trading-terminal-mockup reveal">
-        <div class="terminal-header">
-          <div class="terminal-pair">
-            <span>ANÁLISIS DE MERCADO</span>
-            <span class="pair-badge">VISTA EDUCATIVA</span>
+    <div class="container academy-layout">
+      <!-- High-Tech Research Terminal Mockup -->
+      <div class="research-terminal reveal-item">
+        <div class="terminal-topbar">
+          <div class="terminal-title-group">
+            <span class="terminal-badge">RESEARCH</span>
+            <span class="terminal-name">ANÁLISIS DE MERCADO</span>
           </div>
-          <div class="terminal-timeframes">
-            <span class="tf-btn">15m</span>
-            <span class="tf-btn">1H</span>
-            <span class="tf-btn active">4H</span>
-            <span class="tf-btn">1D</span>
-          </div>
-        </div>
-
-        <!-- Stylized Candlestick Chart -->
-        <div class="chart-container">
-          <div class="chart-grid-lines">
-            <div class="grid-line"></div>
-            <div class="grid-line"></div>
-            <div class="grid-line"></div>
-            <div class="grid-line"></div>
-          </div>
-
-          <div class="candlestick-group">
-            <div class="candle bullish" style="height:45%;">
-              <div class="candle-wick" style="height:140%;top:-20%;"></div>
-              <div class="candle-body" style="height:70%;"></div>
-            </div>
-            <div class="candle bearish" style="height:55%;">
-              <div class="candle-wick" style="height:130%;top:-15%;"></div>
-              <div class="candle-body" style="height:60%;"></div>
-            </div>
-            <div class="candle bullish" style="height:60%;">
-              <div class="candle-wick" style="height:120%;top:-10%;"></div>
-              <div class="candle-body" style="height:80%;"></div>
-            </div>
-            <div class="candle bullish" style="height:75%;">
-              <div class="candle-wick" style="height:125%;top:-15%;"></div>
-              <div class="candle-body" style="height:75%;"></div>
-            </div>
-            <div class="candle bearish" style="height:65%;">
-              <div class="candle-wick" style="height:130%;top:-10%;"></div>
-              <div class="candle-body" style="height:55%;"></div>
-            </div>
-            <div class="candle bullish" style="height:85%;">
-              <div class="candle-wick" style="height:115%;top:-10%;"></div>
-              <div class="candle-body" style="height:85%;"></div>
-            </div>
-            <div class="candle bullish" style="height:95%;">
-              <div class="candle-wick" style="height:110%;top:-5%;"></div>
-              <div class="candle-body" style="height:90%;"></div>
-            </div>
+          <div class="timeframe-pills" id="timeframe-pills">
+            <button type="button" class="tf-pill">15m</button>
+            <button type="button" class="tf-pill">1H</button>
+            <button type="button" class="tf-pill active">4H</button>
+            <button type="button" class="tf-pill">1D</button>
           </div>
         </div>
 
-        <div class="terminal-lesson-card">
+        <!-- Candlestick Educational Matrix -->
+        <div class="chart-viewport">
+          <div class="chart-gridlines">
+            <div class="chart-gridline"></div>
+            <div class="chart-gridline"></div>
+            <div class="chart-gridline"></div>
+            <div class="chart-gridline"></div>
+          </div>
+
+          <div class="candles-stream">
+            <div class="candle-bar up" style="height: 48%;">
+              <div class="candle-wick" style="height: 140%; top: -20%;"></div>
+              <div class="candle-core" style="height: 70%;"></div>
+            </div>
+            <div class="candle-bar down" style="height: 58%;">
+              <div class="candle-wick" style="height: 130%; top: -15%;"></div>
+              <div class="candle-core" style="height: 60%;"></div>
+            </div>
+            <div class="candle-bar up" style="height: 64%;">
+              <div class="candle-wick" style="height: 120%; top: -10%;"></div>
+              <div class="candle-core" style="height: 80%;"></div>
+            </div>
+            <div class="candle-bar up" style="height: 78%;">
+              <div class="candle-wick" style="height: 125%; top: -15%;"></div>
+              <div class="candle-core" style="height: 75%;"></div>
+            </div>
+            <div class="candle-bar down" style="height: 66%;">
+              <div class="candle-wick" style="height: 130%; top: -10%;"></div>
+              <div class="candle-core" style="height: 55%;"></div>
+            </div>
+            <div class="candle-bar up" style="height: 86%;">
+              <div class="candle-wick" style="height: 115%; top: -10%;"></div>
+              <div class="candle-core" style="height: 85%;"></div>
+            </div>
+            <div class="candle-bar up" style="height: 96%;">
+              <div class="candle-wick" style="height: 110%; top: -5%;"></div>
+              <div class="candle-core" style="height: 90%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Curriculum Module Card -->
+        <div class="curriculum-module-card">
           <div>
-            <div class="lesson-meta">Módulo 03 • Análisis Estructural</div>
-            <div class="lesson-title">Identificación de Niveles Clave y Estructura de Mercado</div>
+            <div class="module-meta-tag">Módulo 03 // ANÁLISIS ESTRUCTURAL</div>
+            <div class="module-headline">Identificación de Niveles Clave y Estructura de Mercado</div>
           </div>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8" fill="var(--accent)"></polygon></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8" fill="var(--accent)"></polygon></svg>
         </div>
       </div>
 
-      <div class="academy-info reveal">
+      <!-- Academy Description -->
+      <div class="academy-content reveal-item stagger-1">
         <div class="eyebrow">Zitro Academy</div>
         <h2 class="section-title">Educación tecnológica y análisis estructural de mercados.</h2>
-        <p class="section-subtitle" style="margin:0 0 1.5rem 0;">
+        <p class="section-subtitle" style="margin-bottom: 1.75rem;">
           Desarrolla conocimientos sobre la arquitectura blockchain, seguridad digital y comprensión analítica de estructuras de mercado.
         </p>
 
-        <div class="mining-features">
-          <div class="feature-item">
-            <div class="feature-check">
+        <div class="mining-spec-list">
+          <div class="spec-item">
+            <div class="spec-icon-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
-            <div class="feature-text">
+            <div class="spec-content">
               <h4>Análisis Estructural de Mercados</h4>
               <p>Aprende lectura gráfica, tendencias, velas japonesas, soportes, resistencias y conceptos analíticos desde una perspectiva formativa.</p>
             </div>
           </div>
 
-          <div class="feature-item">
-            <div class="feature-check">
+          <div class="spec-item">
+            <div class="spec-icon-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
-            <div class="feature-text">
+            <div class="spec-content">
               <h4>Seguridad Digital & Web3</h4>
               <p>Comprende los fundamentos de contratos inteligentes, llaves criptográficas y principios de seguridad en entornos digitales.</p>
             </div>
           </div>
 
-          <div class="feature-item">
-            <div class="feature-check">
+          <div class="spec-item">
+            <div class="spec-icon-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
-            <div class="feature-text">
+            <div class="spec-content">
               <h4>Arquitectura Blockchain</h4>
               <p>Conoce los mecanismos de consenso, interoperabilidad y el funcionamiento de la infraestructura descentralizada.</p>
             </div>
@@ -2303,78 +2371,85 @@ section {
   </section>
 
   <!-- ==========================================================================
-       COMMUNITY & NETWORK VISUAL SECTION
+       COMMUNITY & NETWORK TOPOLOGY
        ========================================================================== -->
   <section id="community">
     <div class="container">
-      <div class="network-card reveal">
+      <div class="network-stage-card reveal-item">
         <div class="eyebrow">Visión de Red</div>
         <h2 class="section-title">Una comunidad que construye la futura red de Zitro Network.</h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" style="max-width: 60ch; margin: 0 auto;">
           El crecimiento de Zitro Network se fundamenta en la colaboración de sus usuarios. A través del sistema de comunidad y referidos, cada participante contribuye a expandir el ecosistema.
         </p>
 
-        <!-- Inline SVG Network Topology Graph -->
-        <div class="network-visual">
-          <svg class="network-svg" viewBox="0 0 600 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Connecting dashed lines -->
-            <line x1="300" y1="120" x2="140" y2="60" stroke="rgba(220,252,4,0.3)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <line x1="300" y1="120" x2="460" y2="60" stroke="rgba(220,252,4,0.3)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <line x1="300" y1="120" x2="100" y2="180" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <line x1="300" y1="120" x2="500" y2="180" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-dasharray="4 4" />
-            <line x1="300" y1="120" x2="300" y2="210" stroke="rgba(220,252,4,0.3)" stroke-width="1.5" stroke-dasharray="4 4" />
+        <!-- Live Vector Network Topology -->
+        <div class="network-svg-container">
+          <svg class="network-svg-canvas" viewBox="0 0 600 240" fill="none">
+            <!-- Animated Dynamic Data Beams -->
+            <line class="network-data-beam" x1="300" y1="120" x2="140" y2="60" stroke="#dcfc04" stroke-width="1.5" stroke-opacity="0.4" />
+            <line class="network-data-beam" x1="300" y1="120" x2="460" y2="60" stroke="#dcfc04" stroke-width="1.5" stroke-opacity="0.4" />
+            <line class="network-data-beam" x1="300" y1="120" x2="100" y2="180" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
+            <line class="network-data-beam" x1="300" y1="120" x2="500" y2="180" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
+            <line class="network-data-beam" x1="300" y1="120" x2="300" y2="210" stroke="#dcfc04" stroke-width="1.5" stroke-opacity="0.4" />
 
-            <!-- Sub nodes -->
+            <!-- Sub Node 1 -->
             <g transform="translate(140, 60)">
               <circle r="18" fill="#10141c" stroke="rgba(220,252,4,0.4)" stroke-width="2" />
-              <circle r="6" fill="#dcfc04" />
-              <text y="32" fill="#9ba0aa" font-size="11" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Comunidad Regional</text>
+              <circle r="5" fill="#dcfc04" />
+              <text y="32" fill="#94a3b8" font-size="11" font-family="'IBM Plex Mono',monospace" text-anchor="middle">Comunidad Regional</text>
             </g>
 
+            <!-- Sub Node 2 -->
             <g transform="translate(460, 60)">
               <circle r="18" fill="#10141c" stroke="rgba(220,252,4,0.4)" stroke-width="2" />
-              <circle r="6" fill="#dcfc04" />
-              <text y="32" fill="#9ba0aa" font-size="11" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Comunidad Local</text>
+              <circle r="5" fill="#dcfc04" />
+              <text y="32" fill="#94a3b8" font-size="11" font-family="'IBM Plex Mono',monospace" text-anchor="middle">Comunidad Local</text>
             </g>
 
+            <!-- Sub Node 3 -->
             <g transform="translate(100, 180)">
-              <circle r="14" fill="#10141c" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
+              <circle r="14" fill="#10141c" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
               <circle r="4" fill="#ffffff" />
-              <text y="26" fill="#646a78" font-size="10" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Participante A</text>
+              <text y="26" fill="#64748b" font-size="10" font-family="'IBM Plex Mono',monospace" text-anchor="middle">Participante A</text>
             </g>
 
+            <!-- Sub Node 4 -->
             <g transform="translate(500, 180)">
-              <circle r="14" fill="#10141c" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
+              <circle r="14" fill="#10141c" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
               <circle r="4" fill="#ffffff" />
-              <text y="26" fill="#646a78" font-size="10" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Participante B</text>
+              <text y="26" fill="#64748b" font-size="10" font-family="'IBM Plex Mono',monospace" text-anchor="middle">Participante B</text>
             </g>
 
+            <!-- Sub Node 5 -->
             <g transform="translate(300, 210)">
               <circle r="14" fill="#10141c" stroke="rgba(220,252,4,0.3)" stroke-width="1.5" />
               <circle r="4" fill="#dcfc04" />
-              <text y="26" fill="#646a78" font-size="10" font-family="'Space Grotesk',sans-serif" text-anchor="middle">Sesión Cloud</text>
+              <text y="26" fill="#64748b" font-size="10" font-family="'IBM Plex Mono',monospace" text-anchor="middle">Sesión Cloud</text>
             </g>
 
-            <!-- Central Core Node -->
+            <!-- Central Core Node with Official Zitro Vector Mark -->
             <g transform="translate(300, 120)">
               <circle r="34" fill="#07080a" stroke="#dcfc04" stroke-width="2.5" />
               <circle r="26" fill="rgba(220,252,4,0.12)" />
-              <path d="M-8 -6h16l-12 12h12" stroke="#dcfc04" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-              <text y="48" fill="#ffffff" font-weight="700" font-size="12" font-family="'Space Grotesk',sans-serif" text-anchor="middle">ZITRO CORE</text>
+              <g transform="translate(-10, -11) scale(0.033)">
+                <path d="M0,0 H608 V156 L360,404 V156 H0 Z" fill="#dcfc04"/>
+                <path d="M608,672 H0 V516 L248,268 V516 H608 Z" fill="#dcfc04"/>
+              </g>
+              <text y="48" fill="#ffffff" font-weight="700" font-size="11" font-family="'IBM Plex Mono',monospace" text-anchor="middle">ZITRO CORE</text>
             </g>
           </svg>
         </div>
 
-        <div class="network-pillars-grid">
-          <div class="net-pillar">
+        <div class="network-feature-deck">
+          <div class="net-feature-cell">
             <h4>Multiplicador de Equipo</h4>
             <p>Ambos participantes se benefician con ventajas de participación y progreso interno al mantener activo su equipo en la app.</p>
           </div>
-          <div class="net-pillar">
+          <div class="net-feature-cell">
             <h4>Monitoreo de Comunidad</h4>
             <p>Visualiza el estado de actividad de tu equipo directamente en la interfaz de la aplicación.</p>
           </div>
-          <div class="net-pillar">
+          <div class="net-feature-cell">
             <h4>Acceso Temprano</h4>
             <p>Prioridad informativa sobre nuevas funciones, módulos de Zitro Academy y avances de la plataforma.</p>
           </div>
@@ -2386,9 +2461,9 @@ section {
   <!-- ==========================================================================
        ROADMAP SECTION
        ========================================================================== -->
-  <section id="roadmap" style="background: rgba(12, 15, 20, 0.4);">
+  <section id="roadmap" style="background: rgba(12, 15, 22, 0.4);">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-head reveal-item">
         <div class="eyebrow">Hoja de Ruta</div>
         <h2 class="section-title">Construcción metódica orientada a infraestructura y utilidad real.</h2>
         <p class="section-subtitle">
@@ -2396,11 +2471,11 @@ section {
         </p>
       </div>
 
-      <div class="roadmap-timeline">
+      <div class="roadmap-deck">
         <!-- Phase 01 -->
-        <div class="roadmap-card reveal">
-          <div class="roadmap-phase">Fase 01</div>
-          <span class="roadmap-badge badge-building">En Construcción</span>
+        <div class="roadmap-milestone reveal-item">
+          <div class="milestone-phase">FASE 01</div>
+          <span class="milestone-badge badge-active">En Construcción</span>
           <h3>Aplicación Móvil</h3>
           <p>
             Lanzamiento de la app para Android, sistema de registro seguro y configuración inicial del entorno.
@@ -2408,9 +2483,9 @@ section {
         </div>
 
         <!-- Phase 02 -->
-        <div class="roadmap-card reveal">
-          <div class="roadmap-phase">Fase 02</div>
-          <span class="roadmap-badge badge-dev">En Desarrollo</span>
+        <div class="roadmap-milestone reveal-item stagger-1">
+          <div class="milestone-phase">FASE 02</div>
+          <span class="milestone-badge badge-dev">En Desarrollo</span>
           <h3>Cloud Mining & Community</h3>
           <p>
             Activación de sesiones de minería en la nube, sistema de referidos y multiplicadores de equipo.
@@ -2418,9 +2493,9 @@ section {
         </div>
 
         <!-- Phase 03 -->
-        <div class="roadmap-card reveal">
-          <div class="roadmap-phase">Fase 03</div>
-          <span class="roadmap-badge badge-soon">Próximamente</span>
+        <div class="roadmap-milestone reveal-item stagger-2">
+          <div class="milestone-phase">FASE 03</div>
+          <span class="milestone-badge badge-planned">Próximamente</span>
           <h3>Zitro Academy</h3>
           <p>
             Despliegue de los módulos formativos de tecnología blockchain, seguridad digital y análisis de mercado.
@@ -2428,9 +2503,9 @@ section {
         </div>
 
         <!-- Phase 04 -->
-        <div class="roadmap-card reveal">
-          <div class="roadmap-phase">Fase 04</div>
-          <span class="roadmap-badge badge-soon">Visión Futura</span>
+        <div class="roadmap-milestone reveal-item stagger-3">
+          <div class="milestone-phase">FASE 04</div>
+          <span class="milestone-badge badge-planned">Visión Futura</span>
           <h3>Blockchain Infrastructure</h3>
           <p>
             Desarrollo de protocolos descentralizados, smart contracts y servicios avanzados del ecosistema.
@@ -2441,21 +2516,21 @@ section {
   </section>
 
   <!-- ==========================================================================
-       PRODUCT VISION & CALL TO ACTION
+       PRODUCT CALL TO ACTION BANNER
        ========================================================================== -->
   <section id="technology">
     <div class="container">
-      <div class="cta-banner reveal">
-        <div class="cta-content">
+      <div class="cta-stage reveal-item">
+        <div class="cta-core-wrap">
           <div class="eyebrow">Tecnología Zitro</div>
           <h2>Una infraestructura tecnológica en evolución.</h2>
           <p>
             Zitro Network continúa desarrollando su arquitectura cloud, experiencia móvil, comunidad y futura infraestructura blockchain.
           </p>
-          <div class="cta-actions">
+          <div class="cta-actions-deck">
             <a class="btn btn-primary" href="#roadmap">
               <span>Explorar Roadmap</span>
-              <svg class="btn-icon" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
             <a class="btn btn-secondary" href="https://fedeortiz9.github.io/zitro-terms/" target="_blank" rel="noopener noreferrer">
               <span>Términos y Condiciones</span>
@@ -2472,23 +2547,23 @@ section {
      ========================================================================== -->
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-grid">
+    <div class="footer-columns">
       <!-- Col 1: Brand -->
-      <div class="footer-brand">
-        <h4>ZITRO<span>NETWORK</span></h4>
-        <p>
+      <div class="footer-brand-col">
+        <img src="assets/brand/zitro-logo-white.png" alt="Zitro Logo" loading="lazy">
+        <p class="footer-brand-desc">
           Ecosistema tecnológico enfocado en minería en la nube, educación tecnológica responsable e infraestructura blockchain en desarrollo.
         </p>
-        <div class="nav-store-badge" style="display:inline-flex;">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+        <div class="badge-play-store">
+          <svg viewBox="0 0 24 24">
             <path d="M3.609 1.814L13.792 12 3.61 22.186a2.158 2.158 0 0 1-.22-.971V2.785c0-.361.08-.696.22-.971zM15.207 13.414l2.585 2.586-11.45 6.477 8.865-9.063zm2.585-5.414l-2.585 2.586-8.865-9.063 11.45 6.477zM16.621 12l3.414-3.414a1.868 1.868 0 0 1 0 2.642L16.621 12z"/>
           </svg>
-          <span>Android • Próximamente en Google Play</span>
+          <span>Android • Próximamente</span>
         </div>
       </div>
 
       <!-- Col 2: Navigation -->
-      <div class="footer-col">
+      <div class="footer-menu-col">
         <h5>Ecosistema</h5>
         <ul>
           <li><a href="#ecosystem">Visión General</a></li>
@@ -2500,7 +2575,7 @@ section {
       </div>
 
       <!-- Col 3: Resources & Legal -->
-      <div class="footer-col">
+      <div class="footer-menu-col">
         <h5>Legal & Recursos</h5>
         <ul>
           <li><a href="https://fedeortiz9.github.io/zitro-privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
@@ -2511,8 +2586,8 @@ section {
       </div>
 
       <!-- Col 4: Transparency & Disclaimer -->
-      <div class="footer-col">
-        <div class="footer-disclaimer-card">
+      <div class="footer-menu-col">
+        <div class="footer-disclaimer-panel">
           <h5>Aviso de Transparencia</h5>
           <p>
             Zitro Network es un ecosistema tecnológico en desarrollo. Las características pueden evolucionar durante el desarrollo del producto. Las recompensas obtenidas mediante las sesiones se registran como puntos internos del ecosistema. El contenido educativo tiene fines exclusivamente informativos y formativos.
@@ -2521,10 +2596,10 @@ section {
       </div>
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="footer-bottom">
+    <!-- Bottom Strip -->
+    <div class="footer-bottom-strip">
       <p>© 2026 Zitro Network. Todos los derechos reservados.</p>
-      <div class="footer-legal-links">
+      <div class="footer-legal-deck">
         <a href="https://fedeortiz9.github.io/zitro-privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
         <a href="https://fedeortiz9.github.io/zitro-terms/" target="_blank" rel="noopener noreferrer">Terms and Conditions</a>
       </div>
@@ -2533,49 +2608,106 @@ section {
 </footer>
 
 <!-- ==========================================================================
-     INTERACTIONS & MOTION DESIGN (VANILLA JS)
+     INTERACTIONS & MOTION SYSTEM (VANILLA JS)
      ========================================================================== -->
 <script>
 (function() {
   'use strict';
 
-  // 1. Mobile Navigation Toggle & Accessibility (ARIA / Keyboard)
+  // 1. Mobile Menu Drawer Toggle & Escape handler
   var toggleBtn = document.getElementById('mobile-toggle');
-  var mobileNav = document.getElementById('mobile-nav');
+  var mobilePanel = document.getElementById('mobile-nav-panel');
 
-  function closeMobileNav() {
-    if (toggleBtn && mobileNav) {
+  function closeMobilePanel() {
+    if (toggleBtn && mobilePanel) {
       toggleBtn.setAttribute('aria-expanded', 'false');
-      mobileNav.classList.remove('is-open');
+      mobilePanel.classList.remove('is-open');
     }
   }
 
-  function toggleMobileNav() {
-    if (toggleBtn && mobileNav) {
+  function toggleMobilePanel() {
+    if (toggleBtn && mobilePanel) {
       var isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
       toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
-      mobileNav.classList.toggle('is-open');
+      mobilePanel.classList.toggle('is-open');
     }
   }
 
-  if (toggleBtn && mobileNav) {
-    toggleBtn.addEventListener('click', toggleMobileNav);
+  if (toggleBtn && mobilePanel) {
+    toggleBtn.addEventListener('click', toggleMobilePanel);
 
-    // Close mobile nav when clicking on anchor links
-    var mobileLinks = mobileNav.querySelectorAll('a');
+    var mobileLinks = mobilePanel.querySelectorAll('a');
     for (var i = 0; i < mobileLinks.length; i++) {
-      mobileLinks[i].addEventListener('click', closeMobileNav);
+      mobileLinks[i].addEventListener('click', closeMobilePanel);
     }
 
-    // Close on Escape key press
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape' || event.key === 'Esc') {
-        closeMobileNav();
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        closeMobilePanel();
       }
     });
   }
 
-  // 2. Scroll Reveal with IntersectionObserver
+  // 2. Interactive Session Switcher in Phone Mockup
+  var sessionTabs = document.querySelectorAll('.session-tab');
+  var gaugeTimer = document.getElementById('gauge-timer');
+  var gaugeFill = document.getElementById('gauge-fill');
+  var activeModeLabel = document.getElementById('active-mode-label');
+
+  var sessionConfigs = {
+    '6h': { timer: '05:59:42', offset: '140', label: 'Sesión 6 h' },
+    '12h': { timer: '11:59:42', offset: '220', label: 'Sesión 12 h' },
+    '24h': { timer: '23:59:42', offset: '310', label: 'Sesión 24 h' }
+  };
+
+  sessionTabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      sessionTabs.forEach(function(t) {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      var duration = tab.getAttribute('data-duration');
+      if (sessionConfigs[duration]) {
+        if (gaugeTimer) gaugeTimer.textContent = sessionConfigs[duration].timer;
+        if (gaugeFill) gaugeFill.style.strokeDashoffset = sessionConfigs[duration].offset;
+        if (activeModeLabel) activeModeLabel.textContent = sessionConfigs[duration].label;
+      }
+    });
+  });
+
+  // 3. Interactive Timeframe Switcher in Academy Terminal
+  var tfPills = document.querySelectorAll('.tf-pill');
+  tfPills.forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      tfPills.forEach(function(p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+    });
+  });
+
+  // 4. Subtle Parallax & 3D Tilt on Desktop
+  var phoneFrame = document.getElementById('phone-frame');
+  var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  if (!isTouch && phoneFrame && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    document.addEventListener('mousemove', function(e) {
+      var rect = phoneFrame.getBoundingClientRect();
+      var centerX = rect.left + rect.width / 2;
+      var centerY = rect.top + rect.height / 2;
+      var deltaX = (e.clientX - centerX) / 40;
+      var deltaY = (e.clientY - centerY) / 40;
+
+      // Limit angle
+      var rotX = Math.max(-12, Math.min(12, -deltaY));
+      var rotY = Math.max(-12, Math.min(12, deltaX));
+
+      phoneFrame.style.transform = 'perspective(1000px) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg)';
+    });
+  }
+
+  // 5. Scroll Stagger Reveals (IntersectionObserver)
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function(entries, obs) {
       entries.forEach(function(entry) {
@@ -2585,18 +2717,15 @@ section {
         }
       });
     }, {
-      rootMargin: '0px 0px -40px 0px',
-      threshold: 0.1
+      rootMargin: '0px 0px -20px 0px',
+      threshold: 0.05
     });
 
-    var revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach(function(el) {
+    document.querySelectorAll('.reveal-item').forEach(function(el) {
       observer.observe(el);
     });
   } else {
-    // Fallback for older browsers without IntersectionObserver
-    var allReveals = document.querySelectorAll('.reveal');
-    allReveals.forEach(function(el) {
+    document.querySelectorAll('.reveal-item').forEach(function(el) {
       el.classList.add('is-revealed');
     });
   }
