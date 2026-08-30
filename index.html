@@ -9,6 +9,9 @@
 
 <!-- Official Zitro Favicon (High-Contrast Official Black Mark on Vibrant Zitro Lime) -->
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
+<link rel="canonical" href="https://zitro.network/">
+<link rel="alternate" hreflang="es" href="https://zitro.network/">
+<link rel="alternate" hreflang="x-default" href="https://zitro.network/">
 
 <style>
 /* ==========================================================================
@@ -609,13 +612,13 @@ section {
 /* motion-ready hides mobile hero elements */
 .motion-ready .hero-m-img {
   opacity: 0;
-  transform: translateY(-60px) scale(1.06);
-  filter: blur(8px);
+  transform: scale(1.04);
+  filter: blur(6px);
 }
 .motion-ready .hero-m-title {
   opacity: 0;
-  transform: translateY(48px);
-  filter: blur(7px);
+  transform: translateY(34px);
+  filter: blur(6px);
 }
 .motion-ready .hero-m-desc {
   opacity: 0;
@@ -810,15 +813,23 @@ section {
   100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* W3J — Mobile Hero Keyframes */
+/* W3K — Mobile Hero Keyframes */
 @keyframes mobileHeroImgReveal {
-  0% { opacity: 0; transform: translateY(-60px) scale(1.06); filter: blur(8px); }
-  100% { opacity: 1; transform: translateY(-60px) scale(1); filter: blur(0); }
+  0% { opacity: 0; transform: scale(1.04); filter: blur(6px); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0); }
 }
 
 @keyframes mobileHeroTitleReveal {
-  0% { opacity: 0; transform: translateY(48px); filter: blur(7px); }
-  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
 @keyframes mobileHeroFadeUp {
@@ -2218,56 +2229,95 @@ section {
   }
 
   /* ==========================================================================
-     W3J: TAREA 1 — HERO VISUAL (SIN HUECO NEGRO, PEGADO AL HEADER)
+     W3K: TAREA 3 & 4 — TRANSPARENT SMART HEADER (MOBILE)
+     ========================================================================== */
+  .site-header {
+    background: transparent;
+    border-bottom: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    transition:
+      transform 420ms cubic-bezier(.16, 1, .3, 1),
+      background 320ms ease,
+      backdrop-filter 320ms ease;
+  }
+
+  .site-header.scrolled {
+    background: rgba(3, 3, 3, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .site-header.header-hidden {
+    transform: translateY(-110%);
+  }
+
+  /* ==========================================================================
+     W3K: TAREA 6 — ACOMODAR NUEVA IMAGEN HERO (1440x1024 / 1024x728)
      ========================================================================== */
   .hero-mobile-visual {
     display: block;
     position: relative;
+    width: 100%;
+    height: clamp(290px, 39svh, 365px);
+
     margin: 0;
     padding: 0;
+
     overflow: hidden;
     background: #030303;
   }
 
   .hero-mobile-visual__img {
-    display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    display: block;
+
     object-fit: cover;
-    object-position: center top;
-    transform: translateY(-60px);
+    object-position: center center;
+    transform: none;
   }
 
-  /* W3J: TAREA 3 — FADE PROFESIONAL ENTRE IMAGEN Y TEXTO */
+  /* W3K: TAREA 7 — FADE PROFESIONAL IMAGEN -> TEXTO */
   .hero-mobile-visual::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
-    height: 220px;
+    bottom: -1px;
+
+    height: 150px;
+
     background: linear-gradient(
       to bottom,
       rgba(3, 3, 3, 0) 0%,
-      rgba(3, 3, 3, 0.16) 25%,
-      rgba(3, 3, 3, 0.46) 52%,
-      rgba(3, 3, 3, 0.82) 78%,
+      rgba(3, 3, 3, 0.12) 25%,
+      rgba(3, 3, 3, 0.42) 52%,
+      rgba(3, 3, 3, 0.80) 78%,
       #030303 100%
     );
+
     pointer-events: none;
     z-index: 1;
   }
 
   /* ==========================================================================
-     W3J: TAREA 2 — COPY HERO PEGADO AL FADE (SIN EYEBROW)
+     W3K: TAREA 8 — SUBIR Y CENTRAR BIEN EL TÍTULO
      ========================================================================== */
   .hero-mobile-copy {
     display: block;
     position: relative;
-    margin-top: -28px;
+    z-index: 3;
+
+    margin-top: -32px;
+
     padding: 0 24px 0;
+
     background: #030303;
-    z-index: 2;
   }
 
   .hero-mobile-copy .section-tagline,
@@ -2276,13 +2326,18 @@ section {
     display: none !important;
   }
 
-  .hero-mobile-copy h1,
   .hero-mobile__title {
-    font-size: clamp(3.2rem, 11vw, 4.9rem);
-    line-height: 0.92;
+    margin: 0 auto 20px;
+
+    max-width: 10ch;
+
+    font-size: clamp(3rem, 11.5vw, 4.7rem);
+    line-height: 0.91;
     letter-spacing: -0.055em;
-    margin: 0 0 18px;
     font-weight: 450;
+
+    text-align: left;
+    text-wrap: balance;
     color: #ffffff;
     overflow-wrap: break-word;
     word-break: normal;
@@ -2525,8 +2580,34 @@ section {
     display: none;
   }
 
+  /* ==========================================================================
+     W3K: TAREA 5 — HAMBURGER DENTRO DE CÍRCULO BLANCO
+     ========================================================================== */
   .mobile-toggle {
-    display: flex;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+
+    border-radius: 50%;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f5f5f3;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.22);
+
+    color: #080808;
+    cursor: pointer;
+  }
+
+  .mobile-toggle svg {
+    width: 23px;
+    height: 23px;
+    stroke: currentColor;
   }
 
   /* ==========================================================================
@@ -3025,10 +3106,16 @@ section {
 
 <main>
   <!-- ==========================================================================
-       MOBILE HERO VISUAL (MOBILE ONLY — W3H)
+       MOBILE HERO VISUAL (MOBILE ONLY — W3K)
        ========================================================================== -->
-  <section class="hero-mobile-visual" aria-hidden="true">
-    <img src="assets/mockups/hero-mobile.png" alt="" class="hero-mobile-visual__img hero-m-img" loading="eager">
+  <section class="hero-mobile-visual">
+    <img
+      src="assets/hero/zitro-hero-mobile.webp"
+      alt=""
+      class="hero-mobile-visual__img hero-m-img"
+      fetchpriority="high"
+      decoding="async"
+    >
   </section>
 
   <!-- ==========================================================================
@@ -3818,27 +3905,32 @@ section {
     }
   }
 
-  // 3. Dynamic Header Scroll Enhancement
+  // 3. Dynamic Smart Header Scroll Enhancement (W3K)
   function initHeaderScroll() {
-    var header = document.getElementById('site-header');
-    var ticking = false;
+    var header = document.querySelector('.site-header');
+    if (!header) return;
 
-    function updateHeaderOnScroll() {
-      if (header) {
-        if (window.scrollY > 30) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      }
-      ticking = false;
-    }
+    var lastScrollY = window.scrollY;
 
     window.addEventListener('scroll', function() {
-      if (!ticking) {
-        window.requestAnimationFrame(updateHeaderOnScroll);
-        ticking = true;
+      var currentY = window.scrollY;
+
+      if (currentY <= 20) {
+        header.classList.remove('header-hidden');
+        header.classList.remove('scrolled');
+      } else {
+        header.classList.add('scrolled');
+
+        if (currentY > lastScrollY + 4) {
+          header.classList.add('header-hidden');
+        }
+
+        if (currentY < lastScrollY - 4) {
+          header.classList.remove('header-hidden');
+        }
       }
+
+      lastScrollY = currentY;
     }, { passive: true });
   }
 
