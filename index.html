@@ -321,8 +321,10 @@ img, svg {
 .hero-mobile-visual,
 .hero-mobile-copy,
 .hero-mobile-device,
+.hero-mobile-divider,
 .orb-mobile-a,
-.orb-mobile-b {
+.orb-mobile-b,
+.orb-mobile-c {
   display: none;
 }
 
@@ -591,6 +593,91 @@ section {
   animation: heroSatelliteEntrance 750ms var(--ease-premium) 820ms both;
 }
 
+/* W3H — MOBILE HERO ENTRANCE CHOREOGRAPHY */
+/* Default visible (no-JS fallback) */
+.hero-m-img,
+.hero-m-eyebrow,
+.hero-m-title,
+.hero-m-desc,
+.hero-m-cta1,
+.hero-m-cta2,
+.hero-m-brandrow,
+.hero-m-divider,
+.hero-m-phone {
+  opacity: 1;
+}
+
+/* motion-ready hides mobile hero elements */
+.motion-ready .hero-m-img {
+  opacity: 0;
+  transform: scale(1.06);
+  filter: blur(6px);
+}
+.motion-ready .hero-m-eyebrow {
+  opacity: 0;
+  transform: translateY(22px);
+  filter: blur(3px);
+}
+.motion-ready .hero-m-title {
+  opacity: 0;
+  transform: translateY(38px);
+  filter: blur(5px);
+}
+.motion-ready .hero-m-desc {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.motion-ready .hero-m-cta1 {
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
+}
+.motion-ready .hero-m-cta2 {
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
+}
+.motion-ready .hero-m-brandrow {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.motion-ready .hero-m-divider {
+  opacity: 0;
+  transform: scaleX(0.2);
+}
+.motion-ready .hero-m-phone {
+  opacity: 0;
+  transform: perspective(900px) translateY(56px) scale(0.92) rotateX(10deg);
+  filter: blur(8px);
+}
+
+/* page-enter fires the staggered sequence */
+.motion-ready.page-enter .hero-m-img {
+  animation: mobileHeroImgReveal 850ms var(--ease-premium) 60ms both;
+}
+.motion-ready.page-enter .hero-m-eyebrow {
+  animation: mobileHeroFadeUp 650ms var(--ease-premium) 220ms both;
+}
+.motion-ready.page-enter .hero-m-title {
+  animation: mobileHeroTitleReveal 900ms var(--ease-premium) 300ms both;
+}
+.motion-ready.page-enter .hero-m-desc {
+  animation: mobileHeroFadeUp 720ms var(--ease-premium) 430ms both;
+}
+.motion-ready.page-enter .hero-m-cta1 {
+  animation: mobileHeroBtnReveal 680ms var(--ease-premium) 530ms both;
+}
+.motion-ready.page-enter .hero-m-cta2 {
+  animation: mobileHeroBtnReveal 680ms var(--ease-premium) 620ms both;
+}
+.motion-ready.page-enter .hero-m-brandrow {
+  animation: mobileHeroFadeUp 650ms var(--ease-premium) 710ms both;
+}
+.motion-ready.page-enter .hero-m-divider {
+  animation: mobileHeroDivider 700ms var(--ease-premium) 780ms both;
+}
+.motion-ready.page-enter .hero-m-phone {
+  animation: mobileHeroPhoneEntrance 1250ms var(--ease-premium) 880ms both;
+}
+
 .site-header.scrolled {
   background: var(--bg-glass-nav-scrolled);
   border-bottom-color: var(--border-medium);
@@ -724,6 +811,48 @@ section {
 @keyframes heroSatelliteEntrance {
   0% { opacity: 0; transform: scale(0.88) translateY(10px); }
   100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* W3H — Mobile Hero Keyframes */
+@keyframes mobileHeroImgReveal {
+  0% { opacity: 0; transform: scale(1.06); filter: blur(6px); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+@keyframes mobileHeroTitleReveal {
+  0% { opacity: 0; transform: translateY(38px); filter: blur(5px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes mobileHeroFadeUp {
+  0% { opacity: 0; transform: translateY(22px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mobileHeroBtnReveal {
+  0% { opacity: 0; transform: translateY(18px) scale(0.97); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes mobileHeroDivider {
+  0% { opacity: 0; transform: scaleX(0.2); }
+  100% { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes mobileHeroPhoneEntrance {
+  0% {
+    opacity: 0;
+    transform: perspective(900px) translateY(56px) scale(0.92) rotateX(10deg);
+    filter: blur(8px);
+  }
+  70% {
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(900px) translateY(0) scale(1) rotateX(0deg);
+    filter: blur(0);
+  }
 }
 .nav-item::after {
   content: '';
@@ -2151,14 +2280,16 @@ section {
     display: none;
   }
 
-  /* PASO 3 & 4 — HERO VISUAL & FADE */
+  /* W3H: TAREA 1 — HERO VISUAL: pegado al header, sin gap */
   .hero-mobile-visual {
     display: block;
     position: relative;
     width: 100%;
-    height: clamp(350px, 46svh, 470px);
+    height: clamp(360px, 48svh, 480px);
     overflow: hidden;
     background: #030303;
+    margin-top: 0;
+    padding-top: 0;
   }
 
   .hero-mobile-visual__img {
@@ -2169,31 +2300,32 @@ section {
     display: block;
   }
 
+  /* W3H: TAREA 1.3 — Difuminado profesional entre imagen y copy */
   .hero-mobile-visual::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
     bottom: -1px;
-    height: 200px;
+    height: 220px;
     pointer-events: none;
     background: linear-gradient(
       to bottom,
       rgba(3, 3, 3, 0) 0%,
-      rgba(3, 3, 3, 0.12) 25%,
-      rgba(3, 3, 3, 0.48) 52%,
-      rgba(3, 3, 3, 0.84) 76%,
+      rgba(3, 3, 3, 0.25) 28%,
+      rgba(3, 3, 3, 0.60) 58%,
       #030303 100%
     );
+    z-index: 1;
   }
 
-  /* PASO 5 & 6 — BLOQUE NEGRO DEL COPY & H1 */
+  /* W3H: TAREA 2 — Bloque negro del copy */
   .hero-mobile-copy {
     display: block;
     position: relative;
     z-index: 3;
-    margin-top: -2px;
-    padding: 1.1rem 0 2.3rem;
+    margin-top: 0;
+    padding: 1.2rem 0 2.5rem;
     background: #030303;
   }
 
@@ -2217,7 +2349,6 @@ section {
     margin-bottom: 1.85rem;
   }
 
-  /* PASO 7 — CTAs + BRANDBAR */
   .hero-mobile__ctas {
     display: flex;
     flex-direction: column;
@@ -2230,40 +2361,52 @@ section {
     justify-content: center;
   }
 
-  .hero-mobile__brandbar {
-    margin-top: 2.25rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
-    display: flex;
-    flex-direction: column;
-    gap: 1.15rem;
-  }
-
-  .brandbar-info {
+  /* W3H: TAREA 3 — Brand row: Zitro + Google Play limpio */
+  .hero-mobile__brandrow {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
+    gap: 18px;
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
   }
 
-  .brandbar-logo {
-    height: 24px;
+  .hero-mobile__brandrow .zitro-logo {
+    height: 32px;
     width: auto;
     object-fit: contain;
   }
 
-  .brandbar-meta {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--fg-muted);
+  .hero-mobile__brandrow .google-play-badge {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    display: block;
   }
 
-  /* PASO 8 & 9 — DEVICE STAGE & CHIPS */
+  /* W3H: TAREA 4 — Línea amarilla divisoria */
+  .hero-mobile-divider {
+    display: block;
+    width: calc(100% - 40px);
+    height: 1px;
+    margin: 22px auto 26px;
+    background: linear-gradient(
+      90deg,
+      rgba(220, 252, 4, 0) 0%,
+      rgba(220, 252, 4, 0.9) 18%,
+      rgba(220, 252, 4, 0.9) 82%,
+      rgba(220, 252, 4, 0) 100%
+    );
+    box-shadow: 0 0 12px rgba(220, 252, 4, 0.25);
+    transform-origin: center;
+  }
+
+  /* W3H: TAREA 5 — Device stage mejorado */
   .hero-mobile-device {
     display: block;
     position: relative;
-    padding: 2.4rem 0 3rem;
+    padding: 0.5rem 0 3.5rem;
     background: #030303;
     overflow: hidden;
   }
@@ -2271,7 +2414,7 @@ section {
   .hero-mobile-device__stage {
     position: relative;
     width: min(100%, 390px);
-    min-height: 380px;
+    min-height: 400px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -2282,7 +2425,9 @@ section {
     position: relative;
     width: min(68vw, 270px);
     transform: none;
-    filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.95));
+    filter:
+      drop-shadow(0 24px 50px rgba(0, 0, 0, 0.95))
+      drop-shadow(0 0 30px rgba(220, 252, 4, 0.06));
   }
 
   .hero-mobile__phone-img {
@@ -2334,6 +2479,64 @@ section {
     max-width: 38ch;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  /* W3H: TAREA 7 — Esferas 3D mejoradas con más atmósfera */
+  .orb-mobile-a {
+    width: 90px;
+    height: 90px;
+    top: 80px;
+    right: 12px;
+    background: radial-gradient(
+      circle at 32% 30%,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(220, 252, 4, 0.16) 20%,
+      rgba(130, 130, 130, 0.18) 50%,
+      rgba(30, 30, 30, 0.10) 75%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    box-shadow:
+      0 16px 50px rgba(0, 0, 0, 0.45),
+      0 0 40px rgba(220, 252, 4, 0.08) inset;
+    filter: blur(1.5px);
+  }
+
+  .orb-mobile-b {
+    width: 70px;
+    height: 70px;
+    top: 920px;
+    left: 8px;
+    background: radial-gradient(
+      circle at 38% 36%,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(180, 180, 180, 0.14) 35%,
+      rgba(70, 70, 70, 0.14) 70%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    filter: blur(1px);
+  }
+
+  /* Orb C — tercera esfera decorativa secundaria cerca del device stage */
+  .orb-mobile-c {
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    width: 55px;
+    height: 55px;
+    top: 1600px;
+    right: 18px;
+    background: radial-gradient(
+      circle at 35% 32%,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(220, 252, 4, 0.09) 24%,
+      rgba(90, 90, 90, 0.12) 60%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+    filter: blur(1px);
   }
 
   /* PASO 12 — ADAPTAR SUPERFICIES AL NEGRO */
@@ -2661,7 +2864,16 @@ section {
   .network-data-beam,
   .object-3d-floating,
   .film-grain-layer,
-  .ambient-light-orb {
+  .ambient-light-orb,
+  .hero-m-img,
+  .hero-m-eyebrow,
+  .hero-m-title,
+  .hero-m-desc,
+  .hero-m-cta1,
+  .hero-m-cta2,
+  .hero-m-brandrow,
+  .hero-m-divider,
+  .hero-m-phone {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
@@ -2695,6 +2907,7 @@ section {
   <!-- 3D Gradient Spheres (Mobile) -->
   <div class="orb-mobile-a"></div>
   <div class="orb-mobile-b"></div>
+  <div class="orb-mobile-c"></div>
 </div>
 
 <!-- ==========================================================================
@@ -2744,10 +2957,10 @@ section {
 
 <main>
   <!-- ==========================================================================
-       MOBILE HERO VISUAL (MOBILE ONLY — W3G ARCHITECTURE)
+       MOBILE HERO VISUAL (MOBILE ONLY — W3H)
        ========================================================================== -->
   <section class="hero-mobile-visual" aria-hidden="true">
-    <img src="assets/mockups/hero-mobile.png" alt="" class="hero-mobile-visual__img" loading="eager">
+    <img src="assets/mockups/hero-mobile.png" alt="" class="hero-mobile-visual__img hero-m-img" loading="eager">
   </section>
 
   <!-- ==========================================================================
@@ -2755,38 +2968,34 @@ section {
        ========================================================================== -->
   <section class="hero-mobile-copy" id="hero-mobile">
     <div class="container">
-      <div class="section-tagline">Plataforma Cloud & Blockchain</div>
-      <h1 class="hero-mobile__title">
+      <div class="section-tagline hero-m-eyebrow">Plataforma Cloud & Blockchain</div>
+      <h1 class="hero-mobile__title hero-m-title">
         Construyendo una nueva experiencia de <span class="text-accent">minería en la nube</span> y tecnología blockchain.
       </h1>
-      <p class="hero-mobile__desc">
+      <p class="hero-mobile__desc hero-m-desc">
         Zitro Network conecta minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en evolución.
       </p>
       <div class="hero-mobile__ctas">
-        <a class="btn btn-primary" href="#ecosystem">
+        <a class="btn btn-primary hero-m-cta1" href="#ecosystem">
           <span>Explorar Ecosistema</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
-        <a class="btn btn-secondary" href="#academy">
+        <a class="btn btn-secondary hero-m-cta2" href="#academy">
           <span>Conocer Zitro Academy</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </a>
       </div>
 
-      <div class="hero-mobile__brandbar">
-        <div class="brandbar-info">
-          <img src="assets/brand/zitro-logo-white.png" alt="Zitro Network" class="brandbar-logo">
-          <span class="brandbar-meta">Android Core • Google Play Store</span>
-        </div>
-        <div class="badge-play-store">
-          <svg viewBox="0 0 24 24">
-            <path d="M3.609 1.814L13.792 12 3.61 22.186a2.158 2.158 0 0 1-.22-.971V2.785c0-.361.08-.696.22-.971zM15.207 13.414l2.585 2.586-11.45 6.477 8.865-9.063zm2.585-5.414l-2.585 2.586-8.865-9.063 11.45 6.477zM16.621 12l3.414-3.414a1.868 1.868 0 0 1 0 2.642L16.621 12z"/>
-          </svg>
-          <span>Android • Próximamente</span>
-        </div>
+      <!-- W3H: TAREA 3 — Brand row: Zitro + Google Play limpio -->
+      <div class="hero-mobile__brandrow hero-m-brandrow">
+        <img src="assets/brand/zitro-logo-white.png" alt="Zitro Network" class="zitro-logo">
+        <img src="assets/brand/google-play-badge.svg" alt="Disponible próximamente en Google Play" class="google-play-badge">
       </div>
     </div>
   </section>
+
+  <!-- W3H: TAREA 4 — Línea amarilla divisoria -->
+  <div class="hero-mobile-divider hero-m-divider" aria-hidden="true"></div>
 
   <!-- ==========================================================================
        MOBILE DEVICE STAGE (MOBILE ONLY — INDEPENDENT SECTION)
@@ -2798,7 +3007,7 @@ section {
           <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           <span>Tecnología Cloud</span>
         </div>
-        <div class="phone-entrance-wrap hero-mobile__phone-wrap" id="phone-entrance-wrap-mobile">
+        <div class="hero-mobile__phone-wrap hero-m-phone" id="phone-entrance-wrap-mobile">
           <div class="mockup-floor-glow"></div>
           <img src="assets/mockups/zitro-phone-app-mockup.png" alt="Zitro Network Mobile App" class="phone-mockup-real hero-mobile__phone-img">
         </div>
@@ -2812,6 +3021,7 @@ section {
       </div>
     </div>
   </section>
+
 
   <!-- ==========================================================================
        HERO SECTION (W3B CHOREOGRAPHY & PHONE MASS ENTRANCE — DESKTOP)
