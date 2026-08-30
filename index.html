@@ -66,7 +66,7 @@
 }
 
 /* ==========================================================================
-   DESIGN SYSTEM TOKENS & MOTION TOKENS
+   DESIGN SYSTEM TOKENS & MOTION TOKENS (AWWWARDS STANDARD)
    ========================================================================== */
 :root {
   /* Surfaces & Backgrounds */
@@ -122,13 +122,17 @@
   --max-w: 1240px;
   --nav-height: 74px;
 
-  /* Motion Tokens (Awwwards Standard) */
+  /* Motion Tokens (W3B Consolidated Standard) */
   --motion-fast: 320ms;
   --motion-normal: 560ms;
+  --motion-medium: 680ms;
   --motion-slow: 820ms;
+  --motion-cinematic: 1000ms;
+
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.3, 0.64, 1);
 }
 
 /* ==========================================================================
@@ -490,7 +494,7 @@ section {
 }
 
 /* ==========================================================================
-   HEADER / FLOATING GLASS NAVIGATION (19B)
+   HEADER / FLOATING GLASS NAVIGATION (W3B ENTRANCE SEQUENCE)
    ========================================================================== */
 .site-header {
   position: sticky;
@@ -509,7 +513,7 @@ section {
   transition: background-color var(--motion-fast) var(--ease-premium),
               border-color var(--motion-fast) var(--ease-premium),
               box-shadow var(--motion-fast) var(--ease-premium);
-  animation: headerEntrance 0.7s var(--ease-premium) 0s backwards;
+  animation: headerEntrance 0.75s var(--ease-premium) 0s backwards;
 }
 
 .site-header.scrolled {
@@ -521,8 +525,8 @@ section {
 @keyframes headerEntrance {
   0% {
     opacity: 0;
-    transform: translateY(-14px);
-    filter: blur(6px);
+    transform: translateY(-18px);
+    filter: blur(4px);
   }
   100% {
     opacity: 1;
@@ -543,11 +547,11 @@ section {
   align-items: center;
   gap: 0.5rem;
   transition: opacity var(--motion-fast) ease, transform var(--motion-fast) var(--ease-premium);
-  animation: logoEntrance 0.75s var(--ease-premium) 0.1s backwards;
+  animation: logoEntrance 0.75s var(--ease-premium) 0.08s backwards;
 }
 
 @keyframes logoEntrance {
-  0% { opacity: 0; transform: translateX(-8px); }
+  0% { opacity: 0; transform: translateX(-10px); }
   100% { opacity: 1; transform: translateX(0); }
 }
 
@@ -620,7 +624,7 @@ section {
 }
 
 @keyframes navActionEntrance {
-  0% { opacity: 0; transform: scale(0.96); }
+  0% { opacity: 0; transform: scale(0.97); }
   100% { opacity: 1; transform: scale(1); }
 }
 
@@ -700,13 +704,13 @@ section {
 }
 
 /* ==========================================================================
-   HERO ENTRANCE SEQUENCE (19C & 19D)
+   HERO ENTRANCE SEQUENCE (W3B CHOREOGRAPHY)
    ========================================================================== */
 @keyframes heroTitleReveal {
   0% {
     opacity: 0;
-    transform: translateY(24px);
-    filter: blur(4px);
+    transform: translateY(28px);
+    filter: blur(3px);
   }
   100% {
     opacity: 1;
@@ -718,7 +722,7 @@ section {
 @keyframes heroDescFade {
   0% {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(14px);
   }
   100% {
     opacity: 1;
@@ -726,21 +730,37 @@ section {
   }
 }
 
-@keyframes heroPhoneEntrance3D {
+@keyframes heroBtnReveal {
   0% {
     opacity: 0;
-    transform: perspective(1200px) rotateY(-8deg) rotateX(4deg) translateY(36px) scale(0.95);
+    transform: translateY(10px) scale(0.98);
   }
   100% {
     opacity: 1;
-    transform: perspective(1200px) rotateY(-4deg) rotateX(2deg) translateY(0) scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
-@keyframes heroSatelliteFade {
+@keyframes heroPhoneEntrance3D {
   0% {
     opacity: 0;
-    transform: scale(0.88) translateY(12px);
+    transform: perspective(1200px) translateY(42px) scale(0.95) rotateX(5deg) rotateY(-4deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) translateY(0) scale(1) rotateX(0deg) rotateY(0deg);
+  }
+}
+
+@keyframes heroFloorGlowFade {
+  0% { opacity: 0; transform: translateX(-50%) scale(0.8); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+@keyframes heroSatelliteEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.88) translateY(10px);
   }
   100% {
     opacity: 1;
@@ -753,27 +773,54 @@ section {
 }
 
 .hero-animate-desc {
-  animation: heroDescFade 0.8s var(--ease-premium) 0.3s backwards;
+  animation: heroDescFade 0.65s var(--ease-premium) 0.3s backwards;
 }
 
-.hero-animate-ctas {
-  animation: heroDescFade 0.8s var(--ease-premium) 0.45s backwards;
+.hero-animate-cta-1 {
+  animation: heroBtnReveal 0.65s var(--ease-premium) 0.45s backwards;
+}
+
+.hero-animate-cta-2 {
+  animation: heroBtnReveal 0.65s var(--ease-premium) 0.53s backwards;
 }
 
 .hero-animate-telemetry {
-  animation: heroDescFade 0.8s var(--ease-premium) 0.58s backwards;
+  animation: heroDescFade 0.65s var(--ease-premium) 0.62s backwards;
 }
 
-.hero-animate-phone {
+.phone-entrance-wrap {
   animation: heroPhoneEntrance3D 1s var(--ease-premium) 0.25s backwards;
+  will-change: transform, opacity;
+  perspective: 1200px;
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.mockup-floor-glow {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 40px;
+  background: radial-gradient(ellipse, rgba(220, 252, 4, 0.3) 0%, rgba(220, 252, 4, 0.02) 60%, transparent 80%);
+  filter: blur(15px);
+  pointer-events: none;
+  z-index: 1;
+  animation: heroFloorGlowFade 1.1s var(--ease-premium) 0.3s backwards;
 }
 
 .hero-animate-satellite-1 {
-  animation: heroSatelliteFade 0.8s var(--ease-premium) 0.65s backwards;
+  animation: heroSatelliteEntrance 0.75s var(--ease-premium) 0.68s backwards;
 }
 
 .hero-animate-satellite-2 {
-  animation: heroSatelliteFade 0.8s var(--ease-premium) 0.78s backwards;
+  animation: heroSatelliteEntrance 0.75s var(--ease-premium) 0.82s backwards;
 }
 
 /* ==========================================================================
@@ -882,18 +929,7 @@ section {
   filter: blur(1px);
 }
 
-/* Smartphone Showcase Mockup Wrapper */
-.phone-showcase-wrap {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 340px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  perspective: 1200px;
-}
-
+/* Smartphone Mockup Real Image Element */
 .phone-mockup-real {
   width: 100%;
   height: auto;
@@ -910,20 +946,6 @@ section {
   filter: drop-shadow(0 40px 75px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 60px rgba(220, 252, 4, 0.28));
 }
 
-/* Floor Ambient Glow */
-.mockup-floor-glow {
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 260px;
-  height: 40px;
-  background: radial-gradient(ellipse, rgba(220, 252, 4, 0.3) 0%, rgba(220, 252, 4, 0.02) 60%, transparent 80%);
-  filter: blur(15px);
-  pointer-events: none;
-  z-index: 1;
-}
-
 /* Floating Status Satellite Badges */
 .floating-satellite {
   position: absolute;
@@ -938,18 +960,18 @@ section {
   align-items: center;
   gap: 0.75rem;
   z-index: 3;
-  animation: floatOrb 7s ease-in-out infinite alternate;
 }
 
 .satellite-top-left {
   top: 12%;
   left: -20px;
+  animation: floatOrb 7s ease-in-out infinite alternate;
 }
 
 .satellite-bottom-right {
   bottom: 8%;
   right: -20px;
-  animation-delay: -3.5s;
+  animation: floatOrb 7s ease-in-out infinite alternate-reverse;
 }
 
 .satellite-icon-box {
@@ -989,7 +1011,7 @@ section {
 }
 
 /* ==========================================================================
-   PILLARS / TELEMETRY TICKER BAR (19E)
+   PILLARS / TELEMETRY TICKER BAR
    ========================================================================== */
 .telemetry-ticker {
   padding: 2.5rem 0;
@@ -1044,7 +1066,7 @@ section {
 }
 
 /* ==========================================================================
-   ECOSYSTEM ARCHITECTURE (MODULAR 2x2 GRID & CURSOR SPOTLIGHT) (19H)
+   ECOSYSTEM ARCHITECTURE (MODULAR 2x2 GRID & CURSOR SPOTLIGHT)
    ========================================================================== */
 .eco-modular-grid {
   display: grid;
@@ -1233,7 +1255,7 @@ section {
   line-height: 1.55;
 }
 
-/* Real 3D Cloud Mining Card Mockup */
+/* Real 3D Cloud Mining Card Mockup Stage */
 .mockup-3d-stage {
   position: relative;
   display: flex;
@@ -1768,9 +1790,10 @@ section {
 }
 
 /* ==========================================================================
-   SCROLL REVEALS & STAGGER SEQUENCING (19E - 19H)
+   SCROLL REVEALS & DIRECTIONAL VARIANTS (W3B SYSTEM)
    ========================================================================== */
-.reveal-item {
+.reveal-item,
+.reveal-up {
   opacity: 0;
   transform: translateY(22px);
   transition: opacity var(--motion-slow) var(--ease-premium),
@@ -1778,9 +1801,70 @@ section {
   will-change: opacity, transform;
 }
 
-.reveal-item.is-revealed {
+.reveal-mask {
+  opacity: 0;
+  transform: translateY(24px);
+  clip-path: inset(0 0 100% 0);
+  transition: opacity var(--motion-slow) var(--ease-premium),
+              transform var(--motion-slow) var(--ease-premium),
+              clip-path var(--motion-slow) var(--ease-premium);
+  will-change: opacity, transform, clip-path;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.96) translateY(18px);
+  transition: opacity var(--motion-slow) var(--ease-premium),
+              transform var(--motion-slow) var(--ease-premium);
+  will-change: opacity, transform;
+}
+
+.reveal-mockup-cloud {
+  opacity: 0;
+  transform: translate(30px, 14px) scale(0.97);
+  transition: opacity var(--motion-cinematic) var(--ease-premium),
+              transform var(--motion-cinematic) var(--ease-premium),
+              filter var(--motion-cinematic) var(--ease-premium);
+  will-change: opacity, transform;
+}
+
+.reveal-terminal {
+  opacity: 0;
+  transform: translateY(24px);
+  clip-path: inset(4% 0 4% 0 round var(--radius-lg));
+  transition: opacity var(--motion-cinematic) var(--ease-premium),
+              transform var(--motion-cinematic) var(--ease-premium),
+              clip-path var(--motion-cinematic) var(--ease-premium);
+  will-change: opacity, transform, clip-path;
+}
+
+/* Triggered State */
+.reveal-item.is-revealed,
+.reveal-up.is-revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+.reveal-mask.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  clip-path: inset(0 0 0% 0);
+}
+
+.reveal-scale.is-revealed {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.reveal-mockup-cloud.is-revealed {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+.reveal-terminal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  clip-path: inset(0 0 0 0 round var(--radius-lg));
 }
 
 /* Stagger Utilities */
@@ -1882,8 +1966,12 @@ section {
   }
 
   .hero-title {
-    font-size: clamp(1.65rem, 5.5vw, 2.25rem);
-    line-height: 1.15;
+    font-size: clamp(1.35rem, 5.5vw, 1.85rem);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    word-break: normal;
+    overflow-wrap: break-word;
+    text-wrap: balance;
   }
 
   .hero-telemetry-strip {
@@ -1897,6 +1985,10 @@ section {
   .telemetry-divider {
     display: none;
   }
+
+  .reveal-mockup-cloud {
+    transform: translateY(16px) scale(0.98);
+  }
 }
 
 @media (max-width: 480px) {
@@ -1905,8 +1997,9 @@ section {
   }
 
   .hero-title {
-    font-size: clamp(1.4rem, 5.5vw, 1.75rem);
-    line-height: 1.18;
+    font-size: clamp(1.15rem, 4.6vw, 1.36rem);
+    line-height: 1.22;
+    letter-spacing: -0.02em;
     word-break: normal;
     overflow-wrap: break-word;
   }
@@ -1947,13 +2040,13 @@ section {
 
 @media (max-width: 360px) {
   .hero-title {
-    font-size: 1.25rem;
+    font-size: 1.12rem;
     line-height: 1.2;
   }
 }
 
 /* ==========================================================================
-   ACCESSIBILITY: REDUCED MOTION (19P)
+   ACCESSIBILITY: REDUCED MOTION (W3B COMPLIANT)
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1965,17 +2058,39 @@ section {
     scroll-behavior: auto !important;
   }
 
-  .reveal-item {
+  .reveal-item,
+  .reveal-up,
+  .reveal-mask,
+  .reveal-scale,
+  .reveal-mockup-cloud,
+  .reveal-terminal {
     opacity: 1 !important;
     transform: none !important;
+    clip-path: none !important;
   }
 
+  .site-header,
+  .brand-link,
+  .nav-item,
+  .nav-actions,
+  .hero-animate-title,
+  .hero-animate-desc,
+  .hero-animate-cta-1,
+  .hero-animate-cta-2,
+  .hero-animate-telemetry,
+  .phone-entrance-wrap,
+  .mockup-floor-glow,
+  .hero-animate-satellite-1,
+  .hero-animate-satellite-2,
   .floating-satellite,
   .network-data-beam,
   .object-3d-floating,
   .film-grain-layer,
   .ambient-light-orb {
     animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 
   .phone-mockup-real {
@@ -2004,7 +2119,7 @@ section {
 </div>
 
 <!-- ==========================================================================
-     HEADER / FLOATING GLASS NAVIGATION (19B)
+     HEADER / FLOATING GLASS NAVIGATION (W3B ENTRANCE SEQUENCE)
      ========================================================================== -->
 <header class="site-header" id="site-header">
   <div class="container nav-wrap">
@@ -2050,7 +2165,7 @@ section {
 
 <main>
   <!-- ==========================================================================
-       HERO SECTION (EDITORIAL ENTRANCE & REAL SMARTPHONE SHOWCASE) (19C & 19D)
+       HERO SECTION (W3B CHOREOGRAPHY & PHONE MASS ENTRANCE)
        ========================================================================== -->
   <section class="hero-section" id="hero">
     <div class="container hero-grid">
@@ -2061,12 +2176,12 @@ section {
         <p class="hero-desc hero-animate-desc">
           Zitro Network conecta minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en evolución.
         </p>
-        <div class="hero-ctas hero-animate-ctas">
-          <a class="btn btn-primary" href="#ecosystem">
+        <div class="hero-ctas">
+          <a class="btn btn-primary hero-animate-cta-1" href="#ecosystem">
             <span>Explorar Ecosistema</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
-          <a class="btn btn-secondary" href="#academy">
+          <a class="btn btn-secondary hero-animate-cta-2" href="#academy">
             <span>Conocer Zitro Academy</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
@@ -2100,8 +2215,8 @@ section {
           </div>
         </div>
 
-        <!-- Real Smartphone Showcase Mockup -->
-        <div class="phone-showcase-wrap hero-animate-phone" id="phone-showcase-wrap">
+        <!-- Real Smartphone Showcase Mockup with Dedicated Entrance & Interaction Hierarchy -->
+        <div class="phone-entrance-wrap" id="phone-entrance-wrap">
           <div class="mockup-floor-glow"></div>
           <img src="assets/mockups/zitro-phone-app-mockup.png" alt="Zitro Network Mobile App Mockup" class="phone-mockup-real" id="phone-mockup-real">
         </div>
@@ -2121,30 +2236,30 @@ section {
   </section>
 
   <!-- ==========================================================================
-       TELEMETRY TICKER BAR (19E)
+       TELEMETRY TICKER BAR
        ========================================================================== -->
   <section class="telemetry-ticker">
     <div class="container">
       <div class="ticker-grid">
-        <div class="ticker-cell reveal-item">
+        <div class="ticker-cell reveal-up">
           <span class="ticker-index">01 // HARDWARE</span>
           <h3 class="ticker-title">Eficiencia en el Dispositivo</h3>
           <p class="ticker-desc">La experiencia no utiliza la CPU o GPU del dispositivo para minería computacional.</p>
         </div>
 
-        <div class="ticker-cell reveal-item stagger-1">
+        <div class="ticker-cell reveal-up stagger-1">
           <span class="ticker-index">02 // ACADEMY</span>
           <h3 class="ticker-title">Educación Tecnológica</h3>
           <p class="ticker-desc">Zitro Academy para comprender tecnología blockchain y análisis de mercado.</p>
         </div>
 
-        <div class="ticker-cell reveal-item stagger-2">
+        <div class="ticker-cell reveal-up stagger-2">
           <span class="ticker-index">03 // NETWORK</span>
           <h3 class="ticker-title">Sistema de Comunidad</h3>
           <p class="ticker-desc">Crecimiento colaborativo mediante un sistema de referidos y equipo.</p>
         </div>
 
-        <div class="ticker-cell reveal-item stagger-3">
+        <div class="ticker-cell reveal-up stagger-3">
           <span class="ticker-index">04 // PROTOCOL</span>
           <h3 class="ticker-title">Infraestructura Blockchain</h3>
           <p class="ticker-desc">Hoja de ruta orientada al desarrollo de protocolos descentralizados.</p>
@@ -2154,11 +2269,11 @@ section {
   </section>
 
   <!-- ==========================================================================
-       ECOSYSTEM ARCHITECTURE (MODULAR 2x2 GRID) (19H)
+       ECOSYSTEM ARCHITECTURE (MODULAR 2x2 GRID)
        ========================================================================== -->
   <section id="ecosystem">
     <div class="container">
-      <div class="section-head reveal-item">
+      <div class="section-head reveal-up">
         <div class="section-tagline">Arquitectura del Ecosistema</div>
         <h2 class="section-title">Cuatro pilares para construir el ecosistema Zitro Network.</h2>
         <p class="section-subtitle">
@@ -2168,7 +2283,7 @@ section {
 
       <div class="eco-modular-grid">
         <!-- Card 1: Cloud Mining -->
-        <div class="modular-card reveal-item">
+        <div class="modular-card reveal-scale">
           <div>
             <div class="card-header-bar">
               <div class="card-icon-frame">
@@ -2188,7 +2303,7 @@ section {
         </div>
 
         <!-- Card 2: Academy -->
-        <div class="modular-card reveal-item stagger-1">
+        <div class="modular-card reveal-scale stagger-1">
           <div>
             <div class="card-header-bar">
               <div class="card-icon-frame">
@@ -2208,7 +2323,7 @@ section {
         </div>
 
         <!-- Card 3: Community -->
-        <div class="modular-card reveal-item stagger-2">
+        <div class="modular-card reveal-scale stagger-2">
           <div>
             <div class="card-header-bar">
               <div class="card-icon-frame">
@@ -2228,7 +2343,7 @@ section {
         </div>
 
         <!-- Card 4: Blockchain Infrastructure -->
-        <div class="modular-card reveal-item stagger-3">
+        <div class="modular-card reveal-scale stagger-3">
           <div>
             <div class="card-header-bar">
               <div class="card-icon-frame">
@@ -2251,11 +2366,11 @@ section {
   </section>
 
   <!-- ==========================================================================
-       CLOUD MINING SECTION (WITH REAL 3D ARCHITECTURE MOCKUP) (19D)
+       CLOUD MINING SECTION (WITH REAL 3D ARCHITECTURE MOCKUP)
        ========================================================================== -->
   <section id="mining" class="mining-deep-dive">
     <div class="container mining-layout">
-      <div class="mining-info-block reveal-item">
+      <div class="mining-info-block reveal-up">
         <div class="section-tagline">Cloud Mining</div>
         <h2 class="section-title">Minería en la nube accesible desde tu dispositivo móvil.</h2>
         <p class="section-subtitle">
@@ -2263,7 +2378,7 @@ section {
         </p>
 
         <div class="mining-spec-list">
-          <div class="spec-item">
+          <div class="spec-item reveal-up stagger-1">
             <div class="spec-icon-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
@@ -2273,7 +2388,7 @@ section {
             </div>
           </div>
 
-          <div class="spec-item">
+          <div class="spec-item reveal-up stagger-2">
             <div class="spec-icon-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
@@ -2283,7 +2398,7 @@ section {
             </div>
           </div>
 
-          <div class="spec-item">
+          <div class="spec-item reveal-up stagger-3">
             <div class="spec-icon-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
@@ -2296,7 +2411,7 @@ section {
       </div>
 
       <!-- Real 3D Cloud Mining Flow Mockup Stage -->
-      <div class="mockup-3d-stage reveal-item stagger-1">
+      <div class="mockup-3d-stage reveal-mockup-cloud">
         <img src="assets/mockups/cloud-mining-flow-3d.png" alt="Flujo de Sesiones en la Nube 3D" class="mockup-card-3d-img" loading="lazy">
       </div>
     </div>
@@ -2308,7 +2423,7 @@ section {
   <section id="academy">
     <div class="container academy-layout">
       <!-- High-Tech Research Terminal Mockup -->
-      <div class="research-terminal reveal-item">
+      <div class="research-terminal reveal-terminal">
         <div class="terminal-topbar">
           <div class="terminal-title-group">
             <span class="terminal-badge">RESEARCH</span>
@@ -2374,7 +2489,7 @@ section {
       </div>
 
       <!-- Academy Description -->
-      <div class="academy-content reveal-item stagger-1">
+      <div class="academy-content reveal-up stagger-1">
         <div class="section-tagline">Zitro Academy</div>
         <h2 class="section-title">Educación tecnológica y análisis estructural de mercados.</h2>
         <p class="section-subtitle" style="margin-bottom: 1.75rem;">
@@ -2382,7 +2497,7 @@ section {
         </p>
 
         <div class="mining-spec-list">
-          <div class="spec-item">
+          <div class="spec-item reveal-up stagger-1">
             <div class="spec-icon-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
@@ -2392,7 +2507,7 @@ section {
             </div>
           </div>
 
-          <div class="spec-item">
+          <div class="spec-item reveal-up stagger-2">
             <div class="spec-icon-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
@@ -2402,7 +2517,7 @@ section {
             </div>
           </div>
 
-          <div class="spec-item">
+          <div class="spec-item reveal-up stagger-3">
             <div class="spec-icon-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
@@ -2421,7 +2536,7 @@ section {
        ========================================================================== -->
   <section id="community">
     <div class="container">
-      <div class="network-stage-card reveal-item">
+      <div class="network-stage-card reveal-up">
         <div class="section-tagline">Visión de Red</div>
         <h2 class="section-title">Una comunidad que construye la futura red de Zitro Network.</h2>
         <p class="section-subtitle" style="max-width: 60ch; margin: 0 auto;">
@@ -2477,22 +2592,22 @@ section {
             <g transform="translate(300, 120)">
               <circle r="34" fill="#07080a" stroke="#dcfc04" stroke-width="2.5" />
               <circle r="26" fill="rgba(220,252,4,0.12)" />
-              <image href="assets/brand/zitro-mark-accent.png" x="-10" y="-11" width="20" height="22" preserveAspectRatio="xMidYMid meet" />
+              <image href="assets/brand/zitro-mark-white.png" x="-10" y="-11" width="20" height="22" preserveAspectRatio="xMidYMid meet" />
               <text y="48" fill="#ffffff" font-weight="700" font-size="11" font-family="'IBM Plex Mono',monospace" text-anchor="middle">ZITRO CORE</text>
             </g>
           </svg>
         </div>
 
         <div class="network-feature-deck">
-          <div class="net-feature-cell">
+          <div class="net-feature-cell reveal-up stagger-1">
             <h4>Multiplicador de Equipo</h4>
             <p>Ambos participantes se benefician con ventajas de participación y progreso interno al mantener activo su equipo en la app.</p>
           </div>
-          <div class="net-feature-cell">
+          <div class="net-feature-cell reveal-up stagger-2">
             <h4>Monitoreo de Comunidad</h4>
             <p>Visualiza el estado de actividad de tu equipo directamente en la interfaz de la aplicación.</p>
           </div>
-          <div class="net-feature-cell">
+          <div class="net-feature-cell reveal-up stagger-3">
             <h4>Acceso Temprano</h4>
             <p>Prioridad informativa sobre nuevas funciones, módulos de Zitro Academy y avances de la plataforma.</p>
           </div>
@@ -2502,11 +2617,11 @@ section {
   </section>
 
   <!-- ==========================================================================
-       ROADMAP SECTION (19E & 19H)
+       ROADMAP SECTION
        ========================================================================== -->
   <section id="roadmap" style="background: rgba(10, 13, 20, 0.4);">
     <div class="container">
-      <div class="section-head reveal-item">
+      <div class="section-head reveal-up">
         <div class="section-tagline">Hoja de Ruta</div>
         <h2 class="section-title">Construcción metódica orientada a infraestructura y utilidad real.</h2>
         <p class="section-subtitle">
@@ -2516,7 +2631,7 @@ section {
 
       <div class="roadmap-deck">
         <!-- Phase 01 -->
-        <div class="roadmap-milestone reveal-item">
+        <div class="roadmap-milestone reveal-scale">
           <div class="milestone-phase">FASE 01</div>
           <span class="milestone-badge badge-active">En Construcción</span>
           <h3>Aplicación Móvil</h3>
@@ -2526,7 +2641,7 @@ section {
         </div>
 
         <!-- Phase 02 -->
-        <div class="roadmap-milestone reveal-item stagger-1">
+        <div class="roadmap-milestone reveal-scale stagger-1">
           <div class="milestone-phase">FASE 02</div>
           <span class="milestone-badge badge-dev">En Desarrollo</span>
           <h3>Cloud Mining & Community</h3>
@@ -2536,7 +2651,7 @@ section {
         </div>
 
         <!-- Phase 03 -->
-        <div class="roadmap-milestone reveal-item stagger-2">
+        <div class="roadmap-milestone reveal-scale stagger-2">
           <div class="milestone-phase">FASE 03</div>
           <span class="milestone-badge badge-planned">Próximamente</span>
           <h3>Zitro Academy</h3>
@@ -2546,7 +2661,7 @@ section {
         </div>
 
         <!-- Phase 04 -->
-        <div class="roadmap-milestone reveal-item stagger-3">
+        <div class="roadmap-milestone reveal-scale stagger-3">
           <div class="milestone-phase">FASE 04</div>
           <span class="milestone-badge badge-planned">Visión Futura</span>
           <h3>Blockchain Infrastructure</h3>
@@ -2563,7 +2678,7 @@ section {
        ========================================================================== -->
   <section id="technology">
     <div class="container">
-      <div class="cta-stage reveal-item">
+      <div class="cta-stage reveal-up">
         <div class="cta-core-wrap">
           <div class="section-tagline">Tecnología Zitro</div>
           <h2>Una infraestructura tecnológica en evolución.</h2>
@@ -2590,7 +2705,7 @@ section {
      ========================================================================== -->
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-columns">
+    <div class="footer-columns reveal-up">
       <!-- Col 1: Brand -->
       <div class="footer-brand-col">
         <img src="assets/brand/zitro-logo-white.png" alt="Zitro" class="footer-logo-img" loading="lazy">
@@ -2606,7 +2721,7 @@ section {
       </div>
 
       <!-- Col 2: Navigation -->
-      <div class="footer-menu-col">
+      <div class="footer-menu-col stagger-1">
         <h5>Ecosistema</h5>
         <ul>
           <li><a href="#ecosystem">Visión General</a></li>
@@ -2618,7 +2733,7 @@ section {
       </div>
 
       <!-- Col 3: Resources & Legal -->
-      <div class="footer-menu-col">
+      <div class="footer-menu-col stagger-2">
         <h5>Legal & Recursos</h5>
         <ul>
           <li><a href="https://fedeortiz9.github.io/zitro-privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
@@ -2629,7 +2744,7 @@ section {
       </div>
 
       <!-- Col 4: Transparency & Disclaimer -->
-      <div class="footer-menu-col">
+      <div class="footer-menu-col stagger-3">
         <div class="footer-disclaimer-panel">
           <h5>Aviso de Transparencia</h5>
           <p>
@@ -2651,135 +2766,191 @@ section {
 </footer>
 
 <!-- ==========================================================================
-     INTERACTIONS & MOTION SYSTEM (VANILLA JS) (19A - 19P)
+     PROFESSIONAL MOTION ARCHITECTURE (W3B MODULAR SYSTEM)
      ========================================================================== -->
 <script>
 (function() {
   'use strict';
 
-  var isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  var isReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isTouch = 'ontouchstart' in window || (navigator && navigator.maxTouchPoints > 0);
 
-  // 1. Mobile Menu Drawer Toggle & Escape Handler
-  var toggleBtn = document.getElementById('mobile-toggle');
-  var mobilePanel = document.getElementById('mobile-nav-panel');
+  // 1. First Paint Safety & Progressive Enhancement
+  document.documentElement.classList.add('motion-ready');
 
-  function closeMobilePanel() {
+  // 2. Mobile Menu Drawer Toggle & Escape Handler
+  function initMobileDrawer() {
+    var toggleBtn = document.getElementById('mobile-toggle');
+    var mobilePanel = document.getElementById('mobile-nav-panel');
+
+    function closeMobilePanel() {
+      if (toggleBtn && mobilePanel) {
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        mobilePanel.classList.remove('is-open');
+      }
+    }
+
+    function toggleMobilePanel() {
+      if (toggleBtn && mobilePanel) {
+        var isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+        toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
+        mobilePanel.classList.toggle('is-open');
+      }
+    }
+
     if (toggleBtn && mobilePanel) {
-      toggleBtn.setAttribute('aria-expanded', 'false');
-      mobilePanel.classList.remove('is-open');
-    }
-  }
+      toggleBtn.addEventListener('click', toggleMobilePanel);
 
-  function toggleMobilePanel() {
-    if (toggleBtn && mobilePanel) {
-      var isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-      toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
-      mobilePanel.classList.toggle('is-open');
-    }
-  }
-
-  if (toggleBtn && mobilePanel) {
-    toggleBtn.addEventListener('click', toggleMobilePanel);
-
-    var mobileLinks = mobilePanel.querySelectorAll('a');
-    for (var i = 0; i < mobileLinks.length; i++) {
-      mobileLinks[i].addEventListener('click', closeMobilePanel);
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' || e.key === 'Esc') {
-        closeMobilePanel();
+      var mobileLinks = mobilePanel.querySelectorAll('a');
+      for (var i = 0; i < mobileLinks.length; i++) {
+        mobileLinks[i].addEventListener('click', closeMobilePanel);
       }
-    });
-  }
 
-  // 2. Dynamic Header Scroll Enhancement (19B)
-  var header = document.getElementById('site-header');
-  var ticking = false;
-
-  function updateHeaderOnScroll() {
-    if (header) {
-      if (window.scrollY > 30) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    }
-    ticking = false;
-  }
-
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      window.requestAnimationFrame(updateHeaderOnScroll);
-      ticking = true;
-    }
-  }, { passive: true });
-
-  // 3. Interactive Timeframe Switcher in Academy Terminal
-  var tfPills = document.querySelectorAll('.tf-pill');
-  tfPills.forEach(function(pill) {
-    pill.addEventListener('click', function() {
-      tfPills.forEach(function(p) { p.classList.remove('active'); });
-      pill.classList.add('active');
-    });
-  });
-
-  // 4. 3D Parallax Perspective Tilt on Smartphone Mockup & Card Cursor Spotlight (17 & 18)
-  var phoneMockup = document.getElementById('phone-mockup-real');
-  var modularCards = document.querySelectorAll('.modular-card');
-
-  if (!isTouch && !isReduced) {
-    // Smartphone 3D Perspective Tilt
-    document.addEventListener('mousemove', function(e) {
-      if (phoneMockup) {
-        var rect = phoneMockup.getBoundingClientRect();
-        var centerX = rect.left + rect.width / 2;
-        var centerY = rect.top + rect.height / 2;
-        var deltaX = (e.clientX - centerX) / 45;
-        var deltaY = (e.clientY - centerY) / 45;
-
-        var rotX = Math.max(-12, Math.min(12, -deltaY));
-        var rotY = Math.max(-12, Math.min(12, deltaX));
-
-        phoneMockup.style.transform = 'perspective(1200px) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) scale3d(1.02, 1.02, 1.02)';
-      }
-    });
-
-    // Dynamic Cursor Spotlight on Cards
-    modularCards.forEach(function(card) {
-      card.addEventListener('mousemove', function(e) {
-        var rect = card.getBoundingClientRect();
-        var x = e.clientX - rect.left;
-        var y = e.clientY - rect.top;
-        card.style.setProperty('--mouse-x', x + 'px');
-        card.style.setProperty('--mouse-y', y + 'px');
-      });
-    });
-  }
-
-  // 5. Scroll Stagger Reveals (IntersectionObserver) (19E - 19H)
-  if (!isReduced && 'IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function(entries, obs) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-          obs.unobserve(entry.target);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' || e.key === 'Esc') {
+          closeMobilePanel();
         }
       });
-    }, {
-      rootMargin: '0px 0px -25px 0px',
-      threshold: 0.05
-    });
+    }
+  }
 
-    document.querySelectorAll('.reveal-item').forEach(function(el) {
-      observer.observe(el);
-    });
-  } else {
-    document.querySelectorAll('.reveal-item').forEach(function(el) {
-      el.classList.add('is-revealed');
+  // 3. Dynamic Header Scroll Enhancement (19B)
+  function initHeaderScroll() {
+    var header = document.getElementById('site-header');
+    var ticking = false;
+
+    function updateHeaderOnScroll() {
+      if (header) {
+        if (window.scrollY > 30) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeaderOnScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  // 4. Interactive Timeframe Switcher in Academy Terminal
+  function initAcademyTerminal() {
+    var tfPills = document.querySelectorAll('.tf-pill');
+    tfPills.forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        tfPills.forEach(function(p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+      });
     });
   }
+
+  // 5. Hero Phone Mockup Motion & Pointer Proximity Tilt (Decoupled from Entrance)
+  function initHeroMockupInteraction() {
+    var phoneMockup = document.getElementById('phone-mockup-real');
+    var entranceWrap = document.getElementById('phone-entrance-wrap');
+
+    if (!isTouch && !isReduced && phoneMockup && entranceWrap) {
+      var entranceCompleted = false;
+
+      // Enable tilt only after entrance animation has stabilized
+      setTimeout(function() {
+        entranceCompleted = true;
+      }, 1250);
+
+      var mouseTicking = false;
+      var lastMouseX = 0;
+      var lastMouseY = 0;
+
+      function updatePhoneTilt() {
+        if (entranceCompleted && phoneMockup) {
+          var rect = phoneMockup.getBoundingClientRect();
+          var centerX = rect.left + rect.width / 2;
+          var centerY = rect.top + rect.height / 2;
+          var deltaX = (lastMouseX - centerX) / 48;
+          var deltaY = (lastMouseY - centerY) / 48;
+
+          var rotX = Math.max(-10, Math.min(10, -deltaY));
+          var rotY = Math.max(-10, Math.min(10, deltaX));
+
+          phoneMockup.style.transform = 'perspective(1200px) rotateX(' + rotX.toFixed(2) + 'deg) rotateY(' + rotY.toFixed(2) + 'deg)';
+        }
+        mouseTicking = false;
+      }
+
+      document.addEventListener('mousemove', function(e) {
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+        if (!mouseTicking) {
+          window.requestAnimationFrame(updatePhoneTilt);
+          mouseTicking = true;
+        }
+      }, { passive: true });
+
+      // Smooth reset on leave
+      document.addEventListener('mouseleave', function() {
+        if (entranceCompleted && phoneMockup) {
+          phoneMockup.style.transform = 'perspective(1200px) rotateX(2deg) rotateY(-4deg)';
+        }
+      });
+    }
+  }
+
+  // 6. Dynamic Cursor Spotlight on Modular Cards
+  function initCardSpotlight() {
+    var modularCards = document.querySelectorAll('.modular-card');
+    if (!isTouch && !isReduced && modularCards.length > 0) {
+      modularCards.forEach(function(card) {
+        card.addEventListener('mousemove', function(e) {
+          var rect = card.getBoundingClientRect();
+          var x = e.clientX - rect.left;
+          var y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', x + 'px');
+          card.style.setProperty('--mouse-y', y + 'px');
+        }, { passive: true });
+      });
+    }
+  }
+
+  // 7. Unified Scroll Reveal System (Single Observer Instance)
+  function initScrollReveals() {
+    var revealSelector = '.reveal-item, .reveal-up, .reveal-mask, .reveal-scale, .reveal-mockup-cloud, .reveal-terminal';
+    var revealElements = document.querySelectorAll(revealSelector);
+
+    if (!isReduced && 'IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries, obs) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.12
+      });
+
+      revealElements.forEach(function(el) {
+        observer.observe(el);
+      });
+    } else {
+      revealElements.forEach(function(el) {
+        el.classList.add('is-revealed');
+      });
+    }
+  }
+
+  // Initialize All Systems
+  initMobileDrawer();
+  initHeaderScroll();
+  initAcademyTerminal();
+  initHeroMockupInteraction();
+  initCardSpotlight();
+  initScrollReveals();
 })();
 </script>
 
