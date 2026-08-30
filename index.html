@@ -145,7 +145,7 @@
 }
 
 html {
-  background-color: var(--bg-deep);
+  background-color: #030404;
   color: var(--fg-primary);
   font-family: var(--font-display);
   scroll-behavior: smooth;
@@ -157,7 +157,12 @@ html {
 }
 
 body {
-  background-color: var(--bg-deep);
+  background-color: #030404;
+  background-image: url('assets/backgrounds/zitro-background-dark.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--fg-primary);
   font-family: var(--font-display);
   line-height: 1.6;
@@ -198,7 +203,7 @@ img, svg {
 }
 
 /* ==========================================================================
-   4K ULTRA-DEPTH ATMOSPHERE (NO GRIDS / NO SQUARES)
+   AMBIENT OVERLAY (works with new background image — minimal, no competing gradients)
    ========================================================================== */
 .ambient-canvas {
   position: fixed;
@@ -208,39 +213,22 @@ img, svg {
   overflow: hidden;
 }
 
-/* Layer 0: Multi-Tiered Gradient Canvas */
+/* Layer 0: Subtle dark vignette overlay to preserve readability on the background image */
 .ambient-base-gradient {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 950px 750px at 80% 12%, rgba(220, 252, 4, 0.13) 0%, rgba(220, 252, 4, 0.02) 50%, transparent 75%),
-    radial-gradient(ellipse 1050px 850px at 15% 42%, rgba(56, 189, 248, 0.09) 0%, rgba(14, 165, 233, 0.01) 55%, transparent 80%),
-    radial-gradient(ellipse 900px 750px at 85% 72%, rgba(16, 185, 129, 0.06) 0%, rgba(220, 252, 4, 0.03) 45%, transparent 75%),
-    radial-gradient(circle 800px at 50% 98%, rgba(220, 252, 4, 0.07) 0%, transparent 70%),
-    linear-gradient(180deg, #050608 0%, #080a10 35%, #06070a 70%, #040507 100%);
+    radial-gradient(ellipse 700px 500px at 80% 8%, rgba(220, 252, 4, 0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 1000px 600px at 5% 95%, rgba(0, 0, 0, 0.45) 0%, transparent 70%),
+    linear-gradient(180deg, rgba(3, 4, 4, 0.18) 0%, rgba(0, 0, 0, 0.08) 50%, rgba(3, 4, 4, 0.35) 100%);
 }
 
-/* Layer 1: Procedural Film Grain Overlay (Cinematic Tactility) */
+/* Layer 1: Film grain removed — the background image already has natural texture */
 .film-grain-layer {
-  position: absolute;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
-  opacity: 0.85;
-  pointer-events: none;
-  animation: grainShift 8s steps(10) infinite;
+  display: none;
 }
 
-@keyframes grainShift {
-  0%, 100% { transform: translate(0, 0); }
-  20% { transform: translate(-2%, 2%); }
-  40% { transform: translate(2%, -1%); }
-  60% { transform: translate(-1%, -2%); }
-  80% { transform: translate(1%, 1%); }
-}
-
-/* Layer 2: Slow-Drifting Volumetric Light Orbs */
+/* Layer 2: Ambient light orbs — reduced to not compete with background */
 .ambient-light-orb {
   position: absolute;
   border-radius: 50%;
@@ -249,55 +237,51 @@ img, svg {
   will-change: transform;
 }
 
+/* Only a single very subtle Zitro lime top-right hint — everything else gone */
 .orb-primary {
-  width: 680px;
-  height: 680px;
-  top: -150px;
-  right: -80px;
-  background: radial-gradient(circle, rgba(220, 252, 4, 0.15) 0%, rgba(220, 252, 4, 0.02) 60%, transparent 80%);
-  animation: orbDrift1 20s ease-in-out infinite alternate;
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(220, 252, 4, 0.08) 0%, rgba(220, 252, 4, 0.01) 60%, transparent 80%);
+  animation: orbDrift1 22s ease-in-out infinite alternate;
 }
 
+/* orb-secondary and orb-tertiary removed (cyan/green eliminated) */
 .orb-secondary {
-  width: 720px;
-  height: 720px;
-  top: 38%;
-  left: -250px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(56, 189, 248, 0.01) 60%, transparent 80%);
-  animation: orbDrift2 24s ease-in-out infinite alternate;
+  display: none;
 }
 
 .orb-tertiary {
-  width: 600px;
-  height: 600px;
-  bottom: 6%;
-  right: -100px;
-  background: radial-gradient(circle, rgba(220, 252, 4, 0.11) 0%, rgba(16, 185, 129, 0.03) 50%, transparent 75%);
-  animation: orbDrift1 22s ease-in-out infinite alternate-reverse;
+  display: none;
 }
 
 @keyframes orbDrift1 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-50px, 60px) scale(1.12); }
+  100% { transform: translate(-40px, 50px) scale(1.1); }
 }
 
 @keyframes orbDrift2 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(60px, -50px) scale(1.15); }
+  100% { transform: translate(50px, -40px) scale(1.12); }
 }
 
-/* Layer 3: 3D Floating Translucent Geometric Objects */
+/* Layer 3: 3D Floating Monochrome Graphite Orbs */
 .object-3d-floating {
   position: absolute;
   pointer-events: none;
   z-index: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.3) 0%, rgba(220, 252, 4, 0.1) 40%, rgba(12, 16, 24, 0.65) 80%, rgba(0, 0, 0, 0.85) 100%);
+  background: radial-gradient(circle at 35% 30%,
+    rgba(255, 255, 255, 0.30) 0%,
+    rgba(150, 150, 160, 0.14) 40%,
+    rgba(35, 38, 44, 0.72) 80%,
+    rgba(3, 4, 6, 0.95) 100%);
   box-shadow:
-    inset -4px -4px 10px rgba(0, 0, 0, 0.85),
-    inset 4px 4px 12px rgba(255, 255, 255, 0.35),
-    0 18px 40px rgba(0, 0, 0, 0.7),
-    0 0 30px rgba(220, 252, 4, 0.18);
+    inset -4px -4px 10px rgba(0, 0, 0, 0.88),
+    inset 4px 4px 12px rgba(255, 255, 255, 0.28),
+    0 18px 40px rgba(0, 0, 0, 0.8),
+    0 0 22px rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   will-change: transform;
@@ -316,12 +300,16 @@ img, svg {
   height: 48px;
   top: 52%;
   left: 6%;
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.35) 0%, rgba(56, 189, 248, 0.18) 40%, rgba(12, 16, 24, 0.7) 80%, rgba(0, 0, 0, 0.9) 100%);
+  background: radial-gradient(circle at 35% 30%,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(170, 172, 180, 0.12) 40%,
+    rgba(30, 32, 38, 0.75) 80%,
+    rgba(3, 4, 6, 0.96) 100%);
   box-shadow:
-    inset -3px -3px 8px rgba(0, 0, 0, 0.85),
-    inset 3px 3px 10px rgba(255, 255, 255, 0.45),
-    0 14px 35px rgba(0, 0, 0, 0.75),
-    0 0 25px rgba(56, 189, 248, 0.25);
+    inset -3px -3px 8px rgba(0, 0, 0, 0.88),
+    inset 3px 3px 10px rgba(255, 255, 255, 0.32),
+    0 14px 35px rgba(0, 0, 0, 0.85),
+    0 0 18px rgba(255, 255, 255, 0.05);
   animation: floatOrb3D 9.5s ease-in-out infinite alternate-reverse;
 }
 
@@ -494,7 +482,7 @@ section {
 }
 
 /* ==========================================================================
-   HEADER / FLOATING GLASS NAVIGATION (W3B ENTRANCE SEQUENCE)
+   HEADER / FLOATING GLASS NAVIGATION (W3C PAGE-ENTER GATED MOTION)
    ========================================================================== */
 .site-header {
   position: sticky;
@@ -509,11 +497,90 @@ section {
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid var(--border-subtle);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
   transition: background-color var(--motion-fast) var(--ease-premium),
               border-color var(--motion-fast) var(--ease-premium),
               box-shadow var(--motion-fast) var(--ease-premium);
-  animation: headerEntrance 0.75s var(--ease-premium) 0s backwards;
+}
+
+/* Default visible states — no JS, no animation */
+.site-header,
+.brand-link,
+.nav-item,
+.nav-actions,
+.hero-animate-title,
+.hero-animate-desc,
+.hero-animate-cta-1,
+.hero-animate-cta-2,
+.hero-animate-telemetry,
+.phone-entrance-wrap,
+.mockup-floor-glow,
+.hero-animate-satellite-1,
+.hero-animate-satellite-2 {
+  opacity: 1;
+}
+
+/* Only when motion is ready: set initial "hidden" states */
+.motion-ready .site-header { opacity: 0; transform: translateY(-24px); filter: blur(5px); }
+.motion-ready .brand-link { opacity: 0; transform: translateX(-10px); }
+.motion-ready .nav-item { opacity: 0; transform: translateY(-6px); }
+.motion-ready .nav-actions { opacity: 0; transform: scale(0.97); }
+.motion-ready .hero-animate-title { opacity: 0; transform: translateY(36px); filter: blur(4px); }
+.motion-ready .hero-animate-desc { opacity: 0; transform: translateY(20px); }
+.motion-ready .hero-animate-cta-1,
+.motion-ready .hero-animate-cta-2 { opacity: 0; transform: translateY(16px) scale(0.97); }
+.motion-ready .hero-animate-telemetry { opacity: 0; transform: translateY(14px); }
+.motion-ready .phone-entrance-wrap {
+  opacity: 0;
+  transform: perspective(1200px) translateY(70px) scale(0.92) rotateX(6deg) rotateY(-5deg);
+}
+.motion-ready .mockup-floor-glow { opacity: 0; }
+.motion-ready .hero-animate-satellite-1,
+.motion-ready .hero-animate-satellite-2 { opacity: 0; transform: scale(0.88) translateY(10px); }
+
+/* When page-enter fires — animate everything */
+.motion-ready.page-enter .site-header {
+  animation: headerEntrance 900ms var(--ease-premium) 0ms both;
+}
+.motion-ready.page-enter .brand-link {
+  animation: logoEntrance 750ms var(--ease-premium) 100ms both;
+}
+.motion-ready.page-enter .nav-item:nth-child(1) { animation: navItemEntrance 650ms var(--ease-premium) 180ms both; }
+.motion-ready.page-enter .nav-item:nth-child(2) { animation: navItemEntrance 650ms var(--ease-premium) 240ms both; }
+.motion-ready.page-enter .nav-item:nth-child(3) { animation: navItemEntrance 650ms var(--ease-premium) 300ms both; }
+.motion-ready.page-enter .nav-item:nth-child(4) { animation: navItemEntrance 650ms var(--ease-premium) 360ms both; }
+.motion-ready.page-enter .nav-item:nth-child(5) { animation: navItemEntrance 650ms var(--ease-premium) 420ms both; }
+.motion-ready.page-enter .nav-actions {
+  animation: navActionEntrance 700ms var(--ease-premium) 400ms both;
+}
+
+/* Hero choreography — triggered by page-enter */
+.motion-ready.page-enter .hero-animate-title {
+  animation: heroTitleReveal 900ms var(--ease-premium) 180ms both;
+}
+.motion-ready.page-enter .hero-animate-desc {
+  animation: heroDescFade 750ms var(--ease-premium) 320ms both;
+}
+.motion-ready.page-enter .hero-animate-cta-1 {
+  animation: heroBtnReveal 700ms var(--ease-premium) 450ms both;
+}
+.motion-ready.page-enter .hero-animate-cta-2 {
+  animation: heroBtnReveal 700ms var(--ease-premium) 530ms both;
+}
+.motion-ready.page-enter .hero-animate-telemetry {
+  animation: heroDescFade 700ms var(--ease-premium) 620ms both;
+}
+.motion-ready.page-enter .phone-entrance-wrap {
+  animation: heroPhoneEntrance3D 1250ms var(--ease-premium) 320ms both;
+}
+.motion-ready.page-enter .mockup-floor-glow {
+  animation: heroFloorGlowFade 1100ms var(--ease-premium) 350ms both;
+}
+.motion-ready.page-enter .hero-animate-satellite-1 {
+  animation: heroSatelliteEntrance 750ms var(--ease-premium) 680ms both;
+}
+.motion-ready.page-enter .hero-animate-satellite-2 {
+  animation: heroSatelliteEntrance 750ms var(--ease-premium) 820ms both;
 }
 
 .site-header.scrolled {
@@ -522,17 +589,25 @@ section {
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
 }
 
+/* Keyframes — shared by old and new states */
 @keyframes headerEntrance {
-  0% {
-    opacity: 0;
-    transform: translateY(-18px);
-    filter: blur(4px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
+  0% { opacity: 0; transform: translateY(-24px); filter: blur(5px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes logoEntrance {
+  0% { opacity: 0; transform: translateX(-10px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes navItemEntrance {
+  0% { opacity: 0; transform: translateY(-6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes navActionEntrance {
+  0% { opacity: 0; transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 .nav-wrap {
@@ -547,12 +622,6 @@ section {
   align-items: center;
   gap: 0.5rem;
   transition: opacity var(--motion-fast) ease, transform var(--motion-fast) var(--ease-premium);
-  animation: logoEntrance 0.75s var(--ease-premium) 0.08s backwards;
-}
-
-@keyframes logoEntrance {
-  0% { opacity: 0; transform: translateX(-10px); }
-  100% { opacity: 1; transform: translateX(0); }
 }
 
 .brand-link:hover {
@@ -580,18 +649,6 @@ section {
   transition: color var(--motion-fast) ease;
   position: relative;
   padding: 0.35rem 0;
-  animation: navItemEntrance 0.6s var(--ease-premium) backwards;
-}
-
-.nav-item:nth-child(1) { animation-delay: 0.18s; }
-.nav-item:nth-child(2) { animation-delay: 0.23s; }
-.nav-item:nth-child(3) { animation-delay: 0.28s; }
-.nav-item:nth-child(4) { animation-delay: 0.33s; }
-.nav-item:nth-child(5) { animation-delay: 0.38s; }
-
-@keyframes navItemEntrance {
-  0% { opacity: 0; transform: translateY(-6px); }
-  100% { opacity: 1; transform: translateY(0); }
 }
 
 .nav-item:hover {
@@ -620,13 +677,64 @@ section {
   display: flex;
   align-items: center;
   gap: 1rem;
-  animation: navActionEntrance 0.65s var(--ease-premium) 0.35s backwards;
 }
 
-@keyframes navActionEntrance {
-  0% { opacity: 0; transform: scale(0.97); }
-  100% { opacity: 1; transform: scale(1); }
+/* ==========================================================================
+   HERO ENTRANCE KEYFRAMES (W3C — PERCEPTIBLE, PHYSICAL, SYNCHRONIZED)
+   ========================================================================== */
+@keyframes heroTitleReveal {
+  0% { opacity: 0; transform: translateY(36px); filter: blur(4px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
+
+@keyframes heroDescFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroBtnReveal {
+  0% { opacity: 0; transform: translateY(16px) scale(0.97); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes heroPhoneEntrance3D {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) translateY(70px) scale(0.92) rotateX(6deg) rotateY(-5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) translateY(0) scale(1) rotateX(0deg) rotateY(0deg);
+  }
+}
+
+@keyframes heroFloorGlowFade {
+  0% { opacity: 0; transform: translateX(-50%) scale(0.8); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+@keyframes heroSatelliteEntrance {
+  0% { opacity: 0; transform: scale(0.88) translateY(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--motion-fast) var(--ease-premium);
+}
+
+.nav-item:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
 
 .badge-play-store {
   display: inline-flex;
@@ -703,93 +811,9 @@ section {
   animation: none;
 }
 
-/* ==========================================================================
-   HERO ENTRANCE SEQUENCE (W3B CHOREOGRAPHY)
-   ========================================================================== */
-@keyframes heroTitleReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(28px);
-    filter: blur(3px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
 
-@keyframes heroDescFade {
-  0% {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes heroBtnReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(10px) scale(0.98);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes heroPhoneEntrance3D {
-  0% {
-    opacity: 0;
-    transform: perspective(1200px) translateY(42px) scale(0.95) rotateX(5deg) rotateY(-4deg);
-  }
-  100% {
-    opacity: 1;
-    transform: perspective(1200px) translateY(0) scale(1) rotateX(0deg) rotateY(0deg);
-  }
-}
-
-@keyframes heroFloorGlowFade {
-  0% { opacity: 0; transform: translateX(-50%) scale(0.8); }
-  100% { opacity: 1; transform: translateX(-50%) scale(1); }
-}
-
-@keyframes heroSatelliteEntrance {
-  0% {
-    opacity: 0;
-    transform: scale(0.88) translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.hero-animate-title {
-  animation: heroTitleReveal 0.85s var(--ease-premium) 0.15s backwards;
-}
-
-.hero-animate-desc {
-  animation: heroDescFade 0.65s var(--ease-premium) 0.3s backwards;
-}
-
-.hero-animate-cta-1 {
-  animation: heroBtnReveal 0.65s var(--ease-premium) 0.45s backwards;
-}
-
-.hero-animate-cta-2 {
-  animation: heroBtnReveal 0.65s var(--ease-premium) 0.53s backwards;
-}
-
-.hero-animate-telemetry {
-  animation: heroDescFade 0.65s var(--ease-premium) 0.62s backwards;
-}
-
+/* phone-entrance-wrap structural CSS (animation controlled by .motion-ready.page-enter above) */
 .phone-entrance-wrap {
-  animation: heroPhoneEntrance3D 1s var(--ease-premium) 0.25s backwards;
   will-change: transform, opacity;
   perspective: 1200px;
   width: 100%;
@@ -801,6 +825,7 @@ section {
   z-index: 2;
 }
 
+/* mockup-floor-glow structural CSS */
 .mockup-floor-glow {
   position: absolute;
   bottom: -20px;
@@ -812,15 +837,6 @@ section {
   filter: blur(15px);
   pointer-events: none;
   z-index: 1;
-  animation: heroFloorGlowFade 1.1s var(--ease-premium) 0.3s backwards;
-}
-
-.hero-animate-satellite-1 {
-  animation: heroSatelliteEntrance 0.75s var(--ease-premium) 0.68s backwards;
-}
-
-.hero-animate-satellite-2 {
-  animation: heroSatelliteEntrance 0.75s var(--ease-premium) 0.82s backwards;
 }
 
 /* ==========================================================================
@@ -1075,8 +1091,8 @@ section {
 }
 
 .modular-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-medium);
+  background: rgba(8, 9, 12, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: var(--radius-lg);
   padding: clamp(2rem, 4vw, 2.75rem);
   position: relative;
@@ -1085,9 +1101,11 @@ section {
   flex-direction: column;
   justify-content: space-between;
   min-height: 320px;
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(22px) saturate(120%);
+  -webkit-backdrop-filter: blur(22px) saturate(120%);
+  box-shadow:
+    0 16px 40px -10px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transition: border-color var(--motion-fast) var(--ease-premium),
               transform var(--motion-fast) var(--ease-premium),
               box-shadow var(--motion-fast) var(--ease-premium),
@@ -1269,14 +1287,14 @@ section {
   max-width: 540px;
   display: block;
   border-radius: var(--radius-lg);
-  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 35px rgba(56, 189, 248, 0.15));
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 30px rgba(0, 0, 0, 0.5));
   transition: transform 0.45s var(--ease-premium), filter 0.45s ease;
   will-change: transform;
 }
 
 .mockup-card-3d-img:hover {
   transform: translateY(-6px) scale(1.02);
-  filter: drop-shadow(0 35px 65px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 50px rgba(56, 189, 248, 0.25));
+  filter: drop-shadow(0 35px 65px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 40px rgba(0, 0, 0, 0.7));
 }
 
 /* ==========================================================================
@@ -2766,7 +2784,7 @@ section {
 </footer>
 
 <!-- ==========================================================================
-     PROFESSIONAL MOTION ARCHITECTURE (W3B MODULAR SYSTEM)
+     PROFESSIONAL MOTION ARCHITECTURE (W3C — SYNCHRONIZED PAGE-ENTER)
      ========================================================================== -->
 <script>
 (function() {
@@ -2775,8 +2793,38 @@ section {
   var isReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var isTouch = 'ontouchstart' in window || (navigator && navigator.maxTouchPoints > 0);
 
-  // 1. First Paint Safety & Progressive Enhancement
-  document.documentElement.classList.add('motion-ready');
+  // 1. PAGE-ENTER CONTROLLER
+  // Progressive Enhancement: page content is visible without JS.
+  // .motion-ready hides elements; .page-enter triggers choreography.
+  // Sequence: document.fonts.ready → image.decode() → double-rAF → page-enter
+  function initPageEnter() {
+    if (isReduced) {
+      // Reduced motion: just make everything instantly visible, no choreography
+      return;
+    }
+
+    var phoneMockup = document.getElementById('phone-mockup-real');
+
+    // Mark as motion-ready first (hides elements)
+    document.documentElement.classList.add('motion-ready');
+
+    var fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+
+    fontsReady.then(function() {
+      if (phoneMockup && typeof phoneMockup.decode === 'function') {
+        return phoneMockup.decode().catch(function() { /* decode not critical */ });
+      }
+    }).catch(function() {
+      /* fallback — proceed even if fonts/decode fail */
+    }).then(function() {
+      // Double rAF to guarantee layout is fully painted before firing
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          document.documentElement.classList.add('page-enter');
+        });
+      });
+    });
+  }
 
   // 2. Mobile Menu Drawer Toggle & Escape Handler
   function initMobileDrawer() {
@@ -2814,7 +2862,7 @@ section {
     }
   }
 
-  // 3. Dynamic Header Scroll Enhancement (19B)
+  // 3. Dynamic Header Scroll Enhancement
   function initHeaderScroll() {
     var header = document.getElementById('site-header');
     var ticking = false;
@@ -2849,7 +2897,8 @@ section {
     });
   }
 
-  // 5. Hero Phone Mockup Motion & Pointer Proximity Tilt (Decoupled from Entrance)
+  // 5. Hero Phone Mockup Motion & Pointer Proximity Tilt
+  // Tilt activated via animationend event on .phone-entrance-wrap (not setTimeout)
   function initHeroMockupInteraction() {
     var phoneMockup = document.getElementById('phone-mockup-real');
     var entranceWrap = document.getElementById('phone-entrance-wrap');
@@ -2857,10 +2906,13 @@ section {
     if (!isTouch && !isReduced && phoneMockup && entranceWrap) {
       var entranceCompleted = false;
 
-      // Enable tilt only after entrance animation has stabilized
-      setTimeout(function() {
-        entranceCompleted = true;
-      }, 1250);
+      // Use animationend on the entrance wrap to know exactly when entrance finishes
+      entranceWrap.addEventListener('animationend', function(e) {
+        // Only activate when the heroPhoneEntrance3D animation ends
+        if (e.animationName === 'heroPhoneEntrance3D' || e.target === entranceWrap) {
+          entranceCompleted = true;
+        }
+      }, { once: true });
 
       var mouseTicking = false;
       var lastMouseX = 0;
@@ -2916,7 +2968,7 @@ section {
     }
   }
 
-  // 7. Unified Scroll Reveal System (Single Observer Instance)
+  // 7. Unified Scroll Reveal System — W3C thresholds
   function initScrollReveals() {
     var revealSelector = '.reveal-item, .reveal-up, .reveal-mask, .reveal-scale, .reveal-mockup-cloud, .reveal-terminal';
     var revealElements = document.querySelectorAll(revealSelector);
@@ -2930,8 +2982,8 @@ section {
           }
         });
       }, {
-        rootMargin: '0px 0px -40px 0px',
-        threshold: 0.12
+        rootMargin: '0px 0px -8% 0px',
+        threshold: 0.18
       });
 
       revealElements.forEach(function(el) {
@@ -2945,6 +2997,7 @@ section {
   }
 
   // Initialize All Systems
+  initPageEnter();
   initMobileDrawer();
   initHeaderScroll();
   initAcademyTerminal();
