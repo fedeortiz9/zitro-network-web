@@ -593,10 +593,9 @@ section {
   animation: heroSatelliteEntrance 750ms var(--ease-premium) 820ms both;
 }
 
-/* W3H — MOBILE HERO ENTRANCE CHOREOGRAPHY */
+/* W3J — MOBILE HERO ENTRANCE CHOREOGRAPHY (TAREA 7) */
 /* Default visible (no-JS fallback) */
 .hero-m-img,
-.hero-m-eyebrow,
 .hero-m-title,
 .hero-m-desc,
 .hero-m-cta1,
@@ -610,74 +609,70 @@ section {
 /* motion-ready hides mobile hero elements */
 .motion-ready .hero-m-img {
   opacity: 0;
-  transform: scale(1.06);
-  filter: blur(6px);
+  transform: translateY(-60px) scale(1.06);
+  filter: blur(8px);
 }
-.motion-ready .hero-m-eyebrow {
+.motion-ready .hero-m-title {
+  opacity: 0;
+  transform: translateY(48px);
+  filter: blur(7px);
+}
+.motion-ready .hero-m-desc {
+  opacity: 0;
+  transform: translateY(32px);
+  filter: blur(4px);
+}
+.motion-ready .hero-m-cta1 {
+  opacity: 0;
+  transform: translateY(24px) scale(0.95);
+  filter: blur(3px);
+}
+.motion-ready .hero-m-cta2 {
+  opacity: 0;
+  transform: translateY(24px) scale(0.95);
+  filter: blur(3px);
+}
+.motion-ready .hero-m-brandrow {
   opacity: 0;
   transform: translateY(22px);
   filter: blur(3px);
 }
-.motion-ready .hero-m-title {
-  opacity: 0;
-  transform: translateY(38px);
-  filter: blur(5px);
-}
-.motion-ready .hero-m-desc {
-  opacity: 0;
-  transform: translateY(24px);
-}
-.motion-ready .hero-m-cta1 {
-  opacity: 0;
-  transform: translateY(18px) scale(0.97);
-}
-.motion-ready .hero-m-cta2 {
-  opacity: 0;
-  transform: translateY(18px) scale(0.97);
-}
-.motion-ready .hero-m-brandrow {
-  opacity: 0;
-  transform: translateY(12px);
-}
 .motion-ready .hero-m-divider {
   opacity: 0;
-  transform: scaleX(0.2);
+  transform: scaleX(0.1);
 }
 .motion-ready .hero-m-phone {
   opacity: 0;
-  transform: perspective(1000px) translateY(64px) scale(0.91) rotateX(9deg);
-  filter: blur(7px);
+  transform: translateY(48px) scale(0.94) rotateX(8deg);
+  filter: blur(8px);
 }
 
 /* page-enter fires the staggered sequence for above-the-fold elements */
 .motion-ready.page-enter .hero-m-img {
   animation: mobileHeroImgReveal 850ms var(--ease-premium) 60ms both;
 }
-.motion-ready.page-enter .hero-m-eyebrow {
-  animation: mobileHeroFadeUp 650ms var(--ease-premium) 220ms both;
-}
 .motion-ready.page-enter .hero-m-title {
-  animation: mobileHeroTitleReveal 900ms var(--ease-premium) 300ms both;
+  animation: mobileHeroTitleReveal 900ms var(--ease-premium) 240ms both;
 }
 .motion-ready.page-enter .hero-m-desc {
-  animation: mobileHeroFadeUp 720ms var(--ease-premium) 430ms both;
+  animation: mobileHeroFadeUp 750ms var(--ease-premium) 380ms both;
 }
 .motion-ready.page-enter .hero-m-cta1 {
-  animation: mobileHeroBtnReveal 680ms var(--ease-premium) 530ms both;
+  animation: mobileHeroBtnReveal 700ms var(--ease-premium) 490ms both;
 }
 .motion-ready.page-enter .hero-m-cta2 {
-  animation: mobileHeroBtnReveal 680ms var(--ease-premium) 620ms both;
+  animation: mobileHeroBtnReveal 700ms var(--ease-premium) 590ms both;
 }
 .motion-ready.page-enter .hero-m-brandrow {
-  animation: mobileHeroFadeUp 650ms var(--ease-premium) 710ms both;
+  animation: mobileHeroFadeUp 650ms var(--ease-premium) 690ms both;
 }
 .motion-ready.page-enter .hero-m-divider {
-  animation: mobileHeroDivider 700ms var(--ease-premium) 780ms both;
+  animation: mobileHeroDivider 700ms var(--ease-premium) 770ms both;
 }
 
-/* W3H1: Phone Mockup animates ONLY when scrolled into viewport */
+/* W3J: Phone Mockup animates ONLY when scrolled into viewport (TAREA 6) */
 .motion-ready .hero-mobile-device.is-device-visible .hero-m-phone {
-  animation: mobileHeroPhoneEntrance 1250ms var(--ease-premium) 100ms both;
+  animation: mobileHeroPhoneEntrance 1.15s cubic-bezier(0.16, 1, 0.3, 1) 100ms both;
 }
 
 .site-header.scrolled {
@@ -815,44 +810,41 @@ section {
   100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* W3H — Mobile Hero Keyframes */
+/* W3J — Mobile Hero Keyframes */
 @keyframes mobileHeroImgReveal {
-  0% { opacity: 0; transform: scale(1.06); filter: blur(6px); }
-  100% { opacity: 1; transform: scale(1); filter: blur(0); }
+  0% { opacity: 0; transform: translateY(-60px) scale(1.06); filter: blur(8px); }
+  100% { opacity: 1; transform: translateY(-60px) scale(1); filter: blur(0); }
 }
 
 @keyframes mobileHeroTitleReveal {
-  0% { opacity: 0; transform: translateY(38px); filter: blur(5px); }
+  0% { opacity: 0; transform: translateY(48px); filter: blur(7px); }
   100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
 @keyframes mobileHeroFadeUp {
-  0% { opacity: 0; transform: translateY(22px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; transform: translateY(32px); filter: blur(4px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
 @keyframes mobileHeroBtnReveal {
-  0% { opacity: 0; transform: translateY(18px) scale(0.97); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+  0% { opacity: 0; transform: translateY(24px) scale(0.95); filter: blur(3px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
 @keyframes mobileHeroDivider {
-  0% { opacity: 0; transform: scaleX(0.2); }
+  0% { opacity: 0; transform: scaleX(0.1); }
   100% { opacity: 1; transform: scaleX(1); }
 }
 
 @keyframes mobileHeroPhoneEntrance {
   0% {
     opacity: 0;
-    transform: perspective(1000px) translateY(64px) scale(0.91) rotateX(9deg);
-    filter: blur(7px);
-  }
-  70% {
-    filter: blur(0);
+    transform: translateY(48px) scale(0.94) rotateX(8deg);
+    filter: blur(8px);
   }
   100% {
     opacity: 1;
-    transform: perspective(1000px) translateY(0) scale(1) rotateX(0deg);
+    transform: translateY(0) scale(1) rotateX(0);
     filter: blur(0);
   }
 }
@@ -2221,45 +2213,16 @@ section {
     background-color: #030303;
   }
 
-  .orb-mobile-a,
-  .orb-mobile-b {
-    display: block;
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-    filter: blur(0.5px);
-  }
-
-  .orb-mobile-a {
-    width: 68px;
-    height: 68px;
-    top: 110px;
-    right: 14px;
-    background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.18) 0%, rgba(220, 252, 4, 0.18) 22%, rgba(120, 120, 120, 0.22) 55%, rgba(0, 0, 0, 0.08) 100%);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-  }
-
-  .orb-mobile-b {
-    width: 52px;
-    height: 52px;
-    top: 880px;
-    left: 10px;
-    background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.15) 0%, rgba(170, 170, 170, 0.18) 40%, rgba(60, 60, 60, 0.20) 75%, rgba(0, 0, 0, 0.05) 100%);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
-  }
-
   .hero-section {
     display: none;
   }
 
-  /* W3I: TAREA 1 — HERO VISUAL PORTRAIT COMPLETO */
+  /* ==========================================================================
+     W3J: TAREA 1 — HERO VISUAL (SIN HUECO NEGRO, PEGADO AL HEADER)
+     ========================================================================== */
   .hero-mobile-visual {
     display: block;
     position: relative;
-    width: 100%;
-    height: auto;
-    min-height: 0;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -2270,47 +2233,57 @@ section {
     display: block;
     width: 100%;
     height: auto;
-    object-fit: contain;
-    object-position: center;
+    object-fit: cover;
+    object-position: center top;
+    transform: translateY(-60px);
   }
 
-  /* W3I: FADE IMAGE -> COPY (Adaptado al tamaño real) */
+  /* W3J: TAREA 3 — FADE PROFESIONAL ENTRE IMAGEN Y TEXTO */
   .hero-mobile-visual::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -1px;
-    height: clamp(130px, 24vw, 200px);
-    pointer-events: none;
+    bottom: 0;
+    height: 220px;
     background: linear-gradient(
       to bottom,
       rgba(3, 3, 3, 0) 0%,
-      rgba(3, 3, 3, 0.18) 30%,
-      rgba(3, 3, 3, 0.52) 65%,
+      rgba(3, 3, 3, 0.16) 25%,
+      rgba(3, 3, 3, 0.46) 52%,
+      rgba(3, 3, 3, 0.82) 78%,
       #030303 100%
     );
+    pointer-events: none;
     z-index: 1;
   }
 
-  /* W3H: TAREA 2 — Bloque negro del copy */
+  /* ==========================================================================
+     W3J: TAREA 2 — COPY HERO PEGADO AL FADE (SIN EYEBROW)
+     ========================================================================== */
   .hero-mobile-copy {
     display: block;
     position: relative;
-    z-index: 3;
-    margin-top: 0;
-    padding: 1.2rem 0 2.5rem;
+    margin-top: -28px;
+    padding: 0 24px 0;
     background: #030303;
+    z-index: 2;
   }
 
+  .hero-mobile-copy .section-tagline,
+  .hero-mobile-copy .hero-eyebrow,
+  .hero-m-eyebrow {
+    display: none !important;
+  }
+
+  .hero-mobile-copy h1,
   .hero-mobile__title {
-    font-size: clamp(3rem, 12vw, 4.8rem);
+    font-size: clamp(3.2rem, 11vw, 4.9rem);
     line-height: 0.92;
     letter-spacing: -0.055em;
+    margin: 0 0 18px;
     font-weight: 450;
     color: #ffffff;
-    max-width: 10ch;
-    margin: 0.9rem 0 1.4rem;
     overflow-wrap: break-word;
     word-break: normal;
   }
@@ -2335,53 +2308,60 @@ section {
     justify-content: center;
   }
 
-  /* W3H: TAREA 3 — Brand row: Zitro + Google Play limpio */
+  /* ==========================================================================
+     W3J: TAREA 4 — BLOQUE DE MARCA DEBAJO DE LOS CTAS
+     ========================================================================== */
+  .hero-mobile-brandrow,
   .hero-mobile__brandrow {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    padding-top: 1.5rem;
-    margin-top: 2rem;
+    gap: 18px;
+    padding-top: 22px;
+    margin-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.10);
     width: 100%;
   }
 
+  .hero-mobile-brandrow .zitro-logo,
   .hero-mobile__brandrow .zitro-logo {
-    height: clamp(22px, 5.5vw, 28px);
+    height: 34px;
     width: auto;
-    max-width: 45%;
     object-fit: contain;
     flex-shrink: 0;
   }
 
+  .hero-mobile-brandrow .google-play-badge,
   .hero-mobile__brandrow .google-play-badge {
-    height: clamp(30px, 7.5vw, 38px);
+    height: 36px;
     width: auto;
-    max-width: 50%;
     object-fit: contain;
     display: block;
     flex-shrink: 0;
   }
 
-  /* W3H: TAREA 4 — Línea amarilla divisoria */
+  /* ==========================================================================
+     W3J: TAREA 5 — LÍNEA AMARILLA DIVISORIA
+     ========================================================================== */
   .hero-mobile-divider {
     display: block;
-    width: calc(100% - 40px);
+    width: calc(100% - 48px);
     height: 1px;
-    margin: 22px auto 26px;
+    margin: 22px auto 24px;
     background: linear-gradient(
       90deg,
       rgba(220, 252, 4, 0) 0%,
-      rgba(220, 252, 4, 0.9) 18%,
-      rgba(220, 252, 4, 0.9) 82%,
+      rgba(220, 252, 4, 0.95) 20%,
+      rgba(220, 252, 4, 0.95) 80%,
       rgba(220, 252, 4, 0) 100%
     );
-    box-shadow: 0 0 12px rgba(220, 252, 4, 0.25);
+    box-shadow: 0 0 10px rgba(220, 252, 4, 0.22);
     transform-origin: center;
   }
 
-  /* W3H: TAREA 5 — Device stage mejorado */
+  /* ==========================================================================
+     W3J: MOCKUP DEVICE STAGE
+     ========================================================================== */
   .hero-mobile-device {
     display: block;
     position: relative;
@@ -2460,11 +2440,18 @@ section {
     margin-right: auto;
   }
 
-  /* W3H: TAREA 7 — Esferas 3D mejoradas con más atmósfera */
+  /* ==========================================================================
+     W3J: TAREA 8 — ESFERAS 3D MOBILE
+     ========================================================================== */
   .orb-mobile-a {
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
     width: 90px;
     height: 90px;
-    top: 80px;
+    top: 110px;
     right: 12px;
     background: radial-gradient(
       circle at 32% 30%,
@@ -2481,6 +2468,11 @@ section {
   }
 
   .orb-mobile-b {
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
     width: 70px;
     height: 70px;
     top: 920px;
@@ -2496,7 +2488,6 @@ section {
     filter: blur(1px);
   }
 
-  /* W3H1: Orb C — posicionada relativo a .hero-mobile-device */
   .hero-mobile-device .orb-mobile-c {
     display: block;
     position: absolute;
@@ -3063,10 +3054,10 @@ section {
         </a>
       </div>
 
-      <!-- W3H: TAREA 3 — Brand row: Zitro + Google Play limpio -->
-      <div class="hero-mobile__brandrow hero-m-brandrow">
+      <!-- W3J: TAREA 4 — Brand row: Zitro + Google Play limpio -->
+      <div class="hero-mobile-brandrow hero-m-brandrow">
         <img src="assets/brand/zitro-logo-white.png" alt="Zitro Network" class="zitro-logo">
-        <img src="assets/brand/google-play-badge.png" alt="Disponible próximamente en Google Play" class="google-play-badge">
+        <img src="assets/brand/google-play-badge.png" alt="Disponible en Google Play" class="google-play-badge">
       </div>
     </div>
   </section>
