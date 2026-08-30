@@ -645,11 +645,11 @@ section {
 }
 .motion-ready .hero-m-phone {
   opacity: 0;
-  transform: perspective(900px) translateY(56px) scale(0.92) rotateX(10deg);
-  filter: blur(8px);
+  transform: perspective(1000px) translateY(64px) scale(0.91) rotateX(9deg);
+  filter: blur(7px);
 }
 
-/* page-enter fires the staggered sequence */
+/* page-enter fires the staggered sequence for above-the-fold elements */
 .motion-ready.page-enter .hero-m-img {
   animation: mobileHeroImgReveal 850ms var(--ease-premium) 60ms both;
 }
@@ -674,8 +674,10 @@ section {
 .motion-ready.page-enter .hero-m-divider {
   animation: mobileHeroDivider 700ms var(--ease-premium) 780ms both;
 }
-.motion-ready.page-enter .hero-m-phone {
-  animation: mobileHeroPhoneEntrance 1250ms var(--ease-premium) 880ms both;
+
+/* W3H1: Phone Mockup animates ONLY when scrolled into viewport */
+.motion-ready .hero-mobile-device.is-device-visible .hero-m-phone {
+  animation: mobileHeroPhoneEntrance 1250ms var(--ease-premium) 100ms both;
 }
 
 .site-header.scrolled {
@@ -842,15 +844,15 @@ section {
 @keyframes mobileHeroPhoneEntrance {
   0% {
     opacity: 0;
-    transform: perspective(900px) translateY(56px) scale(0.92) rotateX(10deg);
-    filter: blur(8px);
+    transform: perspective(1000px) translateY(64px) scale(0.91) rotateX(9deg);
+    filter: blur(7px);
   }
   70% {
     filter: blur(0);
   }
   100% {
     opacity: 1;
-    transform: perspective(900px) translateY(0) scale(1) rotateX(0deg);
+    transform: perspective(1000px) translateY(0) scale(1) rotateX(0deg);
     filter: blur(0);
   }
 }
@@ -2366,23 +2368,28 @@ section {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 18px;
+    gap: 12px;
     padding-top: 1.5rem;
     margin-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.10);
+    width: 100%;
   }
 
   .hero-mobile__brandrow .zitro-logo {
-    height: 32px;
+    height: clamp(22px, 5.5vw, 28px);
     width: auto;
+    max-width: 45%;
     object-fit: contain;
+    flex-shrink: 0;
   }
 
   .hero-mobile__brandrow .google-play-badge {
-    height: 36px;
+    height: clamp(30px, 7.5vw, 38px);
     width: auto;
+    max-width: 50%;
     object-fit: contain;
     display: block;
+    flex-shrink: 0;
   }
 
   /* W3H: TAREA 4 — Línea amarilla divisoria */
@@ -2517,22 +2524,22 @@ section {
     filter: blur(1px);
   }
 
-  /* Orb C — tercera esfera decorativa secundaria cerca del device stage */
-  .orb-mobile-c {
+  /* W3H1: Orb C — posicionada relativo a .hero-mobile-device */
+  .hero-mobile-device .orb-mobile-c {
     display: block;
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
     z-index: 0;
-    width: 55px;
-    height: 55px;
-    top: 1600px;
-    right: 18px;
+    width: 60px;
+    height: 60px;
+    top: 35px;
+    right: 12px;
     background: radial-gradient(
       circle at 35% 32%,
-      rgba(255, 255, 255, 0.12) 0%,
-      rgba(220, 252, 4, 0.09) 24%,
-      rgba(90, 90, 90, 0.12) 60%,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(220, 252, 4, 0.10) 24%,
+      rgba(90, 90, 90, 0.14) 60%,
       rgba(0, 0, 0, 0) 100%
     );
     box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
@@ -2907,7 +2914,6 @@ section {
   <!-- 3D Gradient Spheres (Mobile) -->
   <div class="orb-mobile-a"></div>
   <div class="orb-mobile-b"></div>
-  <div class="orb-mobile-c"></div>
 </div>
 
 <!-- ==========================================================================
@@ -2989,7 +2995,7 @@ section {
       <!-- W3H: TAREA 3 — Brand row: Zitro + Google Play limpio -->
       <div class="hero-mobile__brandrow hero-m-brandrow">
         <img src="assets/brand/zitro-logo-white.png" alt="Zitro Network" class="zitro-logo">
-        <img src="assets/brand/google-play-badge.svg" alt="Disponible próximamente en Google Play" class="google-play-badge">
+        <img src="assets/brand/google-play-badge.png" alt="Disponible próximamente en Google Play" class="google-play-badge">
       </div>
     </div>
   </section>
@@ -3001,6 +3007,7 @@ section {
        MOBILE DEVICE STAGE (MOBILE ONLY — INDEPENDENT SECTION)
        ========================================================================== -->
   <section class="hero-mobile-device">
+    <div class="orb-mobile-c" aria-hidden="true"></div>
     <div class="container">
       <div class="hero-mobile-device__stage">
         <div class="hero-mobile__chip chip-top">
@@ -3021,6 +3028,7 @@ section {
       </div>
     </div>
   </section>
+
 
 
   <!-- ==========================================================================
@@ -3640,7 +3648,10 @@ section {
       return;
     }
 
-    var phoneMockup = document.getElementById('phone-mockup-real');
+    var isMobileHero = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+    var targetImg = isMobileHero
+      ? document.querySelector('.hero-mobile-visual__img')
+      : document.getElementById('phone-mockup-real');
 
     // Mark as motion-ready first (hides elements)
     document.documentElement.classList.add('motion-ready');
@@ -3648,8 +3659,8 @@ section {
     var fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
 
     fontsReady.then(function() {
-      if (phoneMockup && typeof phoneMockup.decode === 'function') {
-        return phoneMockup.decode().catch(function() { /* decode not critical */ });
+      if (targetImg && typeof targetImg.decode === 'function') {
+        return targetImg.decode().catch(function() { /* decode not critical */ });
       }
     }).catch(function() {
       /* fallback — proceed even if fonts/decode fail */
@@ -3661,6 +3672,29 @@ section {
         });
       });
     });
+  }
+
+  // 1b. Mobile Phone Mockup Scroll Entrance (On-Scroll Trigger)
+  function initMobileDeviceObserver() {
+    var deviceSection = document.querySelector('.hero-mobile-device');
+    if (!deviceSection) return;
+
+    if (!isReduced && 'IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries, obs) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            deviceSection.classList.add('is-device-visible');
+            obs.unobserve(deviceSection);
+          }
+        });
+      }, {
+        threshold: 0.20,
+        rootMargin: '0px 0px -8% 0px'
+      });
+      observer.observe(deviceSection);
+    } else {
+      deviceSection.classList.add('is-device-visible');
+    }
   }
 
   // 2. Mobile Menu Drawer Toggle & Escape Handler
@@ -3835,6 +3869,7 @@ section {
 
   // Initialize All Systems
   initPageEnter();
+  initMobileDeviceObserver();
   initMobileDrawer();
   initHeaderScroll();
   initAcademyTerminal();
