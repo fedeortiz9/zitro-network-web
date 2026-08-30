@@ -915,39 +915,10 @@ section {
   height: 20px;
 }
 
-/* Mobile Drawer Panel */
+/* Mobile Drawer & Backdrop (Hidden on Desktop) */
+.mobile-nav-backdrop,
 .mobile-nav-panel {
   display: none;
-  position: fixed;
-  top: var(--nav-height);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(5, 6, 8, 0.98);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  padding: 2.5rem 1.75rem;
-  flex-direction: column;
-  gap: 1.5rem;
-  z-index: 99;
-  border-top: 1px solid var(--border-subtle);
-  transform: translateY(-15px);
-  opacity: 0;
-  pointer-events: none;
-  transition: all var(--motion-fast) var(--ease-premium);
-}
-
-.mobile-nav-panel.is-open {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.mobile-nav-panel .nav-item {
-  font-size: 1.25rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--border-subtle);
-  animation: none;
 }
 
 
@@ -2282,40 +2253,41 @@ section {
     display: none;
   }
 
-  /* W3H: TAREA 1 — HERO VISUAL: pegado al header, sin gap */
+  /* W3I: TAREA 1 — HERO VISUAL PORTRAIT COMPLETO */
   .hero-mobile-visual {
     display: block;
     position: relative;
     width: 100%;
-    height: clamp(360px, 48svh, 480px);
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
     background: #030303;
-    margin-top: 0;
-    padding-top: 0;
   }
 
   .hero-mobile-visual__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
     display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
   }
 
-  /* W3H: TAREA 1.3 — Difuminado profesional entre imagen y copy */
+  /* W3I: FADE IMAGE -> COPY (Adaptado al tamaño real) */
   .hero-mobile-visual::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
     bottom: -1px;
-    height: 220px;
+    height: clamp(130px, 24vw, 200px);
     pointer-events: none;
     background: linear-gradient(
       to bottom,
       rgba(3, 3, 3, 0) 0%,
-      rgba(3, 3, 3, 0.25) 28%,
-      rgba(3, 3, 3, 0.60) 58%,
+      rgba(3, 3, 3, 0.18) 30%,
+      rgba(3, 3, 3, 0.52) 65%,
       #030303 100%
     );
     z-index: 1;
@@ -2566,8 +2538,105 @@ section {
     display: flex;
   }
 
+  /* ==========================================================================
+     W3I: TAREA 2 — MOBILE SIDE NAV & BACKDROP
+     ========================================================================== */
+  body.mobile-nav-open {
+    overflow: hidden;
+  }
+
+  .mobile-nav-backdrop {
+    display: block;
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: rgba(0, 0, 0, 0.68);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    z-index: 110;
+
+    transition:
+      opacity 280ms var(--ease-premium),
+      visibility 280ms;
+  }
+
+  .mobile-nav-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
   .mobile-nav-panel {
     display: flex;
+
+    position: fixed;
+    top: var(--nav-height);
+    right: 0;
+    bottom: 0;
+    left: auto;
+
+    width: min(86vw, 370px);
+
+    padding: 2.2rem 1.5rem;
+
+    flex-direction: column;
+    gap: 0;
+
+    background: #070807;
+
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    border-left: 1px solid rgba(255, 255, 255, 0.09);
+
+    box-shadow:
+      -28px 0 70px rgba(0, 0, 0, 0.72),
+      inset 1px 0 rgba(255, 255, 255, 0.025);
+
+    transform: translateX(100%);
+
+    opacity: 1;
+    visibility: hidden;
+    pointer-events: none;
+
+    z-index: 120;
+
+    transition:
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 420ms;
+  }
+
+  .mobile-nav-panel.is-open {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .mobile-nav-panel .nav-item {
+    width: 100%;
+
+    padding: 1.35rem 0.15rem;
+
+    font-size: clamp(1.25rem, 5vw, 1.55rem);
+    font-weight: 450;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    animation: none;
+  }
+
+  .mobile-nav-panel .nav-item:hover,
+  .mobile-nav-panel .nav-item:focus-visible {
+    color: #fff;
   }
 
   .floating-satellite {
@@ -2950,16 +3019,18 @@ section {
       </button>
     </div>
   </div>
-
-  <!-- Mobile Drawer Panel -->
-  <div class="mobile-nav-panel" id="mobile-nav-panel" aria-label="Navegación móvil">
-    <a class="nav-item" href="#ecosystem">Ecosistema</a>
-    <a class="nav-item" href="#mining">Cloud Mining</a>
-    <a class="nav-item" href="#academy">Zitro Academy</a>
-    <a class="nav-item" href="#community">Comunidad</a>
-    <a class="nav-item" href="#roadmap">Hoja de Ruta</a>
-  </div>
 </header>
+
+<!-- W3I: TAREA 2 — Mobile Nav Backdrop & Side Nav Panel -->
+<div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+
+<nav class="mobile-nav-panel" id="mobile-nav-panel" aria-label="Navegación móvil">
+  <a class="nav-item" href="#ecosystem">Ecosistema</a>
+  <a class="nav-item" href="#mining">Cloud Mining</a>
+  <a class="nav-item" href="#academy">Zitro Academy</a>
+  <a class="nav-item" href="#community">Comunidad</a>
+  <a class="nav-item" href="#roadmap">Hoja de Ruta</a>
+</nav>
 
 <main>
   <!-- ==========================================================================
@@ -3697,28 +3768,51 @@ section {
     }
   }
 
-  // 2. Mobile Menu Drawer Toggle & Escape Handler
+  // 2. Mobile Menu Drawer Toggle & Escape Handler (W3I Side Nav + Backdrop)
   function initMobileDrawer() {
     var toggleBtn = document.getElementById('mobile-toggle');
     var mobilePanel = document.getElementById('mobile-nav-panel');
+    var mobileBackdrop = document.getElementById('mobile-nav-backdrop');
 
     function closeMobilePanel() {
       if (toggleBtn && mobilePanel) {
         toggleBtn.setAttribute('aria-expanded', 'false');
         mobilePanel.classList.remove('is-open');
+        if (mobileBackdrop) {
+          mobileBackdrop.classList.remove('is-open');
+        }
+        document.body.classList.remove('mobile-nav-open');
+      }
+    }
+
+    function openMobilePanel() {
+      if (toggleBtn && mobilePanel) {
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        mobilePanel.classList.add('is-open');
+        if (mobileBackdrop) {
+          mobileBackdrop.classList.add('is-open');
+        }
+        document.body.classList.add('mobile-nav-open');
       }
     }
 
     function toggleMobilePanel() {
       if (toggleBtn && mobilePanel) {
-        var isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-        toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
-        mobilePanel.classList.toggle('is-open');
+        var isOpen = mobilePanel.classList.contains('is-open');
+        if (isOpen) {
+          closeMobilePanel();
+        } else {
+          openMobilePanel();
+        }
       }
     }
 
     if (toggleBtn && mobilePanel) {
       toggleBtn.addEventListener('click', toggleMobilePanel);
+
+      if (mobileBackdrop) {
+        mobileBackdrop.addEventListener('click', closeMobilePanel);
+      }
 
       var mobileLinks = mobilePanel.querySelectorAll('a');
       for (var i = 0; i < mobileLinks.length; i++) {
