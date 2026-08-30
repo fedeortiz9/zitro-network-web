@@ -7,7 +7,7 @@
 <meta name="description" content="Zitro Network es un ecosistema tecnológico que integra minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en desarrollo.">
 <meta name="theme-color" content="#050608">
 
-<!-- Official Zitro Favicon -->
+<!-- Official Zitro Favicon (High-Contrast Official Black Mark on Vibrant Zitro Lime) -->
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 
 <style>
@@ -66,42 +66,52 @@
 }
 
 /* ==========================================================================
-   DESIGN SYSTEM & ADVANCED CSS VARIABLES
+   DESIGN SYSTEM TOKENS & MOTION TOKENS
    ========================================================================== */
 :root {
+  /* Surfaces & Backgrounds */
   --bg-deep: #050608;
-  --bg-dark: #07090e;
+  --bg-dark: #080a10;
   --bg-surface: #0c1018;
   --bg-surface-elevated: #121824;
-  --bg-card: rgba(12, 16, 24, 0.72);
-  --bg-card-hover: rgba(18, 24, 38, 0.88);
-  --bg-glass: rgba(10, 14, 22, 0.65);
+  --bg-card: rgba(11, 15, 24, 0.72);
+  --bg-card-hover: rgba(16, 22, 34, 0.88);
+  --bg-glass-nav: rgba(5, 6, 8, 0.75);
+  --bg-glass-nav-scrolled: rgba(5, 6, 8, 0.92);
 
+  /* Borders & Specular Highlights */
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-medium: rgba(255, 255, 255, 0.12);
   --border-glass: rgba(255, 255, 255, 0.18);
+  --border-highlight: rgba(255, 255, 255, 0.28);
   --border-accent: rgba(220, 252, 4, 0.35);
-  --border-accent-strong: rgba(220, 252, 4, 0.8);
+  --border-accent-strong: rgba(220, 252, 4, 0.85);
 
+  /* Typography & Foreground */
   --fg-primary: #f8fafc;
   --fg-secondary: #94a3b8;
   --fg-muted: #64748b;
   --fg-dark: #050608;
 
+  /* Zitro Brand Accent (Neon Lime) */
   --accent: #dcfc04;
   --accent-hover: #c9e803;
-  --accent-muted: rgba(220, 252, 4, 0.12);
+  --accent-muted: rgba(220, 252, 4, 0.1);
   --accent-glow: rgba(220, 252, 4, 0.22);
-  --accent-glow-strong: rgba(220, 252, 4, 0.5);
+  --accent-glow-strong: rgba(220, 252, 4, 0.45);
 
+  /* Secondary Accents */
   --cyan: #38bdf8;
   --cyan-glow: rgba(56, 189, 248, 0.25);
   --emerald: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.25);
   --amber: #f59e0b;
 
+  /* Typography */
   --font-display: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
+  /* Geometry & Spacing */
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -110,11 +120,15 @@
   --radius-full: 9999px;
 
   --max-w: 1240px;
-  --nav-height: 72px;
+  --nav-height: 74px;
 
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Motion Tokens (Awwwards Standard) */
+  --motion-fast: 320ms;
+  --motion-normal: 560ms;
+  --motion-slow: 820ms;
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* ==========================================================================
@@ -180,7 +194,7 @@ img, svg {
 }
 
 /* ==========================================================================
-   FILM GRAIN & IMMERSIVE ATMOSPHERIC CANVAS
+   4K ULTRA-DEPTH ATMOSPHERE (NO GRIDS / NO SQUARES)
    ========================================================================== */
 .ambient-canvas {
   position: fixed;
@@ -190,13 +204,25 @@ img, svg {
   overflow: hidden;
 }
 
-/* Procedural Film Grain Overlay */
+/* Layer 0: Multi-Tiered Gradient Canvas */
+.ambient-base-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 950px 750px at 80% 12%, rgba(220, 252, 4, 0.13) 0%, rgba(220, 252, 4, 0.02) 50%, transparent 75%),
+    radial-gradient(ellipse 1050px 850px at 15% 42%, rgba(56, 189, 248, 0.09) 0%, rgba(14, 165, 233, 0.01) 55%, transparent 80%),
+    radial-gradient(ellipse 900px 750px at 85% 72%, rgba(16, 185, 129, 0.06) 0%, rgba(220, 252, 4, 0.03) 45%, transparent 75%),
+    radial-gradient(circle 800px at 50% 98%, rgba(220, 252, 4, 0.07) 0%, transparent 70%),
+    linear-gradient(180deg, #050608 0%, #080a10 35%, #06070a 70%, #040507 100%);
+}
+
+/* Layer 1: Procedural Film Grain Overlay (Cinematic Tactility) */
 .film-grain-layer {
   position: absolute;
   inset: -50%;
   width: 200%;
   height: 200%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
   opacity: 0.85;
   pointer-events: none;
   animation: grainShift 8s steps(10) infinite;
@@ -210,110 +236,98 @@ img, svg {
   80% { transform: translate(1%, 1%); }
 }
 
-/* Subtle Technical Grid */
-.tech-grid-pattern {
-  position: absolute;
-  inset: 0;
-  background-size: 64px 64px;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-  mask-image: radial-gradient(ellipse 85% 60% at 50% 18%, black 35%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 85% 60% at 50% 18%, black 35%, transparent 100%);
-}
-
-/* Multi-Tiered Volumetric Ambient Lights */
+/* Layer 2: Slow-Drifting Volumetric Light Orbs */
 .ambient-light-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(120px);
   pointer-events: none;
   will-change: transform;
 }
 
 .orb-primary {
-  width: 650px;
-  height: 650px;
-  top: -180px;
-  right: -100px;
-  background: radial-gradient(circle, rgba(220, 252, 4, 0.16) 0%, rgba(220, 252, 4, 0.02) 60%, transparent 80%);
-  animation: orbFloat1 18s ease-in-out infinite alternate;
+  width: 680px;
+  height: 680px;
+  top: -150px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(220, 252, 4, 0.15) 0%, rgba(220, 252, 4, 0.02) 60%, transparent 80%);
+  animation: orbDrift1 20s ease-in-out infinite alternate;
 }
 
 .orb-secondary {
-  width: 700px;
-  height: 700px;
-  top: 35%;
-  left: -280px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.13) 0%, rgba(56, 189, 248, 0.01) 60%, transparent 80%);
-  animation: orbFloat2 22s ease-in-out infinite alternate;
+  width: 720px;
+  height: 720px;
+  top: 38%;
+  left: -250px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(56, 189, 248, 0.01) 60%, transparent 80%);
+  animation: orbDrift2 24s ease-in-out infinite alternate;
 }
 
 .orb-tertiary {
-  width: 550px;
-  height: 550px;
-  bottom: 8%;
-  right: -120px;
-  background: radial-gradient(circle, rgba(220, 252, 4, 0.12) 0%, rgba(16, 185, 129, 0.03) 50%, transparent 75%);
-  animation: orbFloat1 20s ease-in-out infinite alternate-reverse;
+  width: 600px;
+  height: 600px;
+  bottom: 6%;
+  right: -100px;
+  background: radial-gradient(circle, rgba(220, 252, 4, 0.11) 0%, rgba(16, 185, 129, 0.03) 50%, transparent 75%);
+  animation: orbDrift1 22s ease-in-out infinite alternate-reverse;
 }
 
-@keyframes orbFloat1 {
+@keyframes orbDrift1 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-40px, 50px) scale(1.1); }
+  100% { transform: translate(-50px, 60px) scale(1.12); }
 }
 
-@keyframes orbFloat2 {
+@keyframes orbDrift2 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(50px, -40px) scale(1.15); }
+  100% { transform: translate(60px, -50px) scale(1.15); }
 }
 
-/* 3D Floating Translucent Geometric Objects */
+/* Layer 3: 3D Floating Translucent Geometric Objects */
 .object-3d-floating {
   position: absolute;
   pointer-events: none;
   z-index: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.25) 0%, rgba(220, 252, 4, 0.08) 40%, rgba(12, 16, 24, 0.6) 80%, rgba(0, 0, 0, 0.8) 100%);
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.3) 0%, rgba(220, 252, 4, 0.1) 40%, rgba(12, 16, 24, 0.65) 80%, rgba(0, 0, 0, 0.85) 100%);
   box-shadow:
-    inset -4px -4px 10px rgba(0, 0, 0, 0.8),
-    inset 4px 4px 12px rgba(255, 255, 255, 0.3),
-    0 15px 35px rgba(0, 0, 0, 0.6),
-    0 0 25px rgba(220, 252, 4, 0.18);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+    inset -4px -4px 10px rgba(0, 0, 0, 0.85),
+    inset 4px 4px 12px rgba(255, 255, 255, 0.35),
+    0 18px 40px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(220, 252, 4, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   will-change: transform;
 }
 
 .orb-3d-hero {
-  width: 64px;
-  height: 64px;
+  width: 58px;
+  height: 58px;
   top: 15%;
-  right: 48%;
-  animation: floatOrb3D 8s ease-in-out infinite alternate;
+  right: 12%;
+  animation: floatOrb3D 8.5s ease-in-out infinite alternate;
 }
 
 .orb-3d-mining {
-  width: 50px;
-  height: 50px;
-  top: 55%;
-  left: 48%;
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.3) 0%, rgba(56, 189, 248, 0.15) 40%, rgba(12, 16, 24, 0.7) 80%, rgba(0, 0, 0, 0.9) 100%);
+  width: 48px;
+  height: 48px;
+  top: 52%;
+  left: 6%;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.35) 0%, rgba(56, 189, 248, 0.18) 40%, rgba(12, 16, 24, 0.7) 80%, rgba(0, 0, 0, 0.9) 100%);
   box-shadow:
-    inset -3px -3px 8px rgba(0, 0, 0, 0.8),
-    inset 3px 3px 10px rgba(255, 255, 255, 0.4),
-    0 12px 30px rgba(0, 0, 0, 0.7),
-    0 0 20px rgba(56, 189, 248, 0.25);
-  animation: floatOrb3D 9s ease-in-out infinite alternate-reverse;
+    inset -3px -3px 8px rgba(0, 0, 0, 0.85),
+    inset 3px 3px 10px rgba(255, 255, 255, 0.45),
+    0 14px 35px rgba(0, 0, 0, 0.75),
+    0 0 25px rgba(56, 189, 248, 0.25);
+  animation: floatOrb3D 9.5s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes floatOrb3D {
   0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-18px) rotate(12deg); }
+  100% { transform: translateY(-18px) rotate(14deg); }
 }
 
 /* ==========================================================================
-   LAYOUT CONTAINERS
+   LAYOUT CONTAINERS & SECTION SPACING
    ========================================================================== */
 .container {
   width: 100%;
@@ -331,7 +345,7 @@ main {
 }
 
 section {
-  padding: clamp(5.5rem, 10vw, 9rem) 0;
+  padding: clamp(5.5rem, 9.5vw, 9rem) 0;
   position: relative;
 }
 
@@ -340,50 +354,6 @@ section {
    ========================================================================== */
 .font-mono {
   font-family: var(--font-mono);
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: clamp(0.62rem, 2.2vw, 0.76rem);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1.25rem;
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-xs);
-  background: rgba(220, 252, 4, 0.06);
-  border: 1px solid rgba(220, 252, 4, 0.25);
-  backdrop-filter: blur(12px);
-  line-height: 1.35;
-  max-width: 100%;
-}
-
-.eyebrow-ping {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
-  position: relative;
-  flex-shrink: 0;
-}
-
-.eyebrow-ping::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  border: 1px solid var(--accent);
-  animation: radarPing 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes radarPing {
-  0% { transform: scale(0.8); opacity: 0.9; }
-  100% { transform: scale(2.6); opacity: 0; }
 }
 
 .section-head {
@@ -397,9 +367,17 @@ section {
   text-align: center;
 }
 
-.section-head.center .eyebrow {
-  margin-left: auto;
-  margin-right: auto;
+.section-tagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
 }
 
 .section-title {
@@ -427,20 +405,23 @@ section {
 }
 
 /* ==========================================================================
-   BUTTONS & MAGNETIC ACTIONS
+   PREMIUM BUTTONS & MAGNETIC ACTIONS
    ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.65rem;
-  padding: 0.88rem 1.75rem;
+  padding: 0.88rem 1.8rem;
   border-radius: var(--radius-sm);
   font-size: 0.92rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   border: 1px solid transparent;
-  transition: all 0.28s var(--ease-out-expo);
+  transition: transform var(--motion-fast) var(--ease-premium),
+              background var(--motion-fast) var(--ease-premium),
+              border-color var(--motion-fast) var(--ease-premium),
+              box-shadow var(--motion-fast) var(--ease-premium);
   white-space: nowrap;
   user-select: none;
   position: relative;
@@ -452,38 +433,64 @@ section {
   transform: translateY(1px) scale(0.98);
 }
 
+.btn svg {
+  transition: transform var(--motion-fast) var(--ease-premium);
+}
+
+/* Primary Button (Neon Lime with Specular Depth) */
 .btn-primary {
-  background: var(--accent);
+  background: linear-gradient(135deg, #dcfc04 0%, #c8ea02 100%);
   color: var(--fg-dark);
   border-color: var(--accent);
-  box-shadow: 0 6px 24px rgba(220, 252, 4, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 8px 25px rgba(220, 252, 4, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-  box-shadow: 0 10px 35px rgba(220, 252, 4, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, #e4ff0f 0%, #d4f400 100%);
+  border-color: #e4ff0f;
+  box-shadow:
+    0 12px 35px rgba(220, 252, 4, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
   transform: translateY(-2px);
 }
 
+.btn-primary:hover svg {
+  transform: translateX(3px);
+}
+
+/* Secondary Button (Dark Crystal Glass) */
 .btn-secondary {
-  background: rgba(18, 24, 38, 0.6);
+  background: rgba(14, 18, 28, 0.65);
   color: var(--fg-primary);
   border-color: var(--border-medium);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .btn-secondary:hover {
-  background: rgba(26, 34, 52, 0.85);
-  border-color: var(--border-glass);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background: rgba(22, 28, 44, 0.85);
+  border-color: rgba(220, 252, 4, 0.4);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.65),
+    0 0 20px rgba(220, 252, 4, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 
+.btn-secondary:hover svg {
+  transform: translateX(3px);
+}
+
 /* ==========================================================================
-   NAVIGATION BAR (SITE HEADER)
+   HEADER / FLOATING GLASS NAVIGATION (19B)
    ========================================================================== */
 .site-header {
   position: sticky;
@@ -494,12 +501,34 @@ section {
   z-index: 100;
   display: flex;
   align-items: center;
-  background: rgba(5, 6, 8, 0.82);
+  background: var(--bg-glass-nav);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid var(--border-subtle);
-  transition: border-color 0.3s ease, background-color 0.3s ease;
-  animation: heroFadeIn 0.5s var(--ease-out-expo) 0s backwards;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  transition: background-color var(--motion-fast) var(--ease-premium),
+              border-color var(--motion-fast) var(--ease-premium),
+              box-shadow var(--motion-fast) var(--ease-premium);
+  animation: headerEntrance 0.7s var(--ease-premium) 0s backwards;
+}
+
+.site-header.scrolled {
+  background: var(--bg-glass-nav-scrolled);
+  border-bottom-color: var(--border-medium);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@keyframes headerEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
 .nav-wrap {
@@ -513,11 +542,17 @@ section {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity var(--motion-fast) ease, transform var(--motion-fast) var(--ease-premium);
+  animation: logoEntrance 0.75s var(--ease-premium) 0.1s backwards;
+}
+
+@keyframes logoEntrance {
+  0% { opacity: 0; transform: translateX(-8px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 
 .brand-link:hover {
-  opacity: 0.9;
+  opacity: 0.92;
   transform: scale(1.02);
 }
 
@@ -538,9 +573,21 @@ section {
   font-size: 0.88rem;
   font-weight: 500;
   color: var(--fg-secondary);
-  transition: color 0.2s ease;
+  transition: color var(--motion-fast) ease;
   position: relative;
   padding: 0.35rem 0;
+  animation: navItemEntrance 0.6s var(--ease-premium) backwards;
+}
+
+.nav-item:nth-child(1) { animation-delay: 0.18s; }
+.nav-item:nth-child(2) { animation-delay: 0.23s; }
+.nav-item:nth-child(3) { animation-delay: 0.28s; }
+.nav-item:nth-child(4) { animation-delay: 0.33s; }
+.nav-item:nth-child(5) { animation-delay: 0.38s; }
+
+@keyframes navItemEntrance {
+  0% { opacity: 0; transform: translateY(-6px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .nav-item:hover {
@@ -557,7 +604,7 @@ section {
   background: var(--accent);
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.25s var(--ease-out-expo);
+  transition: transform var(--motion-fast) var(--ease-premium);
 }
 
 .nav-item:hover::after {
@@ -569,6 +616,12 @@ section {
   display: flex;
   align-items: center;
   gap: 1rem;
+  animation: navActionEntrance 0.65s var(--ease-premium) 0.35s backwards;
+}
+
+@keyframes navActionEntrance {
+  0% { opacity: 0; transform: scale(0.96); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 .badge-play-store {
@@ -611,7 +664,7 @@ section {
   height: 20px;
 }
 
-/* Mobile Drawer */
+/* Mobile Drawer Panel */
 .mobile-nav-panel {
   display: none;
   position: fixed;
@@ -630,7 +683,7 @@ section {
   transform: translateY(-15px);
   opacity: 0;
   pointer-events: none;
-  transition: all 0.3s var(--ease-out-expo);
+  transition: all var(--motion-fast) var(--ease-premium);
 }
 
 .mobile-nav-panel.is-open {
@@ -643,12 +696,26 @@ section {
   font-size: 1.25rem;
   padding: 0.75rem 0;
   border-bottom: 1px solid var(--border-subtle);
+  animation: none;
 }
 
 /* ==========================================================================
-   HERO LOAD SEQUENCE (ELEMENT-LEVEL REAL MOTION)
+   HERO ENTRANCE SEQUENCE (19C & 19D)
    ========================================================================== */
-@keyframes heroFadeIn {
+@keyframes heroTitleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroDescFade {
   0% {
     opacity: 0;
     transform: translateY(16px);
@@ -659,10 +726,10 @@ section {
   }
 }
 
-@keyframes heroMockupIn {
+@keyframes heroPhoneEntrance3D {
   0% {
     opacity: 0;
-    transform: perspective(1200px) rotateY(-8deg) rotateX(4deg) translateY(32px) scale(0.94);
+    transform: perspective(1200px) rotateY(-8deg) rotateX(4deg) translateY(36px) scale(0.95);
   }
   100% {
     opacity: 1;
@@ -670,10 +737,10 @@ section {
   }
 }
 
-@keyframes heroSatelliteIn {
+@keyframes heroSatelliteFade {
   0% {
     opacity: 0;
-    transform: scale(0.85) translateY(12px);
+    transform: scale(0.88) translateY(12px);
   }
   100% {
     opacity: 1;
@@ -681,43 +748,39 @@ section {
   }
 }
 
-.hero-animate-eyebrow {
-  animation: heroFadeIn 0.65s var(--ease-out-expo) 0.1s backwards;
-}
-
 .hero-animate-title {
-  animation: heroFadeIn 0.75s var(--ease-out-expo) 0.22s backwards;
+  animation: heroTitleReveal 0.85s var(--ease-premium) 0.15s backwards;
 }
 
 .hero-animate-desc {
-  animation: heroFadeIn 0.75s var(--ease-out-expo) 0.35s backwards;
+  animation: heroDescFade 0.8s var(--ease-premium) 0.3s backwards;
 }
 
 .hero-animate-ctas {
-  animation: heroFadeIn 0.75s var(--ease-out-expo) 0.48s backwards;
+  animation: heroDescFade 0.8s var(--ease-premium) 0.45s backwards;
 }
 
 .hero-animate-telemetry {
-  animation: heroFadeIn 0.75s var(--ease-out-expo) 0.6s backwards;
+  animation: heroDescFade 0.8s var(--ease-premium) 0.58s backwards;
 }
 
 .hero-animate-phone {
-  animation: heroMockupIn 0.9s var(--ease-out-expo) 0.28s backwards;
+  animation: heroPhoneEntrance3D 1s var(--ease-premium) 0.25s backwards;
 }
 
 .hero-animate-satellite-1 {
-  animation: heroSatelliteIn 0.75s var(--ease-out-expo) 0.65s backwards;
+  animation: heroSatelliteFade 0.8s var(--ease-premium) 0.65s backwards;
 }
 
 .hero-animate-satellite-2 {
-  animation: heroSatelliteIn 0.75s var(--ease-out-expo) 0.78s backwards;
+  animation: heroSatelliteFade 0.8s var(--ease-premium) 0.78s backwards;
 }
 
 /* ==========================================================================
-   HERO SECTION (ASYMMETRICAL EDITORIAL & REAL MOCKUP STAGE)
+   HERO SECTION (REBALANCED EDITORIAL & REAL SMARTPHONE SHOWCASE)
    ========================================================================== */
 .hero-section {
-  padding-top: clamp(3rem, 7vw, 6.5rem);
+  padding-top: clamp(3.5rem, 8vw, 7.5rem);
   padding-bottom: clamp(4.5rem, 9vw, 8.5rem);
   position: relative;
   overflow: hidden;
@@ -735,11 +798,11 @@ section {
 }
 
 .hero-title {
-  font-size: clamp(1.85rem, 5.8vw, 4.15rem);
+  font-size: clamp(2rem, 5.8vw, 4.25rem);
   font-weight: 700;
-  line-height: 1.06;
+  line-height: 1.05;
   letter-spacing: -0.04em;
-  margin-bottom: 1.45rem;
+  margin-bottom: 1.5rem;
   overflow-wrap: break-word;
   word-break: normal;
 }
@@ -766,7 +829,7 @@ section {
   gap: 1.25rem;
   padding: 0.75rem 1.25rem;
   border-radius: var(--radius-sm);
-  background: rgba(12, 16, 24, 0.75);
+  background: rgba(11, 15, 24, 0.75);
   border: 1px solid var(--border-subtle);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -807,15 +870,16 @@ section {
 
 .hero-backdrop-mark {
   position: absolute;
-  width: 440px;
-  max-width: 90vw;
+  width: 380px;
+  max-width: 85vw;
   height: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0.07;
+  opacity: 0.04;
   pointer-events: none;
   z-index: 0;
+  filter: blur(1px);
 }
 
 /* Smartphone Showcase Mockup Wrapper */
@@ -837,7 +901,7 @@ section {
   display: block;
   filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 45px rgba(220, 252, 4, 0.16));
   transform: rotateY(-4deg) rotateX(2deg);
-  transition: transform 0.5s var(--ease-out-expo), filter 0.5s ease;
+  transition: transform 0.5s var(--ease-premium), filter 0.5s ease;
   will-change: transform;
 }
 
@@ -865,7 +929,7 @@ section {
   position: absolute;
   padding: 0.75rem 1.1rem;
   border-radius: var(--radius-md);
-  background: rgba(12, 16, 24, 0.85);
+  background: rgba(11, 15, 24, 0.85);
   border: 1px solid var(--border-accent);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(220, 252, 4, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px) saturate(180%);
@@ -925,13 +989,13 @@ section {
 }
 
 /* ==========================================================================
-   PILLARS / TELEMETRY TICKER BAR
+   PILLARS / TELEMETRY TICKER BAR (19E)
    ========================================================================== */
 .telemetry-ticker {
   padding: 2.5rem 0;
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
-  background: rgba(8, 11, 17, 0.6);
+  background: rgba(8, 10, 16, 0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -948,7 +1012,8 @@ section {
   gap: 0.45rem;
   border-left: 2px solid var(--border-medium);
   padding-left: 1.25rem;
-  transition: all 0.3s var(--ease-out-expo);
+  transition: border-color var(--motion-fast) var(--ease-premium),
+              transform var(--motion-fast) var(--ease-premium);
   position: relative;
 }
 
@@ -979,7 +1044,7 @@ section {
 }
 
 /* ==========================================================================
-   ECOSYSTEM ARCHITECTURE (MODULAR 2x2 GRID)
+   ECOSYSTEM ARCHITECTURE (MODULAR 2x2 GRID & CURSOR SPOTLIGHT) (19H)
    ========================================================================== */
 .eco-modular-grid {
   display: grid;
@@ -998,17 +1063,35 @@ section {
   flex-direction: column;
   justify-content: space-between;
   min-height: 320px;
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.08);
-  transition: border-color 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+  transition: border-color var(--motion-fast) var(--ease-premium),
+              transform var(--motion-fast) var(--ease-premium),
+              box-shadow var(--motion-fast) var(--ease-premium),
+              background var(--motion-fast) var(--ease-premium);
+}
+
+/* Dynamic Cursor Spotlight Effect */
+.modular-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(220, 252, 4, 0.06), transparent 75%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--motion-fast) ease;
+}
+
+.modular-card:hover::before {
+  opacity: 1;
 }
 
 .modular-card:hover {
   background: var(--bg-card-hover);
   border-color: var(--border-accent);
   transform: translateY(-4px);
-  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.85), 0 0 35px var(--accent-glow), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.85), 0 0 35px var(--accent-glow), inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 .card-header-bar {
@@ -1073,16 +1156,21 @@ section {
   font-weight: 500;
   color: var(--accent);
   margin-top: auto;
-  transition: gap 0.2s ease;
+  transition: gap var(--motion-fast) ease;
 }
 
 .card-action-link svg {
   width: 14px;
   height: 14px;
+  transition: transform var(--motion-fast) var(--ease-premium);
 }
 
 .modular-card:hover .card-action-link {
   gap: 0.75rem;
+}
+
+.modular-card:hover .card-action-link svg {
+  transform: translateX(3px);
 }
 
 /* ==========================================================================
@@ -1160,7 +1248,7 @@ section {
   display: block;
   border-radius: var(--radius-lg);
   filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 35px rgba(56, 189, 248, 0.15));
-  transition: transform 0.45s var(--ease-out-expo), filter 0.45s ease;
+  transition: transform 0.45s var(--ease-premium), filter 0.45s ease;
   will-change: transform;
 }
 
@@ -1184,9 +1272,9 @@ section {
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
   position: relative;
   overflow: hidden;
 }
@@ -1236,7 +1324,7 @@ section {
   border-radius: var(--radius-xs);
   color: var(--fg-muted);
   border: 1px solid transparent;
-  transition: all 0.2s ease;
+  transition: all var(--motion-fast) ease;
 }
 
 .tf-pill:hover {
@@ -1350,7 +1438,7 @@ section {
   overflow: hidden;
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.12);
 }
 
 .network-svg-container {
@@ -1393,7 +1481,7 @@ section {
   border: 1px solid var(--border-subtle);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  transition: border-color var(--motion-fast) ease, transform var(--motion-fast) ease;
 }
 
 .net-feature-cell:hover {
@@ -1434,8 +1522,8 @@ section {
   flex-direction: column;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.08);
-  transition: all 0.3s var(--ease-out-expo);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  transition: all var(--motion-fast) var(--ease-premium);
 }
 
 .roadmap-milestone:hover {
@@ -1502,7 +1590,7 @@ section {
    PRODUCT CALL TO ACTION BANNER
    ========================================================================== */
 .cta-stage {
-  background: linear-gradient(145deg, rgba(16, 22, 34, 0.9) 0%, rgba(8, 11, 16, 0.95) 100%);
+  background: linear-gradient(145deg, rgba(16, 22, 34, 0.92) 0%, rgba(8, 11, 16, 0.98) 100%);
   border: 1px solid var(--border-accent);
   border-radius: var(--radius-xl);
   padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 4rem);
@@ -1554,14 +1642,27 @@ section {
 }
 
 /* ==========================================================================
-   INSTITUTIONAL FOOTER
+   INSTITUTIONAL FOOTER (REFINED FLOATING MATTE GLASS)
    ========================================================================== */
 .site-footer {
   border-top: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
+  background: linear-gradient(180deg, rgba(8, 10, 16, 0.8) 0%, rgba(5, 6, 8, 0.98) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   padding: clamp(4rem, 8vw, 5.5rem) 0 2.5rem;
   position: relative;
   z-index: 1;
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220, 252, 4, 0.35) 50%, transparent);
 }
 
 .footer-columns {
@@ -1607,7 +1708,7 @@ section {
 .footer-menu-col a {
   color: var(--fg-secondary);
   font-size: 0.88rem;
-  transition: color 0.2s ease;
+  transition: color var(--motion-fast) ease;
 }
 
 .footer-menu-col a:hover {
@@ -1659,7 +1760,7 @@ section {
 
 .footer-legal-deck a {
   color: var(--fg-secondary);
-  transition: color 0.2s ease;
+  transition: color var(--motion-fast) ease;
 }
 
 .footer-legal-deck a:hover {
@@ -1667,12 +1768,13 @@ section {
 }
 
 /* ==========================================================================
-   SCROLL REVEALS (FOR SUBSEQUENT SECTIONS)
+   SCROLL REVEALS & STAGGER SEQUENCING (19E - 19H)
    ========================================================================== */
 .reveal-item {
   opacity: 0;
   transform: translateY(22px);
-  transition: opacity 0.75s var(--ease-out-expo), transform 0.75s var(--ease-out-expo);
+  transition: opacity var(--motion-slow) var(--ease-premium),
+              transform var(--motion-slow) var(--ease-premium);
   will-change: opacity, transform;
 }
 
@@ -1681,14 +1783,14 @@ section {
   transform: translateY(0);
 }
 
-/* Stagger utilities */
-.stagger-1 { transition-delay: 0.06s; }
-.stagger-2 { transition-delay: 0.12s; }
-.stagger-3 { transition-delay: 0.18s; }
-.stagger-4 { transition-delay: 0.24s; }
+/* Stagger Utilities */
+.stagger-1 { transition-delay: 0.07s; }
+.stagger-2 { transition-delay: 0.14s; }
+.stagger-3 { transition-delay: 0.21s; }
+.stagger-4 { transition-delay: 0.28s; }
 
 /* ==========================================================================
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE BREAKPOINTS (MULTI-VIEWPORT SUPPORT)
    ========================================================================== */
 @media (max-width: 1024px) {
   .object-3d-floating {
@@ -1780,10 +1882,8 @@ section {
   }
 
   .hero-title {
-    font-size: clamp(1.45rem, 5vw, 2.15rem);
-    line-height: 1.14;
-    overflow-wrap: break-word;
-    word-break: normal;
+    font-size: clamp(1.65rem, 5.5vw, 2.25rem);
+    line-height: 1.15;
   }
 
   .hero-telemetry-strip {
@@ -1797,14 +1897,6 @@ section {
   .telemetry-divider {
     display: none;
   }
-
-  .eyebrow {
-    font-size: 0.62rem;
-    padding: 0.25rem 0.55rem;
-    white-space: normal;
-    text-align: center;
-    max-width: 100%;
-  }
 }
 
 @media (max-width: 480px) {
@@ -1812,18 +1904,9 @@ section {
     padding: 0 1.15rem;
   }
 
-  .eyebrow {
-    font-size: 0.58rem;
-    letter-spacing: 0.02em;
-    padding: 0.22rem 0.45rem;
-    max-width: 100%;
-    white-space: normal;
-    text-align: center;
-  }
-
   .hero-title {
-    font-size: clamp(1.3rem, 5.2vw, 1.65rem);
-    line-height: 1.16;
+    font-size: clamp(1.4rem, 5.5vw, 1.75rem);
+    line-height: 1.18;
     word-break: normal;
     overflow-wrap: break-word;
   }
@@ -1852,7 +1935,7 @@ section {
 
   .hero-telemetry-strip {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.5rem;
     width: 100%;
   }
@@ -1864,18 +1947,13 @@ section {
 
 @media (max-width: 360px) {
   .hero-title {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     line-height: 1.2;
-  }
-  .eyebrow {
-    font-size: 0.5rem;
-    letter-spacing: 0.01em;
-    padding: 0.18rem 0.35rem;
   }
 }
 
 /* ==========================================================================
-   ACCESSIBILITY: REDUCED MOTION
+   ACCESSIBILITY: REDUCED MOTION (19P)
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1893,25 +1971,29 @@ section {
   }
 
   .floating-satellite,
-  .eyebrow-ping::after,
   .network-data-beam,
   .object-3d-floating,
-  .film-grain-layer {
+  .film-grain-layer,
+  .ambient-light-orb {
     animation: none !important;
   }
 
   .phone-mockup-real {
     transform: none !important;
   }
+
+  .modular-card::before {
+    display: none !important;
+  }
 }
 </style>
 </head>
 <body>
 
-<!-- Engineered Film Grain & Volumetric Atmosphere Canvas -->
+<!-- 4K Ultra-Depth Atmospheric Canvas (0 Grids / 0 Squares) -->
 <div class="ambient-canvas" aria-hidden="true">
+  <div class="ambient-base-gradient"></div>
   <div class="film-grain-layer"></div>
-  <div class="tech-grid-pattern"></div>
   <div class="ambient-light-orb orb-primary"></div>
   <div class="ambient-light-orb orb-secondary"></div>
   <div class="ambient-light-orb orb-tertiary"></div>
@@ -1922,9 +2004,9 @@ section {
 </div>
 
 <!-- ==========================================================================
-     HEADER / NAVBAR
+     HEADER / FLOATING GLASS NAVIGATION (19B)
      ========================================================================== -->
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="container nav-wrap">
     <a class="brand-link" href="/" aria-label="Zitro Network Inicio">
       <img src="assets/brand/zitro-logo-white.png" alt="Zitro Network" class="brand-logo-img">
@@ -1968,15 +2050,11 @@ section {
 
 <main>
   <!-- ==========================================================================
-       HERO SECTION (REAL SMARTPHONE MOCKUP & SEQUENTIAL ENTRY)
+       HERO SECTION (EDITORIAL ENTRANCE & REAL SMARTPHONE SHOWCASE) (19C & 19D)
        ========================================================================== -->
   <section class="hero-section" id="hero">
     <div class="container hero-grid">
       <div class="hero-content">
-        <div class="eyebrow hero-animate-eyebrow">
-          <span class="eyebrow-ping"></span>
-          <span>Fase Pre-Lanzamiento • Ecosistema Zitro</span>
-        </div>
         <h1 class="hero-title hero-animate-title">
           Construyendo una nueva experiencia de <span class="text-accent">minería en la nube</span> y tecnología blockchain.
         </h1>
@@ -2008,13 +2086,13 @@ section {
 
       <!-- Hero Visual Stage with Real Smartphone Mockup -->
       <div class="hero-visual-stage">
-        <!-- Giant Official Backdrop Mark Watermark -->
-        <img src="assets/brand/zitro-mark-accent.png" class="hero-backdrop-mark" alt="" aria-hidden="true">
+        <!-- Official Backdrop Mark Watermark -->
+        <img src="assets/brand/zitro-mark-white.png" class="hero-backdrop-mark" alt="" aria-hidden="true">
 
         <!-- Satellite Badge 1 (Top Left) -->
         <div class="floating-satellite satellite-top-left hero-animate-satellite-1">
           <div class="satellite-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
           <div>
             <div class="satellite-title">TECNOLOGÍA CLOUD</div>
@@ -2031,7 +2109,7 @@ section {
         <!-- Satellite Badge 2 (Bottom Right) -->
         <div class="floating-satellite satellite-bottom-right hero-animate-satellite-2">
           <div class="satellite-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           </div>
           <div>
             <div class="satellite-title">SESIONES FLEXIBLES</div>
@@ -2043,7 +2121,7 @@ section {
   </section>
 
   <!-- ==========================================================================
-       TELEMETRY TICKER BAR
+       TELEMETRY TICKER BAR (19E)
        ========================================================================== -->
   <section class="telemetry-ticker">
     <div class="container">
@@ -2076,12 +2154,12 @@ section {
   </section>
 
   <!-- ==========================================================================
-       ECOSYSTEM ARCHITECTURE
+       ECOSYSTEM ARCHITECTURE (MODULAR 2x2 GRID) (19H)
        ========================================================================== -->
   <section id="ecosystem">
     <div class="container">
       <div class="section-head reveal-item">
-        <div class="eyebrow">Arquitectura del Ecosistema</div>
+        <div class="section-tagline">Arquitectura del Ecosistema</div>
         <h2 class="section-title">Cuatro pilares para construir el ecosistema Zitro Network.</h2>
         <p class="section-subtitle">
           Zitro Network unifica minería en la nube, capacitación tecnológica integral y una visión de infraestructura sólida en una plataforma accesible.
@@ -2105,7 +2183,7 @@ section {
           </div>
           <a class="card-action-link" href="#mining">
             <span>Ver detalles de Cloud Mining</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
 
@@ -2125,7 +2203,7 @@ section {
           </div>
           <a class="card-action-link" href="#academy">
             <span>Explorar academia</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
 
@@ -2145,7 +2223,7 @@ section {
           </div>
           <a class="card-action-link" href="#community">
             <span>Conocer sistema de comunidad</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
 
@@ -2165,7 +2243,7 @@ section {
           </div>
           <a class="card-action-link" href="#roadmap">
             <span>Consultar hoja de ruta</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
       </div>
@@ -2173,12 +2251,12 @@ section {
   </section>
 
   <!-- ==========================================================================
-       CLOUD MINING SECTION (WITH REAL 3D ARCHITECTURE MOCKUP)
+       CLOUD MINING SECTION (WITH REAL 3D ARCHITECTURE MOCKUP) (19D)
        ========================================================================== -->
   <section id="mining" class="mining-deep-dive">
     <div class="container mining-layout">
       <div class="mining-info-block reveal-item">
-        <div class="eyebrow">Cloud Mining</div>
+        <div class="section-tagline">Cloud Mining</div>
         <h2 class="section-title">Minería en la nube accesible desde tu dispositivo móvil.</h2>
         <p class="section-subtitle">
           Inicia sesiones gestionadas mediante la infraestructura cloud de Zitro Network. La aplicación no utiliza la CPU o GPU del dispositivo para realizar minería computacional.
@@ -2187,7 +2265,7 @@ section {
         <div class="mining-spec-list">
           <div class="spec-item">
             <div class="spec-icon-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="spec-content">
               <h4>Sesiones flexibles de 6 h, 12 h y 24 h</h4>
@@ -2197,7 +2275,7 @@ section {
 
           <div class="spec-item">
             <div class="spec-icon-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="spec-content">
               <h4>Sin minería computacional en el hardware</h4>
@@ -2207,7 +2285,7 @@ section {
 
           <div class="spec-item">
             <div class="spec-icon-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="spec-content">
               <h4>Puntos y recompensas de cuenta</h4>
@@ -2291,13 +2369,13 @@ section {
             <div class="module-meta-tag">Módulo 03 // ANÁLISIS ESTRUCTURAL</div>
             <div class="module-headline">Identificación de Niveles Clave y Estructura de Mercado</div>
           </div>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8" fill="var(--accent)"></polygon></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8" fill="var(--accent)"></polygon></svg>
         </div>
       </div>
 
       <!-- Academy Description -->
       <div class="academy-content reveal-item stagger-1">
-        <div class="eyebrow">Zitro Academy</div>
+        <div class="section-tagline">Zitro Academy</div>
         <h2 class="section-title">Educación tecnológica y análisis estructural de mercados.</h2>
         <p class="section-subtitle" style="margin-bottom: 1.75rem;">
           Desarrolla conocimientos sobre la arquitectura blockchain, seguridad digital y comprensión analítica de estructuras de mercado.
@@ -2306,7 +2384,7 @@ section {
         <div class="mining-spec-list">
           <div class="spec-item">
             <div class="spec-icon-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="spec-content">
               <h4>Análisis Estructural de Mercados</h4>
@@ -2316,7 +2394,7 @@ section {
 
           <div class="spec-item">
             <div class="spec-icon-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="spec-content">
               <h4>Seguridad Digital & Web3</h4>
@@ -2326,7 +2404,7 @@ section {
 
           <div class="spec-item">
             <div class="spec-icon-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="spec-content">
               <h4>Arquitectura Blockchain</h4>
@@ -2344,7 +2422,7 @@ section {
   <section id="community">
     <div class="container">
       <div class="network-stage-card reveal-item">
-        <div class="eyebrow">Visión de Red</div>
+        <div class="section-tagline">Visión de Red</div>
         <h2 class="section-title">Una comunidad que construye la futura red de Zitro Network.</h2>
         <p class="section-subtitle" style="max-width: 60ch; margin: 0 auto;">
           El crecimiento de Zitro Network se fundamenta en la colaboración de sus usuarios. A través del sistema de comunidad y referidos, cada participante contribuye a expandir el ecosistema.
@@ -2424,12 +2502,12 @@ section {
   </section>
 
   <!-- ==========================================================================
-       ROADMAP SECTION
+       ROADMAP SECTION (19E & 19H)
        ========================================================================== -->
   <section id="roadmap" style="background: rgba(10, 13, 20, 0.4);">
     <div class="container">
       <div class="section-head reveal-item">
-        <div class="eyebrow">Hoja de Ruta</div>
+        <div class="section-tagline">Hoja de Ruta</div>
         <h2 class="section-title">Construcción metódica orientada a infraestructura y utilidad real.</h2>
         <p class="section-subtitle">
           Fases de desarrollo transparentes sin fechas especulativas. Cada hito se consolida antes de avanzar al siguiente.
@@ -2487,7 +2565,7 @@ section {
     <div class="container">
       <div class="cta-stage reveal-item">
         <div class="cta-core-wrap">
-          <div class="eyebrow">Tecnología Zitro</div>
+          <div class="section-tagline">Tecnología Zitro</div>
           <h2>Una infraestructura tecnológica en evolución.</h2>
           <p>
             Zitro Network continúa desarrollando su arquitectura cloud, experiencia móvil, comunidad y futura infraestructura blockchain.
@@ -2495,7 +2573,7 @@ section {
           <div class="cta-actions-deck">
             <a class="btn btn-primary" href="#roadmap">
               <span>Explorar Roadmap</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
             <a class="btn btn-secondary" href="https://fedeortiz9.github.io/zitro-terms/" target="_blank" rel="noopener noreferrer">
               <span>Términos y Condiciones</span>
@@ -2508,7 +2586,7 @@ section {
 </main>
 
 <!-- ==========================================================================
-     FOOTER
+     FOOTER (REFINED FLOATING MATTE GLASS)
      ========================================================================== -->
 <footer class="site-footer">
   <div class="container">
@@ -2573,13 +2651,16 @@ section {
 </footer>
 
 <!-- ==========================================================================
-     INTERACTIONS & MOTION SYSTEM (VANILLA JS)
+     INTERACTIONS & MOTION SYSTEM (VANILLA JS) (19A - 19P)
      ========================================================================== -->
 <script>
 (function() {
   'use strict';
 
-  // 1. Mobile Menu Drawer Toggle & Escape handler
+  var isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  // 1. Mobile Menu Drawer Toggle & Escape Handler
   var toggleBtn = document.getElementById('mobile-toggle');
   var mobilePanel = document.getElementById('mobile-nav-panel');
 
@@ -2613,7 +2694,29 @@ section {
     });
   }
 
-  // 2. Interactive Timeframe Switcher in Academy Terminal
+  // 2. Dynamic Header Scroll Enhancement (19B)
+  var header = document.getElementById('site-header');
+  var ticking = false;
+
+  function updateHeaderOnScroll() {
+    if (header) {
+      if (window.scrollY > 30) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeaderOnScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // 3. Interactive Timeframe Switcher in Academy Terminal
   var tfPills = document.querySelectorAll('.tf-pill');
   tfPills.forEach(function(pill) {
     pill.addEventListener('click', function() {
@@ -2622,11 +2725,12 @@ section {
     });
   });
 
-  // 3. 3D Parallax Tilt on Smartphone & Cards in Desktop
+  // 4. 3D Parallax Perspective Tilt on Smartphone Mockup & Card Cursor Spotlight (17 & 18)
   var phoneMockup = document.getElementById('phone-mockup-real');
-  var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  var modularCards = document.querySelectorAll('.modular-card');
 
-  if (!isTouch && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+  if (!isTouch && !isReduced) {
+    // Smartphone 3D Perspective Tilt
     document.addEventListener('mousemove', function(e) {
       if (phoneMockup) {
         var rect = phoneMockup.getBoundingClientRect();
@@ -2641,10 +2745,21 @@ section {
         phoneMockup.style.transform = 'perspective(1200px) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) scale3d(1.02, 1.02, 1.02)';
       }
     });
+
+    // Dynamic Cursor Spotlight on Cards
+    modularCards.forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', x + 'px');
+        card.style.setProperty('--mouse-y', y + 'px');
+      });
+    });
   }
 
-  // 4. Scroll Stagger Reveals (IntersectionObserver)
-  if ('IntersectionObserver' in window) {
+  // 5. Scroll Stagger Reveals (IntersectionObserver) (19E - 19H)
+  if (!isReduced && 'IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function(entries, obs) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
@@ -2653,7 +2768,7 @@ section {
         }
       });
     }, {
-      rootMargin: '0px 0px -20px 0px',
+      rootMargin: '0px 0px -25px 0px',
       threshold: 0.05
     });
 
