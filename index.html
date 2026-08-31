@@ -2391,6 +2391,146 @@ section {
 }
 
 /* ==========================================================================
+   APP DOWNLOAD CTA (PREMIUM HIGH-END TECH STYLE — W4C)
+   ========================================================================== */
+.app-download-cta-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 22px 0 26px;
+  padding: 0 22px;
+}
+
+.app-download-cta {
+  position: relative;
+  width: min(100%, 420px);
+  min-height: 68px;
+  padding: 0 24px;
+  border-radius: 22px;
+  border: 1px solid rgba(220, 252, 4, 0.34);
+  background:
+    linear-gradient(180deg, rgba(20, 22, 26, 0.92), rgba(7, 8, 10, 0.96));
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(14px) saturate(135%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+  color: #ffffff;
+  font-family: var(--font-display);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  overflow: hidden;
+  cursor: default;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition:
+    transform 280ms cubic-bezier(.16,1,.3,1),
+    box-shadow 280ms ease,
+    border-color 280ms ease,
+    background 280ms ease;
+}
+
+.app-download-cta::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 21px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(220,252,4,0.10), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.00));
+  pointer-events: none;
+}
+
+.app-download-cta__text {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(1rem, 2vw, 1.08rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-shadow: 0 0 14px rgba(220,252,4,0.10);
+  transition:
+    letter-spacing 240ms ease,
+    text-shadow 240ms ease,
+    transform 240ms ease;
+}
+
+.app-download-cta__icon {
+  position: relative;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(220, 252, 4, 0.12);
+  border: 1px solid rgba(220, 252, 4, 0.30);
+  color: #dcfc04;
+  font-size: 18px;
+  line-height: 1;
+  font-family: system-ui, -apple-system, sans-serif;
+  transition:
+    transform 260ms cubic-bezier(.16,1,.3,1),
+    background 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.app-download-cta__shine {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -35%;
+  width: 28%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.18),
+    transparent
+  );
+  transform: skewX(-18deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app-download-cta:hover {
+  transform: translateY(-2px) scale(1.01);
+  border-color: rgba(220, 252, 4, 0.62);
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.52),
+    0 0 24px rgba(220,252,4,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+}
+
+.app-download-cta:hover .app-download-cta__text {
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 18px rgba(220,252,4,0.18);
+  transform: translateY(-1px);
+}
+
+.app-download-cta:hover .app-download-cta__icon {
+  transform: translateY(-1px) scale(1.06);
+  background: rgba(220, 252, 4, 0.18);
+  box-shadow: 0 0 18px rgba(220,252,4,0.18);
+}
+
+.app-download-cta:hover .app-download-cta__shine {
+  opacity: 1;
+  animation: appCtaShine 900ms cubic-bezier(.16,1,.3,1) forwards;
+}
+
+@keyframes appCtaShine {
+  from { left: -35%; }
+  to { left: 115%; }
+}
+
+/* ==========================================================================
    SCROLL REVEALS & DIRECTIONAL VARIANTS (W3B SYSTEM)
    ========================================================================== */
 .reveal-item {
@@ -2851,12 +2991,27 @@ section {
     right: 4px;
   }
 
+  .app-download-cta-wrap {
+    margin: 18px 0 20px;
+    padding: 0 18px;
+  }
+
+  .app-download-cta {
+    width: 100%;
+    min-height: 64px;
+    border-radius: 20px;
+  }
+
+  .app-download-cta__text {
+    font-size: 1rem;
+  }
+
   .hero-mobile-device__caption {
     text-align: center;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--fg-muted);
-    margin-top: 1.5rem;
+    margin-top: 0;
     max-width: 38ch;
     margin-left: auto;
     margin-right: auto;
@@ -3435,6 +3590,14 @@ section {
     transform: none !important;
   }
 
+  .app-download-cta,
+  .app-download-cta__text,
+  .app-download-cta__icon,
+  .app-download-cta__shine {
+    transition: none !important;
+    animation: none !important;
+  }
+
   .modular-card::before {
     display: none !important;
   }
@@ -3598,6 +3761,20 @@ section {
         <div class="hero-mobile__chip chip-bottom">
           <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           <span data-i18n="hero.mobile_chip_sessions">Sesiones 6h · 12h · 24h</span>
+        </div>
+      </div>
+      <div class="app-download-cta-wrap reveal-item">
+        <div
+          class="app-download-cta"
+          role="note"
+          data-i18n-aria="hero.download_cta_aria"
+          aria-label="Descargar la app — próximamente"
+        >
+          <span class="app-download-cta__text" data-i18n="hero.download_cta">Descargar la app</span>
+          <span class="app-download-cta__shine" aria-hidden="true"></span>
+          <span class="app-download-cta__icon" aria-hidden="true">
+            ↓
+          </span>
         </div>
       </div>
       <div class="hero-mobile-device__caption">
@@ -4558,6 +4735,8 @@ section {
       "hero.satellite_sessions_value": "Ciclos 6h • 12h • 24h",
       "hero.mobile_chip_cloud": "Tecnología Cloud",
       "hero.mobile_chip_sessions": "Sesiones 6h · 12h · 24h",
+      "hero.download_cta": "Descargar la app",
+      "hero.download_cta_aria": "Descargar la app — próximamente",
       "hero.mobile_caption": "Sin minería computacional en hardware • Sesiones cloud gestionadas",
       "hero.google_play_alt": "Disponible en Google Play",
       "social.eyebrow": "ZITRO NETWORK",
@@ -4697,6 +4876,8 @@ section {
       "hero.satellite_sessions_value": "6h • 12h • 24h Cycles",
       "hero.mobile_chip_cloud": "Cloud Technology",
       "hero.mobile_chip_sessions": "Sessions 6h · 12h · 24h",
+      "hero.download_cta": "Download the app",
+      "hero.download_cta_aria": "Download the app — coming soon",
       "hero.mobile_caption": "No hardware computational mining • Managed cloud sessions",
       "hero.google_play_alt": "Available on Google Play",
       "social.eyebrow": "ZITRO NETWORK",
