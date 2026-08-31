@@ -1042,6 +1042,35 @@ section {
   margin-bottom: 2.5rem;
 }
 
+.hero-cta-secondary-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+
+.hero-social-proof {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--fg-muted);
+  letter-spacing: 0.02em;
+  padding-left: 6px;
+  user-select: none;
+}
+
+.social-proof-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(220, 252, 4, 0.4);
+}
+
 .hero-telemetry-strip {
   display: inline-flex;
   align-items: center;
@@ -2426,6 +2455,18 @@ section {
     justify-content: center;
   }
 
+  .hero-mobile__ctas .hero-cta-secondary-wrap {
+    width: 100%;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hero-mobile__ctas .hero-social-proof {
+    padding-left: 0;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
   /* ==========================================================================
      W3J: TAREA 4 — BLOQUE DE MARCA DEBAJO DE LOS CTAS
      ========================================================================== */
@@ -3242,14 +3283,20 @@ section {
         Zitro Network conecta minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en evolución.
       </p>
       <div class="hero-mobile__ctas">
-        <a class="btn btn-primary hero-m-cta1" href="#ecosystem">
-          <span data-i18n="hero.cta1">Explorar Ecosistema</span>
+        <a class="btn btn-primary hero-m-cta1" href="https://fedeortiz9.github.io/zitro-whitepaper/" target="_blank" rel="noopener noreferrer">
+          <span data-i18n="hero.cta1">Leer Whitepaper</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
-        <a class="btn btn-secondary hero-m-cta2" href="#academy">
-          <span data-i18n="hero.cta2">Conocer Zitro Academy</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </a>
+        <div class="hero-cta-secondary-wrap hero-m-cta2">
+          <a class="btn btn-secondary" href="https://whatsapp.com/channel/0029VaDmLxcJUM2jfSCAsF3p" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="hero.cta2">Unirse al canal de WhatsApp</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+          <div class="hero-social-proof">
+            <span class="social-proof-dot" aria-hidden="true"></span>
+            <span data-i18n="hero.social_proof">+117.000 miembros</span>
+          </div>
+        </div>
       </div>
 
       <!-- W3J: TAREA 4 — Brand row: Zitro + Google Play limpio -->
@@ -3304,14 +3351,20 @@ section {
           Zitro Network conecta minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en evolución.
         </p>
         <div class="hero-ctas">
-          <a class="btn btn-primary hero-animate-cta-1" href="#ecosystem">
-            <span data-i18n="hero.cta1">Explorar Ecosistema</span>
+          <a class="btn btn-primary hero-animate-cta-1" href="https://fedeortiz9.github.io/zitro-whitepaper/" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="hero.cta1">Leer Whitepaper</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
-          <a class="btn btn-secondary hero-animate-cta-2" href="#academy">
-            <span data-i18n="hero.cta2">Conocer Zitro Academy</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </a>
+          <div class="hero-cta-secondary-wrap hero-animate-cta-2">
+            <a class="btn btn-secondary" href="https://whatsapp.com/channel/0029VaDmLxcJUM2jfSCAsF3p" target="_blank" rel="noopener noreferrer">
+              <span data-i18n="hero.cta2">Unirse al canal de WhatsApp</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <div class="hero-social-proof">
+              <span class="social-proof-dot" aria-hidden="true"></span>
+              <span data-i18n="hero.social_proof">+117.000 miembros</span>
+            </div>
+          </div>
         </div>
         <div class="hero-telemetry-strip hero-animate-telemetry">
           <div class="telemetry-item">
@@ -4175,8 +4228,9 @@ section {
       "hero.eyebrow": "Plataforma Cloud & Blockchain",
       "hero.title_html": "Construyendo una nueva experiencia de <span class=\"text-accent\">minería en la nube</span> y tecnología blockchain.",
       "hero.desc": "Zitro Network conecta minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en evolución.",
-      "hero.cta1": "Explorar Ecosistema",
-      "hero.cta2": "Conocer Zitro Academy",
+      "hero.cta1": "Leer Whitepaper",
+      "hero.cta2": "Unirse al canal de WhatsApp",
+      "hero.social_proof": "+117.000 miembros",
       "hero.telemetry_platform_label": "PLATAFORMA:",
       "hero.telemetry_availability_label": "DISPONIBILIDAD:",
       "hero.satellite_cloud_title": "TECNOLOGÍA CLOUD",
@@ -4306,8 +4360,9 @@ section {
       "hero.eyebrow": "Cloud & Blockchain Platform",
       "hero.title_html": "Building a new experience in <span class=\"text-accent\">cloud mining</span> and blockchain technology.",
       "hero.desc": "Zitro Network connects mobile cloud mining, technology education, community, and evolving blockchain infrastructure.",
-      "hero.cta1": "Explore Ecosystem",
-      "hero.cta2": "Discover Zitro Academy",
+      "hero.cta1": "Read Whitepaper",
+      "hero.cta2": "Join WhatsApp Channel",
+      "hero.social_proof": "+117K members",
       "hero.telemetry_platform_label": "PLATFORM:",
       "hero.telemetry_availability_label": "AVAILABILITY:",
       "hero.satellite_cloud_title": "CLOUD TECHNOLOGY",
