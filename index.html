@@ -773,6 +773,51 @@ section {
 }
 
 /* ==========================================================================
+   LANGUAGE SWITCHER (ES / EN — W3K4)
+   ========================================================================== */
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  user-select: none;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  padding: 4px 6px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  color: var(--fg-secondary);
+  opacity: 0.55;
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  transition: color var(--motion-fast) ease, opacity var(--motion-fast) ease;
+}
+
+.lang-btn:hover {
+  opacity: 0.85;
+  color: var(--fg-primary);
+}
+
+.lang-btn[aria-pressed="true"] {
+  opacity: 1;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.lang-divider {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
    HERO ENTRANCE KEYFRAMES (W3C — PERCEPTIBLE, PHYSICAL, SYNCHRONIZED)
    ========================================================================== */
 @keyframes heroTitleReveal {
@@ -2737,6 +2782,27 @@ section {
     color: #fff;
   }
 
+  .site-header .language-switcher {
+    display: none;
+  }
+
+  .mobile-nav-lang {
+    padding: 1.5rem 0.15rem 0.5rem;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .mobile-nav-lang .language-switcher {
+    display: inline-flex;
+    font-size: 0.95rem;
+    gap: 8px;
+  }
+
+  .mobile-nav-lang .lang-btn {
+    padding: 6px 10px;
+  }
+
   .floating-satellite {
     display: none;
   }
@@ -3088,27 +3154,33 @@ section {
      ========================================================================== -->
 <header class="site-header" id="site-header">
   <div class="container nav-wrap">
-    <a class="brand-link" href="/" aria-label="Zitro Network Inicio">
+    <a class="brand-link" href="/" aria-label="Zitro Network Inicio" data-i18n-aria="nav.brand_aria">
       <img src="assets/brand/zitro-logo-white.png" alt="Zitro Network" class="brand-logo-img">
     </a>
 
-    <nav class="nav-links" aria-label="Navegación principal">
-      <a class="nav-item" href="#ecosystem">Ecosistema</a>
-      <a class="nav-item" href="#mining">Cloud Mining</a>
-      <a class="nav-item" href="#academy">Academia</a>
-      <a class="nav-item" href="#community">Comunidad</a>
-      <a class="nav-item" href="#roadmap">Roadmap</a>
+    <nav class="nav-links" aria-label="Navegación principal" data-i18n-aria="nav.main_aria">
+      <a class="nav-item" href="#ecosystem" data-i18n="nav.ecosystem">Ecosistema</a>
+      <a class="nav-item" href="#mining" data-i18n="nav.mining">Cloud Mining</a>
+      <a class="nav-item" href="#academy" data-i18n="nav.academy">Academia</a>
+      <a class="nav-item" href="#community" data-i18n="nav.community">Comunidad</a>
+      <a class="nav-item" href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
     </nav>
 
     <div class="nav-actions">
-      <div class="badge-play-store" title="Lanzamiento próximamente en Google Play Store">
+      <div class="language-switcher" role="group" aria-label="Seleccionar idioma / Select language">
+        <button type="button" class="lang-btn" data-language="es" aria-pressed="true" aria-label="Español">ES</button>
+        <span class="lang-divider" aria-hidden="true">|</span>
+        <button type="button" class="lang-btn" data-language="en" aria-pressed="false" aria-label="English">EN</button>
+      </div>
+
+      <div class="badge-play-store" title="Lanzamiento próximamente en Google Play Store" data-i18n-title="nav.badge_title">
         <svg viewBox="0 0 24 24">
           <path d="M3.609 1.814L13.792 12 3.61 22.186a2.158 2.158 0 0 1-.22-.971V2.785c0-.361.08-.696.22-.971zM15.207 13.414l2.585 2.586-11.45 6.477 8.865-9.063zm2.585-5.414l-2.585 2.586-8.865-9.063 11.45 6.477zM16.621 12l3.414-3.414a1.868 1.868 0 0 1 0 2.642L16.621 12z"/>
         </svg>
-        <span>Android • Próximamente</span>
+        <span data-i18n="nav.badge_android">Android • Próximamente</span>
       </div>
 
-      <button type="button" class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav-panel">
+      <button type="button" class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav-panel" data-i18n-aria="nav.mobile_toggle_aria">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -3122,12 +3194,19 @@ section {
 <!-- W3I: TAREA 2 — Mobile Nav Backdrop & Side Nav Panel -->
 <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
 
-<nav class="mobile-nav-panel" id="mobile-nav-panel" aria-label="Navegación móvil">
-  <a class="nav-item" href="#ecosystem">Ecosistema</a>
-  <a class="nav-item" href="#mining">Cloud Mining</a>
-  <a class="nav-item" href="#academy">Zitro Academy</a>
-  <a class="nav-item" href="#community">Comunidad</a>
-  <a class="nav-item" href="#roadmap">Hoja de Ruta</a>
+<nav class="mobile-nav-panel" id="mobile-nav-panel" aria-label="Navegación móvil" data-i18n-aria="nav.mobile_aria">
+  <a class="nav-item" href="#ecosystem" data-i18n="nav.ecosystem">Ecosistema</a>
+  <a class="nav-item" href="#mining" data-i18n="nav.mining">Cloud Mining</a>
+  <a class="nav-item" href="#academy" data-i18n="nav.academy_mobile">Zitro Academy</a>
+  <a class="nav-item" href="#community" data-i18n="nav.community">Comunidad</a>
+  <a class="nav-item" href="#roadmap" data-i18n="nav.roadmap_mobile">Hoja de Ruta</a>
+  <div class="mobile-nav-lang">
+    <div class="language-switcher" role="group" aria-label="Seleccionar idioma / Select language">
+      <button type="button" class="lang-btn" data-language="es" aria-pressed="true" aria-label="Español">ES</button>
+      <span class="lang-divider" aria-hidden="true">|</span>
+      <button type="button" class="lang-btn" data-language="en" aria-pressed="false" aria-label="English">EN</button>
+    </div>
+  </div>
 </nav>
 
 <main>
@@ -3155,20 +3234,20 @@ section {
        ========================================================================== -->
   <section class="hero-mobile-copy" id="hero-mobile">
     <div class="container">
-      <div class="section-tagline hero-m-eyebrow">Plataforma Cloud & Blockchain</div>
-      <h1 class="hero-mobile__title hero-m-title">
+      <div class="section-tagline hero-m-eyebrow" data-i18n="hero.eyebrow">Plataforma Cloud & Blockchain</div>
+      <h1 class="hero-mobile__title hero-m-title" data-i18n-html="hero.title_html">
         Construyendo una nueva experiencia de <span class="text-accent">minería en la nube</span> y tecnología blockchain.
       </h1>
-      <p class="hero-mobile__desc hero-m-desc">
+      <p class="hero-mobile__desc hero-m-desc" data-i18n="hero.desc">
         Zitro Network conecta minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en evolución.
       </p>
       <div class="hero-mobile__ctas">
         <a class="btn btn-primary hero-m-cta1" href="#ecosystem">
-          <span>Explorar Ecosistema</span>
+          <span data-i18n="hero.cta1">Explorar Ecosistema</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
         <a class="btn btn-secondary hero-m-cta2" href="#academy">
-          <span>Conocer Zitro Academy</span>
+          <span data-i18n="hero.cta2">Conocer Zitro Academy</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </a>
       </div>
@@ -3176,7 +3255,7 @@ section {
       <!-- W3J: TAREA 4 — Brand row: Zitro + Google Play limpio -->
       <div class="hero-mobile-brandrow hero-m-brandrow">
         <img src="assets/brand/zitro-logo-white.png" alt="Zitro Network" class="zitro-logo">
-        <img src="assets/brand/google-play-badge.png" alt="Disponible en Google Play" class="google-play-badge">
+        <img src="assets/brand/google-play-badge.png" alt="Disponible en Google Play" data-i18n-alt="hero.google_play_alt" class="google-play-badge">
       </div>
     </div>
   </section>
@@ -3193,7 +3272,7 @@ section {
       <div class="hero-mobile-device__stage">
         <div class="hero-mobile__chip chip-top">
           <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          <span>Tecnología Cloud</span>
+          <span data-i18n="hero.mobile_chip_cloud">Tecnología Cloud</span>
         </div>
         <div class="hero-mobile__phone-wrap hero-m-phone" id="phone-entrance-wrap-mobile">
           <div class="mockup-floor-glow"></div>
@@ -3201,11 +3280,11 @@ section {
         </div>
         <div class="hero-mobile__chip chip-bottom">
           <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          <span>Sesiones 6h · 12h · 24h</span>
+          <span data-i18n="hero.mobile_chip_sessions">Sesiones 6h · 12h · 24h</span>
         </div>
       </div>
       <div class="hero-mobile-device__caption">
-        <span>Sin minería computacional en hardware • Sesiones cloud gestionadas</span>
+        <span data-i18n="hero.mobile_caption">Sin minería computacional en hardware • Sesiones cloud gestionadas</span>
       </div>
     </div>
   </section>
@@ -3218,30 +3297,30 @@ section {
   <section class="hero-section" id="hero">
     <div class="container hero-grid">
       <div class="hero-content">
-        <h1 class="hero-title hero-animate-title">
+        <h1 class="hero-title hero-animate-title" data-i18n-html="hero.title_html">
           Construyendo una nueva experiencia de <span class="text-accent">minería en la nube</span> y tecnología blockchain.
         </h1>
-        <p class="hero-desc hero-animate-desc">
+        <p class="hero-desc hero-animate-desc" data-i18n="hero.desc">
           Zitro Network conecta minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en evolución.
         </p>
         <div class="hero-ctas">
           <a class="btn btn-primary hero-animate-cta-1" href="#ecosystem">
-            <span>Explorar Ecosistema</span>
+            <span data-i18n="hero.cta1">Explorar Ecosistema</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
           <a class="btn btn-secondary hero-animate-cta-2" href="#academy">
-            <span>Conocer Zitro Academy</span>
+            <span data-i18n="hero.cta2">Conocer Zitro Academy</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
         <div class="hero-telemetry-strip hero-animate-telemetry">
           <div class="telemetry-item">
-            <span>PLATAFORMA:</span>
+            <span data-i18n="hero.telemetry_platform_label">PLATAFORMA:</span>
             <strong>Android Core</strong>
           </div>
           <div class="telemetry-divider"></div>
           <div class="telemetry-item">
-            <span>DISPONIBILIDAD:</span>
+            <span data-i18n="hero.telemetry_availability_label">DISPONIBILIDAD:</span>
             <strong>Google Play Store</strong>
           </div>
         </div>
@@ -3258,8 +3337,8 @@ section {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
           <div>
-            <div class="satellite-title">TECNOLOGÍA CLOUD</div>
-            <div class="satellite-value">Sin Minería en Hardware</div>
+            <div class="satellite-title" data-i18n="hero.satellite_cloud_title">TECNOLOGÍA CLOUD</div>
+            <div class="satellite-value" data-i18n="hero.satellite_cloud_value">Sin Minería en Hardware</div>
           </div>
         </div>
 
@@ -3275,8 +3354,8 @@ section {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           </div>
           <div>
-            <div class="satellite-title">SESIONES FLEXIBLES</div>
-            <div class="satellite-value">Ciclos 6h • 12h • 24h</div>
+            <div class="satellite-title" data-i18n="hero.satellite_sessions_title">SESIONES FLEXIBLES</div>
+            <div class="satellite-value" data-i18n="hero.satellite_sessions_value">Ciclos 6h • 12h • 24h</div>
           </div>
         </div>
       </div>
@@ -3291,26 +3370,26 @@ section {
       <div class="ticker-grid">
         <div class="ticker-cell reveal-up">
           <span class="ticker-index">01 // HARDWARE</span>
-          <h3 class="ticker-title">Eficiencia en el Dispositivo</h3>
-          <p class="ticker-desc">La experiencia no utiliza la CPU o GPU del dispositivo para minería computacional.</p>
+          <h3 class="ticker-title" data-i18n="ticker.01_title">Eficiencia en el Dispositivo</h3>
+          <p class="ticker-desc" data-i18n="ticker.01_desc">La experiencia no utiliza la CPU o GPU del dispositivo para minería computacional.</p>
         </div>
 
         <div class="ticker-cell reveal-up stagger-1">
           <span class="ticker-index">02 // ACADEMY</span>
-          <h3 class="ticker-title">Educación Tecnológica</h3>
-          <p class="ticker-desc">Zitro Academy para comprender tecnología blockchain y análisis de mercado.</p>
+          <h3 class="ticker-title" data-i18n="ticker.02_title">Educación Tecnológica</h3>
+          <p class="ticker-desc" data-i18n="ticker.02_desc">Zitro Academy para comprender tecnología blockchain y análisis de mercado.</p>
         </div>
 
         <div class="ticker-cell reveal-up stagger-2">
           <span class="ticker-index">03 // NETWORK</span>
-          <h3 class="ticker-title">Sistema de Comunidad</h3>
-          <p class="ticker-desc">Crecimiento colaborativo mediante un sistema de referidos y equipo.</p>
+          <h3 class="ticker-title" data-i18n="ticker.03_title">Sistema de Comunidad</h3>
+          <p class="ticker-desc" data-i18n="ticker.03_desc">Crecimiento colaborativo mediante un sistema de referidos y equipo.</p>
         </div>
 
         <div class="ticker-cell reveal-up stagger-3">
           <span class="ticker-index">04 // PROTOCOL</span>
-          <h3 class="ticker-title">Infraestructura Blockchain</h3>
-          <p class="ticker-desc">Hoja de ruta orientada al desarrollo de protocolos descentralizados.</p>
+          <h3 class="ticker-title" data-i18n="ticker.04_title">Infraestructura Blockchain</h3>
+          <p class="ticker-desc" data-i18n="ticker.04_desc">Hoja de ruta orientada al desarrollo de protocolos descentralizados.</p>
         </div>
       </div>
     </div>
@@ -3322,9 +3401,9 @@ section {
   <section id="ecosystem">
     <div class="container">
       <div class="section-head reveal-up">
-        <div class="section-tagline">Arquitectura del Ecosistema</div>
-        <h2 class="section-title">Cuatro pilares para construir el ecosistema Zitro Network.</h2>
-        <p class="section-subtitle">
+        <div class="section-tagline" data-i18n="ecosystem.tagline">Arquitectura del Ecosistema</div>
+        <h2 class="section-title" data-i18n="ecosystem.title">Cuatro pilares para construir el ecosistema Zitro Network.</h2>
+        <p class="section-subtitle" data-i18n="ecosystem.subtitle">
           Zitro Network unifica minería en la nube, capacitación tecnológica integral y una visión de infraestructura sólida en una plataforma accesible.
         </p>
       </div>
@@ -3335,16 +3414,16 @@ section {
           <div>
             <div class="card-header-bar">
               <span class="card-index">01</span>
-              <span class="card-pill">Core Application</span>
+              <span class="card-pill" data-i18n="ecosystem.card1_pill">Core Application</span>
             </div>
-            <h3>Minería en la Nube</h3>
-            <p>
+            <h3 data-i18n="ecosystem.card1_title">Minería en la Nube</h3>
+            <p data-i18n="ecosystem.card1_desc">
               Inicia sesiones gestionadas mediante la infraestructura cloud de Zitro Network. La aplicación no utiliza la CPU o GPU del dispositivo para realizar minería computacional.
             </p>
           </div>
           <div class="card-divider"></div>
           <a class="card-cta btn-cta-white" href="#mining">
-            <span>Ver detalles de Cloud Mining</span>
+            <span data-i18n="ecosystem.card1_cta">Ver detalles de Cloud Mining</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
         </div>
@@ -3354,16 +3433,16 @@ section {
           <div>
             <div class="card-header-bar">
               <span class="card-index">02</span>
-              <span class="card-pill">Educación</span>
+              <span class="card-pill" data-i18n="ecosystem.card2_pill">Educación</span>
             </div>
-            <h3>Zitro Academy</h3>
-            <p>
+            <h3 data-i18n="ecosystem.card2_title">Zitro Academy</h3>
+            <p data-i18n="ecosystem.card2_desc">
               Educación tecnológica y comprensión de mercados. Aprende conceptos fundamentales de blockchain, seguridad digital, análisis estructural y tecnología Web3 con módulos estructurados.
             </p>
           </div>
           <div class="card-divider"></div>
           <a class="card-cta btn-cta-dark" href="#academy">
-            <span>Explorar academia</span>
+            <span data-i18n="ecosystem.card2_cta">Explorar academia</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
         </div>
@@ -3373,16 +3452,16 @@ section {
           <div>
             <div class="card-header-bar">
               <span class="card-index">03</span>
-              <span class="card-pill">Comunidad</span>
+              <span class="card-pill" data-i18n="ecosystem.card3_pill">Comunidad</span>
             </div>
-            <h3>Comunidad & Red</h3>
-            <p>
+            <h3 data-i18n="ecosystem.card3_title">Comunidad & Red</h3>
+            <p data-i18n="ecosystem.card3_desc">
               Construye tu comunidad y amplía tu red dentro del ecosistema. Un sistema de referidos que fomenta la colaboración y fortalece la participación activa.
             </p>
           </div>
           <div class="card-divider"></div>
           <a class="card-cta btn-cta-dark" href="#community">
-            <span>Conocer sistema de comunidad</span>
+            <span data-i18n="ecosystem.card3_cta">Conocer sistema de comunidad</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
         </div>
@@ -3392,16 +3471,16 @@ section {
           <div>
             <div class="card-header-bar">
               <span class="card-index">04</span>
-              <span class="card-pill">Infraestructura</span>
+              <span class="card-pill" data-i18n="ecosystem.card4_pill">Infraestructura</span>
             </div>
-            <h3>Infraestructura Blockchain</h3>
-            <p>
+            <h3 data-i18n="ecosystem.card4_title">Infraestructura Blockchain</h3>
+            <p data-i18n="ecosystem.card4_desc">
               La evolución hacia una infraestructura tecnológica robusta. Una hoja de ruta enfocada en seguridad, smart contracts y protocolos descentralizados.
             </p>
           </div>
           <div class="card-divider"></div>
           <a class="card-cta btn-cta-dark" href="#roadmap">
-            <span>Consultar hoja de ruta</span>
+            <span data-i18n="ecosystem.card4_cta">Consultar hoja de ruta</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
         </div>
@@ -3415,9 +3494,9 @@ section {
   <section id="mining" class="mining-deep-dive">
     <div class="container mining-layout">
       <div class="mining-info-block reveal-up">
-        <div class="section-tagline">Cloud Mining</div>
-        <h2 class="section-title">Minería en la nube accesible desde tu dispositivo móvil.</h2>
-        <p class="section-subtitle">
+        <div class="section-tagline" data-i18n="mining.tagline">Cloud Mining</div>
+        <h2 class="section-title" data-i18n="mining.title">Minería en la nube accesible desde tu dispositivo móvil.</h2>
+        <p class="section-subtitle" data-i18n="mining.subtitle">
           Inicia sesiones gestionadas mediante la infraestructura cloud de Zitro Network. La aplicación no utiliza la CPU o GPU del dispositivo para realizar minería computacional.
         </p>
 
@@ -3427,8 +3506,8 @@ section {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="spec-content">
-              <h4>Sesiones flexibles de 6 h, 12 h y 24 h</h4>
-              <p>Elige el ciclo que mejor se adapte a tu rutina e inicia tu sesión de minería en la nube con un solo toque desde la app.</p>
+              <h4 data-i18n="mining.spec1_title">Sesiones flexibles de 6 h, 12 h y 24 h</h4>
+              <p data-i18n="mining.spec1_desc">Elige el ciclo que mejor se adapte a tu rutina e inicia tu sesión de minería en la nube con un solo toque desde la app.</p>
             </div>
           </div>
 
@@ -3437,8 +3516,8 @@ section {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="spec-content">
-              <h4>Sin minería computacional en el hardware</h4>
-              <p>La experiencia no realiza cálculos criptográficos pesados en el dispositivo; las sesiones son gestionadas a través de la infraestructura cloud del ecosistema.</p>
+              <h4 data-i18n="mining.spec2_title">Sin minería computacional en el hardware</h4>
+              <p data-i18n="mining.spec2_desc">La experiencia no realiza cálculos criptográficos pesados en el dispositivo; las sesiones son gestionadas a través de la infraestructura cloud del ecosistema.</p>
             </div>
           </div>
 
@@ -3447,8 +3526,8 @@ section {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="spec-content">
-              <h4>Puntos y recompensas de cuenta</h4>
-              <p>El progreso de cada sesión queda registrado como puntos y recompensas internas dentro de la cuenta del usuario.</p>
+              <h4 data-i18n="mining.spec3_title">Puntos y recompensas de cuenta</h4>
+              <p data-i18n="mining.spec3_desc">El progreso de cada sesión queda registrado como puntos y recompensas internas dentro de la cuenta del usuario.</p>
             </div>
           </div>
         </div>
@@ -3456,7 +3535,7 @@ section {
 
       <!-- Real 3D Cloud Mining Flow Mockup Stage -->
       <div class="mockup-3d-stage reveal-mockup-cloud">
-        <img src="assets/mockups/cloud-mining-flow-3d.png" alt="Flujo de Sesiones en la Nube 3D" class="mockup-card-3d-img" loading="lazy">
+        <img src="assets/mockups/cloud-mining-flow-3d.png" alt="Flujo de Sesiones en la Nube 3D" data-i18n-alt="mining.mockup_alt" class="mockup-card-3d-img" loading="lazy">
       </div>
     </div>
   </section>
@@ -3470,8 +3549,8 @@ section {
       <div class="research-terminal reveal-terminal">
         <div class="terminal-topbar">
           <div class="terminal-title-group">
-            <span class="terminal-badge">RESEARCH</span>
-            <span class="terminal-name">ANÁLISIS DE MERCADO</span>
+            <span class="terminal-badge" data-i18n="academy.terminal_badge">RESEARCH</span>
+            <span class="terminal-name" data-i18n="academy.terminal_name">ANÁLISIS DE MERCADO</span>
           </div>
           <div class="timeframe-pills" id="timeframe-pills">
             <button type="button" class="tf-pill">15m</button>
@@ -3525,8 +3604,8 @@ section {
         <!-- Curriculum Module Card -->
         <div class="curriculum-module-card">
           <div>
-            <div class="module-meta-tag">Módulo 03 // ANÁLISIS ESTRUCTURAL</div>
-            <div class="module-headline">Identificación de Niveles Clave y Estructura de Mercado</div>
+            <div class="module-meta-tag" data-i18n="academy.module_meta">Módulo 03 // ANÁLISIS ESTRUCTURAL</div>
+            <div class="module-headline" data-i18n="academy.module_headline">Identificación de Niveles Clave y Estructura de Mercado</div>
           </div>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8" fill="var(--accent)"></polygon></svg>
         </div>
@@ -3534,9 +3613,9 @@ section {
 
       <!-- Academy Description -->
       <div class="academy-content reveal-up stagger-1">
-        <div class="section-tagline">Zitro Academy</div>
-        <h2 class="section-title">Educación tecnológica y análisis estructural de mercados.</h2>
-        <p class="section-subtitle" style="margin-bottom: 1.75rem;">
+        <div class="section-tagline" data-i18n="academy.tagline">Zitro Academy</div>
+        <h2 class="section-title" data-i18n="academy.title">Educación tecnológica y análisis estructural de mercados.</h2>
+        <p class="section-subtitle" data-i18n="academy.subtitle" style="margin-bottom: 1.75rem;">
           Desarrolla conocimientos sobre la arquitectura blockchain, seguridad digital y comprensión analítica de estructuras de mercado.
         </p>
 
@@ -3546,8 +3625,8 @@ section {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="spec-content">
-              <h4>Análisis Estructural de Mercados</h4>
-              <p>Aprende lectura gráfica, tendencias, velas japonesas, soportes, resistencias y conceptos analíticos desde una perspectiva formativa.</p>
+              <h4 data-i18n="academy.spec1_title">Análisis Estructural de Mercados</h4>
+              <p data-i18n="academy.spec1_desc">Aprende lectura gráfica, tendencias, velas japonesas, soportes, resistencias y conceptos analíticos desde una perspectiva formativa.</p>
             </div>
           </div>
 
@@ -3556,8 +3635,8 @@ section {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="spec-content">
-              <h4>Seguridad Digital & Web3</h4>
-              <p>Comprende los fundamentos de contratos inteligentes, llaves criptográficas y principios de seguridad en entornos digitales.</p>
+              <h4 data-i18n="academy.spec2_title">Seguridad Digital & Web3</h4>
+              <p data-i18n="academy.spec2_desc">Comprende los fundamentos de contratos inteligentes, llaves criptográficas y principios de seguridad en entornos digitales.</p>
             </div>
           </div>
 
@@ -3566,8 +3645,8 @@ section {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <div class="spec-content">
-              <h4>Arquitectura Blockchain</h4>
-              <p>Conoce los mecanismos de consenso, interoperabilidad y el funcionamiento de la infraestructura descentralizada.</p>
+              <h4 data-i18n="academy.spec3_title">Arquitectura Blockchain</h4>
+              <p data-i18n="academy.spec3_desc">Conoce los mecanismos de consenso, interoperabilidad y el funcionamiento de la infraestructura descentralizada.</p>
             </div>
           </div>
         </div>
@@ -3581,9 +3660,9 @@ section {
   <section id="community">
     <div class="container">
       <div class="network-stage-card reveal-up">
-        <div class="section-tagline">Visión de Red</div>
-        <h2 class="section-title">Una comunidad que construye la futura red de Zitro Network.</h2>
-        <p class="section-subtitle" style="max-width: 60ch; margin: 0 auto;">
+        <div class="section-tagline" data-i18n="community.tagline">Visión de Red</div>
+        <h2 class="section-title" data-i18n="community.title">Una comunidad que construye la futura red de Zitro Network.</h2>
+        <p class="section-subtitle" data-i18n="community.subtitle" style="max-width: 60ch; margin: 0 auto;">
           El crecimiento de Zitro Network se fundamenta en la colaboración de sus usuarios. A través del sistema de comunidad y referidos, cada participante contribuye a expandir el ecosistema.
         </p>
 
@@ -3601,35 +3680,35 @@ section {
             <g transform="translate(140, 60)">
               <circle r="18" fill="#10141c" stroke="rgba(220,252,4,0.4)" stroke-width="2" />
               <circle r="5" fill="#dcfc04" />
-              <text y="32" fill="#94a3b8" font-size="11" font-family="'IBM Plex Mono',monospace" text-anchor="middle">Comunidad Regional</text>
+              <text y="32" fill="#94a3b8" font-size="11" font-family="'IBM Plex Mono',monospace" text-anchor="middle" data-i18n="community.node_regional">Comunidad Regional</text>
             </g>
 
             <!-- Sub Node 2 -->
             <g transform="translate(460, 60)">
               <circle r="18" fill="#10141c" stroke="rgba(220,252,4,0.4)" stroke-width="2" />
               <circle r="5" fill="#dcfc04" />
-              <text y="32" fill="#94a3b8" font-size="11" font-family="'IBM Plex Mono',monospace" text-anchor="middle">Comunidad Local</text>
+              <text y="32" fill="#94a3b8" font-size="11" font-family="'IBM Plex Mono',monospace" text-anchor="middle" data-i18n="community.node_local">Comunidad Local</text>
             </g>
 
             <!-- Sub Node 3 -->
             <g transform="translate(100, 180)">
               <circle r="14" fill="#10141c" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
               <circle r="4" fill="#ffffff" />
-              <text y="26" fill="#64748b" font-size="10" font-family="'IBM Plex Mono',monospace" text-anchor="middle">Participante A</text>
+              <text y="26" fill="#64748b" font-size="10" font-family="'IBM Plex Mono',monospace" text-anchor="middle" data-i18n="community.node_participant_a">Participante A</text>
             </g>
 
             <!-- Sub Node 4 -->
             <g transform="translate(500, 180)">
               <circle r="14" fill="#10141c" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
               <circle r="4" fill="#ffffff" />
-              <text y="26" fill="#64748b" font-size="10" font-family="'IBM Plex Mono',monospace" text-anchor="middle">Participante B</text>
+              <text y="26" fill="#64748b" font-size="10" font-family="'IBM Plex Mono',monospace" text-anchor="middle" data-i18n="community.node_participant_b">Participante B</text>
             </g>
 
             <!-- Sub Node 5 -->
             <g transform="translate(300, 210)">
               <circle r="14" fill="#10141c" stroke="rgba(220,252,4,0.3)" stroke-width="1.5" />
               <circle r="4" fill="#dcfc04" />
-              <text y="26" fill="#64748b" font-size="10" font-family="'IBM Plex Mono',monospace" text-anchor="middle">Sesión Cloud</text>
+              <text y="26" fill="#64748b" font-size="10" font-family="'IBM Plex Mono',monospace" text-anchor="middle" data-i18n="community.node_cloud_session">Sesión Cloud</text>
             </g>
 
             <!-- Central Core Node with Official Zitro Vector Mark -->
@@ -3644,16 +3723,16 @@ section {
 
         <div class="network-feature-deck">
           <div class="net-feature-cell reveal-up stagger-1">
-            <h4>Multiplicador de Equipo</h4>
-            <p>Ambos participantes se benefician con ventajas de participación y progreso interno al mantener activo su equipo en la app.</p>
+            <h4 data-i18n="community.feat1_title">Multiplicador de Equipo</h4>
+            <p data-i18n="community.feat1_desc">Ambos participantes se benefician con ventajas de participación y progreso interno al mantener activo su equipo en la app.</p>
           </div>
           <div class="net-feature-cell reveal-up stagger-2">
-            <h4>Monitoreo de Comunidad</h4>
-            <p>Visualiza el estado de actividad de tu equipo directamente en la interfaz de la aplicación.</p>
+            <h4 data-i18n="community.feat2_title">Monitoreo de Comunidad</h4>
+            <p data-i18n="community.feat2_desc">Visualiza el estado de actividad de tu equipo directamente en la interfaz de la aplicación.</p>
           </div>
           <div class="net-feature-cell reveal-up stagger-3">
-            <h4>Acceso Temprano</h4>
-            <p>Prioridad informativa sobre nuevas funciones, módulos de Zitro Academy y avances de la plataforma.</p>
+            <h4 data-i18n="community.feat3_title">Acceso Temprano</h4>
+            <p data-i18n="community.feat3_desc">Prioridad informativa sobre nuevas funciones, módulos de Zitro Academy y avances de la plataforma.</p>
           </div>
         </div>
       </div>
@@ -3666,9 +3745,9 @@ section {
   <section id="roadmap" style="background: rgba(10, 13, 20, 0.4);">
     <div class="container">
       <div class="section-head reveal-up">
-        <div class="section-tagline">Hoja de Ruta</div>
-        <h2 class="section-title">Construcción metódica orientada a infraestructura y utilidad real.</h2>
-        <p class="section-subtitle">
+        <div class="section-tagline" data-i18n="roadmap.tagline">Hoja de Ruta</div>
+        <h2 class="section-title" data-i18n="roadmap.title">Construcción metódica orientada a infraestructura y utilidad real.</h2>
+        <p class="section-subtitle" data-i18n="roadmap.subtitle">
           Fases de desarrollo transparentes sin fechas especulativas. Cada hito se consolida antes de avanzar al siguiente.
         </p>
       </div>
@@ -3676,40 +3755,40 @@ section {
       <div class="roadmap-deck">
         <!-- Phase 01 -->
         <div class="roadmap-milestone reveal-scale">
-          <div class="milestone-phase">FASE 01</div>
-          <span class="milestone-badge badge-active">En Construcción</span>
-          <h3>Aplicación Móvil</h3>
-          <p>
+          <div class="milestone-phase" data-i18n="roadmap.phase01_label">FASE 01</div>
+          <span class="milestone-badge badge-active" data-i18n="roadmap.phase01_badge">En Construcción</span>
+          <h3 data-i18n="roadmap.phase01_title">Aplicación Móvil</h3>
+          <p data-i18n="roadmap.phase01_desc">
             Lanzamiento de la app para Android, sistema de registro seguro y configuración inicial del entorno.
           </p>
         </div>
 
         <!-- Phase 02 -->
         <div class="roadmap-milestone reveal-scale stagger-1">
-          <div class="milestone-phase">FASE 02</div>
-          <span class="milestone-badge badge-dev">En Desarrollo</span>
-          <h3>Cloud Mining & Community</h3>
-          <p>
+          <div class="milestone-phase" data-i18n="roadmap.phase02_label">FASE 02</div>
+          <span class="milestone-badge badge-dev" data-i18n="roadmap.phase02_badge">En Desarrollo</span>
+          <h3 data-i18n="roadmap.phase02_title">Cloud Mining & Community</h3>
+          <p data-i18n="roadmap.phase02_desc">
             Activación de sesiones de minería en la nube, sistema de referidos y multiplicadores de equipo.
           </p>
         </div>
 
         <!-- Phase 03 -->
         <div class="roadmap-milestone reveal-scale stagger-2">
-          <div class="milestone-phase">FASE 03</div>
-          <span class="milestone-badge badge-planned">Próximamente</span>
-          <h3>Zitro Academy</h3>
-          <p>
+          <div class="milestone-phase" data-i18n="roadmap.phase03_label">FASE 03</div>
+          <span class="milestone-badge badge-planned" data-i18n="roadmap.phase03_badge">Próximamente</span>
+          <h3 data-i18n="roadmap.phase03_title">Zitro Academy</h3>
+          <p data-i18n="roadmap.phase03_desc">
             Despliegue de los módulos formativos de tecnología blockchain, seguridad digital y análisis de mercado.
           </p>
         </div>
 
         <!-- Phase 04 -->
         <div class="roadmap-milestone reveal-scale stagger-3">
-          <div class="milestone-phase">FASE 04</div>
-          <span class="milestone-badge badge-planned">Visión Futura</span>
-          <h3>Blockchain Infrastructure</h3>
-          <p>
+          <div class="milestone-phase" data-i18n="roadmap.phase04_label">FASE 04</div>
+          <span class="milestone-badge badge-planned" data-i18n="roadmap.phase04_badge">Visión Futura</span>
+          <h3 data-i18n="roadmap.phase04_title">Blockchain Infrastructure</h3>
+          <p data-i18n="roadmap.phase04_desc">
             Desarrollo de protocolos descentralizados, smart contracts y servicios avanzados del ecosistema.
           </p>
         </div>
@@ -3724,18 +3803,18 @@ section {
     <div class="container">
       <div class="cta-stage reveal-up">
         <div class="cta-core-wrap">
-          <div class="section-tagline">Tecnología Zitro</div>
-          <h2>Una infraestructura tecnológica en evolución.</h2>
-          <p>
+          <div class="section-tagline" data-i18n="technology.tagline">Tecnología Zitro</div>
+          <h2 data-i18n="technology.title">Una infraestructura tecnológica en evolución.</h2>
+          <p data-i18n="technology.desc">
             Zitro Network continúa desarrollando su arquitectura cloud, experiencia móvil, comunidad y futura infraestructura blockchain.
           </p>
           <div class="cta-actions-deck">
             <a class="btn btn-primary" href="#roadmap">
-              <span>Explorar Roadmap</span>
+              <span data-i18n="technology.cta_primary">Explorar Roadmap</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
             <a class="btn btn-secondary" href="https://fedeortiz9.github.io/zitro-terms/" target="_blank" rel="noopener noreferrer">
-              <span>Términos y Condiciones</span>
+              <span data-i18n="technology.cta_secondary">Términos y Condiciones</span>
             </a>
           </div>
         </div>
@@ -3753,7 +3832,7 @@ section {
       <!-- Col 1: Brand -->
       <div class="footer-brand-col">
         <img src="assets/brand/zitro-logo-white.png" alt="Zitro" class="footer-logo-img" loading="lazy">
-        <p class="footer-brand-desc">
+        <p class="footer-brand-desc" data-i18n="footer.brand_desc">
           Ecosistema tecnológico enfocado en minería en la nube, educación tecnológica responsable e infraestructura blockchain en desarrollo.
         </p>
         <div class="badge-play-store">
@@ -3766,32 +3845,32 @@ section {
 
       <!-- Col 2: Navigation -->
       <div class="footer-menu-col stagger-1">
-        <h5>Ecosistema</h5>
+        <h5 data-i18n="footer.col_ecosystem">Ecosistema</h5>
         <ul>
-          <li><a href="#ecosystem">Visión General</a></li>
-          <li><a href="#mining">Minería en la Nube</a></li>
-          <li><a href="#academy">Zitro Academy</a></li>
-          <li><a href="#community">Red Comunitaria</a></li>
-          <li><a href="#roadmap">Hoja de Ruta</a></li>
+          <li><a href="#ecosystem" data-i18n="footer.link_overview">Visión General</a></li>
+          <li><a href="#mining" data-i18n="footer.link_mining">Minería en la Nube</a></li>
+          <li><a href="#academy" data-i18n="footer.link_academy">Zitro Academy</a></li>
+          <li><a href="#community" data-i18n="footer.link_community">Red Comunitaria</a></li>
+          <li><a href="#roadmap" data-i18n="footer.link_roadmap">Hoja de Ruta</a></li>
         </ul>
       </div>
 
       <!-- Col 3: Resources & Legal -->
       <div class="footer-menu-col stagger-2">
-        <h5>Legal & Recursos</h5>
+        <h5 data-i18n="footer.col_legal">Legal & Recursos</h5>
         <ul>
           <li><a href="https://fedeortiz9.github.io/zitro-privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
           <li><a href="https://fedeortiz9.github.io/zitro-terms/" target="_blank" rel="noopener noreferrer">Terms and Conditions</a></li>
-          <li><a href="#roadmap">Hoja de Ruta</a></li>
-          <li><a href="#academy">Zitro Academy</a></li>
+          <li><a href="#roadmap" data-i18n="footer.link_roadmap">Hoja de Ruta</a></li>
+          <li><a href="#academy" data-i18n="footer.link_academy">Zitro Academy</a></li>
         </ul>
       </div>
 
       <!-- Col 4: Transparency & Disclaimer -->
       <div class="footer-menu-col stagger-3">
         <div class="footer-disclaimer-panel">
-          <h5>Aviso de Transparencia</h5>
-          <p>
+          <h5 data-i18n="footer.disclaimer_title">Aviso de Transparencia</h5>
+          <p data-i18n="footer.disclaimer_text">
             Zitro Network es un ecosistema tecnológico en desarrollo. Las características pueden evolucionar durante el desarrollo del producto. Las recompensas obtenidas mediante las sesiones se registran como puntos internos del ecosistema. El contenido educativo tiene fines exclusivamente informativos y formativos.
           </p>
         </div>
@@ -3800,7 +3879,7 @@ section {
 
     <!-- Bottom Strip -->
     <div class="footer-bottom-strip">
-      <p>© 2026 Zitro Network. Todos los derechos reservados.</p>
+      <p data-i18n="footer.rights">© 2026 Zitro Network. Todos los derechos reservados.</p>
       <div class="footer-legal-deck">
         <a href="https://fedeortiz9.github.io/zitro-privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
         <a href="https://fedeortiz9.github.io/zitro-terms/" target="_blank" rel="noopener noreferrer">Terms and Conditions</a>
@@ -4070,7 +4149,376 @@ section {
     }
   }
 
+
+  // ==========================================================================
+  // 8. I18N SYSTEM (ES / EN — W3K4)
+  // ==========================================================================
+  var STORAGE_KEY = 'zitro-language';
+
+  var translations = {
+    es: {
+      "seo.title": "Zitro Network — Cloud Mining & Blockchain Technology",
+      "seo.description": "Zitro Network es un ecosistema tecnológico que integra minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en desarrollo.",
+      "nav.brand_aria": "Zitro Network Inicio",
+      "nav.main_aria": "Navegación principal",
+      "nav.mobile_aria": "Navegación móvil",
+      "nav.mobile_toggle_aria": "Abrir menú de navegación",
+      "nav.ecosystem": "Ecosistema",
+      "nav.mining": "Cloud Mining",
+      "nav.academy": "Academia",
+      "nav.academy_mobile": "Zitro Academy",
+      "nav.community": "Comunidad",
+      "nav.roadmap": "Roadmap",
+      "nav.roadmap_mobile": "Hoja de Ruta",
+      "nav.badge_android": "Android • Próximamente",
+      "nav.badge_title": "Lanzamiento próximamente en Google Play Store",
+      "hero.eyebrow": "Plataforma Cloud & Blockchain",
+      "hero.title_html": "Construyendo una nueva experiencia de <span class=\"text-accent\">minería en la nube</span> y tecnología blockchain.",
+      "hero.desc": "Zitro Network conecta minería en la nube desde una aplicación móvil, educación tecnológica, comunidad e infraestructura blockchain en evolución.",
+      "hero.cta1": "Explorar Ecosistema",
+      "hero.cta2": "Conocer Zitro Academy",
+      "hero.telemetry_platform_label": "PLATAFORMA:",
+      "hero.telemetry_availability_label": "DISPONIBILIDAD:",
+      "hero.satellite_cloud_title": "TECNOLOGÍA CLOUD",
+      "hero.satellite_cloud_value": "Sin Minería en Hardware",
+      "hero.satellite_sessions_title": "SESIONES FLEXIBLES",
+      "hero.satellite_sessions_value": "Ciclos 6h • 12h • 24h",
+      "hero.mobile_chip_cloud": "Tecnología Cloud",
+      "hero.mobile_chip_sessions": "Sesiones 6h · 12h · 24h",
+      "hero.mobile_caption": "Sin minería computacional en hardware • Sesiones cloud gestionadas",
+      "hero.google_play_alt": "Disponible en Google Play",
+      "ticker.01_title": "Eficiencia en el Dispositivo",
+      "ticker.01_desc": "La experiencia no utiliza la CPU o GPU del dispositivo para minería computacional.",
+      "ticker.02_title": "Educación Tecnológica",
+      "ticker.02_desc": "Zitro Academy para comprender tecnología blockchain y análisis de mercado.",
+      "ticker.03_title": "Sistema de Comunidad",
+      "ticker.03_desc": "Crecimiento colaborativo mediante un sistema de referidos y equipo.",
+      "ticker.04_title": "Infraestructura Blockchain",
+      "ticker.04_desc": "Hoja de ruta orientada al desarrollo de protocolos descentralizados.",
+      "ecosystem.tagline": "Arquitectura del Ecosistema",
+      "ecosystem.title": "Cuatro pilares para construir el ecosistema Zitro Network.",
+      "ecosystem.subtitle": "Zitro Network unifica minería en la nube, capacitación tecnológica integral y una visión de infraestructura sólida en una plataforma accesible.",
+      "ecosystem.card1_pill": "Core Application",
+      "ecosystem.card1_title": "Minería en la Nube",
+      "ecosystem.card1_desc": "Inicia sesiones gestionadas mediante la infraestructura cloud de Zitro Network. La aplicación no utiliza la CPU o GPU del dispositivo para realizar minería computacional.",
+      "ecosystem.card1_cta": "Ver detalles de Cloud Mining",
+      "ecosystem.card2_pill": "Educación",
+      "ecosystem.card2_title": "Zitro Academy",
+      "ecosystem.card2_desc": "Educación tecnológica y comprensión de mercados. Aprende conceptos fundamentales de blockchain, seguridad digital, análisis estructural y tecnología Web3 con módulos estructurados.",
+      "ecosystem.card2_cta": "Explorar academia",
+      "ecosystem.card3_pill": "Comunidad",
+      "ecosystem.card3_title": "Comunidad & Red",
+      "ecosystem.card3_desc": "Construye tu comunidad y amplía tu red dentro del ecosistema. Un sistema de referidos que fomenta la colaboración y fortalece la participación activa.",
+      "ecosystem.card3_cta": "Conocer sistema de comunidad",
+      "ecosystem.card4_pill": "Infraestructura",
+      "ecosystem.card4_title": "Infraestructura Blockchain",
+      "ecosystem.card4_desc": "La evolución hacia una infraestructura tecnológica robusta. Una hoja de ruta enfocada en seguridad, smart contracts y protocolos descentralizados.",
+      "ecosystem.card4_cta": "Consultar hoja de ruta",
+      "mining.tagline": "Cloud Mining",
+      "mining.title": "Minería en la nube accesible desde tu dispositivo móvil.",
+      "mining.subtitle": "Inicia sesiones gestionadas mediante la infraestructura cloud de Zitro Network. La aplicación no utiliza la CPU o GPU del dispositivo para realizar minería computacional.",
+      "mining.spec1_title": "Sesiones flexibles de 6 h, 12 h y 24 h",
+      "mining.spec1_desc": "Elige el ciclo que mejor se adapte a tu rutina e inicia tu sesión de minería en la nube con un solo toque desde la app.",
+      "mining.spec2_title": "Sin minería computacional en el hardware",
+      "mining.spec2_desc": "La experiencia no realiza cálculos criptográficos pesados en el dispositivo; las sesiones son gestionadas a través de la infraestructura cloud del ecosistema.",
+      "mining.spec3_title": "Puntos y recompensas de cuenta",
+      "mining.spec3_desc": "El progreso de cada sesión queda registrado como puntos y recompensas internas dentro de la cuenta del usuario.",
+      "mining.mockup_alt": "Flujo de Sesiones en la Nube 3D",
+      "academy.terminal_badge": "RESEARCH",
+      "academy.terminal_name": "ANÁLISIS DE MERCADO",
+      "academy.module_meta": "Módulo 03 // ANÁLISIS ESTRUCTURAL",
+      "academy.module_headline": "Identificación de Niveles Clave y Estructura de Mercado",
+      "academy.tagline": "Zitro Academy",
+      "academy.title": "Educación tecnológica y análisis estructural de mercados.",
+      "academy.subtitle": "Desarrolla conocimientos sobre la arquitectura blockchain, seguridad digital y comprensión analítica de estructuras de mercado.",
+      "academy.spec1_title": "Análisis Estructural de Mercados",
+      "academy.spec1_desc": "Aprende lectura gráfica, tendencias, velas japonesas, soportes, resistencias y conceptos analíticos desde una perspectiva formativa.",
+      "academy.spec2_title": "Seguridad Digital & Web3",
+      "academy.spec2_desc": "Comprende los fundamentos de contratos inteligentes, llaves criptográficas y principios de seguridad en entornos digitales.",
+      "academy.spec3_title": "Arquitectura Blockchain",
+      "academy.spec3_desc": "Conoce los mecanismos de consenso, interoperabilidad y el funcionamiento de la infraestructura descentralizada.",
+      "community.tagline": "Visión de Red",
+      "community.title": "Una comunidad que construye la futura red de Zitro Network.",
+      "community.subtitle": "El crecimiento de Zitro Network se fundamenta en la colaboración de sus usuarios. A través del sistema de comunidad y referidos, cada participante contribuye a expandir el ecosistema.",
+      "community.node_regional": "Comunidad Regional",
+      "community.node_local": "Comunidad Local",
+      "community.node_participant_a": "Participante A",
+      "community.node_participant_b": "Participante B",
+      "community.node_cloud_session": "Sesión Cloud",
+      "community.feat1_title": "Multiplicador de Equipo",
+      "community.feat1_desc": "Ambos participantes se benefician con ventajas de participación y progreso interno al mantener activo su equipo en la app.",
+      "community.feat2_title": "Monitoreo de Comunidad",
+      "community.feat2_desc": "Visualiza el estado de actividad de tu equipo directamente en la interfaz de la aplicación.",
+      "community.feat3_title": "Acceso Temprano",
+      "community.feat3_desc": "Prioridad informativa sobre nuevas funciones, módulos de Zitro Academy y avances de la plataforma.",
+      "roadmap.tagline": "Hoja de Ruta",
+      "roadmap.title": "Construcción metódica orientada a infraestructura y utilidad real.",
+      "roadmap.subtitle": "Fases de desarrollo transparentes sin fechas especulativas. Cada hito se consolida antes de avanzar al siguiente.",
+      "roadmap.phase01_label": "FASE 01",
+      "roadmap.phase01_badge": "En Construcción",
+      "roadmap.phase01_title": "Aplicación Móvil",
+      "roadmap.phase01_desc": "Lanzamiento de la app para Android, sistema de registro seguro y configuración inicial del entorno.",
+      "roadmap.phase02_label": "FASE 02",
+      "roadmap.phase02_badge": "En Desarrollo",
+      "roadmap.phase02_title": "Cloud Mining & Community",
+      "roadmap.phase02_desc": "Activación de sesiones de minería en la nube, sistema de referidos y multiplicadores de equipo.",
+      "roadmap.phase03_label": "FASE 03",
+      "roadmap.phase03_badge": "Próximamente",
+      "roadmap.phase03_title": "Zitro Academy",
+      "roadmap.phase03_desc": "Despliegue de los módulos formativos de tecnología blockchain, seguridad digital y análisis de mercado.",
+      "roadmap.phase04_label": "FASE 04",
+      "roadmap.phase04_badge": "Visión Futura",
+      "roadmap.phase04_title": "Blockchain Infrastructure",
+      "roadmap.phase04_desc": "Desarrollo de protocolos descentralizados, smart contracts y servicios avanzados del ecosistema.",
+      "technology.tagline": "Tecnología Zitro",
+      "technology.title": "Una infraestructura tecnológica en evolución.",
+      "technology.desc": "Zitro Network continúa desarrollando su arquitectura cloud, experiencia móvil, comunidad y futura infraestructura blockchain.",
+      "technology.cta_primary": "Explorar Roadmap",
+      "technology.cta_secondary": "Términos y Condiciones",
+      "footer.brand_desc": "Ecosistema tecnológico enfocado en minería en la nube, educación tecnológica responsable e infraestructura blockchain en desarrollo.",
+      "footer.col_ecosystem": "Ecosistema",
+      "footer.link_overview": "Visión General",
+      "footer.link_mining": "Minería en la Nube",
+      "footer.link_academy": "Zitro Academy",
+      "footer.link_community": "Red Comunitaria",
+      "footer.link_roadmap": "Hoja de Ruta",
+      "footer.col_legal": "Legal & Recursos",
+      "footer.disclaimer_title": "Aviso de Transparencia",
+      "footer.disclaimer_text": "Zitro Network es un ecosistema tecnológico en desarrollo. Las características pueden evolucionar durante el desarrollo del producto. Las recompensas obtenidas mediante las sesiones se registran como puntos internos del ecosistema. El contenido educativo tiene fines exclusivamente informativos y formativos.",
+      "footer.rights": "© 2026 Zitro Network. Todos los derechos reservados."
+    },
+    en: {
+      "seo.title": "Zitro Network — Cloud Mining & Blockchain Technology",
+      "seo.description": "Zitro Network is a technology ecosystem integrating mobile cloud mining, tech education, community, and developing blockchain infrastructure.",
+      "nav.brand_aria": "Zitro Network Home",
+      "nav.main_aria": "Main navigation",
+      "nav.mobile_aria": "Mobile navigation",
+      "nav.mobile_toggle_aria": "Open navigation menu",
+      "nav.ecosystem": "Ecosystem",
+      "nav.mining": "Cloud Mining",
+      "nav.academy": "Academy",
+      "nav.academy_mobile": "Zitro Academy",
+      "nav.community": "Community",
+      "nav.roadmap": "Roadmap",
+      "nav.roadmap_mobile": "Roadmap",
+      "nav.badge_android": "Android • Coming Soon",
+      "nav.badge_title": "Coming soon to Google Play Store",
+      "hero.eyebrow": "Cloud & Blockchain Platform",
+      "hero.title_html": "Building a new experience in <span class=\"text-accent\">cloud mining</span> and blockchain technology.",
+      "hero.desc": "Zitro Network connects mobile cloud mining, technology education, community, and evolving blockchain infrastructure.",
+      "hero.cta1": "Explore Ecosystem",
+      "hero.cta2": "Discover Zitro Academy",
+      "hero.telemetry_platform_label": "PLATFORM:",
+      "hero.telemetry_availability_label": "AVAILABILITY:",
+      "hero.satellite_cloud_title": "CLOUD TECHNOLOGY",
+      "hero.satellite_cloud_value": "No Hardware Mining",
+      "hero.satellite_sessions_title": "FLEXIBLE SESSIONS",
+      "hero.satellite_sessions_value": "6h • 12h • 24h Cycles",
+      "hero.mobile_chip_cloud": "Cloud Technology",
+      "hero.mobile_chip_sessions": "Sessions 6h · 12h · 24h",
+      "hero.mobile_caption": "No hardware computational mining • Managed cloud sessions",
+      "hero.google_play_alt": "Available on Google Play",
+      "ticker.01_title": "Device Efficiency",
+      "ticker.01_desc": "The experience does not use the device's CPU or GPU for computational mining.",
+      "ticker.02_title": "Technology Education",
+      "ticker.02_desc": "Zitro Academy to understand blockchain technology and market analysis.",
+      "ticker.03_title": "Community System",
+      "ticker.03_desc": "Collaborative growth through a referral and team network system.",
+      "ticker.04_title": "Blockchain Infrastructure",
+      "ticker.04_desc": "A development roadmap focused on decentralized protocol architecture.",
+      "ecosystem.tagline": "Ecosystem Architecture",
+      "ecosystem.title": "Four pillars to build the Zitro Network ecosystem.",
+      "ecosystem.subtitle": "Zitro Network unifies cloud mining, comprehensive tech education, and a solid infrastructure vision into an accessible platform.",
+      "ecosystem.card1_pill": "Core Application",
+      "ecosystem.card1_title": "Cloud Mining",
+      "ecosystem.card1_desc": "Start managed sessions through Zitro Network's cloud infrastructure. The application does not use the device's CPU or GPU to perform computational mining.",
+      "ecosystem.card1_cta": "View Cloud Mining details",
+      "ecosystem.card2_pill": "Education",
+      "ecosystem.card2_title": "Zitro Academy",
+      "ecosystem.card2_desc": "Tech education and market comprehension. Learn fundamental blockchain concepts, digital security, structural analysis, and Web3 technology with structured modules.",
+      "ecosystem.card2_cta": "Explore academy",
+      "ecosystem.card3_pill": "Community",
+      "ecosystem.card3_title": "Community & Network",
+      "ecosystem.card3_desc": "Build your community and expand your network within the ecosystem. A referral system that fosters collaboration and strengthens active participation.",
+      "ecosystem.card3_cta": "Discover community system",
+      "ecosystem.card4_pill": "Infrastructure",
+      "ecosystem.card4_title": "Blockchain Infrastructure",
+      "ecosystem.card4_desc": "The evolution toward a robust technology infrastructure. A roadmap focused on security, smart contracts, and decentralized protocols.",
+      "ecosystem.card4_cta": "View roadmap",
+      "mining.tagline": "Cloud Mining",
+      "mining.title": "Cloud mining accessible from your mobile device.",
+      "mining.subtitle": "Start managed sessions through Zitro Network's cloud infrastructure. The application does not use the device's CPU or GPU to perform computational mining.",
+      "mining.spec1_title": "Flexible 6h, 12h, and 24h sessions",
+      "mining.spec1_desc": "Choose the cycle that best fits your routine and start your cloud mining session with a single tap in the app.",
+      "mining.spec2_title": "No hardware computational mining",
+      "mining.spec2_desc": "The experience does not perform heavy cryptographic calculations on the device; sessions are managed through the ecosystem's cloud infrastructure.",
+      "mining.spec3_title": "Account points and rewards",
+      "mining.spec3_desc": "The progress of each session is recorded as internal points and rewards within the user's account.",
+      "mining.mockup_alt": "3D Cloud Sessions Flow",
+      "academy.terminal_badge": "RESEARCH",
+      "academy.terminal_name": "MARKET ANALYSIS",
+      "academy.module_meta": "Module 03 // STRUCTURAL ANALYSIS",
+      "academy.module_headline": "Key Level Identification & Market Structure",
+      "academy.tagline": "Zitro Academy",
+      "academy.title": "Tech education and structural market analysis.",
+      "academy.subtitle": "Develop knowledge in blockchain architecture, digital security, and analytical market structure comprehension.",
+      "academy.spec1_title": "Structural Market Analysis",
+      "academy.spec1_desc": "Learn chart reading, trendlines, candlestick patterns, support, resistance, and analytical concepts from an educational perspective.",
+      "academy.spec2_title": "Digital Security & Web3",
+      "academy.spec2_desc": "Understand the fundamentals of smart contracts, cryptographic keys, and security principles in digital environments.",
+      "academy.spec3_title": "Blockchain Architecture",
+      "academy.spec3_desc": "Explore consensus mechanisms, interoperability, and the inner workings of decentralized infrastructure.",
+      "community.tagline": "Network Vision",
+      "community.title": "A community building the future Zitro Network.",
+      "community.subtitle": "The growth of Zitro Network is built on user collaboration. Through the community and referral system, every participant contributes to expanding the ecosystem.",
+      "community.node_regional": "Regional Community",
+      "community.node_local": "Local Community",
+      "community.node_participant_a": "Participant A",
+      "community.node_participant_b": "Participant B",
+      "community.node_cloud_session": "Cloud Session",
+      "community.feat1_title": "Team Multiplier",
+      "community.feat1_desc": "Both participants benefit with participation advantages and internal progress by keeping their team active in the app.",
+      "community.feat2_title": "Community Monitoring",
+      "community.feat2_desc": "View your team's active status directly within the application interface.",
+      "community.feat3_title": "Early Access",
+      "community.feat3_desc": "Informational priority regarding new features, Zitro Academy modules, and platform advancements.",
+      "roadmap.tagline": "Roadmap",
+      "roadmap.title": "Methodical construction focused on infrastructure and real utility.",
+      "roadmap.subtitle": "Transparent development phases with no speculative dates. Each milestone is consolidated before moving forward.",
+      "roadmap.phase01_label": "PHASE 01",
+      "roadmap.phase01_badge": "In Construction",
+      "roadmap.phase01_title": "Mobile Application",
+      "roadmap.phase01_desc": "Android app launch, secure registration system, and initial environment configuration.",
+      "roadmap.phase02_label": "PHASE 02",
+      "roadmap.phase02_badge": "In Development",
+      "roadmap.phase02_title": "Cloud Mining & Community",
+      "roadmap.phase02_desc": "Activation of cloud mining sessions, referral system, and team multipliers.",
+      "roadmap.phase03_label": "PHASE 03",
+      "roadmap.phase03_badge": "Coming Soon",
+      "roadmap.phase03_title": "Zitro Academy",
+      "roadmap.phase03_desc": "Rollout of training modules in blockchain technology, digital security, and market analysis.",
+      "roadmap.phase04_label": "PHASE 04",
+      "roadmap.phase04_badge": "Future Vision",
+      "roadmap.phase04_title": "Blockchain Infrastructure",
+      "roadmap.phase04_desc": "Development of decentralized protocols, smart contracts, and advanced ecosystem services.",
+      "technology.tagline": "Zitro Technology",
+      "technology.title": "An evolving technology infrastructure.",
+      "technology.desc": "Zitro Network continues to develop its cloud architecture, mobile experience, community, and future blockchain infrastructure.",
+      "technology.cta_primary": "Explore Roadmap",
+      "technology.cta_secondary": "Terms and Conditions",
+      "footer.brand_desc": "Technology ecosystem focused on cloud mining, responsible technology education, and developing blockchain infrastructure.",
+      "footer.col_ecosystem": "Ecosystem",
+      "footer.link_overview": "Overview",
+      "footer.link_mining": "Cloud Mining",
+      "footer.link_academy": "Zitro Academy",
+      "footer.link_community": "Community Network",
+      "footer.link_roadmap": "Roadmap",
+      "footer.col_legal": "Legal & Resources",
+      "footer.disclaimer_title": "Transparency Notice",
+      "footer.disclaimer_text": "Zitro Network is a technology ecosystem under active development. Features may evolve throughout product development. Rewards earned from sessions are recorded as internal ecosystem points. Educational content is provided for informational and training purposes only.",
+      "footer.rights": "© 2026 Zitro Network. All rights reserved."
+    }
+  };
+
+  function setLanguage(lang) {
+    if (lang !== 'es' && lang !== 'en') {
+      lang = 'es';
+    }
+
+    var dict = translations[lang];
+    if (!dict) return;
+
+    // 1. Text Content
+    var textElements = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < textElements.length; i++) {
+      var key = textElements[i].getAttribute('data-i18n');
+      if (dict[key] !== undefined) {
+        textElements[i].textContent = dict[key];
+      }
+    }
+
+    // 2. HTML Content
+    var htmlElements = document.querySelectorAll('[data-i18n-html]');
+    for (var j = 0; j < htmlElements.length; j++) {
+      var hKey = htmlElements[j].getAttribute('data-i18n-html');
+      if (dict[hKey] !== undefined) {
+        htmlElements[j].innerHTML = dict[hKey];
+      }
+    }
+
+    // 3. Attributes
+    var titleElements = document.querySelectorAll('[data-i18n-title]');
+    for (var k = 0; k < titleElements.length; k++) {
+      var tKey = titleElements[k].getAttribute('data-i18n-title');
+      if (dict[tKey] !== undefined) {
+        titleElements[k].setAttribute('title', dict[tKey]);
+      }
+    }
+
+    var ariaElements = document.querySelectorAll('[data-i18n-aria]');
+    for (var m = 0; m < ariaElements.length; m++) {
+      var aKey = ariaElements[m].getAttribute('data-i18n-aria');
+      if (dict[aKey] !== undefined) {
+        ariaElements[m].setAttribute('aria-label', dict[aKey]);
+      }
+    }
+
+    var altElements = document.querySelectorAll('[data-i18n-alt]');
+    for (var n = 0; n < altElements.length; n++) {
+      var altKey = altElements[n].getAttribute('data-i18n-alt');
+      if (dict[altKey] !== undefined) {
+        altElements[n].setAttribute('alt', dict[altKey]);
+      }
+    }
+
+    // 4. Update Document Language & SEO
+    document.documentElement.lang = lang;
+    if (dict["seo.title"]) {
+      document.title = dict["seo.title"];
+    }
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && dict["seo.description"]) {
+      metaDesc.setAttribute('content', dict["seo.description"]);
+    }
+
+    // 5. Update Switcher Buttons
+    var buttons = document.querySelectorAll('.lang-btn');
+    for (var b = 0; b < buttons.length; b++) {
+      var bLang = buttons[b].getAttribute('data-language');
+      var isActive = (bLang === lang);
+      buttons[b].setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    }
+
+    // 6. Save Preference
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+    } catch (e) {}
+  }
+
+  function initI18n() {
+    var savedLang = 'es';
+    try {
+      var val = localStorage.getItem(STORAGE_KEY);
+      if (val === 'es' || val === 'en') {
+        savedLang = val;
+      }
+    } catch (e) {}
+
+    var buttons = document.querySelectorAll('.lang-btn');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function() {
+        var targetLang = this.getAttribute('data-language');
+        if (targetLang) {
+          setLanguage(targetLang);
+        }
+      });
+    }
+
+    setLanguage(savedLang);
+  }
+
   // Initialize All Systems
+  initI18n();
   initPageEnter();
   initMobileDeviceObserver();
   initMobileDrawer();
