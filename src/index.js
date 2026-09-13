@@ -1,6 +1,10 @@
 const CANONICAL_HOST = "www.zitronetwork.com";
 const CANONICAL_ORIGIN = `https://${CANONICAL_HOST}`;
 const REFERRAL_CODE_RE = /^[A-HJ-NP-Z2-9]{8}$/;
+const ANDROID_PACKAGE_NAME = "com.zitro.mobile";
+const PLAY_STORE_ORIGIN = "https://play.google.com";
+const PLAY_STORE_DETAILS_PATH = "/store/apps/details";
+const INSTALL_REFERRER_UTM_SOURCE = "zitro_ref";
 
 const SECURITY_HEADERS = {
   "content-security-policy": [
@@ -32,6 +36,22 @@ export function buildCanonicalReferralUrl(value) {
 
   const url = new URL("/ref/", CANONICAL_ORIGIN);
   url.pathname += code;
+  return url;
+}
+
+// Install Referrer contract C1-v1: decoded referrer is
+// `utm_source=zitro_ref&ref=<canonical 8-char code>`.
+export function buildPlayStoreReferralUrl(value) {
+  const code = normalizeReferralCode(value);
+  if (!code) throw new TypeError("Invalid referral code");
+
+  const installReferrer = new URLSearchParams();
+  installReferrer.set("utm_source", INSTALL_REFERRER_UTM_SOURCE);
+  installReferrer.set("ref", code);
+
+  const url = new URL(PLAY_STORE_DETAILS_PATH, PLAY_STORE_ORIGIN);
+  url.searchParams.set("id", ANDROID_PACKAGE_NAME);
+  url.searchParams.set("referrer", installReferrer.toString());
   return url;
 }
 
@@ -104,6 +124,7 @@ function redirectToCanonical(url) {
 
 function renderRefPage(code) {
   const safeCode = escapeHtml(code);
+  const safePlayUrl = escapeHtml(buildPlayStoreReferralUrl(code).toString());
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -214,12 +235,13 @@ a{color:inherit;text-decoration:none}
   <section class="ref-card">
     <span class="eyebrow">Invitación</span>
     <h1>Fuiste invitado a Zitro Network.</h1>
-    <p class="lead">La apertura automática de la app todavía no está disponible. Guardá tu código para ingresarlo manualmente durante el registro.</p>
+    <p class="lead">Descargá Zitro Network desde Google Play con este enlace: tu código de invitación viaja incluido en él. Guardalo también como respaldo para ingresarlo durante el registro.</p>
     <div class="ref-code-box">
       <span class="ref-code" id="ref-code" data-code="${safeCode}">${safeCode}</span>
     </div>
     <div class="ref-actions">
-      <button type="button" id="copy-btn" class="btn btn-accent">Copiar código</button>
+      <a href="${safePlayUrl}" id="play-cta" class="btn btn-accent" rel="noopener">Descargar en Google Play</a>
+      <button type="button" id="copy-btn" class="btn btn-ghost">Copiar código</button>
       <a href="/" class="btn btn-ghost">Volver al inicio</a>
     </div>
     <p id="copy-feedback" class="feedback" aria-live="polite"></p>
