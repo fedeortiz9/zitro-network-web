@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.zitro.mobile",
+      "sha256_cert_fingerprints": [
+        "85:64:B8:1D:9B:70:B6:6B:60:A1:A6:2D:32:AC:1D:1D:0A:AE:97:FF:7F:F9:D8:F0:EF:9E:EF:FC:4C:21:DA:05"
+      ]
+    }
+  }
+]
