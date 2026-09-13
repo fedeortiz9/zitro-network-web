@@ -3,7 +3,15 @@ import test from "node:test";
 
 import worker, * as referralModule from "../src/index.js";
 
-const { buildCanonicalReferralUrl, normalizeReferralCode } = referralModule;
+const { buildCanonicalReferralUrl, buildPlayStoreReferralUrl, normalizeReferralCode } =
+  referralModule;
+
+const PLAY_HREF_RE = /href="(https:\/\/play\.google\.com[^"]*)"/;
+
+function extractPlayHref(body) {
+  const match = body.match(PLAY_HREF_RE);
+  return match ? match[1].replace(/&amp;/g, "&") : null;
+}
 
 const assets = {
   async fetch() {
@@ -22,6 +30,7 @@ async function rawRequestUrl(url) {
 test("exports the canonical referral validation API", () => {
   assert.equal(typeof normalizeReferralCode, "function");
   assert.equal(typeof buildCanonicalReferralUrl, "function");
+  assert.equal(typeof buildPlayStoreReferralUrl, "function");
 });
 
 test("normalizes referral codes only within the canonical ASCII alphabet", () => {
@@ -53,6 +62,59 @@ test("renders only the exact uppercase canonical referral route without query pa
   assert.doesNotMatch(body, />Abrir app</);
   assert.match(body, /Copiar código/);
   assert.equal(response.headers.get("cache-control"), "private, no-store");
+});
+
+test("renders a server-side Google Play anchor carrying the install referrer payload", async () => {
+  const response = await request("https://www.zitronetwork.com/ref/ABCD2345");
+  const body = await response.text();
+  const href = extractPlayHref(body);
+
+  assert.ok(href, "no Google Play anchor rendered");
+
+  const playUrl = new URL(href);
+  assert.equal(playUrl.protocol, "https:");
+  assert.equal(playUrl.hostname, "play.google.com");
+  assert.equal(playUrl.pathname, "/store/apps/details");
+  assert.equal(playUrl.searchParams.get("id"), "com.zitro.mobile");
+  assert.equal(playUrl.searchParams.get("referrer"), "utm_source=zitro_ref&ref=ABCD2345");
+  assert.equal(
+    playUrl.toString(),
+    buildPlayStoreReferralUrl("ABCD2345").toString(),
+    "page href must come from the shared helper",
+  );
+});
+
+test("keeps the manual copy fallback alongside the Play Store call to action", async () => {
+  const body = await (await request("https://www.zitronetwork.com/ref/ABCD2345")).text();
+
+  assert.match(body, /id="copy-btn"/);
+  assert.match(body, /Copiar código/);
+  assert.match(body, /Google Play/);
+  assert.doesNotMatch(body, /automáticamente/);
+});
+
+test("never leaks another visitor's referral code into a rendered page", async () => {
+  const other = await (await request("https://www.zitronetwork.com/ref/BCDE3456")).text();
+
+  assert.doesNotMatch(other, /ABCD2345/);
+  assert.equal(extractPlayHref(other), buildPlayStoreReferralUrl("BCDE3456").toString());
+});
+
+test("html-escapes the ampersand inside the rendered Play anchor href", async () => {
+  const body = await (await request("https://www.zitronetwork.com/ref/ABCD2345")).text();
+  const raw = body.match(/href="(https:\/\/play\.google\.com[^"]*)"/);
+
+  assert.ok(raw, "no Google Play anchor rendered");
+  assert.ok(raw[1].includes("&amp;referrer="), `href not html-escaped: ${raw[1]}`);
+  assert.ok(!/[^m]&referrer=/.test(raw[1]), `bare ampersand in href: ${raw[1]}`);
+});
+
+test("renders no hostile scheme or injected host inside the referral page links", async () => {
+  const body = await (await request("https://www.zitronetwork.com/ref/ABCD2345")).text();
+
+  for (const needle of ["evil.example", "javascript:", "data:text/html", "%0D", "%0A"]) {
+    assert.ok(!body.includes(needle), needle);
+  }
 });
 
 test("redirects a lowercase referral route once to the uppercase canonical URL", async () => {
@@ -182,4 +244,13 @@ test("escapes rendered data and sends defensive page headers", async () => {
   assert.equal(response.headers.get("x-content-type-options"), "nosniff");
   assert.equal(response.headers.get("referrer-policy"), "no-referrer");
   assert.equal(response.headers.get("permissions-policy"), "clipboard-write=(self)");
+});
+
+test("keeps the referral page policy permissive for outbound link navigation", async () => {
+  const response = await request("https://www.zitronetwork.com/ref/ABCD2345");
+  const csp = response.headers.get("content-security-policy");
+
+  assert.doesNotMatch(csp, /navigate-to/);
+  assert.match(csp, /form-action 'none'/);
+  assert.equal(response.headers.get("referrer-policy"), "no-referrer");
 });
