@@ -8,6 +8,7 @@ on:
       - "package.json"
       - "package-lock.json"
       - "wrangler.toml"
+      - ".well-known/**"
       - ".github/workflows/referral-worker-ci.yml"
 
 permissions:
