@@ -1,6 +1,22 @@
 const CANONICAL_HOST = "www.zitronetwork.com";
 const CANONICAL_ORIGIN = `https://${CANONICAL_HOST}`;
 const REFERRAL_CODE_RE = /^[A-HJ-NP-Z2-9]{8}$/;
+// FDA-REF-002 (PR-REF-F2): frozen allowlist of external tracking query keys that
+// a decorated /ref/<CODE> share link may carry. Names are matched case-sensitively
+// and exactly (no utm_* wildcard). Their values are never used, forwarded, or
+// rendered — a valid referral path carrying only these keys is canonicalized to
+// the clean referral URL and the query is dropped. This list is authoritative for
+// the pending mobile half (PR-F3), which must mirror it exactly.
+const ALLOWED_REFERRAL_TRACKING_PARAMS = new Set([
+  "fbclid",
+  "gclid",
+  "igshid",
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_content",
+  "utm_term",
+]);
 const ANDROID_PACKAGE_NAME = "com.zitro.mobile";
 const PLAY_STORE_ORIGIN = "https://play.google.com";
 const PLAY_STORE_DETAILS_PATH = "/store/apps/details";
@@ -64,10 +80,8 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
-function isExactReferralPath(url) {
-  if (url.search || url.hash || !url.pathname.startsWith("/ref/")) {
-    return null;
-  }
+function parseReferralCodeFromPath(url) {
+  if (!url.pathname.startsWith("/ref/")) return null;
 
   const encodedCode = url.pathname.slice("/ref/".length);
   if (!encodedCode || encodedCode.includes("/")) return null;
@@ -87,6 +101,28 @@ function isExactReferralPath(url) {
   if (!code) return null;
 
   return { code, isCanonical: decodedCode === code };
+}
+
+function isExactReferralPath(url) {
+  if (url.search || url.hash) return null;
+  return parseReferralCodeFromPath(url);
+}
+
+// True only when the URL carries a non-empty query composed EXCLUSIVELY of
+// allowlisted tracking keys, each appearing exactly once (case-sensitive).
+// A single unknown key, a duplicated key, or an uppercase variant makes the
+// whole query fail — the values themselves are never inspected.
+function hasOnlyAllowedReferralTrackingParams(url) {
+  if (!url.search) return false;
+
+  const seen = new Set();
+  for (const key of url.searchParams.keys()) {
+    if (!ALLOWED_REFERRAL_TRACKING_PARAMS.has(key)) return false;
+    if (seen.has(key)) return false;
+    seen.add(key);
+  }
+
+  return seen.size > 0;
 }
 
 function getLegacyReferralCode(url) {
@@ -307,6 +343,16 @@ export default {
           }),
           { referralPage: true },
         );
+      }
+
+      // A valid referral path decorated only with allowlisted tracking params
+      // (and no fragment) canonicalizes in a single 308 to the clean referral
+      // URL. The tracking query is dropped, never copied into the destination.
+      if (!url.hash && hasOnlyAllowedReferralTrackingParams(url)) {
+        const tracked = parseReferralCodeFromPath(url);
+        if (tracked) {
+          return withSecurityHeaders(Response.redirect(buildCanonicalReferralUrl(tracked.code), 308));
+        }
       }
 
       const legacyCode = getLegacyReferralCode(url);
