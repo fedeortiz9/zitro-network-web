@@ -1,16 +1,23 @@
 name: Referral Worker CI
 
-# F-10: el gate corre en los dos extremos del cambio -- sobre la merge-result
-# de cada pull request, y sobre el commit que QUEDA en `main`. Sin el segundo,
-# `main` sólo estaba cubierto de forma indirecta: un push directo no ejecutaba
-# nada, y un PR abierto contra una base vieja se validaba sobre un árbol que ya
-# no era el que terminaba en la rama. Es el MISMO job en ambos casos -- no hay
-# un segundo pipeline que pueda divergir -- y el filtro `paths` se mantiene
-# idéntico al que ya usaba `pull_request` para no cambiar, de paso, qué cambios
-# se consideran relevantes.
+# F-10: un mismo job cubre dos eventos.
 #
-# Las dos ramas del trigger son disjuntas (`push` sólo mira `main`, y las ramas
-# de PR nunca son `main`), así que ningún commit dispara el workflow dos veces.
+#   - `pull_request` valida los cambios propuestos en un PR.
+#   - `push` valida `main` cuando el commit toca alguno de los `paths`
+#     listados. Un push a `main` que no toque ninguno de esos paths no
+#     ejecuta el job; el filtro es deliberadamente el mismo que ya usaba
+#     `pull_request`, para no cambiar de paso qué se considera un cambio
+#     relevante.
+#
+# Antes de añadir `push`, `main` no tenía verificación propia: lo que se
+# validaba era la merge-result de cada PR, no el commit que quedaba en la
+# rama, y un push directo no ejecutaba nada. Es el MISMO job en ambos casos,
+# de modo que no hay un segundo pipeline que pueda divergir.
+#
+# Los dos eventos cubren situaciones distintas y en el flujo habitual no se
+# solapan, pero eso no es una garantía de ejecución única: un commit que sea a
+# la vez push a `main` y cabeza de un PR abierto -- por ejemplo un PR desde
+# `main` hacia otra rama -- puede disparar ambos.
 on:
   pull_request:
     paths:
