@@ -1,7 +1,29 @@
 name: Referral Worker CI
 
+# F-10: el gate corre en los dos extremos del cambio -- sobre la merge-result
+# de cada pull request, y sobre el commit que QUEDA en `main`. Sin el segundo,
+# `main` sólo estaba cubierto de forma indirecta: un push directo no ejecutaba
+# nada, y un PR abierto contra una base vieja se validaba sobre un árbol que ya
+# no era el que terminaba en la rama. Es el MISMO job en ambos casos -- no hay
+# un segundo pipeline que pueda divergir -- y el filtro `paths` se mantiene
+# idéntico al que ya usaba `pull_request` para no cambiar, de paso, qué cambios
+# se consideran relevantes.
+#
+# Las dos ramas del trigger son disjuntas (`push` sólo mira `main`, y las ramas
+# de PR nunca son `main`), así que ningún commit dispara el workflow dos veces.
 on:
   pull_request:
+    paths:
+      - "src/**"
+      - "test/**"
+      - "package.json"
+      - "package-lock.json"
+      - "wrangler.toml"
+      - ".well-known/**"
+      - ".github/workflows/referral-worker-ci.yml"
+  push:
+    branches:
+      - main
     paths:
       - "src/**"
       - "test/**"
