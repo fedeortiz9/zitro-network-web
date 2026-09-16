@@ -4408,6 +4408,7 @@ section {
         <ul>
           <li><a href="https://fedeortiz9.github.io/zitro-privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
           <li><a href="https://fedeortiz9.github.io/zitro-terms/" target="_blank" rel="noopener noreferrer">Terms and Conditions</a></li>
+          <li><a href="/eliminar-cuenta" data-i18n="footer.link_delete_account">Eliminar cuenta</a></li>
           <li><a href="#roadmap" data-i18n="footer.link_roadmap">Hoja de Ruta</a></li>
           <li><a href="#academy" data-i18n="footer.link_academy">Zitro Academy</a></li>
         </ul>
@@ -4430,6 +4431,7 @@ section {
       <div class="footer-legal-deck">
         <a href="https://fedeortiz9.github.io/zitro-privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
         <a href="https://fedeortiz9.github.io/zitro-terms/" target="_blank" rel="noopener noreferrer">Terms and Conditions</a>
+        <a href="/eliminar-cuenta" data-i18n="footer.link_delete_account">Eliminar cuenta</a>
       </div>
     </div>
   </div>
@@ -4550,9 +4552,9 @@ section {
         mobileBackdrop.addEventListener('click', closeMobilePanel);
       }
 
-      var mobileLinks = mobilePanel.querySelectorAll('a');
-      for (var i = 0; i < mobileLinks.length; i++) {
-        mobileLinks[i].addEventListener('click', closeMobilePanel);
+      var mobileDismissTargets = mobilePanel.querySelectorAll('a, .lang-btn');
+      for (var i = 0; i < mobileDismissTargets.length; i++) {
+        mobileDismissTargets[i].addEventListener('click', closeMobilePanel);
       }
 
       document.addEventListener('keydown', function(e) {
@@ -4842,6 +4844,7 @@ section {
       "footer.link_community": "Red Comunitaria",
       "footer.link_roadmap": "Hoja de Ruta",
       "footer.col_legal": "Legal & Recursos",
+      "footer.link_delete_account": "Eliminar cuenta",
       "footer.disclaimer_title": "Aviso de Transparencia",
       "footer.disclaimer_text": "Zitro Network es un ecosistema tecnológico en desarrollo. Las características pueden evolucionar durante el desarrollo del producto. Las recompensas obtenidas mediante las sesiones se registran como puntos internos del ecosistema. El contenido educativo tiene fines exclusivamente informativos y formativos.",
       "footer.rights": "© 2026 Zitro Network. Todos los derechos reservados."
@@ -4983,6 +4986,7 @@ section {
       "footer.link_community": "Community Network",
       "footer.link_roadmap": "Roadmap",
       "footer.col_legal": "Legal & Resources",
+      "footer.link_delete_account": "Delete account",
       "footer.disclaimer_title": "Transparency Notice",
       "footer.disclaimer_text": "Zitro Network is a technology ecosystem under active development. Features may evolve throughout product development. Rewards earned from sessions are recorded as internal ecosystem points. Educational content is provided for informational and training purposes only.",
       "footer.rights": "© 2026 Zitro Network. All rights reserved."
