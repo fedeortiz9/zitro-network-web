@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eliminar cuenta — Zitro Network</title>
+<meta name="description" content="Cómo eliminar tu cuenta de Zitro Network desde la app o por correo, qué datos se borran y cuánto tarda el proceso.">
+<meta name="theme-color" content="#050608">
+<meta name="robots" content="index, follow">
+
+<link rel="icon" type="image/png" href="/assets/brand/favicon.png">
+<link rel="canonical" href="https://www.zitronetwork.com/eliminar-cuenta">
+
+<style>
+/* ==========================================================================
+   SELF-HOSTED FONTS (@font-face) — copied verbatim from index.html
+   ========================================================================== */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/instrument-sans-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/instrument-sans-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/instrument-sans-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/instrument-sans-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/ibm-plex-mono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/ibm-plex-mono-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/ibm-plex-mono-600.woff2') format('woff2');
+}
+
+/* ==========================================================================
+   DESIGN SYSTEM TOKENS — copied verbatim from index.html:74-137
+   ========================================================================== */
+:root {
+  --bg-deep: #050608;
+  --bg-dark: #080a10;
+  --bg-surface: #0c1018;
+  --bg-surface-elevated: #121824;
+  --bg-card: rgba(11, 15, 24, 0.72);
+  --bg-card-hover: rgba(16, 22, 34, 0.88);
+  --bg-glass-nav: rgba(5, 6, 8, 0.75);
+  --bg-glass-nav-scrolled: rgba(5, 6, 8, 0.92);
+
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.12);
+  --border-glass: rgba(255, 255, 255, 0.18);
+  --border-highlight: rgba(255, 255, 255, 0.28);
+  --border-accent: rgba(220, 252, 4, 0.35);
+  --border-accent-strong: rgba(220, 252, 4, 0.85);
+
+  --fg-primary: #f8fafc;
+  --fg-secondary: #94a3b8;
+  --fg-muted: #64748b;
+  --fg-dark: #050608;
+
+  --accent: #dcfc04;
+  --accent-hover: #c9e803;
+  --accent-muted: rgba(220, 252, 4, 0.1);
+  --accent-glow: rgba(220, 252, 4, 0.22);
+  --accent-glow-strong: rgba(220, 252, 4, 0.45);
+
+  --cyan: #38bdf8;
+  --cyan-glow: rgba(56, 189, 248, 0.25);
+  --emerald: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.25);
+  --amber: #f59e0b;
+
+  --font-display: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  --max-w: 1240px;
+  --nav-height: 74px;
+
+  --motion-fast: 320ms;
+  --motion-normal: 560ms;
+  --motion-medium: 680ms;
+  --motion-slow: 820ms;
+  --motion-cinematic: 1000ms;
+
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+/* ==========================================================================
+   RESET & BASE — copied verbatim (header/footer/nav rules) from index.html
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #030404;
+  color: var(--fg-primary);
+  font-family: var(--font-display);
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  background-color: #030404;
+  background-image: url('/assets/backgrounds/zitro-background-dark.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--fg-primary);
+  font-family: var(--font-display);
+  line-height: 1.6;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
+}
+
+a { color: inherit; text-decoration: none; }
+button { background: none; border: none; font: inherit; color: inherit; cursor: pointer; }
+img, svg { display: block; max-width: 100%; }
+::selection { background-color: var(--accent); color: var(--fg-dark); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+  position: relative;
+  z-index: 1;
+}
+
+.text-accent { color: var(--accent); }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  background: var(--bg-glass-nav);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  transition: background-color var(--motion-fast) var(--ease-premium),
+              border-color var(--motion-fast) var(--ease-premium),
+              box-shadow var(--motion-fast) var(--ease-premium);
+}
+
+.site-header.scrolled {
+  background: var(--bg-glass-nav-scrolled);
+  border-bottom-color: var(--border-medium);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.nav-wrap { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity var(--motion-fast) ease, transform var(--motion-fast) var(--ease-premium);
+}
+.brand-link:hover { opacity: 0.92; transform: scale(1.02); }
+
+.brand-logo-img { height: 28px; width: auto; object-fit: contain; display: block; }
+
+.nav-links { display: flex; align-items: center; gap: 2.25rem; }
+
+.nav-item {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  transition: color var(--motion-fast) ease;
+  position: relative;
+  padding: 0.35rem 0;
+}
+.nav-item:hover { color: var(--fg-primary); }
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--motion-fast) var(--ease-premium);
+}
+.nav-item:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.nav-actions { display: flex; align-items: center; gap: 1rem; }
+
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  user-select: none;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  padding: 4px 6px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  color: var(--fg-secondary);
+  opacity: 0.55;
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  transition: color var(--motion-fast) ease, opacity var(--motion-fast) ease;
+}
+.lang-btn:hover { opacity: 0.85; color: var(--fg-primary); }
+.lang-btn[aria-pressed="true"] { opacity: 1; color: var(--accent); font-weight: 600; }
+
+.lang-divider { color: rgba(255, 255, 255, 0.2); font-size: 0.75rem; }
+
+.badge-play-store {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-medium);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 0.02em;
+}
+.badge-play-store svg { width: 14px; height: 14px; fill: var(--accent); }
+
+.mobile-toggle {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-medium);
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-primary);
+}
+.mobile-toggle svg { width: 20px; height: 20px; }
+
+.mobile-nav-backdrop,
+.mobile-nav-panel { display: none; }
+
+.site-footer {
+  border-top: 1px solid var(--border-subtle);
+  background: linear-gradient(180deg, rgba(8, 10, 16, 0.8) 0%, rgba(5, 6, 8, 0.98) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: clamp(4rem, 8vw, 5.5rem) 0 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220, 252, 4, 0.35) 50%, transparent);
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: 3.5rem;
+}
+
+.footer-logo-img { height: 30px; width: auto; object-fit: contain; display: block; margin-bottom: 1.25rem; }
+
+.footer-brand-desc {
+  color: var(--fg-secondary);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  max-width: 34ch;
+  margin-bottom: 1.5rem;
+}
+
+.footer-menu-col h5 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+}
+.footer-menu-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.footer-menu-col a { color: var(--fg-secondary); font-size: 0.88rem; transition: color var(--motion-fast) ease; }
+.footer-menu-col a:hover { color: var(--accent); }
+
+.footer-disclaimer-panel {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.15rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.footer-disclaimer-panel h5 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--fg-primary);
+  margin-bottom: 0.5rem;
+}
+.footer-disclaimer-panel p { font-size: 0.76rem; color: var(--fg-muted); line-height: 1.55; }
+
+.footer-bottom-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-legal-deck { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.footer-legal-deck a { color: var(--fg-secondary); transition: color var(--motion-fast) ease; }
+.footer-legal-deck a:hover { color: var(--fg-primary); }
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity var(--motion-slow) var(--ease-premium),
+              transform var(--motion-slow) var(--ease-premium);
+  will-change: opacity, transform;
+}
+.reveal-up.is-revealed { opacity: 1; transform: translateY(0); }
+.stagger-1 { transition-delay: 0.07s; }
+.stagger-2 { transition-delay: 0.14s; }
+.stagger-3 { transition-delay: 0.21s; }
+.stagger-4 { transition-delay: 0.28s; }
+
+@media (max-width: 1024px) {
+  .footer-columns { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  body {
+    background-image: url('/assets/backgrounds/zitro-mobile-dark.png');
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: repeat-y;
+    background-attachment: scroll;
+    background-color: #030303;
+  }
+  .site-header {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 30;
+    background: transparent !important;
+    background-color: transparent !important;
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transition: transform 420ms cubic-bezier(.16, 1, .3, 1), opacity 280ms ease;
+    opacity: 1;
+  }
+  .site-header.scrolled {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .site-header.header-hidden { transform: translateY(-115%); opacity: 0; }
+  .nav-links,
+  .nav-actions .badge-play-store { display: none; }
+  .mobile-toggle {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.88);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #ffffff;
+    cursor: pointer;
+  }
+  .mobile-toggle svg,
+  .mobile-toggle .icon,
+  .mobile-toggle span { color: #ffffff; stroke: currentColor; width: 23px; height: 23px; }
+  body.mobile-nav-open { overflow: hidden; }
+  .mobile-nav-backdrop {
+    display: block;
+    position: fixed;
+    top: var(--nav-height); left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.68);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 110;
+    transition: opacity 280ms var(--ease-premium), visibility 280ms;
+  }
+  .mobile-nav-backdrop.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+  .mobile-nav-panel {
+    display: flex;
+    position: fixed;
+    top: var(--nav-height); right: 0; bottom: 0; left: auto;
+    width: min(86vw, 370px);
+    padding: 2.2rem 1.5rem;
+    flex-direction: column;
+    gap: 0;
+    background: #070807;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.09);
+    box-shadow: -28px 0 70px rgba(0, 0, 0, 0.72), inset 1px 0 rgba(255, 255, 255, 0.025);
+    transform: translateX(100%);
+    opacity: 1;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 120;
+    transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), visibility 420ms;
+  }
+  .mobile-nav-panel.is-open { transform: translateX(0); visibility: visible; pointer-events: auto; }
+  .mobile-nav-panel .nav-item {
+    width: 100%;
+    padding: 1.35rem 0.15rem;
+    font-size: clamp(1.25rem, 5vw, 1.55rem);
+    font-weight: 450;
+    color: rgba(255, 255, 255, 0.78);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    animation: none;
+  }
+  .mobile-nav-panel .nav-item:hover,
+  .mobile-nav-panel .nav-item:focus-visible { color: #fff; }
+  .site-header .language-switcher { display: none; }
+  .mobile-nav-lang {
+    padding: 1.5rem 0.15rem 0.5rem;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .mobile-nav-lang .language-switcher { display: inline-flex; font-size: 0.95rem; gap: 8px; }
+  .mobile-nav-lang .lang-btn { padding: 6px 10px; }
+  .footer-columns { grid-template-columns: 1fr; }
+  .footer-bottom-strip { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 1.15rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-up { opacity: 1 !important; transform: none !important; }
+}
+
+/* ==========================================================================
+   PAGE CONTENT — new, this page only
+   ========================================================================== */
+.deletion-main {
+  flex: 1;
+  padding: clamp(3rem, 8vw, 5rem) 0 clamp(4rem, 8vw, 6rem);
+}
+
+.deletion-intro {
+  max-width: 62ch;
+  margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+.deletion-intro h1 {
+  font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.deletion-intro .lead {
+  color: var(--fg-secondary);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.deletion-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.deletion-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.deletion-card h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.9rem;
+}
+
+.deletion-card p {
+  color: var(--fg-secondary);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.deletion-steps {
+  list-style: none;
+  counter-reset: step;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1.1rem;
+}
+
+.deletion-steps li {
+  counter-increment: step;
+  display: flex;
+  gap: 0.85rem;
+  align-items: baseline;
+  font-size: 0.94rem;
+  color: var(--fg-primary);
+  line-height: 1.5;
+}
+
+.deletion-steps li::before {
+  content: counter(step);
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-accent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deletion-note {
+  border-left: 2px solid var(--border-accent);
+  padding-left: 1rem;
+  color: var(--fg-secondary);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-top: 1.25rem;
+}
+
+.deletion-datacols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.deletion-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.deletion-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--fg-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.deletion-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.deletion-list--muted li::before { background: var(--fg-muted); }
+
+.deletion-card--wide {
+  grid-column: 1 / -1;
+}
+
+.deletion-contact {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.deletion-contact h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.deletion-contact p {
+  color: var(--fg-secondary);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.deletion-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent);
+  width: fit-content;
+}
+
+.deletion-legal-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  color: var(--fg-secondary);
+}
+
+.deletion-legal-links a { color: var(--fg-secondary); border-bottom: 1px solid var(--border-medium); transition: color var(--motion-fast) ease, border-color var(--motion-fast) ease; }
+.deletion-legal-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+@media (max-width: 768px) {
+  .deletion-grid,
+  .deletion-datacols {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <div class="container nav-wrap">
+    <a class="brand-link" href="/" aria-label="Zitro Network Inicio" data-i18n-aria="nav.brand_aria">
+      <img src="/assets/brand/zitro-logo-white.png" alt="Zitro Network" class="brand-logo-img">
+    </a>
+
+    <nav class="nav-links" aria-label="Navegación principal" data-i18n-aria="nav.main_aria">
+      <a class="nav-item" href="/#ecosystem" data-i18n="nav.ecosystem">Ecosistema</a>
+      <a class="nav-item" href="/#mining" data-i18n="nav.mining">Cloud Mining</a>
+      <a class="nav-item" href="/#academy" data-i18n="nav.academy">Academia</a>
+      <a class="nav-item" href="/#community" data-i18n="nav.community">Comunidad</a>
+      <a class="nav-item" href="/#roadmap" data-i18n="nav.roadmap">Roadmap</a>
+    </nav>
+
+    <div class="nav-actions">
+      <div class="language-switcher" role="group" aria-label="Seleccionar idioma / Select language">
+        <button type="button" class="lang-btn" data-language="es" aria-pressed="true" aria-label="Español">ES</button>
+        <span class="lang-divider" aria-hidden="true">|</span>
+        <button type="button" class="lang-btn" data-language="en" aria-pressed="false" aria-label="English">EN</button>
+      </div>
+
+      <div class="badge-play-store" title="Lanzamiento próximamente en Google Play Store" data-i18n-title="nav.badge_title">
+        <svg viewBox="0 0 24 24">
+          <path d="M3.609 1.814L13.792 12 3.61 22.186a2.158 2.158 0 0 1-.22-.971V2.785c0-.361.08-.696.22-.971zM15.207 13.414l2.585 2.586-11.45 6.477 8.865-9.063zm2.585-5.414l-2.585 2.586-8.865-9.063 11.45 6.477zM16.621 12l3.414-3.414a1.868 1.868 0 0 1 0 2.642L16.621 12z"/>
+        </svg>
+        <span data-i18n="nav.badge_android">Android • Próximamente</span>
+      </div>
+
+      <button type="button" class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav-panel" data-i18n-aria="nav.mobile_toggle_aria">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+
+<nav class="mobile-nav-panel" id="mobile-nav-panel" aria-label="Navegación móvil" data-i18n-aria="nav.mobile_aria">
+  <a class="nav-item" href="/#ecosystem" data-i18n="nav.ecosystem">Ecosistema</a>
+  <a class="nav-item" href="/#mining" data-i18n="nav.mining">Cloud Mining</a>
+  <a class="nav-item" href="/#academy" data-i18n="nav.academy_mobile">Zitro Academy</a>
+  <a class="nav-item" href="/#community" data-i18n="nav.community">Comunidad</a>
+  <a class="nav-item" href="/#roadmap" data-i18n="nav.roadmap_mobile">Hoja de Ruta</a>
+  <div class="mobile-nav-lang">
+    <div class="language-switcher" role="group" aria-label="Seleccionar idioma / Select language">
+      <button type="button" class="lang-btn" data-language="es" aria-pressed="true" aria-label="Español">ES</button>
+      <span class="lang-divider" aria-hidden="true">|</span>
+      <button type="button" class="lang-btn" data-language="en" aria-pressed="false" aria-label="English">EN</button>
+    </div>
+  </div>
+</nav>
+
+<main class="deletion-main">
+  <div class="container">
+
+    <div class="deletion-intro reveal-up">
+      <h1 data-i18n="del.title">Eliminar tu cuenta de Zitro Network</h1>
+      <p class="lead" data-i18n="del.lead">Podés borrar tu cuenta desde la app en menos de un minuto. Si ya la desinstalaste, también podés pedirlo por correo. En ambos casos, la eliminación es permanente.</p>
+    </div>
+
+    <div class="deletion-grid">
+      <div class="deletion-card reveal-up">
+        <h2 data-i18n="del.app_title">Desde la app</h2>
+        <p data-i18n="del.app_desc">Es la vía más rápida y no necesita esperar una respuesta por correo.</p>
+        <ol class="deletion-steps">
+          <li data-i18n="del.step1">Abrí el menú (☰) desde la pantalla principal.</li>
+          <li data-i18n="del.step2">Tocá "Eliminar cuenta".</li>
+          <li data-i18n="del.step3">Escribí tu nombre de usuario para confirmar.</li>
+        </ol>
+        <p class="deletion-note" data-i18n="del.app_note">La confirmación con tu nombre de usuario evita borrados accidentales. Una vez confirmado, el proceso arranca de inmediato.</p>
+      </div>
+
+      <div class="deletion-card reveal-up stagger-1">
+        <h2 data-i18n="del.irreversible_title">Es irreversible</h2>
+        <p data-i18n="del.irreversible_desc">No hay forma de recuperar la cuenta ni sus datos una vez eliminada. Si volvés a usar Zitro Network después, vas a partir de cero con un registro nuevo.</p>
+        <p class="deletion-note" data-i18n="del.timeline">El pedido se procesa dentro de los 30 días, en línea con nuestra política de privacidad.</p>
+      </div>
+    </div>
+
+    <div class="deletion-datacols">
+      <div class="deletion-card reveal-up">
+        <h2 data-i18n="del.deleted_title">Qué se elimina</h2>
+        <ul class="deletion-list">
+          <li data-i18n="del.deleted_1">Tu perfil: nombre, correo, teléfono, país y foto.</li>
+          <li data-i18n="del.deleted_2">El saldo de puntos internos acumulado.</li>
+          <li data-i18n="del.deleted_3">Tu progreso en Zitro Academy.</li>
+          <li data-i18n="del.deleted_4">El historial de sesiones de minería.</li>
+          <li data-i18n="del.deleted_5">La dirección de billetera vinculada a tu cuenta.</li>
+          <li data-i18n="del.deleted_6">Los tokens de notificaciones del dispositivo.</li>
+        </ul>
+      </div>
+
+      <div class="deletion-card reveal-up stagger-1">
+        <h2 data-i18n="del.kept_title">Qué no se elimina</h2>
+        <ul class="deletion-list deletion-list--muted">
+          <li data-i18n="del.kept_1">Las cuentas de las personas que referiste siguen existiendo.</li>
+          <li data-i18n="del.kept_2">Solo pierden el vínculo de referido con tu cuenta.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="deletion-contact reveal-up">
+      <h2 data-i18n="del.contact_title">¿Ya desinstalaste la app?</h2>
+      <p data-i18n="del.contact_desc">Escribinos desde el correo asociado a tu cuenta. Lo usamos para verificar que el pedido es tuyo.</p>
+      <a class="deletion-email" href="mailto:privacidad@zitronetwork.com">privacidad@zitronetwork.com</a>
+      <div class="deletion-legal-links">
+        <a href="https://fedeortiz9.github.io/zitro-privacy-policy/" target="_blank" rel="noopener noreferrer" data-i18n="del.link_privacy">Política de Privacidad</a>
+        <a href="https://fedeortiz9.github.io/zitro-terms/" target="_blank" rel="noopener noreferrer" data-i18n="del.link_terms">Términos y Condiciones</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-columns reveal-up">
+      <div class="footer-brand-col">
+        <img src="/assets/brand/zitro-logo-white.png" alt="Zitro" class="footer-logo-img" loading="lazy">
+        <p class="footer-brand-desc" data-i18n="footer.brand_desc">
+          Ecosistema tecnológico enfocado en minería en la nube, educación tecnológica responsable e infraestructura blockchain en desarrollo.
+        </p>
+        <div class="badge-play-store">
+          <svg viewBox="0 0 24 24">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a2.158 2.158 0 0 1-.22-.971V2.785c0-.361.08-.696.22-.971zM15.207 13.414l2.585 2.586-11.45 6.477 8.865-9.063zm2.585-5.414l-2.585 2.586-8.865-9.063 11.45 6.477zM16.621 12l3.414-3.414a1.868 1.868 0 0 1 0 2.642L16.621 12z"/>
+          </svg>
+          <span>Android • Próximamente</span>
+        </div>
+      </div>
+
+      <div class="footer-menu-col stagger-1">
+        <h5 data-i18n="footer.col_ecosystem">Ecosistema</h5>
+        <ul>
+          <li><a href="/#ecosystem" data-i18n="footer.link_overview">Visión General</a></li>
+          <li><a href="/#mining" data-i18n="footer.link_mining">Minería en la Nube</a></li>
+          <li><a href="/#academy" data-i18n="footer.link_academy">Zitro Academy</a></li>
+          <li><a href="/#community" data-i18n="footer.link_community">Red Comunitaria</a></li>
+          <li><a href="/#roadmap" data-i18n="footer.link_roadmap">Hoja de Ruta</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-menu-col stagger-2">
+        <h5 data-i18n="footer.col_legal">Legal & Recursos</h5>
+        <ul>
+          <li><a href="https://fedeortiz9.github.io/zitro-privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+          <li><a href="https://fedeortiz9.github.io/zitro-terms/" target="_blank" rel="noopener noreferrer">Terms and Conditions</a></li>
+          <li><a href="/eliminar-cuenta" data-i18n="footer.link_delete_account">Eliminar cuenta</a></li>
+          <li><a href="/#roadmap" data-i18n="footer.link_roadmap">Hoja de Ruta</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-menu-col stagger-3">
+        <div class="footer-disclaimer-panel">
+          <h5 data-i18n="footer.disclaimer_title">Aviso de Transparencia</h5>
+          <p data-i18n="footer.disclaimer_text">
+            Zitro Network es un ecosistema tecnológico en desarrollo. Las características pueden evolucionar durante el desarrollo del producto. Las recompensas obtenidas mediante las sesiones se registran como puntos internos del ecosistema. El contenido educativo tiene fines exclusivamente informativos y formativos.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom-strip">
+      <p data-i18n="footer.rights">© 2026 Zitro Network. Todos los derechos reservados.</p>
+      <div class="footer-legal-deck">
+        <a href="https://fedeortiz9.github.io/zitro-privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        <a href="https://fedeortiz9.github.io/zitro-terms/" target="_blank" rel="noopener noreferrer">Terms and Conditions</a>
+        <a href="/eliminar-cuenta" data-i18n="footer.link_delete_account">Eliminar cuenta</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // Mobile Menu Drawer Toggle & Escape Handler (mirrors index.html initMobileDrawer,
+  // with the closeMobilePanel listener also covering .lang-btn buttons — not just <a> —
+  // so tapping EN/ES inside the panel closes it instead of leaving it stuck open)
+  function initMobileDrawer() {
+    var toggleBtn = document.getElementById('mobile-toggle');
+    var mobilePanel = document.getElementById('mobile-nav-panel');
+    var mobileBackdrop = document.getElementById('mobile-nav-backdrop');
+
+    function closeMobilePanel() {
+      if (toggleBtn && mobilePanel) {
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        mobilePanel.classList.remove('is-open');
+        if (mobileBackdrop) {
+          mobileBackdrop.classList.remove('is-open');
+        }
+        document.body.classList.remove('mobile-nav-open');
+      }
+    }
+
+    function openMobilePanel() {
+      if (toggleBtn && mobilePanel) {
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        mobilePanel.classList.add('is-open');
+        if (mobileBackdrop) {
+          mobileBackdrop.classList.add('is-open');
+        }
+        document.body.classList.add('mobile-nav-open');
+      }
+    }
+
+    function toggleMobilePanel() {
+      if (toggleBtn && mobilePanel) {
+        var isOpen = mobilePanel.classList.contains('is-open');
+        if (isOpen) {
+          closeMobilePanel();
+        } else {
+          openMobilePanel();
+        }
+      }
+    }
+
+    if (toggleBtn && mobilePanel) {
+      toggleBtn.addEventListener('click', toggleMobilePanel);
+
+      if (mobileBackdrop) {
+        mobileBackdrop.addEventListener('click', closeMobilePanel);
+      }
+
+      var mobileDismissTargets = mobilePanel.querySelectorAll('a, .lang-btn');
+      for (var i = 0; i < mobileDismissTargets.length; i++) {
+        mobileDismissTargets[i].addEventListener('click', closeMobilePanel);
+      }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' || e.key === 'Esc') {
+          closeMobilePanel();
+        }
+      });
+    }
+  }
+
+  // Dynamic Smart Header Scroll Enhancement — mirrors index.html initHeaderScroll
+  function initHeaderScroll() {
+    var media = window.matchMedia('(max-width: 768px)');
+    var header = document.querySelector('.site-header');
+    if (!header || !media.matches) return;
+
+    var lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', function () {
+      var currentY = window.scrollY;
+
+      if (currentY <= 12) {
+        header.classList.remove('header-hidden');
+      } else if (currentY > lastScrollY + 6) {
+        header.classList.add('header-hidden');
+      } else if (currentY < lastScrollY - 6) {
+        header.classList.remove('header-hidden');
+      }
+
+      lastScrollY = currentY;
+    }, { passive: true });
+  }
+
+  // Scroll reveal — mirrors index.html's IntersectionObserver-driven .reveal-up
+  function initScrollReveals() {
+    var items = document.querySelectorAll('.reveal-up');
+    if (!items.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function(el) { el.classList.add('is-revealed'); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    items.forEach(function(el) { observer.observe(el); });
+  }
+
+  // I18N — same storage key and attribute contract as index.html (data-i18n /
+  // data-i18n-title / data-i18n-aria), trimmed to the strings this page uses:
+  // shared nav/footer keys plus this page's own "del.*" content keys.
+  var STORAGE_KEY = 'zitro-language';
+
+  var translations = {
+    es: {
+      "nav.brand_aria": "Zitro Network Inicio",
+      "nav.main_aria": "Navegación principal",
+      "nav.mobile_aria": "Navegación móvil",
+      "nav.mobile_toggle_aria": "Abrir menú de navegación",
+      "nav.ecosystem": "Ecosistema",
+      "nav.mining": "Cloud Mining",
+      "nav.academy": "Academia",
+      "nav.academy_mobile": "Zitro Academy",
+      "nav.community": "Comunidad",
+      "nav.roadmap": "Roadmap",
+      "nav.roadmap_mobile": "Hoja de Ruta",
+      "nav.badge_android": "Android • Próximamente",
+      "nav.badge_title": "Lanzamiento próximamente en Google Play Store",
+      "footer.brand_desc": "Ecosistema tecnológico enfocado en minería en la nube, educación tecnológica responsable e infraestructura blockchain en desarrollo.",
+      "footer.col_ecosystem": "Ecosistema",
+      "footer.link_overview": "Visión General",
+      "footer.link_mining": "Minería en la Nube",
+      "footer.link_academy": "Zitro Academy",
+      "footer.link_community": "Red Comunitaria",
+      "footer.link_roadmap": "Hoja de Ruta",
+      "footer.col_legal": "Legal & Recursos",
+      "footer.link_delete_account": "Eliminar cuenta",
+      "footer.disclaimer_title": "Aviso de Transparencia",
+      "footer.disclaimer_text": "Zitro Network es un ecosistema tecnológico en desarrollo. Las características pueden evolucionar durante el desarrollo del producto. Las recompensas obtenidas mediante las sesiones se registran como puntos internos del ecosistema. El contenido educativo tiene fines exclusivamente informativos y formativos.",
+      "footer.rights": "© 2026 Zitro Network. Todos los derechos reservados.",
+      "seo.title": "Eliminar cuenta — Zitro Network",
+      "seo.description": "Cómo eliminar tu cuenta de Zitro Network desde la app o por correo, qué datos se borran y cuánto tarda el proceso.",
+      "del.title": "Eliminar tu cuenta de Zitro Network",
+      "del.lead": "Podés borrar tu cuenta desde la app en menos de un minuto. Si ya la desinstalaste, también podés pedirlo por correo. En ambos casos, la eliminación es permanente.",
+      "del.app_title": "Desde la app",
+      "del.app_desc": "Es la vía más rápida y no necesita esperar una respuesta por correo.",
+      "del.step1": "Abrí el menú (☰) desde la pantalla principal.",
+      "del.step2": "Tocá \"Eliminar cuenta\".",
+      "del.step3": "Escribí tu nombre de usuario para confirmar.",
+      "del.app_note": "La confirmación con tu nombre de usuario evita borrados accidentales. Una vez confirmado, el proceso arranca de inmediato.",
+      "del.irreversible_title": "Es irreversible",
+      "del.irreversible_desc": "No hay forma de recuperar la cuenta ni sus datos una vez eliminada. Si volvés a usar Zitro Network después, vas a partir de cero con un registro nuevo.",
+      "del.timeline": "El pedido se procesa dentro de los 30 días, en línea con nuestra política de privacidad.",
+      "del.deleted_title": "Qué se elimina",
+      "del.deleted_1": "Tu perfil: nombre, correo, teléfono, país y foto.",
+      "del.deleted_2": "El saldo de puntos internos acumulado.",
+      "del.deleted_3": "Tu progreso en Zitro Academy.",
+      "del.deleted_4": "El historial de sesiones de minería.",
+      "del.deleted_5": "La dirección de billetera vinculada a tu cuenta.",
+      "del.deleted_6": "Los tokens de notificaciones del dispositivo.",
+      "del.kept_title": "Qué no se elimina",
+      "del.kept_1": "Las cuentas de las personas que referiste siguen existiendo.",
+      "del.kept_2": "Solo pierden el vínculo de referido con tu cuenta.",
+      "del.contact_title": "¿Ya desinstalaste la app?",
+      "del.contact_desc": "Escribinos desde el correo asociado a tu cuenta. Lo usamos para verificar que el pedido es tuyo.",
+      "del.link_privacy": "Política de Privacidad",
+      "del.link_terms": "Términos y Condiciones"
+    },
+    en: {
+      "nav.brand_aria": "Zitro Network Home",
+      "nav.main_aria": "Main navigation",
+      "nav.mobile_aria": "Mobile navigation",
+      "nav.mobile_toggle_aria": "Open navigation menu",
+      "nav.ecosystem": "Ecosystem",
+      "nav.mining": "Cloud Mining",
+      "nav.academy": "Academy",
+      "nav.academy_mobile": "Zitro Academy",
+      "nav.community": "Community",
+      "nav.roadmap": "Roadmap",
+      "nav.roadmap_mobile": "Roadmap",
+      "nav.badge_android": "Android • Coming Soon",
+      "nav.badge_title": "Coming soon to the Google Play Store",
+      "footer.brand_desc": "Technology ecosystem focused on cloud mining, responsible technology education, and developing blockchain infrastructure.",
+      "footer.col_ecosystem": "Ecosystem",
+      "footer.link_overview": "Overview",
+      "footer.link_mining": "Cloud Mining",
+      "footer.link_academy": "Zitro Academy",
+      "footer.link_community": "Community Network",
+      "footer.link_roadmap": "Roadmap",
+      "footer.col_legal": "Legal & Resources",
+      "footer.link_delete_account": "Delete account",
+      "footer.disclaimer_title": "Transparency Notice",
+      "footer.disclaimer_text": "Zitro Network is a technology ecosystem under active development. Features may evolve throughout product development. Rewards earned from sessions are recorded as internal ecosystem points. Educational content is provided for informational and training purposes only.",
+      "footer.rights": "© 2026 Zitro Network. All rights reserved.",
+      "seo.title": "Delete Account — Zitro Network",
+      "seo.description": "How to delete your Zitro Network account from the app or by email, what data gets removed, and how long it takes.",
+      "del.title": "Delete your Zitro Network account",
+      "del.lead": "You can delete your account from the app in under a minute. If you already uninstalled it, you can also request deletion by email. Either way, the deletion is permanent.",
+      "del.app_title": "From the app",
+      "del.app_desc": "It's the fastest path and doesn't require waiting for an email reply.",
+      "del.step1": "Open the menu (☰) from the home screen.",
+      "del.step2": "Tap \"Delete account\".",
+      "del.step3": "Type your username to confirm.",
+      "del.app_note": "Confirming with your username prevents accidental deletions. Once confirmed, the process starts right away.",
+      "del.irreversible_title": "It's irreversible",
+      "del.irreversible_desc": "There's no way to recover the account or its data once deleted. If you use Zitro Network again later, you'll start fresh with a new registration.",
+      "del.timeline": "Requests are processed within 30 days, in line with our privacy policy.",
+      "del.deleted_title": "What gets deleted",
+      "del.deleted_1": "Your profile: name, email, phone, country and photo.",
+      "del.deleted_2": "Your accumulated internal points balance.",
+      "del.deleted_3": "Your progress in Zitro Academy.",
+      "del.deleted_4": "Your mining session history.",
+      "del.deleted_5": "The wallet address linked to your account.",
+      "del.deleted_6": "Your device notification tokens.",
+      "del.kept_title": "What doesn't get deleted",
+      "del.kept_1": "Accounts you referred keep existing.",
+      "del.kept_2": "They just lose the referral link to your account.",
+      "del.contact_title": "Already uninstalled the app?",
+      "del.contact_desc": "Email us from the address linked to your account. We use it to verify the request is yours.",
+      "del.link_privacy": "Privacy Policy",
+      "del.link_terms": "Terms and Conditions"
+    }
+  };
+
+  function setLanguage(lang) {
+    var dict = translations[lang] || translations.es;
+
+    var textElements = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < textElements.length; i++) {
+      var key = textElements[i].getAttribute('data-i18n');
+      if (dict[key] !== undefined) {
+        textElements[i].textContent = dict[key];
+      }
+    }
+
+    var titleElements = document.querySelectorAll('[data-i18n-title]');
+    for (var k = 0; k < titleElements.length; k++) {
+      var tKey = titleElements[k].getAttribute('data-i18n-title');
+      if (dict[tKey] !== undefined) {
+        titleElements[k].setAttribute('title', dict[tKey]);
+      }
+    }
+
+    var ariaElements = document.querySelectorAll('[data-i18n-aria]');
+    for (var m = 0; m < ariaElements.length; m++) {
+      var aKey = ariaElements[m].getAttribute('data-i18n-aria');
+      if (dict[aKey] !== undefined) {
+        ariaElements[m].setAttribute('aria-label', dict[aKey]);
+      }
+    }
+
+    document.documentElement.lang = lang;
+    if (dict["seo.title"]) {
+      document.title = dict["seo.title"];
+    }
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && dict["seo.description"]) {
+      metaDesc.setAttribute('content', dict["seo.description"]);
+    }
+
+    var buttons = document.querySelectorAll('.lang-btn');
+    for (var b = 0; b < buttons.length; b++) {
+      var bLang = buttons[b].getAttribute('data-language');
+      var isActive = (bLang === lang);
+      buttons[b].setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+    } catch (e) {}
+  }
+
+  function initI18n() {
+    var savedLang = 'es';
+    try {
+      var val = localStorage.getItem(STORAGE_KEY);
+      if (val === 'es' || val === 'en') {
+        savedLang = val;
+      }
+    } catch (e) {}
+
+    var buttons = document.querySelectorAll('.lang-btn');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function() {
+        var targetLang = this.getAttribute('data-language');
+        if (targetLang) {
+          setLanguage(targetLang);
+        }
+      });
+    }
+
+    setLanguage(savedLang);
+  }
+
+  initI18n();
+  initMobileDrawer();
+  initHeaderScroll();
+  initScrollReveals();
+})();
+</script>
+</body>
+</html>
