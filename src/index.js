@@ -324,6 +324,14 @@ export default {
       return withSecurityHeaders(await env.ASSETS.fetch(request));
     }
 
+    // app-ads.txt (IAB ad-inventory authorization) must respond 200 on the
+    // apex, not redirect: crawlers penalize cross-domain redirects for this
+    // file. This is a single-path exception to the otherwise-blanket
+    // apex->www redirect below.
+    if (url.host === "zitronetwork.com" && url.protocol === "https:" && url.pathname === "/app-ads.txt") {
+      return withSecurityHeaders(await env.ASSETS.fetch(request));
+    }
+
     if (
       url.host === "zitronetwork.com" ||
       (url.host === CANONICAL_HOST && url.protocol !== "https:")
