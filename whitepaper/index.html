@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" data-language="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whitepaper — Zitro Network</title>
+<meta name="description" content="Documento del ecosistema Zitro Network: la app, la minería de puntos internos ZTR sin valor monetario, la Academia y la comunidad.">
+<meta name="theme-color" content="#050608">
+<link rel="icon" type="image/png" href="/assets/brand/favicon.png">
+<link rel="canonical" href="https://www.zitronetwork.com/whitepaper/">
+<style>
+/* Web: fuentes del sitio (self-hosted, CSP font-src 'self'). */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/instrument-sans-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/instrument-sans-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/instrument-sans-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/instrument-sans-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/ibm-plex-mono-500.woff2') format('woff2');
+}
+:root {
+  --bg: #F7F6F3;
+  --surface: #FFFFFF;
+  --text: #17171A;
+  --text-secondary: #55565C;
+  --text-tertiary: #8A8B90;
+  --border: #E3E2DD;
+  --rule: #D8D7D1;
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', 'Georgia', 'Times New Roman', serif;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  --bg: #131313;
+  --surface: #1B1B1B;
+  --text: #EDEDEA;
+  --text-secondary: #A8A8A3;
+  --text-tertiary: #737370;
+  --border: #2C2C2A;
+  --rule: #333331;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 15.5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.container { max-width: 700px; margin: 0 auto; padding: 40px 24px 96px; }
+
+/* ── Cover ─────────────────────────────────────────────────────────── */
+.cover {
+  padding: 8px 0 36px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.cover .eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 18px;
+}
+.cover h1 {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.cover .subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 46ch;
+  margin-bottom: 22px;
+}
+.cover .meta {
+  font-size: 12.5px;
+  color: var(--text-tertiary);
+}
+
+/* ── Theme control ────────────────────────────────────────────────── */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+.switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.switch button {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  padding: 6px 15px;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.switch button.active { background: var(--surface); color: var(--text); }
+
+/* ── Table of contents ────────────────────────────────────────────── */
+nav.toc { margin: 40px 0 48px; }
+nav.toc h2 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-tertiary);
+  margin-bottom: 14px;
+}
+nav.toc ol { list-style: none; counter-reset: toc; }
+nav.toc li {
+  counter-increment: toc;
+  border-bottom: 1px solid var(--border);
+}
+nav.toc li:first-child { border-top: 1px solid var(--border); }
+nav.toc a {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 500;
+  padding: 11px 2px;
+}
+nav.toc a::before {
+  content: counter(toc, decimal-leading-zero);
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+/* ── Chapters ──────────────────────────────────────────────────────── */
+.chapter { margin: 64px 0 8px; scroll-margin-top: 20px; }
+.chapter .chnum {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+.chapter h2 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 22px;
+}
+section { margin-bottom: 30px; }
+section h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+  margin: 26px 0 10px;
+}
+section h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 18px 0 6px;
+}
+p { margin-bottom: 13px; color: var(--text); }
+p.lead {
+  font-size: 16.5px;
+  color: var(--text);
+  font-weight: 400;
+}
+ul, ol.plain { margin: 4px 0 16px 20px; }
+ul li, ol.plain li { margin-bottom: 7px; color: var(--text); }
+strong { font-weight: 600; }
+
+/* ── Callouts / pull quotes ────────────────────────────────────────── */
+.note {
+  border-left: 2px solid var(--text);
+  padding: 4px 0 4px 16px;
+  margin: 20px 0;
+  color: var(--text-secondary);
+  font-size: 14.5px;
+}
+.figure {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 22px;
+  margin: 22px 0;
+  background: var(--surface);
+}
+.figure .label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 6px;
+}
+.figure .value {
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--text);
+}
+
+hr.rule { border: none; border-top: 1px solid var(--rule); margin: 40px 0; }
+
+footer {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+footer p { margin-bottom: 3px; }
+
+html[data-language="es"] .lang-en,
+html[data-language="en"] .lang-es { display: none; }
+
+@media print {
+  body { background: #fff; color: #111; }
+  .controls { display: none; }
+}
+
+/* ── Web (zitronetwork.com): estilo del sitio ──────────────────────── */
+:root {
+  --font: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --accent: #55565C;
+}
+[data-theme="dark"] {
+  --bg: #050608;
+  --surface: #0c1018;
+  --text: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --border: rgba(255, 255, 255, 0.08);
+  --rule: rgba(255, 255, 255, 0.12);
+  --accent: #dcfc04;
+}
+html[data-language="es"] .lang-en, html[data-language="en"] .lang-es { display: none; }
+.site-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 36px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.site-bar a { color: var(--text-secondary); text-decoration: none; }
+.site-bar a:hover { color: var(--accent); }
+.cover .eyebrow { font-family: var(--font-mono); color: var(--accent); }
+.chapter .chnum { font-family: var(--font-mono); color: var(--accent); }
+nav.toc a::before { font-family: var(--font-mono); color: var(--accent); }
+.note { border-left-color: var(--accent); }
+.cover h1, .chapter h2, section h3 { font-weight: 600; letter-spacing: -0.02em; }
+footer a { color: var(--text-secondary); }
+footer .links { margin-top: 8px; }
+footer .links a + a { margin-left: 14px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="site-bar">
+  <a href="/"><span class="lang-es">&larr; Volver a zitronetwork.com</span><span class="lang-en">&larr; Back to zitronetwork.com</span></a>
+</div>
+
+<div class="cover">
+  <div class="eyebrow">
+    <span class="lang-es">Documento del Ecosistema &middot; v3.0</span>
+    <span class="lang-en">Ecosystem Document &middot; v3.0</span>
+  </div>
+  <h1>Zitro Network</h1>
+  <p class="subtitle lang-es">Minería móvil gratuita, Academia y comunidad dentro de una única aplicación.</p>
+  <p class="subtitle lang-en">Free mobile mining, Academy, and community in a single app.</p>
+  <p class="meta">
+    <span class="lang-es">Última actualización: 20 de agosto de 2026</span>
+    <span class="lang-en">Last updated: August 20, 2026</span>
+  </p>
+  <div class="controls">
+    <div class="switch">
+      <button onclick="setTheme('light')">
+        <span class="lang-es">&#9679; Claro</span>
+        <span class="lang-en">&#9679; Light</span>
+      </button>
+      <button class="active" onclick="setTheme('dark')">
+        <span class="lang-es">&#9679; Oscuro</span>
+        <span class="lang-en">&#9679; Dark</span>
+      </button>
+    </div>
+    <div class="switch lang-switch">
+      <button type="button" data-lang="es" onclick="chooseLang('es')">ES</button>
+      <button type="button" data-lang="en" onclick="chooseLang('en')">EN</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     ESPAÑOL
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="lang-es">
+
+<nav class="toc">
+  <h2>Contenido</h2>
+  <ol>
+    <li><a href="#es-1">Introducción a Zitro</a></li>
+    <li><a href="#es-2">Qué Ofrece la Plataforma</a></li>
+    <li><a href="#es-3">Sistema Interno ZTR</a></li>
+    <li><a href="#es-4">Qué Significa ZTR</a></li>
+    <li><a href="#es-5">Minería Móvil Simulada</a></li>
+    <li><a href="#es-6">Minería Gratuita</a></li>
+    <li><a href="#es-7">Ciclos de 6h / 12h / 24h</a></li>
+    <li><a href="#es-8">Anuncio Previo a Cada Ciclo</a></li>
+    <li><a href="#es-9">Cómo Funciona el Countdown</a></li>
+    <li><a href="#es-10">Sistema de Referidos</a></li>
+    <li><a href="#es-11">Bonos Internos</a></li>
+    <li><a href="#es-12">Zitro Academy</a></li>
+    <li><a href="#es-13">Educación</a></li>
+    <li><a href="#es-14">Comunidad</a></li>
+    <li><a href="#es-15">Seguridad</a></li>
+    <li><a href="#es-16">Validación por el Servidor</a></li>
+    <li><a href="#es-17">Antiabuso</a></li>
+    <li><a href="#es-18">Privacidad</a></li>
+    <li><a href="#es-19">Progresión Dentro de Zitro</a></li>
+    <li><a href="#es-20">Roadmap de Producto</a></li>
+  </ol>
+</nav>
+
+<div class="chapter" id="es-1">
+  <div class="chnum">01</div>
+  <h2>Introducción a Zitro</h2>
+  <section>
+    <p class="lead">Zitro Network es una aplicación móvil que combina un sistema de puntos internos (ZTR), contenido educativo (Zitro Academy) y una comunidad de usuarios que crecen juntos dentro de la plataforma.</p>
+    <p>Este documento describe cómo funciona el ecosistema Zitro: qué es ZTR, cómo se obtiene, qué se puede y qué no se puede hacer con él, y cómo la plataforma protege a sus usuarios.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-2">
+  <div class="chnum">02</div>
+  <h2>Qué Ofrece la Plataforma</h2>
+  <section>
+    <p>Zitro ofrece, dentro de una única aplicación:</p>
+    <ul>
+      <li>Un sistema de minería móvil simulada, gratuito, que acumula ZTR.</li>
+      <li>Zitro Academy: contenido educativo por niveles, con clases y cursos.</li>
+      <li>Un sistema de referidos y bonos internos por participación en la comunidad.</li>
+      <li>Un panel de progreso y estadísticas personales dentro de la app.</li>
+    </ul>
+  </section>
+</div>
+
+<div class="chapter" id="es-3">
+  <div class="chnum">03</div>
+  <h2>Sistema Interno ZTR</h2>
+  <section>
+    <div class="note">
+      <p><strong>ZTR es una unidad interna de Zitro, utilizada exclusivamente dentro de la plataforma. No tiene valor monetario y no puede retirarse, transferirse, venderse ni convertirse en dinero.</strong></p>
+    </div>
+    <p>ZTR funciona como un punto de progreso dentro de la aplicación: se acumula minando y completando actividades de Academy, y se muestra en el Dashboard como parte de tu balance dentro de Zitro.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-4">
+  <div class="chnum">04</div>
+  <h2>Qué Significa ZTR</h2>
+  <section>
+    <p>ZTR es el nombre de la unidad interna de acumulación de Zitro Network. Se utiliza exclusivamente dentro de la plataforma, como parte del sistema de progreso y minería móvil simulada de Zitro.</p>
+    <p>Minar ZTR dentro de Zitro es gratuito y no requiere inversión.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-5">
+  <div class="chnum">05</div>
+  <h2>Minería Móvil Simulada</h2>
+  <section>
+    <p>La "minería" en Zitro es una mecánica interna de acumulación y progresión de puntos dentro de la app. El dispositivo móvil no realiza ningún cálculo ni consume batería o datos de forma significativa: la mecánica es una simulación de progreso gestionada íntegramente por el servidor de Zitro.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-6">
+  <div class="chnum">06</div>
+  <h2>Minería Gratuita</h2>
+  <section>
+    <p><strong>Minar ZTR es gratis.</strong> El usuario no realiza ninguna inversión, no paga para minar, no compra ZTR, no deposita dinero y no necesita conectar una wallet externa para minar.</p>
+    <p>Para minar ZTR no es necesario ingresar datos de tarjetas de crédito o débito. Zitro no solicita información de pago para activar la minería.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-7">
+  <div class="chnum">07</div>
+  <h2>Ciclos de 6h / 12h / 24h</h2>
+  <section>
+    <p>Cada usuario elige la duración de su ciclo de minería: 6, 12 o 24 horas. Cuanto más largo el ciclo, mayor la acumulación de ZTR asociada a ese ciclo. Sólo puede haber un ciclo activo por cuenta a la vez.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-8">
+  <div class="chnum">08</div>
+  <h2>Anuncio Previo a Cada Ciclo</h2>
+  <section>
+    <p>Antes de iniciar cada ciclo de minería, la aplicación muestra un anuncio (Rewarded Ad) provisto por Google AdMob. Este paso es parte del funcionamiento actual de la plataforma y se comunica al usuario antes de mostrarse, dentro del propio selector de ciclo.</p>
+    <p>El anuncio se muestra a través del SDK oficial de Google Mobile Ads; el usuario puede cerrar el selector de ciclo en cualquier momento sin que esto afecte su cuenta.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-9">
+  <div class="chnum">09</div>
+  <h2>Cómo Funciona el Countdown</h2>
+  <section>
+    <p>Una vez iniciado el ciclo, la app muestra una cuenta regresiva hasta su finalización. El tiempo restante siempre se calcula contra la hora de finalización registrada por el servidor — nunca depende únicamente del reloj local del dispositivo. Al finalizar el ciclo, el usuario puede reclamar su ZTR acumulado.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-10">
+  <div class="chnum">10</div>
+  <h2>Sistema de Referidos</h2>
+  <section>
+    <p>Los usuarios pueden invitar a otras personas mediante un enlace o código de referido. Cuando un referido está activo, quien lo invitó puede recibir un bono interno adicional en ZTR sobre su propia minería. El sistema incluye controles para prevenir cuentas duplicadas o fraudulentas.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-11">
+  <div class="chnum">11</div>
+  <h2>Bonos Internos</h2>
+  <section>
+    <p>Además del bono de referidos, Zitro reconoce la constancia del usuario mediante una racha (streak) de actividad diaria: al completar un bloque de días consecutivos de participación, se acredita un bono interno adicional en ZTR.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-12">
+  <div class="chnum">12</div>
+  <h2>Zitro Academy</h2>
+  <section>
+    <p>Zitro Academy ofrece contenido educativo organizado en niveles (Principiante, Intermedio, Avanzado), con clases en video. Algunas clases, al completarse, acreditan ZTR como reconocimiento por el tiempo de aprendizaje efectivamente dedicado.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-13">
+  <div class="chnum">13</div>
+  <h2>Educación</h2>
+  <section>
+    <p>El contenido de Academy cubre fundamentos de mercados financieros, análisis técnico, gestión de riesgo y otros temas formativos, con un enfoque práctico y progresivo por nivel.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-14">
+  <div class="chnum">14</div>
+  <h2>Comunidad</h2>
+  <section>
+    <p>Zitro crece a partir de su comunidad de usuarios: quienes participan activamente, invitan a otros y completan contenido de Academy fortalecen el ecosistema. La comunidad puede además acceder a espacios oficiales de comunicación (por ejemplo, canales de Telegram) para novedades y soporte.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-15">
+  <div class="chnum">15</div>
+  <h2>Seguridad</h2>
+  <section>
+    <p>Zitro protege las cuentas de sus usuarios mediante autenticación segura, verificación de dispositivo (Play Integrity) y monitoreo continuo de actividad anómala. La app nunca solicita contraseñas de terceros ni datos financieros para operar sus funciones internas.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-16">
+  <div class="chnum">16</div>
+  <h2>Validación por el Servidor</h2>
+  <section>
+    <p>El servidor de Zitro es la única autoridad sobre el estado de tu cuenta: balance, ciclos de minería, desbloqueos de Academy y bonos. Ninguna acción del dispositivo del usuario — incluida la confirmación de un anuncio — acredita ZTR por sí sola; siempre se verifica del lado del servidor antes de acreditar cualquier recompensa.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-17">
+  <div class="chnum">17</div>
+  <h2>Antiabuso</h2>
+  <section>
+    <p>La plataforma aplica límites de frecuencia, verificación de dispositivo y detección de patrones anómalos para prevenir el uso de bots, cuentas duplicadas o automatización. El sistema de referidos, por ejemplo, no acredita bonos por cuentas identificadas como duplicadas del mismo dispositivo.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-18">
+  <div class="chnum">18</div>
+  <h2>Privacidad</h2>
+  <section>
+    <p>El tratamiento de datos personales de Zitro se describe en la Política de Privacidad, disponible dentro de la app. La aplicación utiliza el marco de consentimiento de Google (UMP) para gestionar la publicidad personalizada y no personalizada según corresponda.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-19">
+  <div class="chnum">19</div>
+  <h2>Progresión Dentro de Zitro</h2>
+  <section>
+    <p>El balance de ZTR y la actividad en Academy alimentan un sistema de niveles y logros dentro de la app, pensado para reflejar la participación y constancia del usuario dentro del ecosistema — sin implicar ningún derecho financiero.</p>
+  </section>
+</div>
+
+<div class="chapter" id="es-20">
+  <div class="chnum">20</div>
+  <h2>Roadmap de Producto</h2>
+  <section>
+    <p>Las próximas etapas de desarrollo de Zitro se enfocan en:</p>
+    <ul>
+      <li>Mejoras de experiencia de usuario (UX) en minería, Academy y perfil.</li>
+      <li>Ampliación del catálogo de cursos y niveles de Zitro Academy.</li>
+      <li>Nuevas herramientas de comunidad y gamificación interna.</li>
+      <li>Refuerzos continuos de seguridad y prevención de fraude.</li>
+      <li>Evolución del sistema de puntos internos dentro de la app.</li>
+    </ul>
+    <p class="note">El roadmap se concentra exclusivamente en funcionalidades internas de Zitro, experiencia de usuario, educación, comunidad, seguridad y evolución del sistema de puntos.</p>
+  </section>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     ENGLISH
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="lang-en">
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#en-1">Introduction to Zitro</a></li>
+    <li><a href="#en-2">What the Platform Offers</a></li>
+    <li><a href="#en-3">ZTR Internal System</a></li>
+    <li><a href="#en-4">What ZTR Means</a></li>
+    <li><a href="#en-5">Simulated Mobile Mining</a></li>
+    <li><a href="#en-6">Free Mining</a></li>
+    <li><a href="#en-7">6h / 12h / 24h Cycles</a></li>
+    <li><a href="#en-8">Ad Before Each Cycle</a></li>
+    <li><a href="#en-9">How the Countdown Works</a></li>
+    <li><a href="#en-10">Referral System</a></li>
+    <li><a href="#en-11">Internal Bonuses</a></li>
+    <li><a href="#en-12">Zitro Academy</a></li>
+    <li><a href="#en-13">Education</a></li>
+    <li><a href="#en-14">Community</a></li>
+    <li><a href="#en-15">Security</a></li>
+    <li><a href="#en-16">Server-Side Validation</a></li>
+    <li><a href="#en-17">Anti-Abuse</a></li>
+    <li><a href="#en-18">Privacy</a></li>
+    <li><a href="#en-19">Progression Within Zitro</a></li>
+    <li><a href="#en-20">Product Roadmap</a></li>
+  </ol>
+</nav>
+
+<div class="chapter" id="en-1">
+  <div class="chnum">01</div>
+  <h2>Introduction to Zitro</h2>
+  <section>
+    <p class="lead">Zitro Network is a mobile app that combines an internal points system (ZTR), educational content (Zitro Academy), and a community of users growing together within the platform.</p>
+    <p>This document describes how the Zitro ecosystem works: what ZTR is, how it is obtained, what can and cannot be done with it, and how the platform protects its users.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-2">
+  <div class="chnum">02</div>
+  <h2>What the Platform Offers</h2>
+  <section>
+    <p>Within a single app, Zitro offers:</p>
+    <ul>
+      <li>A free, simulated mobile mining system that accumulates ZTR.</li>
+      <li>Zitro Academy: leveled educational content, with classes and courses.</li>
+      <li>A referral system and internal bonuses for community participation.</li>
+      <li>A personal progress and stats dashboard within the app.</li>
+    </ul>
+  </section>
+</div>
+
+<div class="chapter" id="en-3">
+  <div class="chnum">03</div>
+  <h2>ZTR Internal System</h2>
+  <section>
+    <div class="note">
+      <p><strong>ZTR is an internal Zitro unit, used exclusively within the platform. It has no monetary value and cannot be withdrawn, transferred, sold, or converted into money.</strong></p>
+    </div>
+    <p>ZTR works as an in-app progress point: it accumulates through mining and completing Academy activities, and is shown on the Dashboard as part of your balance within Zitro.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-4">
+  <div class="chnum">04</div>
+  <h2>What ZTR Means</h2>
+  <section>
+    <p>ZTR is the name of Zitro Network's internal accumulation unit. It is used exclusively within the platform, as part of Zitro's progress and simulated mobile mining system.</p>
+    <p>Mining ZTR within Zitro is free and requires no investment.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-5">
+  <div class="chnum">05</div>
+  <h2>Simulated Mobile Mining</h2>
+  <section>
+    <p>"Mining" in Zitro is an internal points accumulation and progression mechanic within the app. The mobile device performs no computation and does not meaningfully consume battery or data: the mechanic is a progress simulation managed entirely by Zitro's server.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-6">
+  <div class="chnum">06</div>
+  <h2>Free Mining</h2>
+  <section>
+    <p><strong>Mining ZTR is free.</strong> The user makes no investment, pays nothing to mine, does not buy ZTR, does not deposit money, and does not need to connect an external wallet to mine.</p>
+    <p>Credit or debit card details are never required to mine ZTR. Zitro does not request payment information to activate mining.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-7">
+  <div class="chnum">07</div>
+  <h2>6h / 12h / 24h Cycles</h2>
+  <section>
+    <p>Each user chooses their mining cycle duration: 6, 12, or 24 hours. The longer the cycle, the greater the ZTR accumulation tied to that cycle. Only one cycle can be active per account at a time.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-8">
+  <div class="chnum">08</div>
+  <h2>Ad Before Each Cycle</h2>
+  <section>
+    <p>Before starting each mining cycle, the app shows an ad (Rewarded Ad) provided by Google AdMob. This step is part of the platform's current operation and is disclosed to the user before it is shown, within the cycle selector itself.</p>
+    <p>The ad is shown through the official Google Mobile Ads SDK; the user may close the cycle selector at any time without affecting their account.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-9">
+  <div class="chnum">09</div>
+  <h2>How the Countdown Works</h2>
+  <section>
+    <p>Once a cycle starts, the app shows a countdown to its completion. Remaining time is always computed against the completion time recorded by the server — never solely from the device's local clock. When the cycle ends, the user can claim their accumulated ZTR.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-10">
+  <div class="chnum">10</div>
+  <h2>Referral System</h2>
+  <section>
+    <p>Users can invite others via a referral link or code. When a referral is active, the inviter may receive an additional internal ZTR bonus on top of their own mining. The system includes controls to prevent duplicate or fraudulent accounts.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-11">
+  <div class="chnum">11</div>
+  <h2>Internal Bonuses</h2>
+  <section>
+    <p>In addition to the referral bonus, Zitro recognizes user consistency through a daily activity streak: completing a block of consecutive active days credits an additional internal ZTR bonus.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-12">
+  <div class="chnum">12</div>
+  <h2>Zitro Academy</h2>
+  <section>
+    <p>Zitro Academy offers educational content organized into levels (Beginner, Intermediate, Advanced), with video classes. Some classes, once completed, credit ZTR as recognition for genuine learning time spent.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-13">
+  <div class="chnum">13</div>
+  <h2>Education</h2>
+  <section>
+    <p>Academy content covers financial market fundamentals, technical analysis, risk management, and other educational topics, with a practical, level-based approach.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-14">
+  <div class="chnum">14</div>
+  <h2>Community</h2>
+  <section>
+    <p>Zitro grows from its community of users: those who participate actively, invite others, and complete Academy content strengthen the ecosystem. The community can also access official communication spaces (e.g. Telegram channels) for updates and support.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-15">
+  <div class="chnum">15</div>
+  <h2>Security</h2>
+  <section>
+    <p>Zitro protects user accounts through secure authentication, device verification (Play Integrity), and continuous monitoring for anomalous activity. The app never asks for third-party passwords or financial data to operate its internal features.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-16">
+  <div class="chnum">16</div>
+  <h2>Server-Side Validation</h2>
+  <section>
+    <p>Zitro's server is the sole authority over your account state: balance, mining cycles, Academy unlocks, and bonuses. No action on the user's device — including confirming an ad — credits ZTR on its own; everything is verified server-side before any reward is credited.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-17">
+  <div class="chnum">17</div>
+  <h2>Anti-Abuse</h2>
+  <section>
+    <p>The platform applies rate limits, device verification, and anomaly detection to prevent bots, duplicate accounts, or automation. The referral system, for example, does not credit bonuses for accounts identified as duplicates of the same device.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-18">
+  <div class="chnum">18</div>
+  <h2>Privacy</h2>
+  <section>
+    <p>Zitro's handling of personal data is described in the Privacy Policy, available within the app. The app uses Google's consent framework (UMP) to manage personalized and non-personalized advertising as applicable.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-19">
+  <div class="chnum">19</div>
+  <h2>Progression Within Zitro</h2>
+  <section>
+    <p>ZTR balance and Academy activity feed into an in-app level and achievement system, designed to reflect user participation and consistency within the ecosystem — without implying any financial right.</p>
+  </section>
+</div>
+
+<div class="chapter" id="en-20">
+  <div class="chnum">20</div>
+  <h2>Product Roadmap</h2>
+  <section>
+    <p>Zitro's upcoming development stages focus on:</p>
+    <ul>
+      <li>UX improvements across mining, Academy, and profile.</li>
+      <li>An expanded catalog of Zitro Academy courses and levels.</li>
+      <li>New community and internal gamification tools.</li>
+      <li>Continued security hardening and fraud prevention.</li>
+      <li>Evolution of the in-app internal points system.</li>
+    </ul>
+    <p class="note">This roadmap focuses exclusively on Zitro's internal features, user experience, education, community, security, and the evolution of the points system.</p>
+  </section>
+</div>
+
+</div>
+
+<footer>
+  <p class="lang-es">Zitro Network &middot; Documento del Ecosistema &middot; Este documento tiene fines exclusivamente informativos.</p>
+  <p class="lang-en">Zitro Network &middot; Ecosystem Document &middot; This document is for informational purposes only.</p>
+  <p class="links">
+    <a href="https://fedeortiz9.github.io/zitro-terms/" target="_blank" rel="noopener noreferrer"><span class="lang-es">Términos y Condiciones</span><span class="lang-en">Terms and Conditions</span></a>
+    <a href="https://fedeortiz9.github.io/zitro-privacy-policy/" target="_blank" rel="noopener noreferrer"><span class="lang-es">Política de Privacidad</span><span class="lang-en">Privacy Policy</span></a>
+  </p>
+</footer>
+
+</div>
+
+<script>
+function setLang(l){
+  var language = l === 'es' ? 'es' : 'en';
+  document.querySelectorAll('.lang-es, .lang-en').forEach(function(element){
+    element.hidden = !element.classList.contains('lang-' + language);
+  });
+  document.documentElement.setAttribute('lang', language);
+  document.documentElement.setAttribute('dir', 'ltr');
+  document.documentElement.setAttribute('data-language', language);
+}
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme', t==='dark'?'dark':'light');
+  var buttons = document.querySelectorAll('.controls .switch')[0].querySelectorAll('button');
+  buttons.forEach(function(b){b.classList.remove('active')});
+  buttons[t==='dark'?1:0].classList.add('active');
+}
+var LANG_KEY = 'zitro-language';
+function chooseLang(l){
+  setLang(l);
+  try { localStorage.setItem(LANG_KEY, l === 'en' ? 'en' : 'es'); } catch (e) {}
+}
+(function(){
+  var _setLang = setLang;
+  setLang = function(l){
+    _setLang(l);
+    document.querySelectorAll('.lang-switch button').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-lang') === (l === 'en' ? 'en' : 'es'));
+    });
+  };
+  var initial = 'es';
+  try {
+    var stored = localStorage.getItem(LANG_KEY);
+    if (stored === 'en' || stored === 'es') initial = stored;
+  } catch (e) {}
+  setLang(initial);
+})();
+</script>
+</body>
+</html>
