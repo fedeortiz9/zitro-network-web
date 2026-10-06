@@ -15,9 +15,9 @@ import worker from "../src/index.js";
 //
 // PR-A11 — /whitepaper/ is white paper v5.0, byte-identical to the GitHub
 // Pages copy (zitro-whitepaper). Its wording is decided by the owner, so the
-// contract no longer requires a canonical tag, accepts the IBM Plex stylesheet
-// from Google Fonts (the CSP blocks it and the page uses its fallback fonts)
-// and allows exactly the phrases listed in OWNER_APPROVED_PHRASES.
+// contract no longer requires a canonical tag. IBM Plex is served from
+// whitepaper/fonts/ (font-src 'self'); the Google Fonts stylesheet the
+// document also links stays blocked by the unchanged CSP.
 
 const read = (relative) =>
   readFileSync(fileURLToPath(new URL(relative, import.meta.url)), "utf8");
@@ -39,25 +39,8 @@ test("the whitepaper page is v5.0 and states that ZTR has no monetary value, in 
   assert.match(whitepaper, /It has no monetary value/);
 });
 
-// Phrases of white paper v5.0 that match the banned list below, reviewed and
-// kept by the owner (PR-A11). Each one must appear exactly once: if the text
-// changes, this list has to be revisited instead of silently widening.
-const OWNER_APPROVED_PHRASES = [
-  // §2 — describes other projects, not Zitro.
-  "Muchas propuestas digitales, además, prometen ganancias y dejan a los usuarios con reglas poco claras.",
-  // §9 — header of the referral multiplier table (1,2× … 3×).
-  "Referidos minando Bono Rendimiento",
-  "Referrals mining Bonus Yield",
-  // §6 — ZTR per hour of the 6 h / 12 h / 24 h cycles.
-  "Shorter cycles yield more per hour to recognize people who return often.",
-];
-
 test("the whitepaper page promises no token, exchange, yield or earnings", () => {
-  let text = visibleText(whitepaper);
-  for (const phrase of OWNER_APPROVED_PHRASES) {
-    assert.equal(text.split(phrase).length - 1, 1, `approved phrase not found exactly once: ${phrase}`);
-    text = text.replace(phrase, " ");
-  }
+  const text = visibleText(whitepaper);
   const banned = [
     /BEP-?20/i,
     /\btoken\b/i,
@@ -89,6 +72,24 @@ test("the whitepaper page has no scripts and only loads Google Fonts, which the 
   assert.deepEqual(external, []);
   assert.doesNotMatch(whitepaper, /<script/i);
   assert.doesNotMatch(whitepaper, /<img/i);
+});
+
+test("the whitepaper page serves its IBM Plex fonts from whitepaper/fonts/ with the OFL license", () => {
+  const fontUrls = [...whitepaper.matchAll(/url\(['"]?([^'")]+)['"]?\)/g)].map((m) => m[1]);
+  assert.deepEqual(fontUrls.sort(), [
+    "fonts/IBMPlexSans-Medium.woff2",
+    "fonts/IBMPlexSans-Regular.woff2",
+    "fonts/IBMPlexSans-SemiBold.woff2",
+    "fonts/IBMPlexSerif-Medium.woff2",
+  ]);
+  let total = 0;
+  for (const url of fontUrls) {
+    const bytes = readFileSync(fileURLToPath(new URL(`../whitepaper/${url}`, import.meta.url)));
+    assert.equal(bytes.subarray(0, 4).toString("latin1"), "wOF2", url);
+    total += bytes.length;
+  }
+  assert.ok(total < 200 * 1024, `fonts weigh ${total} bytes`);
+  assert.match(read("../whitepaper/fonts/OFL.txt"), /SIL Open Font License, Version 1\.1/);
 });
 
 test("every site link to the whitepaper points to /whitepaper/, none to the token document", () => {
