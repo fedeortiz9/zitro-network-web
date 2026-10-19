@@ -32,9 +32,9 @@ function visibleText(html) {
     .replace(/\s+/g, " ");
 }
 
-test("the whitepaper page is v5.0 and states that ZTR has no monetary value, in both languages", () => {
-  assert.match(whitepaper, /Versión 5\.0/);
-  assert.match(whitepaper, /Version 5\.0/);
+test("the whitepaper page is v5.1 and states that ZTR has no monetary value, in both languages", () => {
+  assert.match(whitepaper, /Versión 5\.1/);
+  assert.match(whitepaper, /Version 5\.1/);
   assert.match(whitepaper, /No tiene valor monetario/);
   assert.match(whitepaper, /It has no monetary value/);
 });
@@ -53,6 +53,11 @@ test("the whitepaper page promises no token, exchange, yield or earnings", () =>
     /\bearn/i,
     /c[oó]mo se gana/i,
     /distribuci[oó]n inicial|initial distribution/i,
+    // COMPLIANCE-LEGAL: mining is symbolic (a record on Zitro's servers).
+    /miner[ií]a en la nube|cloud mining/i,
+    /multiplicadores?|multipliers?/i,
+    /llegan primero|early participants/i,
+    /dApps?/,
   ];
   for (const pattern of banned) {
     assert.doesNotMatch(text, pattern, `whitepaper contains ${pattern}`);
