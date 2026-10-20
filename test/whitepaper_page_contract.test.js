@@ -32,11 +32,21 @@ function visibleText(html) {
     .replace(/\s+/g, " ");
 }
 
-test("the whitepaper page is v5.1 and states that ZTR has no monetary value, in both languages", () => {
-  assert.match(whitepaper, /Versión 5\.1/);
-  assert.match(whitepaper, /Version 5\.1/);
+test("the whitepaper page is v5.2 and states that ZTR has no monetary value, in both languages", () => {
+  assert.match(whitepaper, /Versión 5\.2/);
+  assert.match(whitepaper, /Version 5\.2/);
   assert.match(whitepaper, /No tiene valor monetario/);
   assert.match(whitepaper, /It has no monetary value/);
+});
+
+// HALVING-9 — v5.2: 9 halving stages (0 to 9); the last one starts at
+// 15,000,000 active miners, in both languages.
+test("the whitepaper page describes 9 halving stages, in both languages", () => {
+  assert.match(whitepaper, /<b>9<\/b><span>etapas de halving<\/span>/);
+  assert.match(whitepaper, /<b>9<\/b><span>halving stages<\/span>/);
+  assert.match(whitepaper, /<tr><td>9<\/td><td class="num">15\.000\.000<\/td>/);
+  assert.match(whitepaper, /<tr><td>9<\/td><td class="num">15,000,000<\/td>/);
+  assert.doesNotMatch(whitepaper, /<b>5<\/b><span>(etapas de halving|halving stages)<\/span>/);
 });
 
 test("the whitepaper page promises no token, exchange, yield or earnings", () => {
