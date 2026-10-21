@@ -26,3 +26,7 @@ pubmatic.com, 137711, RESELLER, 5d62403b186f2ace
 pubmatic.com, 156212, RESELLER, 5d62403b186f2ace
 smartadserver.com, 4926, RESELLER, 060d053dcf45cbf3
 voisetech.com, 1127, RESELLER, 9009ef0379162448
+
+# InMobi Exchange (AdMob Open Bidding) - lineas propias de InMobi ("Only InMobi"), 2026-10-20
+inmobi.com, f61ab281faa049c5ab5615171461e92c, DIRECT, 83e75a7ae333ca9d
+inmobi.com, 9e311c7a68e94888aac7fbb4272381e2, RESELLER, 83e75a7ae333ca9d
