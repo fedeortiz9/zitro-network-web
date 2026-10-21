@@ -22,6 +22,16 @@ function readAppAdsRaw() {
   return readFileSync(appAdsPath, "utf8");
 }
 
+// The file authorizes AdMob first and then lists the Open Bidding partners'
+// lines (Chocolate, InMobi...). Comments (#) and blank lines are allowed by
+// the IAB spec.
+function recordLines(raw) {
+  return raw
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter((l) => l !== "" && !l.startsWith("#"));
+}
+
 // Mock of Cloudflare Workers static assets (env.ASSETS): serves the real file
 // from disk when it exists, with the content-type the real asset server
 // assigns .txt files (text/plain), and 404 otherwise.
@@ -49,22 +59,35 @@ test("WEB-APPADS-1: app-ads.txt exists at the repo root", () => {
   assert.ok(existsSync(appAdsPath), `Missing ${appAdsPath}`);
 });
 
-test("WEB-APPADS-1: contains exactly the expected AdMob authorization line", () => {
+test("WEB-APPADS-1: the first line is exactly the AdMob authorization line", () => {
   const raw = readAppAdsRaw();
-  assert.equal(raw.replace(/\r?\n$/, ""), EXPECTED_LINE);
+  assert.equal(raw.split(/\r?\n/)[0], EXPECTED_LINE);
   assert.ok(!raw.startsWith("\n"), "must not start with a blank line");
   assert.ok(!raw.startsWith("﻿"), "must not start with a BOM");
+  assert.equal(
+    recordLines(raw).filter((l) => l === EXPECTED_LINE).length,
+    1,
+    "the AdMob line appears exactly once",
+  );
 });
 
-test("WEB-APPADS-1: the line has exactly 4 comma-separated fields", () => {
-  const line = readAppAdsRaw().trim();
-  const fields = line.split(",").map((f) => f.trim());
+test("WEB-APPADS-1: the AdMob line has exactly 4 comma-separated fields", () => {
+  const fields = EXPECTED_LINE.split(",").map((f) => f.trim());
   assert.equal(fields.length, 4);
   const [adSystem, publisherId, relationship, certAuthorityId] = fields;
   assert.equal(adSystem, "google.com");
   assert.equal(publisherId, "pub-4139582015284072");
   assert.equal(relationship, "DIRECT");
   assert.equal(certAuthorityId, "f08c47fec0942fa0");
+});
+
+test("WEB-APPADS-1: every record line is a valid IAB record (3 or 4 fields, DIRECT/RESELLER)", () => {
+  for (const line of recordLines(readAppAdsRaw())) {
+    const fields = line.split(",").map((f) => f.trim());
+    assert.ok(fields.length === 3 || fields.length === 4, `bad field count: ${line}`);
+    assert.ok(fields[0].length > 0 && fields[1].length > 0, `empty field: ${line}`);
+    assert.match(fields[2], /^(DIRECT|RESELLER)$/, `bad relationship: ${line}`);
+  }
 });
 
 test("WEB-APPADS-1: worker serves app-ads.txt as 200 plain text on www, without redirect", async () => {
@@ -77,7 +100,7 @@ test("WEB-APPADS-1: worker serves app-ads.txt as 200 plain text on www, without 
     "crawlers require a text/plain content type",
   );
   const body = await response.text();
-  assert.equal(body.trim(), EXPECTED_LINE);
+  assert.equal(body, readAppAdsRaw());
 });
 
 test("WEB-APPADS-1: worker does not transform the file into HTML or a referral page", async () => {
@@ -96,7 +119,7 @@ test("WEB-APPADS-1: the apex also serves app-ads.txt as 200, without redirecting
   assert.equal(response.status, 200);
   assert.equal(response.headers.get("location"), null);
   const body = await response.text();
-  assert.equal(body.trim(), EXPECTED_LINE);
+  assert.equal(body, readAppAdsRaw());
 });
 
 test("WEB-APPADS-1: an insecure apex request still upgrades to https (not left on http)", async () => {
