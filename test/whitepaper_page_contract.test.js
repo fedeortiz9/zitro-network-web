@@ -32,9 +32,9 @@ function visibleText(html) {
     .replace(/\s+/g, " ");
 }
 
-test("the whitepaper page is v5.3 and states that ZTR has no monetary value, in both languages", () => {
-  assert.match(whitepaper, /Versión 5\.3/);
-  assert.match(whitepaper, /Version 5\.3/);
+test("the whitepaper page is v5.4 and states that ZTR has no monetary value, in both languages", () => {
+  assert.match(whitepaper, /Versión 5\.4/);
+  assert.match(whitepaper, /Version 5\.4/);
   assert.match(whitepaper, /No tiene valor monetario/);
   assert.match(whitepaper, /It has no monetary value/);
 });
@@ -49,26 +49,20 @@ test("the whitepaper page describes 9 halving stages, in both languages", () => 
   assert.doesNotMatch(whitepaper, /<b>5<\/b><span>(etapas de halving|halving stages)<\/span>/);
 });
 
-// ACAD-ADV-1 — v5.3: Advanced Academy classes grant no ZTR and add +2% to
-// the mining pace. The owner's text adds one disclaimer per language that
-// says the higher pace is NOT a promise of profit; only that exact sentence
-// is removed before the banned-words check, and it must be present.
-const ACADEMY_DISCLAIMERS = [
-  "el aumento del ritmo de minería no es una promesa de ganancia",
-  "the higher mining pace is not a promise of profit",
-];
-
-test("the whitepaper page describes Advanced Academy classes as +2% mining with no ZTR, in both languages", () => {
+// ACAD-RAW-1 — v5.4: the Academy is video only. Classes grant no ZTR and do
+// not increase mining; increases earned before October 21, 2026 are kept.
+// No Academy text promises ZTR or a +2% boost any more.
+test("the whitepaper page describes the Academy as video only, with no ZTR and no mining boost, in both languages", () => {
   const text = visibleText(whitepaper);
-  assert.match(text, /Las clases del nivel Avanzado no otorgan ZTR/);
-  assert.match(text, /Advanced-level classes grant no ZTR/);
-  for (const disclaimer of ACADEMY_DISCLAIMERS) {
-    assert.ok(text.includes(disclaimer), `missing disclaimer: ${disclaimer}`);
-  }
+  assert.match(text, /Las clases no otorgan ZTR ni aumentan el ritmo de minería/);
+  assert.match(text, /Classes grant no ZTR and do not increase the mining pace/);
+  assert.match(text, /completadas antes del 21 de octubre de 2026 se conservan/);
+  assert.match(text, /completed before October 21, 2026 are kept/);
+  assert.doesNotMatch(text, /\+2 ?%|\+14 ?%/);
 });
 
 test("the whitepaper page promises no token, exchange, yield or earnings", () => {
-  const text = ACADEMY_DISCLAIMERS.reduce((acc, disclaimer) => acc.split(disclaimer).join(" "), visibleText(whitepaper));
+  const text = visibleText(whitepaper);
   const banned = [
     /BEP-?20/i,
     /\btoken\b/i,
